@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kelurahan Tanjungpinang Kota Kecamatan Tanjungpinang Kota</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="font-sans bg-gray-50">
+  <!-- Header Section -->
+  <header class="bg-gradient-to-r from-blue-800 to-blue-600 py-3 shadow-md">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex items-center mb-4 md:mb-0">
+          <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" 
+               alt="Logo Kelurahan" 
+               class="h-12 mr-4" />
+          <div>
+            <h1 class="text-xl font-bold text-white">Kelurahan Tanjungpinang Kota</h1>
+            <p class="text-sm text-blue-100">Kecamatan Tanjungpinang Kota</p>
+          </div>
+        </div>
+        <div class="flex items-center">
+          <div class="flex space-x-4 mr-4">
+            <a href="https://facebook.com/kel.tpikota" class="text-white hover:text-blue-200 transition-colors">
+              <i class="fab fa-facebook-f text-lg"></i>
+            </a>
+            <a href="https://instagram.com/kel.tpikota" class="text-white hover:text-blue-200 transition-colors">
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
+          </div>
+          <a href="https://icms.tanjungpinangkota.go.id" 
+             class="bg-white text-blue-600 px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-50 transition-colors">
+            <i class="fas fa-sign-in-alt mr-1"></i> Login
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <div class="relative overflow-hidden h-64 md:h-96">
+  <img src="https://icms.tanjungpinangkota.go.id/image/banner/7243000000/1729745651_e3b6a82242c469b91514.jpg" 
+       alt="Banner Kelurahan" 
+       class="w-full h-full object-cover object-center" />
+    </div>
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-white shadow-lg">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html" class="text-blue-600 font-medium border-b-2 border-blue-600 py-4">Beranda</a>
+          <a href="news.html" class="text-gray-700 hover:text-blue-600 transition-colors py-4">Berita</a>
+          <a href="/pengumuman" class="text-gray-700 hover:text-blue-600 transition-colors py-4">Pengumuman</a>
+          <a href="/gallery" class="text-gray-700 hover:text-blue-600 transition-colors py-4">Gallery</a>
+          <a href="/download" class="text-gray-700 hover:text-blue-600 transition-colors py-4">Download Area</a>
+        </div>
+        <button class="md:hidden text-gray-700 focus:outline-none" id="mobile-menu-button">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div class="md:hidden hidden bg-white shadow-lg" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600">Beranda</a>
+        <a href="news.html" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Berita</a>
+        <a href="/pengumuman" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Pengumuman</a>
+        <a href="/gallery" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Gallery</a>
+        <a href="/download" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50">Download Area</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Left Content -->
+      <div class="lg:w-2/3">
+        <!-- News Section -->
+        <section class="mb-12" data-aos="fade-up">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">
+              <i class="fas fa-newspaper text-blue-600 mr-2"></i> Berita Terkini
+            </h2>
+            <a href="/berita" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+              Lihat Semua <i class="fas fa-chevron-right ml-1 text-sm"></i>
+            </a>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- News Card 1 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+              <div class="relative overflow-hidden h-48">
+                <img src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg" 
+                     alt="Berita" 
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                <div class="absolute top-4 left-4 bg-blue-600 text-white text-xs px-3 py-1 rounded-full">
+                  21 Juni 2024
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">PENYERAHAN BINGKISAN HARI LANJUT USIA NASIONAL</h3>
+                <p class="text-gray-600 mb-4">
+                  Kelurahan Tanjungpinang menyalurkan Paket Bingkisan dalam rangka Hari Lanjut Usia Nasional Tahun 2024.
+                </p>
+                <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+                  Baca Selengkapnya <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- News Card 2 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+              <div class="relative overflow-hidden h-48">
+                <img src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1717577239_ba55e5551c63f1be75f7.jpg" 
+                     alt="Berita" 
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                <div class="absolute top-4 left-4 bg-blue-600 text-white text-xs px-3 py-1 rounded-full">
+                  29 Mei 2024
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3">LOMBA KELURAHAN TERBAIK SE-KOTA TANJUNGPINANG</h3>
+                <p class="text-gray-600 mb-4">
+                  Kelurahan Tanjungpinang mewakili Kecamatan Tanjungpinang Kota dalam lomba kelurahan terbaik.
+                </p>
+                <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+                  Baca Selengkapnya <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Announcements Section -->
+        <section class="mb-12" data-aos="fade-up">
+          <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">
+              <i class="fas fa-bullhorn text-blue-600 mr-2"></i> Pengumuman
+            </h2>
+            <a href="/pengumuman" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+              Lihat Semua <i class="fas fa-chevron-right ml-1 text-sm"></i>
+            </a>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="p-6 md:p-8">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 bg-blue-100 p-3 rounded-lg mr-4">
+                  <i class="fas fa-info-circle text-blue-600 text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-gray-800 mb-2">Pendaftaran Bantuan Sosial Tahap II</h3>
+                  <p class="text-gray-600 mb-4">
+                    Pendaftaran bantuan sosial untuk warga kurang mampu akan dibuka mulai tanggal 1-15 Juli 2024.
+                  </p>
+                  <a href="#" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+                    Detail Pengumuman <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div><br><br>
+
+          <!-- Statistics -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+          <div class="bg-blue-600 px-6 py-4">
+            <h3 class="text-lg font-semibold text-white">
+              <i class="fas fa-chart-line mr-2"></i> Statistik
+            </h3>
+          </div>
+          <div class="p-6">
+            <!-- Chart Container -->
+            <div class="mb-6">
+              <canvas id="population-chart" height="250"></canvas>
+            </div><br><br><br>
+
+            <!-- Map -->
+            <div>
+              <div class="bg-blue-600 px-4 py-2 rounded-t-lg">
+                <h4 class="text-sm font-semibold text-white">
+                  <i class="fas fa-map-marker-alt mr-2"></i> Peta Kantor Kelurahan
+                </h4>
+              </div>
+              <div id="mapid" class="h-48 rounded-b-lg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      <!-- Right Sidebar -->
+      <div class="lg:w-1/3">
+        <!-- Quick Links -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6" data-aos="fade-left">
+          <div class="bg-blue-600 px-6 py-4">
+            <h3 class="text-lg font-semibold text-white">
+              Pranala Aplikasi Pemerintah Kota Tanjungpinang
+            </h3>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-3">
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> Profil Kelurahan
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> Struktur Organisasi
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> Layanan Publik
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> Kontak Kami
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Internal Links -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6" data-aos="fade-left" data-aos-delay="100">
+          <div class="bg-blue-600 px-6 py-4">
+            <h3 class="text-lg font-semibold text-white">
+              Pranala Web Internal Pemerintah Kota Tanjungpinang
+            </h3>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-3">
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> Situs Resmi Pemkot
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> Portal Layanan
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> Data Statistik
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> E-Government
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Eksternal Links -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6" data-aos="fade-left" data-aos-delay="100">
+          <div class="bg-blue-600 px-6 py-4">
+            <h3 class="text-lg font-semibold text-white">
+              Pranala Web Eksternal Pemerintah Kota Tanjungpinang
+            </h3>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-3">
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> Situs Resmi Pemkot
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> Portal Layanan
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> Data Statistik
+                </a>
+              </li>
+              <li>
+                <a href="#" class="flex items-center text-gray-700 hover:text-blue-600 transition-colors">
+                  <i class="fas fa-chevron-right text-blue-600 mr-3 text-sm"></i> E-Government
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Gallery Preview -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6" data-aos="fade-left" data-aos-delay="200">
+          <div class="bg-blue-600 px-6 py-4">
+            <h3 class="text-lg font-semibold text-white">
+              <i class="fas fa-images mr-2"></i> Gallery
+            </h3>
+          </div>
+          <div class="p-6">
+            <div class="grid grid-cols-3 gap-3 mb-4">
+              <a href="#" class="block overflow-hidden rounded-lg aspect-square">
+                <img src="https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1718954074_bcd67607ce3600415d76.jpg" 
+                     alt="Gallery" 
+                     class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
+              </a>
+              <a href="#" class="block overflow-hidden rounded-lg aspect-square">
+                <img src="https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1718954056_d8ad3ecfe0494c04463f.jpg" 
+                     alt="Gallery" 
+                     class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
+              </a>
+              <a href="#" class="block overflow-hidden rounded-lg aspect-square">
+                <img src="https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1718954022_0bf4e65d09285d943a44.jpg" 
+                     alt="Gallery" 
+                     class="w-full h-full object-cover transition-transform duration-300 hover:scale-110" />
+              </a>
+            </div>
+            <a href="/gallery" class="text-center block w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+              Lihat Semua Foto
+            </a>
+          </div>
+        </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 pt-12 pb-6">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        <!-- Contact Info -->
+        <div>
+          <div class="flex items-center mb-6">
+            <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" 
+                 alt="Logo" 
+                 class="h-12 mr-4" />
+            <h3 class="text-xl font-bold text-white">Kelurahan Tanjungpinang Kota</h3>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex">
+              <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-4"></i>
+              <div>
+                <h4 class="text-white font-medium mb-1">Alamat</h4>
+                <p class="text-sm">
+                  Jl. Mesjid No.7 Tanjungpinang Kota<br />
+                  Kec. Tj. Pinang Kota, Kota Tanjung Pinang<br />
+                  Kepulauan Riau, Indonesia
+                </p>
+              </div>
+            </li>
+            <li class="flex">
+              <i class="fas fa-envelope text-blue-400 mt-1 mr-4"></i>
+              <div>
+                <h4 class="text-white font-medium mb-1">Email</h4>
+                <p class="text-sm">tpikotakel@tanjungpinangkota.go.id</p>
+              </div>
+            </li>
+            <li class="flex">
+              <i class="fas fa-phone-alt text-blue-400 mt-1 mr-4"></i>
+              <div>
+                <h4 class="text-white font-medium mb-1">Telepon</h4>
+                <p class="text-sm">(0771) 1234567</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-bold text-white mb-6 pb-2 border-b border-gray-700">Menu Cepat</h4>
+          <ul class="space-y-3">
+            <li><a href="index.html" class="hover:text-white transition-colors">Beranda</a></li>
+            <li><a href="news.html" class="hover:text-white transition-colors">Berita</a></li>
+            <li><a href="/pengumuman" class="hover:text-white transition-colors">Pengumuman</a></li>
+            <li><a href="/gallery" class="hover:text-white transition-colors">Gallery</a></li>
+            <li><a href="/download" class="hover:text-white transition-colors">Download Area</a></li>
+          </ul>
+        </div>
+
+        <!-- External Links -->
+        <div>
+          <h4 class="text-lg font-bold text-white mb-6 pb-2 border-b border-gray-700">Tautan Eksternal</h4>
+          <ul class="space-y-3">
+            <li>
+              <a href="https://tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors">
+                Pemkot Tanjungpinang
+              </a>
+            </li>
+            <li>
+              <a href="https://kominfo.tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors">
+                Diskominfo Tanjungpinang
+              </a>
+            </li>
+            <li>
+              <a href="https://dpmpd.tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors">
+                DPMPD Tanjungpinang
+              </a>
+            </li>
+            <li>
+              <a href="https://bappeda.tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors">
+                Bappeda Tanjungpinang
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+          <h4 class="text-lg font-bold text-white mb-6 pb-2 border-b border-gray-700">Media Sosial</h4>
+          <div class="flex space-x-4 mb-6">
+            <a href="https://facebook.com/kel.tpikota" target="_blank" 
+               class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-blue-600 transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com/kel.tpikota" target="_blank" 
+               class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-pink-600 transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+          <h4 class="text-lg font-bold text-white mb-4">Jam Operasional</h4>
+          <p class="text-sm mb-2">
+            <span class="font-medium">Senin - Kamis:</span> 08.00 - 16.00 WIB
+          </p>
+          <p class="text-sm">
+            <span class="font-medium">Jumat:</span> 08.00 - 16.30 WIB
+          </p>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 pt-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-sm text-gray-400 mb-4 md:mb-0">
+            &copy; 2024 Kelurahan Tanjungpinang Kota. All rights reserved.
+          </p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Kebijakan Privasi</a>
+            <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Syarat & Ketentuan</a>
+            <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">Peta Situs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-blue-700">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
