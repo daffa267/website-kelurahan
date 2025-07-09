@@ -133,12 +133,12 @@
       </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- BAGIAN DAFFA -->
+    <!-- KONTEN UTAMA -->
     <main class="fixed-container py-6">
       <div class="flex flex-col lg:flex-row gap-6">
-        <!-- Left Content -->
         <div class="lg:w-2/3">
-          <!-- Berita Section -->
+          <!-- BERITA TERKINI -->
           <section class="bg-white rounded content-box mb-6">
             <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
               <h2 class="font-bold text-base">
@@ -146,6 +146,7 @@
               </h2>
             </div>
             <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- BERITA 1 -->
               <article
                 class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
               >
@@ -172,7 +173,7 @@
                   </a>
                 </div>
               </article>
-
+              <!-- BERITA 2 -->
               <article
                 class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
               >
@@ -206,13 +207,14 @@
               </a>
             </div>
           </section>
-
+          <!-- PENGUMUMAN -->
           <section class="bg-white rounded content-box mb-6">
             <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
               <h2 class="font-bold text-base">
                 <i class="fas fa-bullhorn mr-2"></i> PENGUMUMAN
               </h2>
             </div>
+            <!-- PENGUMUMAN 1 -->
             <div class="p-4">
               <article class="border-b pb-3 mb-3">
                 <h3 class="font-bold text-blue-800 text-base">
@@ -229,6 +231,7 @@
                   Baca Selengkapnya →
                 </a>
               </article>
+              <!-- PENGUMUMAN 2 -->
               <article class="border-b pb-3 mb-3">
                 <h3 class="font-bold text-blue-800 text-base">
                   Judul Pengumuman Kedua
@@ -252,7 +255,7 @@
             </div>
           </section>
 
-          <!-- Statistics -->
+          <!-- STAISTIK DIAGRAM -->
           <section class="bg-white rounded content-box mb-6">
             <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
               <h2 class="font-bold text-base">
@@ -279,80 +282,8 @@
               </div>
             </div>
           </section>
-          <script>
-            // Data contoh, silakan ganti sesuai kebutuhan
-            const ctx = document.addEventListener(
-              "DOMContentLoaded",
-              function () {
-                // Inisialisasi chart
-                const ctx = document
-                  .getElementById("population-chart")
-                  .getContext("2d");
-                const populationChart = new Chart(ctx, {
-                  type: "line",
-                  data: {
-                    labels: ["2020", "2021", "2022", "Semester 1 - 2023"],
-                    datasets: [
-                      {
-                        label: "Jumlah Penduduk",
-                        data: [5200, 5100, 5000, 4950],
-                        borderColor: "#2989d8",
-                        backgroundColor: "rgba(41, 137, 216, 0.1)",
-                        borderWidth: 2,
-                        tension: 0.3,
-                        fill: true,
-                        pointBackgroundColor: "#2989d8",
-                        pointRadius: 5,
-                        pointHoverRadius: 7,
-                      },
-                    ],
-                  },
-                  options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                      y: {
-                        beginAtZero: false,
-                        min: 4900,
-                        max: 5250,
-                        ticks: {
-                          stepSize: 50,
-                          callback: function (value) {
-                            return value.toLocaleString();
-                          },
-                        },
-                        grid: {
-                          color: "rgba(0, 0, 0, 0.05)",
-                        },
-                      },
-                      x: {
-                        grid: {
-                          display: false,
-                        },
-                      },
-                    },
-                    plugins: {
-                      legend: {
-                        display: false,
-                      },
-                      tooltip: {
-                        callbacks: {
-                          label: function (context) {
-                            return (
-                              "Jumlah Penduduk: " +
-                              context.parsed.y.toLocaleString()
-                            );
-                          },
-                        },
-                      },
-                    },
-                  },
-                });
-              }
-            );
-          </script>
 
-          <!-- Office Map -->
+          <!-- MAP KANTOR -->
           <section class="bg-white rounded content-box mb-6">
             <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
               <h2 class="font-bold text-base">
@@ -376,9 +307,9 @@
           </section>
         </div>
 
-        <!-- Right Sidebar -->
+        <!-- KONTEN KANAN -->
         <div class="lg:w-1/3">
-          <!-- Agenda Section -->
+          <!-- INFO GRAFIS -->
           <section class="bg-white rounded content-box mb-6">
             <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
               <h2 class="font-bold text-base">
@@ -394,7 +325,7 @@
             </div>
           </section>
 
-          <!-- Quick Links -->
+          <!-- PRANALLA APLIKASI -->
           <section class="bg-white rounded content-box mb-6">
             <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
               <h2 class="font-bold text-base">
@@ -441,7 +372,7 @@
             </div>
           </section>
 
-          <!-- Quick Links -->
+          <!-- PRANALA WEB INTERNAL -->
           <section class="bg-white rounded content-box mb-6">
             <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
               <h2 class="font-bold text-base">
@@ -487,7 +418,7 @@
             </div>
           </section>
 
-          <!-- Quick Links -->
+          <!-- PRANALA WEB EKSTERNAL -->
           <section class="bg-white rounded content-box mb-6">
             <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
               <h2 class="font-bold text-base">
@@ -532,7 +463,7 @@
             </div>
           </section>
 
-          <!-- Quick Links -->
+          <!-- BERITA POPULER -->
           <section class="bg-white rounded content-box mb-6">
             <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
               <h2 class="font-bold text-base">
@@ -595,6 +526,7 @@
         </div>
       </div>
     </main>
+    <!-- SAMPAI SINI BAGIAN DAFFA -->
 
     <!-- Footer -->
     <footer class="bg-blue-900 text-white">
