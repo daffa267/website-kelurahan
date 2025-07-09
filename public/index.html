@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TPI KOTAKEL - TANJUNGPINANG</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      /* CSS untuk margin absolut dan konsisten */
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .fixed-container {
+        width: 90%;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      @media (max-width: 768px) {
+        .fixed-container {
+          width: 85%;
+          max-width: 1280px;
+          
+        }
+      }
+      .banner-wrapper {
+        width: 90%;
+        max-width: 1280px;
+        margin: 0 auto;
+        overflow: hidden;
+        /* padding: 0 5%; */
+        box-sizing: border-box;
+      }
+      .banner-image {
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .content-box {
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      /* Ukuran font responsif */
+      h1 {
+        font-size: 1.5rem;
+      }
+      h2 {
+        font-size: 1.25rem;
+      }
+      h3 {
+        font-size: 1.125rem;
+      }
+      @media (max-width: 768px) {
+        body {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-gray-100">
+    <!-- Header -->
+    <header class="bg-blue-800 text-white">
+      <div class="fixed-container py-3 flex justify-between items-center">
+        <div class="flex items-center">
+          <img
+            src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
+            alt="Logo TPI Kotakel"
+            class="h-14 mr-3"
+          />
+          <div>
+            <h1 class="text-lg font-bold">TPI KOTAKEL</h1>
+            <p class="text-xs">TANJUNGPINANG</p>
+          </div>
+        </div>
+        <div class="hidden md:flex space-x-4">
+          <a href="#" class="hover:text-yellow-300 text-sm">
+            <i class="fas fa-user mr-1"></i> Login
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white">
+      <div class="fixed-container">
+        <ul class="flex flex-wrap py-1">
+          <li>
+            <a href="#" class="px-3 py-2 hover:bg-blue-800 block text-sm"
+              >BERANDA</a
+            >
+          </li>
+          <li>
+            <a href="#" class="px-3 py-2 hover:bg-blue-800 block text-sm"
+              >GALERI</a
+            >
+          </li>
+          <li>
+            <a href="#" class="px-3 py-2 hover:bg-blue-800 block text-sm"
+              >BERITA</a
+            >
+          </li>
+          <li>
+            <a href="#" class="px-3 py-2 hover:bg-blue-800 block text-sm"
+              >PENGUMUMAN</a
+            >
+          </li>
+          <li>
+            <a href="#" class="px-3 py-2 hover:bg-blue-800 block text-sm"
+              >DOWNLOAD AREA</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="bg-gray-300 py-4">
+      <div class="banner-wrapper">
+        <div class="relative h-48 md:h-64 lg:h-80">
+          <img
+            src="https://icms.tanjungpinangkota.go.id/image/banner/7243000000/1729745651_e3b6a82242c469b91514.jpg"
+            alt="Hero Banner"
+            class="banner-image object-cover w-full h-full rounded"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="fixed-container py-6">
+      <div class="flex flex-col lg:flex-row gap-6">
+        <!-- Left Content -->
+        <div class="lg:w-2/3">
+          <!-- Berita Section -->
+          <section class="bg-white rounded content-box mb-6">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-newspaper mr-2"></i> BERITA TERKINI
+              </h2>
+            </div>
+            <div class="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <article
+                class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div class="h-40 overflow-hidden">
+                  <img
+                    src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg"
+                    alt="Gambar Berita Pertama"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="p-3">
+                  <h3 class="font-bold text-blue-800 text-base">
+                    Penyerahan Bingkisan Dalam Rangka Hari Lanjut Usia Nasional
+                  </h3>
+                  <p class="text-xs text-gray-500">
+                    Diposting pada: 21 Juni 2024
+                  </p>
+                  <p class="mt-2 text-sm">
+                    Pellentesque in ipsum id orci porta dapibus. Praesent sapien
+                    massa...
+                  </p>
+                  <a href="#" class="text-blue-600 text-xs mt-2 inline-block">
+                    Baca Selengkapnya →
+                  </a>
+                </div>
+              </article>
+
+              <article
+                class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div class="h-40 overflow-hidden">
+                  <img
+                    src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1717577239_ba55e5551c63f1be75f7.jpg"
+                    alt="Gambar Berita Kedua"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="p-3">
+                  <h3 class="font-bold text-blue-800 text-base">
+                    Lomba Kelurahan Terbaik Se-Kota Tanjungpinang Tahun 2024
+                  </h3>
+                  <p class="text-xs text-gray-500">
+                    Diposting pada: 29 Mei 2024
+                  </p>
+                  <p class="mt-2 text-sm">
+                    Nulla quis lorem ut libero malesuada feugiat. Curabitur non
+                    nulla sit amet...
+                  </p>
+                  <a href="#" class="text-blue-600 text-xs mt-2 inline-block">
+                    Baca Selengkapnya →
+                  </a>
+                </div>
+              </article>
+            </div>
+            <div class="p-4 text-center">
+              <a href="#" class="text-blue-600 text-sm font-medium">
+                Lihat Semua Berita →
+              </a>
+            </div>
+          </section>
+
+          <section class="bg-white rounded content-box mb-6">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-bullhorn mr-2"></i> PENGUMUMAN
+              </h2>
+            </div>
+            <div class="p-4">
+              <article class="border-b pb-3 mb-3">
+                <h3 class="font-bold text-blue-800 text-base">
+                  Judul Pengumuman Pertama
+                </h3>
+                <p class="text-xs text-gray-500">
+                  Diposting pada: 12 Januari 2023
+                </p>
+                <p class="mt-2 text-sm">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam in dui mauris...
+                </p>
+                <a href="#" class="text-blue-600 text-xs mt-2 inline-block">
+                  Baca Selengkapnya →
+                </a>
+              </article>
+              <article class="border-b pb-3 mb-3">
+                <h3 class="font-bold text-blue-800 text-base">
+                  Judul Pengumuman Kedua
+                </h3>
+                <p class="text-xs text-gray-500">
+                  Diposting pada: 5 Januari 2023
+                </p>
+                <p class="mt-2 text-sm">
+                  Vivamus suscipit tortor eget felis porttitor volutpat.
+                  Curabitur non nulla sit amet...
+                </p>
+                <a href="#" class="text-blue-600 text-xs mt-2 inline-block">
+                  Baca Selengkapnya →
+                </a>
+              </article>
+              <div class="text-center">
+                <a href="#" class="text-blue-600 text-sm font-medium">
+                  Lihat Semua Pengumuman →
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Statistics -->
+          <section class="bg-white rounded content-box mb-6">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-chart-bar mr-2"></i> STATISTIK PENDUDUK
+              </h2>
+            </div>
+            <div class="p-4 text-center">
+              <div class="bg-gray-100 rounded p-4">
+                <div
+                  class="chart-container mb-3"
+                  style="position: relative; height: 250px"
+                >
+                  <canvas
+                    id="population-chart"
+                    style="
+                      display: block;
+                      box-sizing: border-box;
+                      height: 250px;
+                      width: 100%;
+                    "
+                  >
+                  </canvas>
+                </div>
+              </div>
+            </div>
+          </section>
+          <script>
+            // Data contoh, silakan ganti sesuai kebutuhan
+            const ctx = document.addEventListener(
+              "DOMContentLoaded",
+              function () {
+                // Inisialisasi chart
+                const ctx = document
+                  .getElementById("population-chart")
+                  .getContext("2d");
+                const populationChart = new Chart(ctx, {
+                  type: "line",
+                  data: {
+                    labels: ["2020", "2021", "2022", "Semester 1 - 2023"],
+                    datasets: [
+                      {
+                        label: "Jumlah Penduduk",
+                        data: [5200, 5100, 5000, 4950],
+                        borderColor: "#2989d8",
+                        backgroundColor: "rgba(41, 137, 216, 0.1)",
+                        borderWidth: 2,
+                        tension: 0.3,
+                        fill: true,
+                        pointBackgroundColor: "#2989d8",
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                      },
+                    ],
+                  },
+                  options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                      y: {
+                        beginAtZero: false,
+                        min: 4900,
+                        max: 5250,
+                        ticks: {
+                          stepSize: 50,
+                          callback: function (value) {
+                            return value.toLocaleString();
+                          },
+                        },
+                        grid: {
+                          color: "rgba(0, 0, 0, 0.05)",
+                        },
+                      },
+                      x: {
+                        grid: {
+                          display: false,
+                        },
+                      },
+                    },
+                    plugins: {
+                      legend: {
+                        display: false,
+                      },
+                      tooltip: {
+                        callbacks: {
+                          label: function (context) {
+                            return (
+                              "Jumlah Penduduk: " +
+                              context.parsed.y.toLocaleString()
+                            );
+                          },
+                        },
+                      },
+                    },
+                  },
+                });
+              }
+            );
+          </script>
+
+          <!-- Office Map -->
+          <section class="bg-white rounded content-box mb-6">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-map mr-2"></i> PETA KANTOR
+              </h2>
+            </div>
+            <div class="p-4 text-center">
+              <div class="bg-gray-100 rounded p-4">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15958.18488544653!2d104.4441232!3d0.9179444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d989b6e6e7e5e3%3A0x7b7b7b7b7b7b7b7b!2sTanjungpinang%2C%20Kepulauan%20Riau!5e0!3m2!1sid!2sid!4v1620000000000!5m2!1sid!2sid"
+                  width="100%"
+                  height="300"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="Peta Kantor"
+                ></iframe>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="lg:w-1/3">
+          <!-- Agenda Section -->
+          <section class="bg-white rounded content-box mb-6">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-calendar-alt mr-2"></i> INFO GRAFIS
+              </h2>
+            </div>
+            <div class="p-4 flex justify-center">
+              <img
+                src="https://icms.tanjungpinangkota.go.id/image/posting/infografis/7243000000/small/small_1729582929_24ae13f6024ae1b0768c.jpg"
+                alt="Info Grafis"
+                class="rounded shadow max-w-full h-auto"
+              />
+            </div>
+          </section>
+
+          <!-- Quick Links -->
+          <section class="bg-white rounded content-box mb-6">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-link mr-2"></i> PRANALA APLIKASI PEMERINTAH
+                KOTA TANJUNGPINANG
+              </h2>
+            </div>
+            <div class="p-4">
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="https://ebphtb.tanjungpinangkota.go.id/login/index.php?module=home"
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    Pemerintah Kota Tanjungpinang
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://pindai.tanjungpinangkota.go.id/"
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    Dinas Perikanan
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://pindai.tanjungpinangkota.go.id/"
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    KKP RI
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://monev.tanjungpinangkota.go.id/"
+                    
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    Dinas Koperasi dan UKM
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Quick Links -->
+          <section class="bg-white rounded content-box mb-6">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-link mr-2"></i> PRANALA WEB INTERNAL PEMERINTAH
+                KOTA TANJUNGPINANG
+              </h2>
+            </div>
+            <div class="p-4">
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    Pemerintah Kota Tanjungpinang
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    Dinas Perikanan
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    KKP RI
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    Dinas Koperasi dan UKM
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Quick Links -->
+          <section class="bg-white rounded content-box mb-6">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-link mr-2"></i> PRANALA WEB EKSTERNAL PEMERINTAH KOTA TANJUNGPINANG
+              </h2>
+            </div>
+            <div class="p-4">
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    Pemerintah Kota Tanjungpinang
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    Dinas Perikanan
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    KKP RI
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                  >
+                    <i class="fas fa-chevron-right text-xs mr-2"></i>
+                    Dinas Koperasi dan UKM
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Quick Links -->
+          <section class="bg-white rounded content-box mb-6">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-newspaper mr-2"></i> BERITA POPULER
+              </h2>
+            </div>
+            <div class="p-4">
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm flex items-center justify-between"
+                  >
+                    <span class="flex items-center">
+                      <i class="fas fa-chevron-right text-xs mr-2"></i>
+                      Kucing menangkap ikan
+                    </span>
+                   <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"><i class="fas fa-calendar-alt text-xs mr-2"></i>Senin, 8 Juli 2024</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm flex items-center justify-between"
+                  >
+                    <span class="flex items-center">
+                      <i class="fas fa-chevron-right text-xs mr-2"></i>
+                      Mambang tanah
+                    </span>
+                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"><i class="fas fa-calendar-alt text-xs mr-2"></i>Selasa, 2 Juli 2024</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm flex items-center justify-between"
+                  >
+                    <span class="flex items-center">
+                      <i class="fas fa-chevron-right text-xs mr-2"></i>
+                      Mambang laut
+                    </span>
+                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"><i class="fas fa-calendar-alt text-xs mr-2"></i>Rabu, 26 Juni 2024</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm flex items-center justify-between"
+                  >
+                    <span class="flex items-center">
+                      <i class="fas fa-chevron-right text-xs mr-2"></i>
+                      Mambang mabuk
+                    </span>
+                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"><i class="fas fa-calendar-alt text-xs mr-2"></i>Jumat, 21 Juni 2024</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white">
+      <div class="fixed-container py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="font-bold text-lg mb-4">TPI KOTAKEL TANJUNGPINANG</h3>
+            <address class="text-sm not-italic">
+              <p>Jl. Kuantan No. 1, Tanjungpinang Kota</p>
+              <p>Kepulauan Riau - Indonesia</p>
+              <p class="mt-2">Email: info@tpikotakel.tanjungpinang.go.id</p>
+              <p>Telp: (0771) 123456</p>
+            </address>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">TAUTAN</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="hover:text-yellow-300 text-sm">Peta Situs</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-yellow-300 text-sm"
+                  >Kebijakan Privasi</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-yellow-300 text-sm"
+                  >Syarat dan Ketentuan</a
+                >
+              </li>
+              <li><a href="#" class="hover:text-yellow-300 text-sm">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">MEDIA SOSIAL</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-white hover:text-yellow-300 text-xl">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="text-white hover:text-yellow-300 text-xl">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="text-white hover:text-yellow-300 text-xl">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="text-white hover:text-yellow-300 text-xl">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-blue-800 py-4">
+        <div class="fixed-container text-center text-sm">
+          <p>© 2025 Developer Maniez. Hak Cipta Dilindungi.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
