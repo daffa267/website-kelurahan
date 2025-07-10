@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      /* CSS untuk margin absolut dan konsisten */
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .fixed-container {
+        width: 90%;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      @media (max-width: 768px) {
+        .fixed-container {
+          width: 85%;
+          max-width: 1280px;
+        }
+      }
+      .banner-wrapper {
+        width: 90%;
+        max-width: 1280px;
+        margin: 0 auto;
+        overflow: hidden;
+        /* padding: 0 5%; */
+        box-sizing: border-box;
+      }
+      .banner-image {
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .content-box {
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      /* Ukuran font responsif */
+      h1 {
+        font-size: 1.5rem;
+      }
+      h2 {
+        font-size: 1.25rem;
+      }
+      h3 {
+        font-size: 1.125rem;
+      }
+      @media (max-width: 768px) {
+        body {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-gray-100">
+    <!-- Header -->
+    <header class="bg-blue-800 text-white">
+      <div class="fixed-container py-3 flex justify-between items-center">
+        <div class="flex items-center">
+          <img
+            src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
+            alt="Logo TPI Kotakel"
+            class="h-14 mr-3"
+          />
+          <div>
+            <h1 class="text-lg font-bold">TPI KOTAKEL</h1>
+            <p class="text-xs">TANJUNGPINANG</p>
+          </div>
+        </div>
+        <div class="hidden md:flex space-x-4">
+          <a href="#" class="hover:text-yellow-300 text-sm">
+            <i class="fas fa-user mr-1"></i> Login
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white">
+      <div class="fixed-container">
+        <ul class="flex flex-wrap py-1">
+          <li>
+            <a
+              href="index.html"
+              class="px-3 py-2 hover:bg-blue-800 block text-sm"
+              >BERANDA</a
+            >
+          </li>
+          <li>
+            <a href="gallery.html" class="px-3 py-2 hover:bg-blue-800 block text-sm"
+              >GALERI</a
+            >
+          </li>
+          <li>
+            <a
+              href="news.html"
+              class="px-3 py-2 hover:bg-blue-800 block text-sm"
+              >BERITA</a
+            >
+          </li>
+          <li>
+            <a href="#" class="px-3 py-2 hover:bg-blue-800 block text-sm"
+              >PENGUMUMAN</a
+            >
+          </li>
+          <li>
+            <a href="#" class="px-3 py-2 hover:bg-blue-800 block text-sm"
+              >DOWNLOAD AREA</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div class="bg-gray-300 py-4">
+      <div class="banner-wrapper">
+        <div class="relative h-48 md:h-64 lg:h-80">
+          <img
+            src="https://icms.tanjungpinangkota.go.id/image/banner/7243000000/1729745651_e3b6a82242c469b91514.jpg"
+            alt="Hero Banner"
+            class="banner-image object-cover w-full h-full rounded"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- BAGIAN DAFFA -->
+    <!-- KONTEN UTAMA -->
+    <main class="fixed-container py-6">
+      <div class="flex flex-col lg:flex-row gap-6">
+        <div class="lg:w-2/3">
+          <!-- BERITA -->
+          <section class="bg-white rounded content-box mb-6 max-w-4xl mx-auto">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-folder mr-2"></i> ALBUM GALLERY 
+              </h2>
+            </div>
+            <div class="p-4 grid grid-cols-1 md:grid-cols-1 gap-4">
+              <!-- BERITA UTAMA -->
+              <article
+                class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div class="h-80 overflow-hidden">
+                  <img
+                    src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg"
+                    alt="Gambar Berita Pertama"
+                    class="w-full h-full object-cover"/> 
+                </div><div class="p-3">
+                  <h3 class="font-bold text-blue-800 text-base mb-1.5">
+                    Penyerahan Bingkisan Dalam Rangka Hari Lanjut Usia Nasional
+                  </h3>
+                  <p class="text-xs text-gray-500">
+                    <i class="fas fa-calendar-alt mr-2"></i>21 Juni 2024 | <i class="fas fa-pen mr-2"></i>Oleh Daffa Saja | <i class="fas fa-eye mr-2"></i>120
+                  </p>
+            </div>
+              </article>
+              
+          </section>
+
+          <section class="bg-white rounded content-box mb-6 max-w-4xl mx-auto">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-images mr-2"></i> DAFTAR GALLERY
+              </h2>
+            </div>
+            <div class="p-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+              <!-- BERITA 1 -->
+              <article
+                class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div class="h-40 overflow-hidden">
+                  <img
+                    src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg"
+                    alt="Gambar Berita Pertama"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </article>
+              <!-- BERITA 2 -->
+              <article
+                class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div class="h-40 overflow-hidden">
+                  <img
+                    src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1717577239_ba55e5551c63f1be75f7.jpg"
+                    alt="Gambar Berita Kedua"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </article>
+
+              <!-- BERITA 2 -->
+              <article
+                class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div class="h-40 overflow-hidden">
+                  <img
+                    src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1717577239_ba55e5551c63f1be75f7.jpg"
+                    alt="Gambar Berita Kedua"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </article>
+
+              <!-- BERITA 2 -->
+              <article
+                class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div class="h-40 overflow-hidden">
+                  <img
+                    src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1717577239_ba55e5551c63f1be75f7.jpg"
+                    alt="Gambar Berita Kedua"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <!-- KONTEN KANAN -->
+        <div class="lg:w-1/3">
+          
+
+          <section class="bg-white rounded content-box mb-6">
+            <div class="bg-blue-800 text-white px-4 py-2 rounded-t">
+              <h2 class="font-bold text-base">
+                <i class="fas fa-folder mr-2"></i> ALBUM LAINNYA
+              </h2>
+            </div>
+            <div class="p-4">
+              <ul class="space-y-2">
+                <li class="border-b pb-3 mb-3">
+                  <a href="#" class="text-sm flex items-center justify-between">
+                    <span class="flex items-center">
+                      Kucing menangkap ikan
+                    </span>
+                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
+                      >224&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
+                    ></span>
+                  </a>
+                </li>
+                <li class="border-b pb-3 mb-3">
+                  <a href="#" class="text-sm flex items-center justify-between">  
+                    <span class="flex items-center"> Mambang tanah </span>
+                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
+                      >85&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
+                    ></span>
+                  </a>
+                </li>
+                <li class="border-b pb-3 mb-3">
+                  <a href="#" class="text-sm flex items-center justify-between">
+                    <span class="flex items-center"> Mambang laut </span>
+                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
+                      >300&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
+                    ></span>
+                  </a>
+                </li>
+                <li class="border-b pb-3 mb-3">
+                  <a href="#" class="text-sm flex items-center justify-between">
+                    <span class="flex items-center"> Mambang mabuk </span>
+                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
+                      >330&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
+                    ></span>
+                  </a>
+                </li>
+                <li class="border-b pb-3 mb-3">
+                  <a href="#" class="text-sm flex items-center justify-between">
+                    <span class="flex items-center"> Mambang laut </span>
+                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
+                      >220&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
+                    ></span>
+                  </a>
+                </li>
+                <li class="border-b pb-3 mb-3">
+                  <a href="#" class="text-sm flex items-center justify-between">
+                    <span class="flex items-center"> Mambang mabuk </span>
+                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
+                      >150&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
+                    ></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <!-- SAMPAI SINI BAGIAN DAFFA -->
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white">
+      <div class="fixed-container py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="font-bold text-lg mb-4">TPI KOTAKEL TANJUNGPINANG</h3>
+            <address class="text-sm not-italic">
+              <p>Jl. Kuantan No. 1, Tanjungpinang Kota</p>
+              <p>Kepulauan Riau - Indonesia</p>
+              <p class="mt-2">Email: info@tpikotakel.tanjungpinang.go.id</p>
+              <p>Telp: (0771) 123456</p>
+            </address>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">TAUTAN</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="hover:text-yellow-300 text-sm">Peta Situs</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-yellow-300 text-sm"
+                  >Kebijakan Privasi</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-yellow-300 text-sm"
+                  >Syarat dan Ketentuan</a
+                >
+              </li>
+              <li><a href="#" class="hover:text-yellow-300 text-sm">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">MEDIA SOSIAL</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="text-white hover:text-yellow-300 text-xl">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="text-white hover:text-yellow-300 text-xl">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="text-white hover:text-yellow-300 text-xl">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="text-white hover:text-yellow-300 text-xl">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-blue-800 py-4">
+        <div class="fixed-container text-center text-sm">
+          <p>© 2025 Developer Maniez. Hak Cipta Dilindungi.</p>
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
