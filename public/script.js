@@ -78,74 +78,93 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // News Carousel Functionality - Corrected Infinite Loop Version
-    const newsWrapper = document.querySelector('.p-4.overflow-x-hidden');
-    const newsContainer = newsWrapper?.querySelector('.flex.flex-col.md\\:flex-row.gap-4');
-
-    if (newsContainer && newsContainer.children.length > 0) {
-        const originalItems = Array.from(newsContainer.children);
+    // Desktop News Carousel - With Manual Navigation and Autoplay
+    const desktopNewsWrapper = document.getElementById('desktop-news-wrapper');
+    if (desktopNewsWrapper) {
+        const container = document.getElementById('desktop-news-container');
+        const prevBtn = document.getElementById('desktop-prev-slide');
+        const nextBtn = document.getElementById('desktop-next-slide');
+        
+        const originalItems = Array.from(container.children);
         const totalOriginalItems = originalItems.length;
-        let isPaused = false;
-        let carouselInterval;
+        const itemsPerView = 2; // Number of items visible at once
 
-        // 1. Clone semua item asli dan tambahkan ke akhir container.
-        // Ini menciptakan strip [1, 2, 3, 1(klon), 2(klon), 3(klon)] untuk loop yang mulus.
-        originalItems.forEach(item => {
-            newsContainer.appendChild(item.cloneNode(true));
-        });
-
-        let currentIndex = 0;
-
-        function slideNews() {
-            if (isPaused) return;
-
-            currentIndex++;
-            
-            // Ambil lebar item secara dinamis untuk menangani perubahan ukuran window.
-            const itemWidth = originalItems[0].offsetWidth + 16; // 16px dari `gap-4` di Tailwind
-
-            newsContainer.style.transition = 'transform 0.5s ease-in-out';
-            newsContainer.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-        }
-
-        // 2. Fungsi ini menangani "keajaiban" dari loop yang mulus.
-        function handleTransitionEnd() {
-            // Saat transisi selesai, cek apakah kita sudah berada di klon pertama.
-            if (currentIndex >= totalOriginalItems) {
-                // Jika ya, lompat kembali ke awal secara diam-diam (tanpa animasi).
-                newsContainer.style.transition = 'none';
-                currentIndex = 0;
-                newsContainer.style.transform = 'translateX(0)';
-
-                // Trik untuk mengaktifkan kembali transisi setelah browser menerapkan transform tanpa transisi.
-                // Ini untuk mencegah kedipan (flicker).
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        newsContainer.style.transition = 'transform 0.5s ease-in-out';
-                    });
-                });
+        if (totalOriginalItems <= itemsPerView) {
+            // Not enough items to make a carousel, hide arrows
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+        } else {
+            // Clone items for the infinite loop effect
+            // Clone last `itemsPerView` items to the beginning
+            for (let i = 0; i < itemsPerView; i++) {
+                container.insertBefore(originalItems[totalOriginalItems - 1 - i].cloneNode(true), container.firstChild);
             }
+            // Clone first `itemsPerView` items to the end
+            for (let i = 0; i < itemsPerView; i++) {
+                container.appendChild(originalItems[i].cloneNode(true));
+            }
+
+            let currentIndex = itemsPerView; // Start at the first real item
+            let isTransitioning = false;
+            let autoPlayInterval;
+
+            const updateCarouselPosition = (withTransition = true) => {
+                const itemWidth = container.children[0].offsetWidth;
+                const gap = 16; // Corresponds to `gap-4` in Tailwind (1rem = 16px)
+                const moveDistance = currentIndex * (itemWidth + gap);
+                
+                container.style.transition = withTransition ? 'transform 0.5s ease-in-out' : 'none';
+                container.style.transform = `translateX(-${moveDistance}px)`;
+            };
+
+            const moveTo = (newIndex) => {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex = newIndex;
+                updateCarouselPosition();
+            };
+
+            const handleTransitionEnd = () => {
+                isTransitioning = false;
+                // If we are at the first set of clones (at the end)
+                if (currentIndex >= totalOriginalItems + itemsPerView) {
+                    currentIndex = currentIndex - totalOriginalItems;
+                    updateCarouselPosition(false);
+                }
+                // If we are at the last set of clones (at the beginning)
+                if (currentIndex < itemsPerView) {
+                    currentIndex = currentIndex + totalOriginalItems;
+                    updateCarouselPosition(false);
+                }
+            };
+
+            const stopAutoPlay = () => clearInterval(autoPlayInterval);
+            const startAutoPlay = () => {
+                stopAutoPlay();
+                autoPlayInterval = setInterval(() => {
+                    moveTo(currentIndex + 1);
+                }, 5000); // Autoplay every 5 seconds
+            };
+
+            container.addEventListener('transitionend', handleTransitionEnd);
+
+            nextBtn.addEventListener('click', () => {
+                moveTo(currentIndex + 1);
+                startAutoPlay(); // Reset timer on manual click
+            });
+
+            prevBtn.addEventListener('click', () => {
+                moveTo(currentIndex - 1);
+                startAutoPlay(); // Reset timer on manual click
+            });
+
+            desktopNewsWrapper.addEventListener('mouseenter', stopAutoPlay);
+            desktopNewsWrapper.addEventListener('mouseleave', startAutoPlay);
+
+            // Initial setup
+            updateCarouselPosition(false);
+            startAutoPlay();
         }
-
-        function startCarousel() {
-            clearInterval(carouselInterval); // Hapus interval sebelumnya
-            carouselInterval = setInterval(slideNews, 3000);
-        }
-
-        // 3. Dengarkan event 'transitionend' untuk mereset posisi carousel.
-        newsContainer.addEventListener('transitionend', handleTransitionEnd);
-
-        // Pause saat kursor di atas
-        newsWrapper.addEventListener('mouseenter', () => isPaused = true);
-
-        // Lanjutkan saat kursor pergi
-        newsWrapper.addEventListener('mouseleave', () => {
-            isPaused = false;
-            startCarousel();
-        });
-
-        // Mulai carousel
-        startCarousel();
     }
 
     // Main News Carousel on news.html - Fade Transition Version
@@ -218,4 +237,161 @@ document.addEventListener("DOMContentLoaded", function() {
             startAutoPlay();
         }
     }
+
+    // Mobile News Carousel
+    const mobileCarousel = document.getElementById('mobile-news-carousel');
+    if (mobileCarousel) {
+        const slides = Array.from(mobileCarousel.children);
+        const dots = document.querySelectorAll('#mobile-news-carousel + div button[data-slide]');
+        const prevBtn = document.getElementById('prev-slide');
+        const nextBtn = document.getElementById('next-slide');
+        
+        // Hitung jumlah slide asli (tanpa clone)
+        const realSlideCount = slides.length - 2; // Karena ada 2 clone (awal dan akhir)
+        let currentIndex = 1; // Mulai dari slide pertama yang asli
+        let autoPlayInterval;
+        let isDragging = false;
+        let startPos = 0;
+        
+        // Inisialisasi posisi awal (slide pertama yang asli)
+        mobileCarousel.style.scrollBehavior = 'unset';
+        mobileCarousel.scrollLeft = mobileCarousel.offsetWidth;
+        
+        // Geser ke slide tertentu dengan handling loop
+        function goToSlide(index) {
+            currentIndex = index;
+            
+            // Update dot navigasi (hanya untuk slide asli)
+            const dotIndex = (index - 1 + realSlideCount) % realSlideCount;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('opacity-100', i === dotIndex);
+                dot.classList.toggle('opacity-30', i !== dotIndex);
+            });
+            
+            // Scroll ke posisi yang sesuai
+            mobileCarousel.style.scrollBehavior = 'smooth';
+            mobileCarousel.scrollLeft = index * mobileCarousel.offsetWidth;
+        }
+        
+        // Geser ke slide berikutnya dengan handling loop
+        function nextSlide() {
+            const nextIndex = currentIndex + 1;
+            goToSlide(nextIndex);
+            
+            // Jika mencapai clone terakhir, langsung loncat ke slide asli pertama tanpa animasi
+            if (nextIndex === slides.length - 1) {
+                setTimeout(() => {
+                    mobileCarousel.style.scrollBehavior = 'unset';
+                    currentIndex = 1;
+                    mobileCarousel.scrollLeft = currentIndex * mobileCarousel.offsetWidth;
+                }, 500);
+            }
+        }
+        
+        // Geser ke slide sebelumnya dengan handling loop
+        function prevSlide() {
+            const prevIndex = currentIndex - 1;
+            goToSlide(prevIndex);
+            
+            // Jika mencapai clone pertama, langsung loncat ke slide asli terakhir tanpa animasi
+            if (prevIndex === 0) {
+                setTimeout(() => {
+                    mobileCarousel.style.scrollBehavior = 'unset';
+                    currentIndex = slides.length - 2;
+                    mobileCarousel.scrollLeft = currentIndex * mobileCarousel.offsetWidth;
+                }, 500);
+            }
+        }
+        
+        // Auto play
+        function startAutoPlay() {
+            stopAutoPlay();
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+        
+        // Handle event saat scroll selesai
+        mobileCarousel.addEventListener('scrollend', () => {
+            // Jika di clone pertama (index 0), loncat ke slide asli terakhir
+            if (Math.round(mobileCarousel.scrollLeft / mobileCarousel.offsetWidth) === 0) {
+                currentIndex = slides.length - 2;
+                mobileCarousel.style.scrollBehavior = 'unset';
+                mobileCarousel.scrollLeft = currentIndex * mobileCarousel.offsetWidth;
+            }
+            // Jika di clone terakhir (index slides.length-1), loncat ke slide asli pertama
+            else if (Math.round(mobileCarousel.scrollLeft / mobileCarousel.offsetWidth) === slides.length - 1) {
+                currentIndex = 1;
+                mobileCarousel.style.scrollBehavior = 'unset';
+                mobileCarousel.scrollLeft = currentIndex * mobileCarousel.offsetWidth;
+            }
+        });
+        
+        // Event listeners untuk tombol
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            startAutoPlay();
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            startAutoPlay();
+        });
+        
+        // Event listeners untuk dot navigasi
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                goToSlide(i + 1); // +1 karena index 0 adalah clone
+                startAutoPlay();
+            });
+        });
+        
+        // Deteksi swipe untuk touch devices
+        mobileCarousel.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startPos = e.touches[0].clientX;
+            stopAutoPlay();
+        });
+        
+        mobileCarousel.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const currentPosition = e.touches[0].clientX;
+            const diff = currentPosition - startPos;
+            
+            // Geser sementara selama drag
+            mobileCarousel.style.scrollBehavior = 'unset';
+            mobileCarousel.scrollLeft = (currentIndex * mobileCarousel.offsetWidth) - diff;
+        });
+        
+        mobileCarousel.addEventListener('touchend', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const endPos = e.changedTouches[0].clientX;
+            const diff = endPos - startPos;
+            
+            // Jika swipe cukup besar, geser ke slide berikutnya/sebelumnya
+            if (diff < -50) nextSlide();
+            else if (diff > 50) prevSlide();
+            else goToSlide(currentIndex); // Kembali ke slide saat ini jika swipe kecil
+            
+            startAutoPlay();
+        });
+        
+        // Inisialisasi
+        startAutoPlay();
+    }
+
+    // Click effect for navigation links
+    document.querySelectorAll('.nav-item').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Add a visual feedback effect on click
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
 });
