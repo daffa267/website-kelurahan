@@ -433,9 +433,9 @@
 
                 <!-- Desktop Navigation - Center aligned -->
                 <div class="hidden md:flex items-center space-x-2 mx-auto"> 
-                    <a href="index.html" class="nav-item active text-sm">Beranda</a>
+                    <a href="index.html" class="nav-item text-sm">Beranda</a>
                     <a href="news.html" class="nav-item text-sm">Berita</a>
-                    <a href="attent.html" class="nav-item text-sm">Pengumuman</a>
+                    <a href="attent.html" class="nav-item active text-sm">Pengumuman</a>
                     <a href="gallery.html" class="nav-item text-sm">Galeri</a>
                     <a href="#" class="nav-item text-sm">Download Area</a>
                 </div>
@@ -451,9 +451,9 @@
             <!-- Mobile Menu -->
             <div id="mobile-menu" class="md:hidden mobile-menu rounded-b-2xl hidden">
                 <div class="space-y-0 border-b border-gray-100">
-                    <a href="index.html" class="nav-item active block w-full text-left">Beranda</a>
+                    <a href="index.html" class="nav-item block w-full text-left">Beranda</a>
                     <a href="news.html" class="nav-item block w-full text-left">Berita</a>
-                    <a href="attent.html" class="nav-item block w-full text-left">Pengumuman</a>
+                    <a href="attent.html" class="nav-item active block w-full text-left">Pengumuman</a>
                     <a href="gallery.html" class="nav-item block w-full text-left">Galeri</a>
                     <a href="#" class="nav-item block w-full text-left">Download Area</a>
                 </div>
@@ -516,20 +516,22 @@
                             const endIndex = startIndex + itemsPerPage;
                             const currentItems = allPengumuman.slice(startIndex, endIndex);
                             
-                            container.innerHTML = currentItems.map(item => `
-                                <article class="border-b pb-3 mb-3 flex gap-4">
-                                    <img src="${item.image}" alt="Thumbnail" class="w-24 h-20 object-cover rounded border border-gray-200">
-                                    <div class="flex-1">
-                                        <h3 class="font-bold text-blue-800 text-base">${item.title}</h3>
-                                        <p class="text-xs text-gray-500">Diposting pada: ${item.date}</p>
-                                        <p class="mt-2 text-sm">${item.content}</p>
-                                        <div class="text-right mt-2">
-                                            <a href="#" class="text-blue-600 text-xs inline-flex items-center">
-                                                <i class="fas fa-eye mr-1"></i> Lihat Selengkapnya →
-                                            </a>
-                                        </div>
-                                    </div>
-                                </article>
+                           container.innerHTML = currentItems.map(item => `
+                            <article class="border-b pb-3 mb-3 flex flex-col sm:flex-row gap-4">
+                                <div class="flex-shrink-0 mx-auto sm:mx-0">
+                                    <img src="${item.image}" alt="Thumbnail" class="w-24 h-24 object-contain rounded border border-gray-200">
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-blue-800 text-base text-center sm:text-left">${item.title}</h3>
+                                    <p class="text-xs text-gray-500 text-center sm:text-left">Diposting pada: ${item.date}</p>
+                                    <div class="flex justify-center sm:justify-end mt-2 sm:mt-0">
+                                        <a href="#" class="text-blue-600 text-xs inline-flex items-center">
+                                            <i class="fas fa-eye mr-1"></i> Lihat Selengkapnya →
+                                        </a>
+                                    </div>  
+                                    <p class="mt-2 text-sm text-center sm:text-left">${item.content}</p>     
+                                </div>
+                            </article>
                             `).join('');
                             
                             renderPagination();
