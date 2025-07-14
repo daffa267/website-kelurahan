@@ -394,4 +394,66 @@ document.addEventListener("DOMContentLoaded", function() {
             }, 150);
         });
     });
+
+    // Album Gallery Carousel on gallery.html
+    const albumCarousel = document.getElementById('album-gallery-carousel');
+    if (albumCarousel) {
+        const slides = Array.from(document.querySelectorAll('#album-gallery-slides > article'));
+        const prevBtn = document.getElementById('album-prev-slide');
+        const nextBtn = document.getElementById('album-next-slide');
+        const indicatorsContainer = document.getElementById('album-gallery-indicators');
+        const totalSlides = slides.length;
+        let currentIndex = 0;
+        let autoPlayInterval;
+
+        if (totalSlides > 1) {
+            // 1. Create indicators
+            for (let i = 0; i < totalSlides; i++) {
+                const indicator = document.createElement('button');
+                indicator.dataset.slideTo = i;
+                indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                indicator.className = 'w-8 h-1 bg-white/50 rounded-full transition-colors duration-300';
+                indicatorsContainer.appendChild(indicator);
+            }
+            const indicators = Array.from(indicatorsContainer.children);
+
+            // 2. Function to show a slide
+            function showSlide(index) {
+                // Loop around
+                currentIndex = (index + totalSlides) % totalSlides;
+
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('opacity-100', i === currentIndex);
+                    slide.classList.toggle('opacity-0', i !== currentIndex);
+                });
+
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.toggle('bg-white', i === currentIndex);
+                    indicator.classList.toggle('bg-white/50', i !== currentIndex);
+                });
+            }
+
+            // 3. Autoplay
+            const startAutoPlay = () => {
+                stopAutoPlay();
+                autoPlayInterval = setInterval(() => {
+                    showSlide(currentIndex + 1);
+                }, 7000); // Change slide every 7 seconds
+            };
+            const stopAutoPlay = () => clearInterval(autoPlayInterval);
+
+            // 4. Event Listeners
+            prevBtn.addEventListener('click', () => { showSlide(currentIndex - 1); startAutoPlay(); });
+            nextBtn.addEventListener('click', () => { showSlide(currentIndex + 1); startAutoPlay(); });
+            indicators.forEach(indicator => {
+                indicator.addEventListener('click', (e) => { showSlide(parseInt(e.target.dataset.slideTo)); startAutoPlay(); });
+            });
+            albumCarousel.addEventListener('mouseenter', stopAutoPlay);
+            albumCarousel.addEventListener('mouseleave', startAutoPlay);
+
+            // 5. Initialize
+            showSlide(0);
+            startAutoPlay();
+        }
+    }
 });
