@@ -254,6 +254,10 @@
 
         /* Mobile adjustments */
         @media (max-width: 767px) {
+            .fixed-container {
+                width: 95%;
+            }
+
             /* Header adjustments */
             .modern-header .flex.items-center.space-x-4 {
                 align-items: flex-start;
@@ -605,7 +609,7 @@
         </div>
         
         <div class="container mx-auto px-4 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 mb-6 md:mb-8 md:items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 mb-6 md:mb-8 md:items-baseline">
                 <div class="text-center md:text-left">
                     <div class="flex flex-col items-center md:flex-row md:items-center mb-4 md:mb-6">
                         <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo" class="h-9 md:h-12 mb-2 md:mb-0 md:mr-4">
@@ -639,12 +643,12 @@
                     </ul>
                 </div>
                 
-                <div class="text-center md:text-left">
+                <div class="text-center md:text-left lg:justify-self-center">
                     <ul class="space-y-1 md:space-y-3">
                         <li><a href="index.html" class="hover:text-white transition-colors text-xs">Beranda</a></li>
                         <li><a href="news.html" class="hover:text-white transition-colors text-xs">Berita</a></li>
-                        <li><a href="/pengumuman" class="hover:text-white transition-colors text-xs">Pengumuman</a></li>
-                        <li><a href="/gallery" class="hover:text-white transition-colors text-xs">Gallery</a></li>
+                        <li><a href="attent.html" class="hover:text-white transition-colors text-xs">Pengumuman</a></li>
+                        <li><a href="gallery.html" class="hover:text-white transition-colors text-xs">Gallery</a></li>
                         <li><a href="/download" class="hover:text-white transition-colors text-xs">Download Area</a></li>
                     </ul>
                 </div>
@@ -688,33 +692,6 @@
         </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const icon = this.querySelector('i');
-            
-            mobileMenu.classList.toggle('hidden');
-            
-            if (mobileMenu.classList.contains('hidden')) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            }
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('.nav-item').forEach(link => {
-            link.addEventListener('click', function(e) {
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 150);
-            });
-        });
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
