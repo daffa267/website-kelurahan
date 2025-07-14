@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>download</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .fixed-container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        /* Modern Header */
+        .modern-header {
+            background: linear-gradient(135deg, #1d55ef 0%, #6052e0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modern-header .floating img {
+            height: 36px;
+            width: 36px;
+            margin-top: 6px;
+        }
+        
+        .modern-header h1 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .modern-header .flex.space-x-4 > div {
+            font-size: 0.7rem;
+        }
+        
+        .modern-header .flex.space-x-4 i {
+            font-size: 0.7rem;
+        }
+        
+        .modern-header .glass-card {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.8rem;
+        }
+        
+        .modern-header .social-icon {
+            width: 28px;
+            height: 28px;
+            font-size: 0.8rem;
+        }
+        
+        .modern-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+        
+        /* Glass Card Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Navigation Items */
+        .nav-item {
+            position: relative;
+            padding: 12px 16px;
+            margin: 0 4px;
+            transition: all 0.3s ease;
+            color: #374151;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+            overflow: hidden;
+        }
+        
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #1d55ef 0%, #6052e0 100%);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+        }
+
+        .nav-item:hover::before {
+            width: 100%;
+        }
+        
+        .nav-item:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #1d55ef 0%, #6052e0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-item.active {
+            font-weight: 700;
+            background: linear-gradient(135deg, #1d55ef 0%, #6052e0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-item.active::before {
+            width: 100%;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, #3264ec 0%, #5244d2 100%);
+            transition: filter 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            filter: brightness(115%);
+        }
+        
+        .section-header-gradient {
+            background: linear-gradient(135deg, #1d55ef 0%, #6052e0 100%);
+        }
+
+        .mobile-menu .nav-item {
+            display: block;
+            text-align: left;
+            padding: 10px 16px;
+            margin: 0;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .mobile-menu .nav-item:last-child {
+            border-bottom: none;
+        }
+
+        .content-box {
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .p-4.overflow-x-hidden {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .flex.flex-col.md\:flex-row.gap-4 {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+
+        .w-full.md\:w-1\/2 {
+            flex: 0 0 calc(50% - 0.5rem);
+            min-width: 0;
+        }
+
+        /* Pastikan gambar dalam card responsive */
+        article img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* Ukuran font responsif */
+        h1 {
+            font-size: 1.5rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+        }
+        h3 {
+            font-size: 1.125rem;
+        }
+
+        footer .logo-footer {
+            height: 32px;
+        }
+        
+        footer h3.text-lg {
+            font-size: 1rem !important;
+        }
+        
+        footer ul.space-y-3 li p {
+            font-size: 0.75rem !important;
+        }
+        
+        footer .social-icon {
+            width: 28px;
+            height: 28px;
+            font-size: 0.8rem;
+        }
+        
+        footer .bg-blue-900\/50 {
+            padding: 0.5rem;
+        }
+        
+        footer .text-sm {
+            font-size: 0.7rem;
+        }
+        
+        footer .flex.space-x-6 a {
+            font-size: 0.7rem;
+        }
+        
+        /* Adjust icon sizes in footer */
+        footer ul.space-y-3 li .fas {
+            width: 16px !important;
+            margin-right: 8px !important;
+            font-size: 0.9rem !important;
+        }
+        
+        footer ul.space-y-3 li .fa-map-marker-alt {
+            font-size: 1.1rem !important;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 767px) {
+            /* Header adjustments */
+            .modern-header .flex.items-center.space-x-4 {
+                align-items: flex-start;
+            }
+            
+            .modern-header .floating img {
+                height: 50px;
+                width: 50px;
+                margin-top: 5px;
+            }
+            
+            .modern-header h1 {
+                font-size: 1.1rem;
+                margin-bottom: 0.25rem;
+                line-height: 1.2;
+            }
+            
+            .modern-header .flex.space-x-4 {
+                flex-direction: column;
+                gap: 0.1rem;
+            }
+            
+            .modern-header .flex.space-x-4 > div {
+                font-size: 0.7rem;
+            }
+            
+            .modern-header .flex.space-x-4 i {
+                font-size: 0.7rem;
+                margin-right: 4px;
+            }
+            
+            /* Adjust header container padding */
+            .modern-header .container {
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+            
+            /* Footer adjustments */
+            footer .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            footer img {
+                height: 36px;
+            }
+            
+            footer h3 {
+                font-size: 1rem;
+            }
+
+            footer h3.text-lg {
+                font-size: 1.125rem !important; /* 18px */
+            }
+            
+            footer h4 {
+                font-size: 0.875rem;
+                margin-bottom: 0.75rem;
+            }
+            
+            footer .text-sm {
+                font-size: 0.75rem;
+            }
+            
+            footer .flex.space-x-4 a {
+                width: 32px;
+                height: 32px;
+                font-size: 0.875rem;
+            }
+            
+            footer .bg-blue-900\/50 {
+                padding: 0.75rem;
+            }
+            
+            /* Footer bottom links */
+            footer .flex.space-x-6 a {
+                font-size: 0.75rem;
+            }
+
+            footer ul.space-y-3 li:first-child p {
+                font-size: 0.75rem !important;
+                line-height: 1.4;
+            }
+            
+            /* Ukuran icon tetap sama */
+            footer ul.space-y-3 li .fas {
+                width: 20px !important;
+                margin-right: 10px !important;
+                margin-top: -3px !important;
+            }
+            
+            footer ul.space-y-3 li .fa-map-marker-alt {
+                font-size: 1.4rem !important;
+                margin-top: 0 !important;
+            }
+            
+            footer ul.space-y-3 li .fa-envelope,
+            footer ul.space-y-3 li .fa-phone-alt {
+                font-size: 1rem !important;
+            }
+
+            footer ul.space-y-3 li:nth-child(2) p,
+            footer ul.space-y-3 li:nth-child(3) p {
+                font-size: 0.85rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gray-50">
+    <!-- Modern Header Section -->
+    <header class="modern-header relative">
+        <div class="container mx-auto px-4 py-3 relative z-10">
+            <div class="flex items-center justify-between">
+                <div class="flex items-start md:items-center">
+                    <div class="floating mt-1 mr-2 md:mt-0 md:mr-4">
+                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="h-9 w-9 object-contain">
+                    </div>
+                    <div class="text-white">
+                        <h1 class="text-lg md:text-xl font-bold mb-0">
+                            Kelurahan Tanjungpinang Kota
+                        </h1>
+                        <div class="flex flex-col md:flex-row md:items-center space-y-1 md:space-y-0 md:space-x-4 text-xs">
+                            <div class="flex items-center space-x-1 hover:text-yellow-300 transition-colors">
+                                <i class="fas fa-phone text-yellow-300 text-xs"></i>
+                                <span>+62 771 123456</span>
+                            </div>
+                            <div class="flex items-center space-x-1 hover:text-yellow-300 transition-colors">
+                                <i class="fas fa-envelope text-yellow-300 text-xs"></i>
+                                <span>tpikotakel@tanjungpinangkota.go.id</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Media Sosial dan Login - Hidden on mobile -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <div class="flex space-x-2 mr-3">
+                        <a href="https://facebook.com/kel.tpikota" class="social-icon rounded-full bg-white/20 flex items-center justify-center hover:bg-blue-500 hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-facebook-f text-white"></i>
+                        </a>
+                        <a href="https://instagram.com/kel.tpikota" class="social-icon rounded-full bg-white/20 flex items-center justify-center hover:bg-pink-500 hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                    </div>
+                    
+                    <a href="https://icms.tanjungpinangkota.go.id" class="glass-card px-4 py-2 rounded-full text-xs hover:bg-white/30 transition-all duration-300 hover:scale-105">
+                        <i class="fas fa-sign-in-alt mr-1 text-white"></i>
+                        <span class="text-white">Login</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32"></div>
+        <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-24 -translate-x-24"></div>
+    </header>
+
+    <!-- Hero Banner-->
+    <div class="relative w-full overflow-hidden">
+        <img src="https://icms.tanjungpinangkota.go.id/image/banner/7243000000/1729745651_e3b6a82242c469b91514.jpg" 
+            alt="Banner Kelurahan" 
+            class="w-full h-auto object-cover">
+    </div>
+
+    <!-- Modern Navigation -->
+    <nav class="sticky top-0 z-50 bg-white shadow-2xl">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center h-16 md:h-14">
+                <!-- Mobile Menu Button - Aligned left -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
+
+                <!-- Desktop Navigation - Center aligned -->
+                <div class="hidden md:flex items-center space-x-2 mx-auto"> 
+                    <a href="index.html" class="nav-item text-sm">Beranda</a>
+                    <a href="news.html" class="nav-item text-sm">Berita</a>
+                    <a href="attent.html" class="nav-item text-sm">Pengumuman</a>
+                    <a href="gallery.html" class="nav-item text-sm">Galeri</a>
+                    <a href="download.html" class="nav-item active text-sm">Download Area</a>
+                </div>
+
+                <!-- Empty div to balance the flex layout -->
+                <div class="md:hidden invisible">
+                    <button class="p-2">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden mobile-menu rounded-b-2xl hidden">
+                <div class="space-y-0 border-b border-gray-100">
+                    <a href="index.html" class="nav-item block w-full text-left">Beranda</a>
+                    <a href="news.html" class="nav-item block w-full text-left">Berita</a>
+                    <a href="attent.html" class="nav-item block w-full text-left">Pengumuman</a>
+                    <a href="gallery.html" class="nav-item block w-full text-left">Galeri</a>
+                    <a href="download.html" class="nav-item block active w-full text-left">Download Area</a>
+                </div>
+                <div class="p-3">
+                    <a href="https://icms.tanjungpinangkota.go.id" class="btn-gradient block w-full text-center px-4 py-2 rounded-lg text-sm font-semibold text-white shadow-md">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content would go here -->
+    <main class="fixed-container py-6">
+        <div class="flex flex-col lg:flex-row gap-6">
+            <div class="lg:w-2/3">
+                  <!-- PENGUMUMAN -->
+                    <section class="bg-white rounded content-box mb-6">
+                        <div class="section-header-gradient text-white px-4 py-2 rounded-t">
+                            <h2 class="font-bold text-base">
+                                <i class="fas fa-bullhorn mr-2"></i> PENGUMUMAN
+                            </h2>
+                        </div>
+                        <div class="p-4">
+                            <div id="pengumuman-container">
+                                <!-- Konten akan diisi oleh JavaScript -->
+                            </div>
+                            
+                            <!-- Pagination -->
+                            <div class="flex justify-center items-center mt-4 space-x-2">
+                                <button id="prev-btn" class="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">&lt; Prev</button>
+                                <div id="page-numbers" class="flex space-x-1">
+                                    <!-- Nomor halaman akan diisi oleh JavaScript -->
+                                </div>
+                                <button id="next-btn" class="px-3 py-1 bg-gray-200 rounded disabled:opacity-50">Next &gt;</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <script>
+                        // Data pengumuman dengan gambar contoh
+                        const allPengumuman = [
+                            {title: "Dokumen 1", date: "12 Januari 2023", content: "Lorem ipsum dolor sit amet...", image: "https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"},
+                            {title: "Dokumen 2", date: "5 Januari 2023", content: "Vivamus suscipit tortor eget...", image: "https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"},
+                            {title: "Dokumen 3", date: "3 Januari 2023", content: "Contoh pengumuman ketiga...", image: "https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"},
+                            {title: "Dokumen 4", date: "1 Januari 2023", content: "Contoh pengumuman keempat...", image: "https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"},
+                            {title: "Dokumen 5", date: "28 Desember 2022", content: "Contoh pengumuman kelima...", image: "https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"},
+                            {title: "Dokumen 6", date: "3 Januari 2023", content: "Contoh pengumuman keenam...", image: "https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"},
+                            {title: "Dokumen 7", date: "1 Januari 2023", content: "Contoh pengumuman ketujuh...", image: "https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"},
+                            {title: "Dokumen 8  ", date: "28 Desember 2022", content: "Contoh pengumuman kedelapan...", image: "https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"},
+                        ];
+                        
+                        const itemsPerPage = 4;
+                        let currentPage = 1;
+                        const totalPages = Math.ceil(allPengumuman.length / itemsPerPage);
+                        
+                        function renderPengumuman() {
+                            const container = document.getElementById('pengumuman-container');
+                            const startIndex = (currentPage - 1) * itemsPerPage;
+                            const endIndex = startIndex + itemsPerPage;
+                            const currentItems = allPengumuman.slice(startIndex, endIndex);
+                            
+                           container.innerHTML = currentItems.map(item => `
+                            <article class="border-b pb-3 mb-3 flex flex-col sm:flex-row gap-4">
+                                <div class="flex-shrink-0 mx-auto sm:mx-0">
+                                    <img src="${item.image}" alt="Thumbnail" class="w-24 h-24 object-contain rounded border border-gray-200">
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-blue-800 text-base text-center sm:text-left">${item.title}</h3>
+                                    <p class="text-xs text-gray-500 text-center sm:text-left">Diposting pada: ${item.date}</p>
+                                    <div class="flex justify-center sm:justify-end mt-2 sm:mt-0">
+                                        <a href="#" class="text-blue-600 text-xs inline-flex items-center">
+                                            <i class="fas fa-download mr-1"></i> Download
+                                        </a>
+                                    </div>  
+                                    <p class="mt-2 text-sm text-center sm:text-left">${item.content}</p>     
+                                </div>
+                            </article>
+                            `).join('');
+                            
+                            renderPagination();
+                        }
+                        
+                        function renderPagination() {
+                            const pageNumbers = document.getElementById('page-numbers');
+                            pageNumbers.innerHTML = '';
+                            
+                            for (let i = 1; i <= totalPages; i++) {
+                                const pageBtn = document.createElement('button');
+                                pageBtn.className = `px-3 py-1 rounded ${currentPage === i ? 'bg-blue-500 text-white' : 'bg-gray-200'}`;
+                                pageBtn.textContent = i;
+                                pageBtn.addEventListener('click', () => {
+                                    currentPage = i;
+                                    renderPengumuman();
+                                });
+                                pageNumbers.appendChild(pageBtn);
+                            }
+                            
+                            document.getElementById('prev-btn').disabled = currentPage === 1;
+                            document.getElementById('next-btn').disabled = currentPage === totalPages;
+                        }
+                        
+                        // Event listeners
+                        document.getElementById('prev-btn').addEventListener('click', () => {
+                            if (currentPage > 1) {
+                                currentPage--;
+                                renderPengumuman();
+                            }
+                        });
+                        
+                        document.getElementById('next-btn').addEventListener('click', () => {
+                            if (currentPage < totalPages) {
+                                currentPage++;
+                                renderPengumuman();
+                            }
+                        });
+                        
+                        // Initial render
+                        renderPengumuman();
+                    </script>
+                  </div>
+
+                <!-- KONTEN KANAN -->
+                <div class="lg:w-1/3">
+                    <!-- INFO GRAFIS -->
+                    <section class="bg-white rounded content-box mb-6">
+                        <div class="section-header-gradient text-white px-4 py-2 rounded-t">
+                        <h2 class="font-bold text-base">
+                            <i class="fas fa-images mr-2"></i> INFO GRAFIS
+                        </h2>
+                        </div>
+                        <div class="p-4 flex justify-center">
+                        <img
+                            src="https://icms.tanjungpinangkota.go.id/image/posting/infografis/7243000000/small/small_1729582929_24ae13f6024ae1b0768c.jpg"
+                            alt="Info Grafis"
+                            class="rounded shadow max-w-full h-[400px]"
+                        />
+                        </div>
+                    </section> 
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-gray-300 pt-6 pb-4 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 mb-6 md:mb-8 md:items-center">
+                <div class="text-center md:text-left">
+                    <div class="flex flex-col items-center md:flex-row md:items-center mb-4 md:mb-6">
+                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo" class="h-9 md:h-12 mb-2 md:mb-0 md:mr-4">
+                        <h3 class="text-lg md:text-xl font-bold text-white text-center md:text-left">Kelurahan Tanjungpinang Kota</h3>
+                    </div>
+                    <ul class="space-y-3 md:space-y-4 inline-block text-left">
+                        <li class="flex">
+                            <div class="flex items-start group">
+                                <i class="fas fa-map-marker-alt text-blue-300 mr-3 text-xl w-5 text-center mt-0.5 md:mt-1 md:mr-4 md:text-sm group-hover:text-blue-200 transition-colors"></i>
+                                <div class="text-left">
+                                    <p class="text-xs md:text-sm">Jl. Mesjid No.7 Tanjungpinang Kota<br>Kec. Tj. Pinang Kota, Kota Tanjung Pinang<br>Kepulauan Riau, Indonesia</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="flex">
+                            <div class="flex items-start group">
+                                <i class="fas fa-envelope text-blue-300 mr-3 text-lg w-5 text-center mt-0.5 md:mt-1 md:mr-4 md:text-sm group-hover:text-blue-200 transition-colors"></i>
+                                <div class="text-left">
+                                    <p class="text-sm">tpikotakel@tanjungpinangkota.go.id</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="flex">
+                            <div class="flex items-start group">
+                                <i class="fas fa-phone text-blue-300 mr-3 text-lg w-5 text-center mt-0.5 md:mt-1 md:mr-4 md:text-sm group-hover:text-blue-200 transition-colors"></i>
+                                <div class="text-left">
+                                    <p class="text-sm">(0771) 1234567</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="text-center md:text-left">
+                    <ul class="space-y-1 md:space-y-3">
+                        <li><a href="index.html" class="hover:text-white transition-colors text-xs">Beranda</a></li>
+                        <li><a href="news.html" class="hover:text-white transition-colors text-xs">Berita</a></li>
+                        <li><a href="/pengumuman" class="hover:text-white transition-colors text-xs">Pengumuman</a></li>
+                        <li><a href="/gallery" class="hover:text-white transition-colors text-xs">Gallery</a></li>
+                        <li><a href="/download" class="hover:text-white transition-colors text-xs">Download Area</a></li>
+                    </ul>
+                </div>
+                
+                <div class="text-center md:text-left">
+                    <ul class="space-y-1 md:space-y-3">
+                        <li><a href="https://tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors text-xs">Pemkot Tanjungpinang</a></li>
+                        <li><a href="https://kominfo.tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors text-xs">Diskominfo Tanjungpinang</a></li>
+                        <li><a href="https://dpmpd.tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors text-xs">DPMPD Tanjungpinang</a></li>
+                        <li><a href="https://bappeda.tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors text-xs">Bappeda Tanjungpinang</a></li>
+                    </ul>
+                </div>
+                
+                <div class="text-center md:text-left">
+                    <div class="flex space-x-3 md:space-x-4 mb-4 md:mb-6 justify-center md:justify-start">
+                        <a href="https://facebook.com/kel.tpikota" target="_blank" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-700/70 flex items-center justify-center hover:bg-blue-600 hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-facebook-f text-xs md:text-sm"></i>
+                        </a>
+                        <a href="https://instagram.com/kel.tpikota" target="_blank" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-700/70 flex items-center justify-center hover:bg-pink-600 hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-instagram text-xs md:text-sm"></i>
+                        </a>
+                    </div>
+                    <h4 class="text-sm md:text-lg font-bold text-white mb-2 md:mb-4">Jam Operasional</h4>
+                    <div class="bg-blue-900/50 p-2 md:p-4 rounded-lg border border-blue-600">
+                        <p class="text-xs md:text-sm mb-1 md:mb-2"><span class="font-medium text-blue-300">Senin - Kamis:</span> 08.00 - 16.00 WIB</p>
+                        <p class="text-xs md:text-sm"><span class="font-medium text-blue-300">Jumat:</span> 08.00 - 16.30 WIB</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-600 pt-4 md:pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-xs text-blue-200 mb-2 md:mb-0">© 2024 Kelurahan Tanjungpinang Kota. All rights reserved.</p>
+                    <div class="flex space-x-2 md:space-x-4">
+                        <a href="#" class="text-xs text-blue-200 hover:text-white hover:underline transition-colors">Kebijakan Privasi</a>
+                        <a href="#" class="text-xs text-blue-200 hover:text-white hover:underline transition-colors">Syarat &amp; Ketentuan</a>
+                        <a href="#" class="text-xs text-blue-200 hover:text-white hover:underline transition-colors">Peta Situs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const icon = this.querySelector('i');
+            
+            mobileMenu.classList.toggle('hidden');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
