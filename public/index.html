@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <style>
+        /* Header berubah merah solid saat scroll */
+        .modern-header.scrolled {
+            background: var(--primary-900) !important;
+            backdrop-filter: none !important;
+            transition: background 0.3s, backdrop-filter 0.3s;
+        }
         :root {
             --primary-900: #800020; /* Deep maroon */
             --primary-800: #900030;
@@ -50,16 +56,21 @@
             width: 90%;
             max-width: 1400px;
             margin: 0 auto;
+            padding-top: 90px;
         }
 
         /* Header Styles */
         .modern-header {
-            background: var(--dark-maroon);
-            position: relative;
-            overflow: hidden;
+            position: sticky !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(24,24,24,0.45);
+            backdrop-filter: blur(14px);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-            z-index: 50;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
         .modern-header::before {
@@ -69,8 +80,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 30%, rgba(128, 0, 32, 0.8) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.15) 0%, transparent 50%);
+            background: rgba(0, 0, 0, 0.5);
             pointer-events: none;
         }
 
@@ -100,7 +110,7 @@
             padding: 16px 20px;
             margin: 0 4px;
             transition: color 0.3s ease, transform 0.3s ease;
-            color: #374151;
+            color: #fff !important;;
             font-weight: 500;
             text-decoration: none;
             display: inline-block;
@@ -114,7 +124,7 @@
             left: 50%;
             width: 0;
             height: 3px;
-            background: var(--primary-gradient);
+            background: #fff;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             transform: translateX(-50%);
         }
@@ -135,7 +145,7 @@
 
         .nav-item.active::after {
             width: 100%;
-            background: var(--primary-gradient);
+            background: #fff;
         }
 
         /* Animations */
@@ -164,6 +174,7 @@
             justify-content: center;
             color: white;
             text-align: center;
+            
         }
 
         .hero-banner::before {
@@ -173,7 +184,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to bottom, rgba(128, 0, 32, 0.3) 0%, rgba(128, 0, 32, 0.6) 100%);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.65) 100%);
             z-index: 1;
         }
 
@@ -191,7 +202,7 @@
             width: 100%;
             height: 100%;
             background-size: cover;
-            background-position: center;
+            background-position: top center;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
         }
@@ -1071,54 +1082,95 @@
             .stat-card {
                 padding: 20px;
             }
-            
-            .service-card {
-                padding: 24px;
-            }
         }
-    </style>
+        
+        .service-card {
+            padding: 24px;
+        }
+</style>
+<style>
+    /* Tambahan untuk sosial vertikal di banner */
+    .hero-banner .social-vertical {
+        left: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    @media (max-width: 768px) {
+        .hero-banner .social-vertical {
+            left: 0.5rem;
+            top: auto;
+            bottom: 1rem;
+            flex-direction: row;
+            right: auto;
+            transform: none;
+        }
+    }
+    /* Custom Header Blur & Hover */
+    .custom-header-blur {
+        background: rgba(255,255,255,0.05);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        transition: background 0.3s;
+    }
+    .custom-header-blur:hover,
+    .custom-header-blur:focus-within {
+        background: rgba(220,38,38,0.93); /* merah (red-600) */
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+    }
+    .custom-header-blur .text-white {
+        transition: color 0.3s;
+    }
+    .custom-header-blur:hover .text-white {
+        color: #fff;
+    }
+    @media (max-width: 640px) {
+        .custom-header-blur .floating img {
+            height: 2.25rem !important; /* h-9 */
+            width: 2.25rem !important;  /* w-9 */
+        }
+        .custom-header-blur span {
+            font-size: 0.8rem !important;
+        }
+    }
+</style>
 </head>
 
 <body class="bg-gray-50">
-    <header class="modern-header relative">
-        <div class="container mx-auto px-4 py-4 relative z-10">
+    <header class="modern-header relative custom-header-blur">
+        <div class="container mx-auto px-4 py-2 md:py-3 relative z-10">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-3 md:space-x-4">
                     <div class="floating">
                         <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
                             alt="Logo Kelurahan"
-                            class="h-14 w-14 object-contain">
+                            class="h-11 w-11 md:h-12 md:w-12 object-contain transition-all duration-300">
                     </div>
-                    <div class="text-white">
-                        <h1 class="text-xl md:text-2xl font-bold mb-1">
-                            Kelurahan Tanjungpinang Kota
-                        </h1>
-                        <div class="flex flex-col md:flex-row md:items-center space-y-1 md:space-y-0 md:space-x-4 text-sm">
-                            <div class="flex items-center space-x-2 hover:text-accent-color transition-colors">
-                                <i class="fas fa-phone text-accent-color"></i>
-                                <span>+62 771 123456</span>
-                            </div>
-                            <div class="flex items-center space-x-2 hover:text-accent-color transition-colors">
-                                <i class="fas fa-envelope text-accent-color"></i>
-                                <span>tpikotakel@tanjungpinangkota.go.id</span>
-                            </div>
-                        </div>
+                    <div class="text-white flex flex-col justify-center">
+                        <span class="text-xs md:text-sm font-semibold uppercase tracking-wider block leading-tight">Kelurahan</span>
+                        <span class="text-base md:text-xl font-bold block leading-tight">Tanjungpinang Kota</span>
                     </div>
                 </div>
 
                 <div class="hidden md:flex items-center space-x-6">
-                    <div class="flex space-x-3">
-                        <a href="https://facebook.com/kel.tpikota"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all duration-300">
-                            <i class="fab fa-facebook-f text-white"></i>
+                    <div class="hidden md:flex items-center space-x-1 ml-8">
+                        <a href="index.html" class="nav-item active">
+                            <i class="fas fa-home mr-2"></i> Beranda
                         </a>
-                        <a href="https://instagram.com/kel.tpikota"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all duration-300">
-                            <i class="fab fa-instagram text-white"></i>
+                        <a href="news.html" class="nav-item">
+                            <i class="fas fa-newspaper mr-2"></i> Berita
                         </a>
-                        <a href="https://youtube.com/kel.tpikota"
-                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all duration-300">
-                            <i class="fab fa-youtube text-white"></i>
+                        <a href="attent.html" class="nav-item">
+                            <i class="fas fa-bullhorn mr-2"></i> Pengumuman
+                        </a>
+                        <a href="gallery.html" class="nav-item">
+                            <i class="fas fa-images mr-2"></i> Galeri
+                        </a>
+                        <a href="download.html" class="nav-item">
+                            <i class="fas fa-download mr-2"></i> Download
+                        </a>
+                        <a href="contact.html" class="nav-item">
+                            <i class="fas fa-envelope mr-2"></i> Kontak
                         </a>
                     </div>
 
@@ -1132,11 +1184,54 @@
                 <button id="mobile-menu-btn" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
+
+                <div id="mobile-menu" class="md:hidden bg-white shadow-xl hidden">
+                    <div class="container mx-auto px-4 py-3 space-y-2">
+                        <a href="index.html" class="block py-3 px-4 rounded-lg bg-gray-100 text-primary-800 font-medium">
+                            <i class="fas fa-home mr-3"></i> Beranda
+                        </a>
+                        <a href="news.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-newspaper mr-3"></i> Berita
+                        </a>
+                        <a href="attent.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-bullhorn mr-3"></i> Pengumuman
+                        </a>
+                        <a href="gallery.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-images mr-3"></i> Galeri
+                        </a>
+                        <a href="download.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-download mr-3"></i> Download
+                        </a>
+                        <a href="contact.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+                            <i class="fas fa-envelope mr-3"></i> Kontak
+                        </a>
+                        <div class="pt-2">
+                            <a href="https://icms.tanjungpinangkota.go.id" class="btn-primary block text-center py-3">
+                                <i class="fas fa-sign-in-alt mr-2"></i> Login Admin
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
     <div class="hero-banner">
+        <!-- Media Sosial Vertikal -->
+        <div class="absolute left-4 top-1/2 -translate-y-1/2 z-20 flex flex-col space-y-3 social-vertical">
+            <a href="https://facebook.com/kel.tpikota"
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all duration-300">
+                <i class="fab fa-facebook-f text-white"></i>
+            </a>
+            <a href="https://instagram.com/kel.tpikota"
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all duration-300">
+                <i class="fab fa-instagram text-white"></i>
+            </a>
+            <a href="https://youtube.com/kel.tpikota"
+                class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 hover:scale-110 transition-all duration-300">
+                <i class="fab fa-youtube text-white"></i>
+            </a>
+        </div>
         <div class="hero-slide active" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/banner/7243000000/1729745651_e3b6a82242c469b91514.jpg');"></div>
 
         <div class="hero-slide" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg');"></div>
@@ -1163,29 +1258,6 @@
         </div>
     </div>
 
-    <nav class="sticky top-0 z-40 bg-white shadow-md">
-        <div class="container mx-auto px-4">
-            <div class="hidden md:flex justify-center space-x-1 py-0">
-                <a href="index.html" class="nav-item active">
-                    <i class="fas fa-home mr-2"></i> Beranda
-                </a>
-                <a href="news.html" class="nav-item">
-                    <i class="fas fa-newspaper mr-2"></i> Berita
-                </a>
-                <a href="attent.html" class="nav-item">
-                    <i class="fas fa-bullhorn mr-2"></i> Pengumuman
-                </a>
-                <a href="gallery.html" class="nav-item">
-                    <i class="fas fa-images mr-2"></i> Galeri
-                </a>
-                <a href="download.html" class="nav-item">
-                    <i class="fas fa-download mr-2"></i> Download
-                </a>
-                <a href="contact.html" class="nav-item">
-                    <i class="fas fa-envelope mr-2"></i> Kontak
-                </a>
-            </div>
-        </div>
 
         <div id="mobile-menu" class="md:hidden bg-white shadow-xl hidden">
             <div class="container mx-auto px-4 py-3 space-y-2">
