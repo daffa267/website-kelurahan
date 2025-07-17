@@ -517,22 +517,38 @@
 
         /* News Tabs */
         .news-tab-btn {
-            padding: 12px 20px;
+            padding: 8px 16px;
             font-weight: 600;
             color: #6b7280;
             position: relative;
             transition: all 0.3s ease;
             cursor: pointer;
-            border-bottom: 3px solid transparent;
+            border: none;
+            background: none;
+            border-radius: 6px;
+            margin-right: 4px;
         }
 
         .news-tab-btn:hover {
             color: var(--primary-600);
+            background-color: rgba(128, 0, 32, 0.05);
         }
 
         .news-tab-btn.active {
             color: var(--primary-800);
-            border-bottom-color: var(--primary-600);
+            background-color: rgba(128, 0, 32, 0.1);
+            position: relative;
+        }
+
+        .news-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--primary-600);
+            border-radius: 2px;
         }
 
         .news-tab-content {
@@ -556,23 +572,14 @@
             transform: translateX(4px);
         }
 
-        .news-list-item a {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: #374151;
-            transition: all 0.3s ease;
-        }
-
         .news-list-item:hover a {
             color: var(--primary-800);
         }
 
-        .news-list-item:hover h4 {
-            background-color: rgba(128, 0, 32, 0.15);
-            padding: 2px 6px;
-            border-radius: 4px;
+        .news-list-item h4 {
+            font-weight: 600;
+            color: #374151;
+            transition: all 0.3s ease;
         }
 
         .news-item-time {
@@ -1437,8 +1444,8 @@
                             <div class="bg-gray-50 rounded-xl p-4">
                                 <div class="flex justify-between items-center border-b border-gray-200 pb-3 mb-4">
                                     <div class="flex">
-                                        <button class="news-tab-btn active text-sm px-3 py-2 rounded-lg font-medium transition-all" data-tab="terkini">Terkini</button>
-                                        <button class="news-tab-btn text-sm px-3 py-2 rounded-lg font-medium transition-all" data-tab="populer">Populer</button>
+                                        <button class="news-tab-btn active" data-tab="terkini">Terkini</button>
+                                        <button class="news-tab-btn" data-tab="populer">Populer</button>
                                     </div>
                                 </div>
                                 
@@ -1446,32 +1453,32 @@
                                     <!-- Konten Tab Terkini -->
                                     <div id="terkini" class="news-tab-content active">
                                         <ul class="space-y-3">
-                                            <li class="news-list-item p-3 rounded-lg hover:bg-white transition-all">
-                                                <a href="#" class="block">
+                                            <li class="news-list-item rounded-lg transition-all">
+                                                <a href="#" class="flex justify-between items-center">
                                                     <h4 class="font-semibold text-sm text-gray-800 mb-1">Peringatan HUT RI ke-80 di Kelurahan</h4>
                                                     <span class="text-xs text-gray-500">1 jam lalu</span>
                                                 </a>
                                             </li>
-                                            <li class="news-list-item p-3 rounded-lg hover:bg-white transition-all">
-                                                <a href="#" class="block">
+                                            <li class="news-list-item rounded-lg transition-all">
+                                                <a href="#" class="flex justify-between items-center">
                                                     <h4 class="font-semibold text-sm text-gray-800 mb-1">Jadwal Baru Pelayanan Adminduk</h4>
                                                     <span class="text-xs text-gray-500">3 jam lalu</span>
                                                 </a>
                                             </li>
-                                            <li class="news-list-item p-3 rounded-lg hover:bg-white transition-all">
-                                                <a href="#" class="block">
+                                            <li class="news-list-item rounded-lg transition-all">
+                                                <a href="#" class="flex justify-between items-center">
                                                     <h4 class="font-semibold text-sm text-gray-800 mb-1">Vaksinasi COVID-19 Dosis Keempat</h4>
                                                     <span class="text-xs text-gray-500">1 hari lalu</span>
                                                 </a>
                                             </li>
-                                            <li class="news-list-item p-3 rounded-lg hover:bg-white transition-all">
-                                                <a href="#" class="block">
+                                            <li class="news-list-item rounded-lg transition-all">
+                                                <a href="#" class="flex justify-between items-center">
                                                     <h4 class="font-semibold text-sm text-gray-800 mb-1">Kerja Bakti Mingguan di RW 05</h4>
                                                     <span class="text-xs text-gray-500">2 hari lalu</span>
                                                 </a>
                                             </li>
-                                            <li class="news-list-item p-3 rounded-lg hover:bg-white transition-all">
-                                                <a href="#" class="block">
+                                            <li class="news-list-item rounded-lg transition-all">
+                                                <a href="#" class="flex justify-between items-center">
                                                     <h4 class="font-semibold text-sm text-gray-800 mb-1">Lomba Cerdas Cermat Tingkat Kelurahan</h4>
                                                     <span class="text-xs text-gray-500">3 hari lalu</span>
                                                 </a>
@@ -1482,32 +1489,32 @@
                                     <!-- Konten Tab Populer -->
                                     <div id="populer" class="news-tab-content">
                                         <ul class="space-y-3">
-                                            <li class="news-list-item p-3 rounded-lg hover:bg-white transition-all">
-                                                <a href="#" class="block">
+                                            <li class="news-list-item rounded-lg transition-all">
+                                                <a href="#" class="flex justify-between items-center">
                                                     <h4 class="font-semibold text-sm text-gray-800 mb-1">Bantuan Langsung Tunai (BLT) Cair</h4>
                                                     <span class="text-xs text-gray-500">1 minggu lalu</span>
                                                 </a>
                                             </li>
-                                            <li class="news-list-item p-3 rounded-lg hover:bg-white transition-all">
-                                                <a href="#" class="block">
+                                            <li class="news-list-item rounded-lg transition-all">
+                                                <a href="#" class="flex justify-between items-center">
                                                     <h4 class="font-semibold text-sm text-gray-800 mb-1">Cara Mengurus IMB Online</h4>
                                                     <span class="text-xs text-gray-500">2 minggu lalu</span>
                                                 </a>
                                             </li>
-                                            <li class="news-list-item p-3 rounded-lg hover:bg-white transition-all">
-                                                <a href="#" class="block">
+                                            <li class="news-list-item rounded-lg transition-all">
+                                                <a href="#" class="flex justify-between items-center">
                                                     <h4 class="font-semibold text-sm text-gray-800 mb-1">Kelurahan Raih Penghargaan Adipura</h4>
                                                     <span class="text-xs text-gray-500">1 bulan lalu</span>
                                                 </a>
                                             </li>
-                                            <li class="news-list-item p-3 rounded-lg hover:bg-white transition-all">
-                                                <a href="#" class="block">
+                                            <li class="news-list-item rounded-lg transition-all">
+                                                <a href="#" class="flex justify-between items-center">
                                                     <h4 class="font-semibold text-sm text-gray-800 mb-1">Profil Lurah Baru</h4>
                                                     <span class="text-xs text-gray-500">2 bulan lalu</span>
                                                 </a>
                                             </li>
-                                            <li class="news-list-item p-3 rounded-lg hover:bg-white transition-all">
-                                                <a href="#" class="block">
+                                            <li class="news-list-item rounded-lg transition-all">
+                                                <a href="#" class="flex justify-between items-center">
                                                     <h4 class="font-semibold text-sm text-gray-800 mb-1">Jalan Sehat Merayakan Hari Jadi Kota</h4>
                                                     <span class="text-xs text-gray-500">3 bulan lalu</span>
                                                 </a>
@@ -2599,6 +2606,46 @@
 
             scrollToTopBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Header scroll effect
+            const header = document.querySelector(".modern-header");
+
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 50) {
+                    header.classList.add("scrolled");
+                } else {
+                    header.classList.remove("scrolled");
+                }
+            });
+
+            // News Tabs functionality
+            const newsTabBtns = document.querySelectorAll('.news-tab-btn');
+            const newsTabContents = document.querySelectorAll('.news-tab-content');
+            
+            function activateNewsTab(activeBtn) {
+                // Remove active class from all buttons
+                newsTabBtns.forEach(btn => btn.classList.remove('active'));
+                
+                // Remove active class from all content
+                newsTabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button
+                activeBtn.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = activeBtn.getAttribute('data-tab');
+                const targetContent = document.getElementById(tabId);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            }
+            
+            // Add click event listeners to news tab buttons
+            newsTabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    activateNewsTab(btn);
+                });
             });
         });
     </script>
