@@ -166,15 +166,27 @@
         /* Hero Banner */
         .hero-banner {
             position: relative;
-            height: 70vh;
-            min-height: 500px;
+            height: calc(100vh - 90px); /* 90px = tinggi header */
+            min-height: 410px;
+            max-height: 100vh;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-align: center;
-            
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none;
+        }
+        @media (max-width: 768px) {
+            .hero-banner {
+                min-height: 250px;
+                height: calc(85vh - 60px); /* 60px header mobile */
+            }
+        }
+        .hero-banner .hero-slide {
+            background-position: top center !important;
         }
 
         .hero-banner::before {
@@ -1232,7 +1244,7 @@
                 <i class="fab fa-youtube text-white"></i>
             </a>
         </div>
-        <div class="hero-slide active" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/banner/7243000000/1729745651_e3b6a82242c469b91514.jpg');"></div>
+        <div class="hero-slide active" style="background-image: url('https://lendoot.com/wp-content/uploads/2024/08/Kelurahan-Tanjungpinang-Kota-salah-satu-yang-masuk-dalam-program-Kelurahan-Cantik.-ft-dok-lendoot.png');"></div>
 
         <div class="hero-slide" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg');"></div>
 
@@ -1245,6 +1257,7 @@
                 <a href="#berita" class="btn-primary">
                     <i class="fas fa-newspaper mr-2"></i> Berita Terkini
                 </a>
+                
                 <a href="#layanan" class="glass-card px-6 py-3 rounded-full text-white font-medium hover:bg-white/20 hover:scale-105 transition-all">
                     <i class="fas fa-handshake mr-2"></i> Layanan Kami
                 </a>
@@ -1515,6 +1528,263 @@
                 </div>
             </div>
         </section>
+
+        <!-- Carousel Banner Tambahan -->
+        <style>
+            #carousel-banner {
+                width: 100%;
+                max-width: 1920px; /* Sesuai lebar banner */
+                height: 384px; /* Sesuai tinggi banner */
+                margin: 0 auto 2rem;
+                overflow: hidden;
+                position: relative;
+                box-shadow: 0 4px 30px rgba(0,0,0,0.13);
+                background: #f0f0f0;
+            }
+            
+            #carousel-banner .carousel-slides {
+                display: flex;
+                width: 300%;
+                height: 100%;
+                transition: transform 0.7s ease-in-out;
+            }
+            
+            #carousel-banner .carousel-slide {
+                width: 100%;
+                height: 100%;
+                flex: 1 0 100%;
+                position: relative;
+            }
+            
+            #carousel-banner .carousel-img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain; /* Tampilkan seluruh gambar tanpa crop */
+                object-position: center;
+                display: block;
+            }
+            
+            #carousel-banner .carousel-caption {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                padding: 1.5rem;
+                background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+                color: white;
+            }
+            
+            #carousel-banner .carousel-controls {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                padding: 0 1rem;
+                z-index: 10;
+            }
+            
+            #carousel-banner .carousel-indicators {
+                position: absolute;
+                bottom: 1rem;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                gap: 0.5rem;
+                z-index: 10;
+            }
+            
+            #carousel-banner .carousel-indicator {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: rgba(255,255,255,0.5);
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            
+            #carousel-banner .carousel-indicator.active {
+                background-color: white;
+                width: 20px;
+                border-radius: 5px;
+            }
+            
+            @media (max-width: 1920px) {
+                #carousel-banner {
+                    height: calc(384 * 100vw / 1920); /* Menjaga rasio tinggi */
+                }
+            }
+            
+            @media (max-width: 768px) {
+                #carousel-banner .carousel-caption {
+                    padding: 1rem;
+                }
+                
+                #carousel-banner .carousel-caption h3 {
+                    font-size: 1rem;
+                }
+                
+                #carousel-banner .carousel-caption p {
+                    display: none;
+                }
+            }
+        </style>
+        
+        <div id="carousel-banner" class="mb-8">
+            <div class="carousel-slides">
+                <!-- Slide 1 -->
+                <div class="carousel-slide">
+                    <img src="images/banner lurah.jpg" alt="Banner 1" class="carousel-img">
+                    <div class="carousel-caption">
+                        <h3 class="text-xl font-bold">Selamat Datang di Kelurahan Kami</h3>
+                        <p>Layanan terbaik untuk warga</p>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <img src="images/excel.jpg" alt="Banner 2" class="carousel-img">
+                    <div class="carousel-caption">
+                        <h3 class="text-xl font-bold">Layanan Administrasi</h3>
+                        <p>Pengurusan dokumen dengan cepat dan mudah</p>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <img src="images/pdf.jpg" alt="Banner 3" class="carousel-img">
+                    <div class="carousel-caption">
+                        <h3 class="text-xl font-bold">Informasi Terkini</h3>
+                        <p>Update terbaru seputar kelurahan</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <button class="carousel-prev w-10 h-10 rounded-full bg-white/80 hover:bg-white text-gray-800 flex items-center justify-center shadow-md">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-next w-10 h-10 rounded-full bg-white/80 hover:bg-white text-gray-800 flex items-center justify-center shadow-md">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="carousel-indicators">
+                <button class="carousel-indicator active" data-slide="0"></button>
+                <button class="carousel-indicator" data-slide="1"></button>
+                <button class="carousel-indicator" data-slide="2"></button>
+            </div>
+        </div>
+        
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('carousel-banner');
+            const slides = carousel.querySelector('.carousel-slides');
+            const slideItems = carousel.querySelectorAll('.carousel-slide');
+            const prevBtn = carousel.querySelector('.carousel-prev');
+            const nextBtn = carousel.querySelector('.carousel-next');
+            const indicators = carousel.querySelectorAll('.carousel-indicator');
+            
+            let currentIndex = 0;
+            let intervalId;
+            const slideCount = slideItems.length;
+            const slideInterval = 5000; // 5 detik
+            
+            // Clone slide pertama dan terakhir untuk efek loop mulus
+            const firstSlide = slideItems[0].cloneNode(true);
+            const lastSlide = slideItems[slideCount - 1].cloneNode(true);
+            slides.appendChild(firstSlide);
+            slides.insertBefore(lastSlide, slideItems[0]);
+            
+            // Update total slide count
+            const totalSlides = slideCount + 2;
+            slides.style.width = `${totalSlides * 100}%`;
+            
+            // Geser ke slide asli pertama
+            slides.style.transform = 'translateX(-100%)';
+            
+            // Fungsi untuk memindahkan ke slide tertentu dengan loop mulus
+            function goToSlide(index) {
+                // Jika mencapai clone slide pertama (index -1), geser ke slide terakhir asli
+                if (index < 0) {
+                    slides.style.transition = 'none';
+                    slides.style.transform = `translateX(-${slideCount * 100}%)`;
+                    // Trigger reflow
+                    void slides.offsetWidth;
+                    currentIndex = slideCount - 1;
+                    slides.style.transition = 'transform 0.7s ease-in-out';
+                    slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+                } 
+                // Jika mencapai clone slide terakhir (index slideCount), geser ke slide pertama asli
+                else if (index >= slideCount) {
+                    slides.style.transition = 'none';
+                    slides.style.transform = 'translateX(-100%)';
+                    // Trigger reflow
+                    void slides.offsetWidth;
+                    currentIndex = 0;
+                    slides.style.transition = 'transform 0.7s ease-in-out';
+                    slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+                } 
+                // Slide normal
+                else {
+                    currentIndex = index;
+                    slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+                }
+                
+                // Update indikator
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.toggle('active', i === currentIndex);
+                });
+            }
+            
+            // Fungsi untuk pindah ke slide berikutnya
+            function nextSlide() {
+                goToSlide(currentIndex + 1);
+            }
+            
+            // Fungsi untuk pindah ke slide sebelumnya
+            function prevSlide() {
+                goToSlide(currentIndex - 1);
+            }
+            
+            // Mulai autoplay
+            function startAutoPlay() {
+                intervalId = setInterval(nextSlide, slideInterval);
+            }
+            
+            // Hentikan autoplay
+            function stopAutoPlay() {
+                clearInterval(intervalId);
+            }
+            
+            // Event listeners
+            nextBtn.addEventListener('click', () => {
+                stopAutoPlay();
+                nextSlide();
+                startAutoPlay();
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                stopAutoPlay();
+                prevSlide();
+                startAutoPlay();
+            });
+            
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    stopAutoPlay();
+                    goToSlide(index);
+                    startAutoPlay();
+                });
+            });
+            
+            // Pause saat hover
+            carousel.addEventListener('mouseenter', stopAutoPlay);
+            carousel.addEventListener('mouseleave', startAutoPlay);
+            
+            // Mulai carousel
+            startAutoPlay();
+        });
+        </script>
 
         <section id="layanan" class="mb-20" data-aos="fade-up">
             <div class="section-header">
