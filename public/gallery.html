@@ -1,729 +1,2833 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>gallery</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Berita | Kelurahan Tanjungpinang Kota | Kecamatan Tanjungpinang Kota
+    </title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
     <style>
-      /* CSS untuk margin absolut dan konsisten */
-      body {
-          margin: 0;
-          padding: 0;
-          overflow-x: hidden;
-          font-size: 16px;
-          line-height: 1.5;
-      }
-      .fixed-container {
-          width: 90%;
-          max-width: 1280px;
-          margin: 0 auto;
+      /* Menyesuaikan posisi konten banner */
+      .news-hero-content {
+        padding-top: 4rem;
       }
 
-      /* Modern Header */
-      .modern-header {
-          background: linear-gradient(135deg, #1d55ef 0%, #6052e0 100%);
-          position: relative;
-          overflow: hidden;
-      }
-
-      .modern-header .floating img {
-          height: 36px;
-          width: 36px;
-          margin-top: 6px;
-      }
-      
-      .modern-header h1 {
-          font-size: 1.2rem;
-          margin-bottom: 0.25rem;
-      }
-      
-      .modern-header .flex.space-x-4 > div {
-          font-size: 0.7rem;
-      }
-      
-      .modern-header .flex.space-x-4 i {
-          font-size: 0.7rem;
-      }
-      
-      .modern-header .glass-card {
-          padding: 0.4rem 0.8rem;
-          font-size: 0.8rem;
-      }
-      
-      .modern-header .social-icon {
-          width: 28px;
-          height: 28px;
-          font-size: 0.8rem;
-      }
-      
-      .modern-header::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.1"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-          pointer-events: none;
-      }
-      
-      /* Glass Card Effect */
-      .glass-card {
-          background: rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-      }
-      
-      /* Navigation Items */
-      .nav-item {
-          position: relative;
-          padding: 12px 16px;
-          margin: 0 4px;
-          transition: all 0.3s ease;
-          color: #374151;
-          font-weight: 500;
-          text-decoration: none;
-          display: inline-block;
-          overflow: hidden;
-      }
-      
-      .nav-item::before {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          width: 0;
-          height: 2px;
-          background: linear-gradient(135deg, #1d55ef 0%, #6052e0 100%);
-          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          transform: translateX(-50%);
-      }
-
-      .nav-item:hover::before {
-          width: 100%;
-      }
-      
-      .nav-item:hover {
-          transform: translateY(-2px);
-          background: linear-gradient(135deg, #1d55ef 0%, #6052e0 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-      }
-      
-      .nav-item.active {
-          font-weight: 700;
-          background: linear-gradient(135deg, #1d55ef 0%, #6052e0 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-      }
-      
-      .nav-item.active::before {
-          width: 100%;
-      }
-      
-      /* Animations */
-      @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-      }
-      
-      .floating {
-          animation: float 3s ease-in-out infinite;
-      }
-      
-      /* Mobile Menu */
-      .mobile-menu {
-          background: white;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      .btn-gradient {
-          background: linear-gradient(135deg, #3264ec 0%, #5244d2 100%);
-          transition: filter 0.3s ease;
-      }
-
-      .btn-gradient:hover {
-          filter: brightness(115%);
-      }
-      
-      .section-header-gradient {
-          background: linear-gradient(135deg, #1d55ef 0%, #6052e0 100%);
-      }
-
-      .mobile-menu .nav-item {
-          display: block;
-          text-align: left;
-          padding: 10px 16px;
-          margin: 0;
-          font-size: 14px;
-          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      }
-      
-      .mobile-menu .nav-item:last-child {
-          border-bottom: none;
-      }
-
-      @media (max-width: 768px) {
-        .fixed-container {
-          width: 95%;
-          max-width: 1280px;
+      @media (min-width: 768px) {
+        .news-hero-content {
+          padding-top: 6rem;
         }
       }
 
-      .content-box {
-          border: 1px solid #e2e8f0;
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      }
-      /* Ukuran font responsif */
-      h1 {
-          font-size: 1.5rem;
-      }
-      h2 {
-          font-size: 1.25rem;
-      }
-      h3 {
-          font-size: 1.125rem;
+      /* Header berubah merah solid saat scroll */
+      .modern-header.scrolled {
+        background: var(--primary-900) !important;
+        backdrop-filter: none !important;
+        transition: background 0.3s, backdrop-filter 0.3s;
       }
 
-      footer .logo-footer {
-          height: 32px;
+      :root {
+        --primary-900: #800020;
+        /* Deep maroon */
+        --primary-800: #900030;
+        --primary-700: #a00040;
+        --primary-600: #b00050;
+        --primary-500: #c00060;
+        --primary-400: #d00070;
+        --primary-gradient: linear-gradient(
+          135deg,
+          var(--primary-800) 0%,
+          var(--primary-600) 100%
+        );
+        --primary-gradient-hover: linear-gradient(
+          135deg,
+          var(--primary-700) 0%,
+          var(--primary-500) 100%
+        );
+        --accent-color: #ffd700;
+        /* Gold accent */
+        --dark-maroon: #500000;
+        /* Dark maroon for footer */
       }
-      
-      footer h3.text-lg {
-          font-size: 1rem !important;
-      }
-      
-      footer ul.space-y-3 li p {
-          font-size: 0.75rem !important;
-      }
-      
-      footer .social-icon {
-          width: 28px;
-          height: 28px;
-          font-size: 0.8rem;
-      }
-      
-      footer .bg-blue-900\/50 {
-          padding: 0.5rem;
-      }
-      
-      footer .text-sm {
-          font-size: 0.7rem;
-      }
-      
-      footer .flex.space-x-6 a {
-          font-size: 0.7rem;
-      }
-      
-      /* Adjust icon sizes in footer */
-      footer ul.space-y-3 li .fas {
-          width: 16px !important;
-          margin-right: 8px !important;
-          font-size: 0.9rem !important;
-      }
-      
-      footer ul.space-y-3 li .fa-map-marker-alt {
-          font-size: 1.1rem !important;
-      }
-      /* Mobile adjustments */
-      @media (max-width: 767px) {
-          /* Header adjustments */
-          .modern-header .flex.items-center.space-x-4 {
-              align-items: flex-start;
-          }
-          
-          .modern-header .floating img {
-              height: 50px;
-              width: 50px;
-              margin-top: 5px;
-          }
-          
-          .modern-header h1 {
-              font-size: 1.1rem;
-              margin-bottom: 0.25rem;
-              line-height: 1.2;
-          }
-          
-          .modern-header .flex.space-x-4 {
-              flex-direction: column;
-              gap: 0.1rem;
-          }
-          
-          .modern-header .flex.space-x-4 > div {
-              font-size: 0.7rem;
-          }
-          
-          .modern-header .flex.space-x-4 i {
-              font-size: 0.7rem;
-              margin-right: 4px;
-          }
-          
-          /* Adjust header container padding */
-          .modern-header .container {
-              padding-top: 12px;
-              padding-bottom: 12px;
-          }
-          
-          /* Footer adjustments */
-          footer .grid {
-              grid-template-columns: 1fr;
-              gap: 1.5rem;
-          }
-          
-          footer img {
-              height: 36px;
-          }
-          
-          footer h3 {
-              font-size: 1rem;
-          }
 
-          footer h3.text-lg {
-              font-size: 1.125rem !important; /* 18px */
-          }
-          
-          footer h4 {
-              font-size: 0.875rem;
-              margin-bottom: 0.75rem;
-          }
-          
-          footer .text-sm {
-              font-size: 0.75rem;
-          }
-          
-          footer .flex.space-x-4 a {
-              width: 32px;
-              height: 32px;
-              font-size: 0.875rem;
-          }
-          
-          footer .bg-blue-900\/50 {
-              padding: 0.75rem;
-          }
-          
-          /* Footer bottom links */
-          footer .flex.space-x-6 a {
-              font-size: 0.75rem;
-          }
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        background-color: #f8fafc;
+        color: #333;
+        line-height: 1.6;
+      }
 
-          footer ul.space-y-3 li:first-child p {
-              font-size: 0.75rem !important;
-              line-height: 1.4;
-          }
-          
-          /* Ukuran icon tetap sama */
-          footer ul.space-y-3 li .fas {
-              width: 20px !important;
-              margin-right: 10px !important;
-              margin-top: -3px !important;
-          }
-          
-          footer ul.space-y-3 li .fa-map-marker-alt {
-              font-size: 1.4rem !important;
-              margin-top: 0 !important;
-          }
-          
-          footer ul.space-y-3 li .fa-envelope,
-          footer ul.space-y-3 li .fa-phone-alt {
-              font-size: 1rem !important;
-          }
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 100 900;
+        font-display: optional;
+        src: url(https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap);
+      }
 
-          footer ul.space-y-3 li:nth-child(2) p,
-          footer ul.space-y-3 li:nth-child(3) p {
-              font-size: 0.85rem !important;
-          }
+      .fixed-container {
+        width: 90%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding-top: 90px;
+      }
+
+      /* Header Styles */
+      .modern-header {
+        position: sticky !important;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(24, 24, 24, 0.45);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .modern-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+      }
+
+      .modern-header .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      /* Glass Morphism Effect */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      .glass-card:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+
+      /* Navigation Items */
+      .nav-item {
+        position: relative;
+        padding: 16px 20px;
+        margin: 0 4px;
+        transition: color 0.3s ease, transform 0.3s ease;
+        color: #fff !important;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-block;
+        overflow: hidden;
+      }
+
+      .nav-item::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 3px;
+        background: #fff;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(-50%);
+      }
+
+      .nav-item:hover::after {
+        width: 100%;
+      }
+
+      .nav-item:hover {
+        color: var(--primary-800);
+        transform: translateY(-2px);
+      }
+
+      .nav-item.active {
+        font-weight: 600;
+        color: var(--primary-900);
+      }
+
+      .nav-item.active::after {
+        width: 100%;
+        background: #fff;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+
+      /* Hero Banner */
+      .hero-banner {
+        position: relative;
+        height: calc(100vh - 90px);
+        min-height: 410px;
+        max-height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none;
+      }
+
+      @media (max-width: 768px) {
+        .hero-banner {
+          min-height: 250px;
+          height: calc(85vh - 60px);
+        }
+      }
+
+      .hero-banner .hero-slide {
+        background-position: top center !important;
+      }
+
+      .hero-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.45) 0%,
+          rgba(0, 0, 0, 0.65) 100%
+        );
+        z-index: 1;
+      }
+
+      .hero-banner .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        padding: 0 20px;
+      }
+
+      .hero-banner .hero-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: top center;
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+      }
+
+      .hero-banner .hero-slide.active {
+        opacity: 1;
+      }
+
+      /* Content Cards */
+      .content-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .content-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(128, 0, 32, 0.03) 0%,
+          rgba(255, 215, 0, 0.03) 100%
+        );
+        z-index: 0;
+      }
+
+      .content-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .content-card .card-header {
+        background: var(--primary-gradient);
+        color: white;
+        padding: 18px 24px;
+        font-weight: 600;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .content-card .card-header::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: translateX(-100%);
+        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      .content-card:hover .card-header::after {
+        transform: translateX(100%);
+      }
+
+      /* Section Header */
+      .section-header {
+        position: relative;
+        padding-bottom: 16px;
+        margin-bottom: 40px;
+      }
+
+      .section-header::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: var(--primary-gradient);
+        border-radius: 2px;
+        transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      .section-header:hover::after {
+        width: 120px;
+      }
+
+      /* Stats Cards */
+      .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--accent-color);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      .stat-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .stat-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-card .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin-bottom: 10px;
+      }
+
+      /* Footer */
+      .main-footer {
+        background: var(--dark-maroon);
+        position: relative;
+        overflow: hidden;
+        color: rgba(255, 255, 255, 0.8);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .main-footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 10% 20%,
+            rgba(80, 0, 0, 0.8) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 90% 80%,
+            rgba(255, 215, 0, 0.1) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .footer-links a {
+        position: relative;
+        padding-bottom: 5px;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .footer-links a::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-color);
+        transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .footer-links a:hover::before {
+        width: 100%;
+      }
+
+      /* Button styles */
+      .btn-primary {
+        background: var(--primary-gradient);
+        color: white;
+        border: none;
+        padding: 14px 28px;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0.1) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        transform: translateX(-100%);
+        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-gradient-hover);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4);
+      }
+
+      .btn-primary:hover::after {
+        transform: translateX(100%);
+      }
+
+      /* News Carousel */
+      .news-carousel-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        cursor: grab;
+      }
+
+      .news-carousel-track {
+        display: flex;
+        transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      .news-carousel-slide {
+        min-width: 100%;
+        flex-shrink: 0;
+      }
+
+      .news-carousel-prev,
+      .news-carousel-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.8);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        z-index: 10;
+        cursor: pointer;
+      }
+
+      .news-carousel-prev:hover,
+      .news-carousel-next:hover {
+        background: white;
+      }
+
+      .news-carousel-prev {
+        left: 16px;
+      }
+
+      .news-carousel-next {
+        right: 16px;
+      }
+
+      .news-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #e5e7eb;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .news-indicator.active,
+      .news-indicator:hover {
+        background: var(--primary-600);
+      }
+
+      /* News Grid */
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+      }
+
+      .news-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      .news-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .news-card-img-container {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .news-card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .news-card:hover .news-card-img {
+        transform: scale(1.05);
+      }
+
+      .news-card-category {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: var(--primary-gradient);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .news-card-body {
+        padding: 20px;
+      }
+
+      .news-card-date {
+        font-size: 12px;
+        color: #6b7280;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+      }
+
+      .news-card-date i {
+        margin-right: 6px;
+      }
+
+      .news-card-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+
+      .news-card-excerpt {
+        color: #4b5563;
+        margin-bottom: 16px;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .news-card-link {
+        display: inline-flex;
+        align-items: center;
+        color: var(--primary-600);
+        font-weight: 600;
+        font-size: 14px;
+        transition: color 0.3s;
+      }
+
+      .news-card-link i {
+        margin-left: 6px;
+        transition: transform 0.3s;
+      }
+
+      .news-card-link:hover {
+        color: var(--primary-800);
+      }
+
+      .news-card-link:hover i {
+        transform: translateX(4px);
+      }
+
+      /* News Pagination */
+      .news-pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+      }
+
+      .pagination-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        margin: 0 4px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .pagination-link:hover {
+        background-color: #f3f4f6;
+        color: var(--primary-600);
+      }
+
+      .pagination-link.active {
+        background-color: var(--primary-600);
+        color: white;
+      }
+
+      .pagination-link.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      /* News Sidebar */
+      .news-sidebar {
+        position: sticky;
+        top: 120px;
+      }
+
+      .sidebar-widget {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      .sidebar-widget-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #f3f4f6;
+        position: relative;
+      }
+
+      .sidebar-widget-title::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 60px;
+        height: 2px;
+        background: var(--primary-gradient);
+      }
+
+      /* Category List */
+      .category-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .category-item {
+        margin-bottom: 8px;
+      }
+
+      .category-item a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        color: #4b5563;
+      }
+
+      .category-item a:hover {
+        background-color: rgba(128, 0, 32, 0.1);
+        color: var(--primary-800);
+      }
+
+      .category-item-count {
+        background-color: #f3f4f6;
+        padding: 2px 8px;
+        border-radius: 9999px;
+        font-size: 12px;
+      }
+
+      /* Tag List */
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag-item a {
+        display: inline-block;
+        padding: 6px 12px;
+        background-color: #f3f4f6;
+        border-radius: 9999px;
+        font-size: 12px;
+        transition: all 0.3s ease;
+      }
+
+      .tag-item a:hover {
+        background-color: var(--primary-600);
+        color: white;
+      }
+
+      /* Popular News */
+      .popular-news-item {
+        display: flex;
+        margin-bottom: 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #f3f4f6;
+      }
+
+      .popular-news-item:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .popular-news-number {
+        font-size: 18px;
+        font-weight: 700;
+        color: #d1d5db;
+        margin-right: 16px;
+        min-width: 24px;
+      }
+
+      .popular-news-content {
+        flex: 1;
+      }
+
+      .popular-news-title {
+        font-weight: 600;
+        margin-bottom: 4px;
+        line-height: 1.4;
+        font-size: 14px;
+      }
+
+      .popular-news-meta {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        color: #6b7280;
+      }
+
+      /* --- FIX: Only one .news-hero-slide visible at a time, no overlap --- */
+      .news-hero-slide {
+        opacity: 0 !important;
+        z-index: 10 !important;
+        pointer-events: none !important;
+        transition: opacity 1s cubic-bezier(0.83, 0, 0.17, 1);
+        position: absolute;
+        inset: 0;
+      }
+      .news-hero-slide.active {
+        opacity: 1 !important;
+        z-index: 20 !important;
+        pointer-events: auto !important;
+      }
+      /* --- END FIX --- */
+
+      .popular-news-meta i {
+        margin-right: 4px;
+      }
+
+      .popular-news-meta span {
+        margin-right: 12px;
+      }
+
+      .popular-news-meta span:last-child {
+        margin-right: 0;
+      }
+
+      /* Spotlight News Tabs Styling */
+      .spotlight-tab-btn {
+        color: #6b7280;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        background: none;
+        outline: none;
+      }
+
+      .spotlight-tab-btn:hover {
+        color: #dc2626;
+        transform: translateY(-2px);
+      }
+
+      .spotlight-tab-btn.active {
+        color: #dc2626;
+        font-weight: 700;
+      }
+
+      .spotlight-tab-btn.active div {
+        opacity: 1 !important;
+      }
+
+      .spotlight-tab-content {
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .spotlight-tab-content.hidden {
+        display: none;
+      }
+
+      .spotlight-tab-content.active {
+        display: block;
+        animation: fadeInUp 0.5s ease-out;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Search Widget */
+      .news-search-form {
+        position: relative;
+        margin-bottom: 16px;
+      }
+
+      .news-search-input {
+        width: 100%;
+        padding: 12px 16px 12px 48px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .news-search-input:focus {
+        border-color: var(--primary-600);
+        box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+        outline: none;
+      }
+
+      .news-search-icon {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9ca3af;
+      }
+
+      /* Newsletter Widget */
+      .newsletter-form {
+        margin-top: 16px;
+      }
+
+      .newsletter-input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+      }
+
+      .newsletter-input:focus {
+        border-color: var(--primary-600);
+        box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+        outline: none;
+      }
+
+      .newsletter-btn {
+        width: 100%;
+        padding: 12px 16px;
+        background-color: var(--primary-600);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .newsletter-btn:hover {
+        background-color: var(--primary-700);
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 1024px) {
+        .hero-banner {
+          height: 60vh;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-banner {
+          height: 50vh;
+          min-height: 400px;
+        }
+
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-banner {
+          height: 45vh;
+          min-height: 350px;
+        }
+
+        .section-header {
+          margin-bottom: 24px;
+        }
+      }
+
+      /* Tambahan untuk sosial vertikal di banner */
+      .hero-banner .social-vertical {
+        left: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      @media (max-width: 768px) {
+        .hero-banner .social-vertical {
+          left: 0.5rem;
+          top: auto;
+          bottom: 1rem;
+          flex-direction: row;
+          right: auto;
+          transform: none;
+        }
+      }
+
+      /* Custom Header Blur & Hover */
+      .custom-header-blur {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        transition: background 0.3s;
+      }
+
+      .custom-header-blur:hover,
+      .custom-header-blur:focus-within {
+        background: rgba(220, 38, 38, 0.93);
+        /* merah (red-600) */
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+      }
+
+      .custom-header-blur .text-white {
+        transition: color 0.3s;
+      }
+
+      .custom-header-blur:hover .text-white {
+        color: #fff;
+      }
+
+      @media (max-width: 640px) {
+        .custom-header-blur .floating img {
+          height: 2.25rem !important;
+          /* h-9 */
+          width: 2.25rem !important;
+          /* w-9 */
+        }
+
+        .custom-header-blur span {
+          font-size: 0.8rem !important;
+        }
+      }
+      /* Modern Professional Timeline Styles */
+      .timeline-modern {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .timeline-modern::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(180deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+        transform: translateX(-50%);
+        border-radius: 2px;
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+      }
+
+      .timeline-modern-item {
+        position: relative;
+        margin-bottom: 60px;
+        opacity: 0;
+        animation: fadeInUp 0.8s ease forwards;
+      }
+
+      .timeline-modern-item:nth-child(1) { animation-delay: 0.1s; }
+      .timeline-modern-item:nth-child(2) { animation-delay: 0.2s; }
+      .timeline-modern-item:nth-child(3) { animation-delay: 0.3s; }
+      .timeline-modern-item:nth-child(4) { animation-delay: 0.4s; }
+      .timeline-modern-item:nth-child(5) { animation-delay: 0.5s; }
+      .timeline-modern-item:nth-child(6) { animation-delay: 0.6s; }
+
+      .timeline-modern-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .timeline-modern-content {
+        position: relative;
+        width: 45%;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        padding: 32px;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(239, 68, 68, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        backdrop-filter: blur(10px);
+      }
+
+      .timeline-modern-content::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 15px solid transparent;
+        transform: translateY(-50%);
+      }
+
+      .timeline-modern-item:nth-child(odd) .timeline-modern-content {
+        margin-left: 0;
+        margin-right: auto;
+      }
+
+      .timeline-modern-item:nth-child(odd) .timeline-modern-content::before {
+        right: -30px;
+        border-left-color: #ffffff;
+      }
+
+      .timeline-modern-item:nth-child(even) .timeline-modern-content {
+        margin-left: auto;
+        margin-right: 0;
+      }
+
+      .timeline-modern-item:nth-child(even) .timeline-modern-content::before {
+        left: -30px;
+        border-right-color: #ffffff;
+      }
+
+      .timeline-modern-content:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 60px rgba(239, 68, 68, 0.15);
+        border-color: rgba(239, 68, 68, 0.3);
+      }
+
+      .timeline-modern-dot {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 20px;
+        height: 20px;
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        border: 4px solid #ffffff;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2), 0 0 20px rgba(239, 68, 68, 0.4);
+        transition: all 0.3s ease;
+      }
+
+      .timeline-modern-item:hover .timeline-modern-dot {
+        transform: translate(-50%, -50%) scale(1.3);
+        box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.3), 0 0 30px rgba(239, 68, 68, 0.6);
+      }
+
+      .timeline-modern-icon {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        border: 4px solid #ffffff;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 16px;
+        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2), 0 8px 32px rgba(239, 68, 68, 0.3);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .timeline-modern-item:hover .timeline-modern-icon {
+        transform: translate(-50%, -50%) scale(1.2) rotate(360deg);
+        box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.3), 0 12px 48px rgba(239, 68, 68, 0.4);
+      }
+
+      .timeline-modern-date {
+        display: inline-block;
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+      }
+
+      .timeline-modern-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 12px;
+        background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .timeline-modern-description {
+        font-size: 1rem;
+        color: #6b7280;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      .timeline-modern-link {
+        display: inline-flex;
+        align-items: center;
+        color: #ef4444;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 8px 0;
+      }
+
+      .timeline-modern-link:hover {
+        color: #dc2626;
+        transform: translateX(5px);
+      }
+
+      .timeline-modern-link i {
+        margin-left: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      .timeline-modern-link:hover i {
+        transform: translateX(3px);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+        }
+        50% {
+          box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.1);
+        }
+      }
+
+      .timeline-modern-dot {
+        animation: pulse 2s infinite;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .timeline-modern::before {
+          left: 30px;
+        }
+
+        .timeline-modern-content {
+          width: calc(100% - 80px);
+          margin-left: 80px !important;
+          margin-right: 0 !important;
+        }
+
+        .timeline-modern-content::before {
+          left: -30px !important;
+          right: auto !important;
+          border-right-color: #ffffff !important;
+          border-left-color: transparent !important;
+        }
+
+        .timeline-modern-icon {
+          left: 30px;
+        }
       }
     </style>
   </head>
-  <body class="font-sans bg-gray-100">
-    <!-- Header -->
-    <header class="modern-header relative">
-        <div class="container mx-auto px-4 py-3 relative z-10">
-            <div class="flex items-center justify-between">
-                <div class="flex items-start md:items-center">
-                    <div class="floating mt-1 mr-2 md:mt-0 md:mr-4">
-                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="h-9 w-9 object-contain">
-                    </div>
-                    <div class="text-white">
-                        <h1 class="text-lg md:text-xl font-bold mb-0">
-                            Kelurahan Tanjungpinang Kota
-                        </h1>
-                        <div class="flex flex-col md:flex-row md:items-center space-y-1 md:space-y-0 md:space-x-4 text-xs">
-                            <div class="flex items-center space-x-1 hover:text-yellow-300 transition-colors">
-                                <i class="fas fa-phone text-yellow-300 text-xs"></i>
-                                <span>+62 771 123456</span>
-                            </div>
-                            <div class="flex items-center space-x-1 hover:text-yellow-300 transition-colors">
-                                <i class="fas fa-envelope text-yellow-300 text-xs"></i>
-                                <span>tpikotakel@tanjungpinangkota.go.id</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Media Sosial dan Login - Hidden on mobile -->
-                <div class="hidden md:flex items-center space-x-3">
-                    <div class="flex space-x-2 mr-3">
-                        <a href="https://facebook.com/kel.tpikota" class="social-icon rounded-full bg-white/20 flex items-center justify-center hover:bg-blue-500 hover:scale-110 transition-all duration-300">
-                            <i class="fab fa-facebook-f text-white"></i>
-                        </a>
-                        <a href="https://instagram.com/kel.tpikota" class="social-icon rounded-full bg-white/20 flex items-center justify-center hover:bg-pink-500 hover:scale-110 transition-all duration-300">
-                            <i class="fab fa-instagram text-white"></i>
-                        </a>
-                    </div>
-                    
-                    <a href="https://icms.tanjungpinangkota.go.id" class="glass-card px-4 py-2 rounded-full text-xs hover:bg-white/30 transition-all duration-300 hover:scale-105">
-                        <i class="fas fa-sign-in-alt mr-1 text-white"></i>
-                        <span class="text-white">Login</span>
-                    </a>
-                </div>
+
+  <body class="bg-gray-50">
+    <!-- Header Section -->
+    <header class="modern-header relative custom-header-blur">
+      <div class="container mx-auto px-4 py-2 md:py-3 relative z-10">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3 md:space-x-4">
+            <div class="floating">
+              <img
+                src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
+                alt="Logo Kelurahan"
+                class="h-11 w-11 md:h-12 md:w-12 object-contain transition-all duration-300"
+              />
             </div>
-        </div>
-
-        <!-- Decorative Elements -->
-        <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32"></div>
-        <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-24 -translate-x-24"></div>
-    </header>
-
-    <!-- Hero Banner-->
-    <div class="relative w-full overflow-hidden">
-        <img src="https://icms.tanjungpinangkota.go.id/image/banner/7243000000/1729745651_e3b6a82242c469b91514.jpg" 
-            alt="Banner Kelurahan" 
-            class="w-full h-auto object-cover">
-    </div>
-
-    <!-- Modern Navigation -->
-    <nav class="sticky top-0 z-50 bg-white shadow-2xl">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center h-16 md:h-14">
-                <!-- Mobile Menu Button - Aligned left -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-600 p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                        <i class="fas fa-bars text-lg"></i>
-                    </button>
-                </div>
-
-                <!-- Desktop Navigation - Center aligned -->
-                <div class="hidden md:flex items-center space-x-2 mx-auto"> 
-                    <a href="index.html" class="nav-item text-sm">Beranda</a>
-                    <a href="news.html" class="nav-item text-sm">Berita</a>
-                    <a href="attent.html" class="nav-item text-sm">Pengumuman</a>
-                    <a href="gallery.html" class="nav-item active text-sm">Galeri</a>
-                    <a href="download.html" class="nav-item text-sm">Download Area</a>
-                </div>
-
-                <!-- Empty div to balance the flex layout -->
-                <div class="md:hidden invisible">
-                    <button class="p-2">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="md:hidden mobile-menu rounded-b-2xl hidden">
-                <div class="space-y-0 border-b border-gray-100">
-                    <a href="index.html" class="nav-item block w-full text-left">Beranda</a>
-                    <a href="news.html" class="nav-item block w-full text-left">Berita</a>
-                    <a href="attent.html" class="nav-item block w-full text-left">Pengumuman</a>
-                    <a href="gallery.html" class="nav-item active block w-full text-left">Galeri</a>
-                    <a href="download.html" class="nav-item block w-full text-left">Download Area</a>
-                </div>
-                <div class="p-3">
-                    <a href="https://icms.tanjungpinangkota.go.id" class="btn-gradient block w-full text-center px-4 py-2 rounded-lg text-sm font-semibold text-white shadow-md">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Login
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <main class="fixed-container py-6">
-      <!-- ALBUM GALLERY (Full Width) -->
-      <section id="album-gallery-carousel" class="relative mb-6">
-        <!-- Slides Container -->
-        <div id="album-gallery-slides" class="relative h-[28rem] rounded-lg overflow-hidden shadow-lg">
-            <!-- Slide 1 -->
-            <article class="absolute inset-0 opacity-100 transition-opacity duration-700 ease-in-out group">
-                <img src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg" alt="Gambar Album Utama" class="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                <div class="absolute top-0 left-0 section-header-gradient text-white px-4 py-2 rounded-br-xl shadow-md">
-                    <h2 class="font-bold text-base"><i class="fas fa-folder mr-2"></i> ALBUM GALLERY</h2>
-                </div>
-                <div class="absolute bottom-0 left-0 p-6 text-white">
-                    <h3 class="font-bold text-xl mb-1.5">Penyerahan Bingkisan Dalam Rangka Hari Lanjut Usia Nasional</h3>
-                    <p class="text-sm text-gray-200"><i class="fas fa-calendar-alt mr-2"></i>21 Juni 2024 | <i class="fas fa-pen mr-2"></i>Oleh Daffa Saja | <i class="fas fa-eye mr-2"></i>120</p>
-                </div>
-            </article>
-            <!-- Slide 2 -->
-            <article class="absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out group">
-                <img src="https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1717576271_48ceec080447a0b094f6.jpg" alt="Gambar Album Utama" class="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                <div class="absolute top-0 left-0 section-header-gradient text-white px-4 py-2 rounded-br-xl shadow-md">
-                    <h2 class="font-bold text-base"><i class="fas fa-folder mr-2"></i> ALBUM GALLERY</h2>
-                </div>
-                <div class="absolute bottom-0 left-0 p-6 text-white">
-                    <h3 class="font-bold text-xl mb-1.5">Lomba Kelurahan Terbaik Se-Kota Tanjungpinang Tahun 2024</h3>
-                    <p class="text-sm text-gray-200"><i class="fas fa-calendar-alt mr-2"></i>29 Mei 2024 | <i class="fas fa-pen mr-2"></i>Oleh Daffa Saja | <i class="fas fa-eye mr-2"></i>120</p>
-                </div>
-            </article>
-            <!-- Slide 3 -->
-            <article class="absolute inset-0 opacity-0 transition-opacity duration-700 ease-in-out group">
-                <img src="https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1698521897_bc2af88a986f50e1066f.jpg" alt="Gambar Album Utama" class="w-full h-full object-cover object-top transition-transform duration-300" />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                <div class="absolute top-0 left-0 section-header-gradient text-white px-4 py-2 rounded-br-xl shadow-md">
-                    <h2 class="font-bold text-base"><i class="fas fa-folder mr-2"></i> ALBUM GALLERY</h2>
-                </div>
-                <div class="absolute bottom-0 left-0 p-6 text-white">
-                    <h3 class="font-bold text-xl mb-1.5">Kelurahan Tanjungpinang Kota Binaan Sadar Hukum se-Kepri</h3>
-                    <p class="text-sm text-gray-200"><i class="fas fa-calendar-alt mr-2"></i>24 Oktober 2023 | <i class="fas fa-pen mr-2"></i>Oleh Daffa Saja | <i class="fas fa-eye mr-2"></i>120</p>
-                </div>
-            </article>
-        </div>
-
-        <!-- Navigation Arrows -->
-        <button id="album-prev-slide" class="absolute top-1/2 left-4 -translate-y-1/2 z-10 bg-white/30 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-white/50 transition-colors">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button id="album-next-slide" class="absolute top-1/2 right-4 -translate-y-1/2 z-10 bg-white/30 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-white/50 transition-colors">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-
-        <!-- Navigation Indicators -->
-        <div id="album-gallery-indicators" class="absolute bottom-5 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
-            <!-- Indicators will be generated by JS -->
-        </div>
-      </section>
-
-      <div class="flex flex-col lg:flex-row gap-6">
-        <div class="lg:w-2/3">
-          <section class="bg-white rounded content-box mb-6 max-w-4xl mx-auto">
-            <div class="section-header-gradient text-white px-4 py-2 rounded-t">
-              <h2 class="font-bold text-base">
-                <i class="fas fa-images mr-2"></i> DAFTAR GALLERY
-              </h2>
-            </div>
-            <div class="p-4 grid grid-cols-1 md:grid-cols-4 gap-4">
-              <!-- BERITA 1 -->
-              <article
-                class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
+            <div class="text-white flex flex-col justify-center">
+              <span
+                class="text-xs md:text-sm font-semibold uppercase tracking-wider block leading-tight"
+                >Kelurahan</span
               >
-                <div class="h-40 overflow-hidden">
-                  <img
-                    src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg"
-                    alt="Gambar Berita Pertama"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-              </article>
-              <!-- BERITA 2 -->
-              <article
-                class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
+              <span class="text-base md:text-xl font-bold block leading-tight"
+                >Tanjungpinang Kota</span
               >
-                <div class="h-40 overflow-hidden">
-                  <img
-                    src="https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1717575756_6832a17d15123f9933c9.jpg"
-                    alt="Gambar Berita Kedua"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-              </article>
+            </div>
+          </div>
 
-              <!-- BERITA 2 -->
-              <article
-                class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
+          <div class="hidden md:flex items-center space-x-6">
+            <div class="hidden md:flex items-center space-x-1 ml-8">
+              <a href="index.html" class="nav-item">
+                <i class="fas fa-home mr-2"></i> Beranda
+              </a>
+              <a href="news.html" class="nav-item">
+                <i class="fas fa-newspaper mr-2"></i> Berita
+              </a>
+              <a href="attent.html" class="nav-item">
+                <i class="fas fa-bullhorn mr-2"></i> Pengumuman
+              </a>
+              <a href="gallery.html" class="nav-item active">
+                <i class="fas fa-images mr-2"></i> Galeri
+              </a>
+              <a href="download.html" class="nav-item">
+                <i class="fas fa-download mr-2"></i> Download
+              </a>
+              <a href="contact.html" class="nav-item">
+                <i class="fas fa-envelope mr-2"></i> Kontak
+              </a>
+            </div>
+
+            <a
+              href="https://icms.tanjungpinangkota.go.id"
+              class="glass-card px-6 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 hover:scale-105 flex items-center"
+            >
+              <i class="fas fa-sign-in-alt mr-2 text-white"></i>
+              <span class="text-white font-medium">Login</span>
+            </a>
+          </div>
+
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+          >
+            <i class="fas fa-bars text-xl"></i>
+          </button>
+
+          <div id="mobile-menu" class="md:hidden bg-white shadow-xl hidden">
+            <div class="container mx-auto px-4 py-3 space-y-2">
+              <a
+                href="index.html"
+                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
               >
-                <div class="h-40 overflow-hidden">
-                  <img
-                    src="https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1698521897_bc2af88a986f50e1066f.jpg"
-                    alt="Gambar Berita Kedua"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-              </article>
-
-              <!-- BERITA 2 -->
-              <article
-                class="border rounded overflow-hidden hover:shadow-lg transition-shadow"
+                <i class="fas fa-home mr-3"></i> Beranda
+              </a>
+              <a
+                href="news.html"
+                class="block py-3 px-4 rounded-lg bg-gray-100 text-primary-800 font-medium"
               >
-                <div class="h-40 overflow-hidden">
-                  <img
-                    src="https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1698521108_69c9a397f9f2f7f5fb30.jpg"
-                    alt="Gambar Berita Kedua"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-              </article>
+                <i class="fas fa-newspaper mr-3"></i> Berita
+              </a>
+              <a
+                href="attent.html"
+                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                <i class="fas fa-bullhorn mr-3"></i> Pengumuman
+              </a>
+              <a
+                href="gallery.html"
+                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                <i class="fas fa-images mr-3"></i> Galeri
+              </a>
+              <a
+                href="download.html"
+                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                <i class="fas fa-download mr-3"></i> Download
+              </a>
+              <a
+                href="contact.html"
+                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                <i class="fas fa-envelope mr-3"></i> Kontak
+              </a>
+              <div class="pt-2">
+                <a
+                  href="https://icms.tanjungpinangkota.go.id"
+                  class="btn-primary block text-center py-3"
+                >
+                  <i class="fas fa-sign-in-alt mr-2"></i> Login Admin
+                </a>
+              </div>
             </div>
-          </section>
-        </div>
-
-        <!-- KONTEN KANAN -->
-        <div class="lg:w-1/3">
-          <section class="bg-white rounded content-box mb-6">
-            <div class="section-header-gradient text-white px-4 py-2 rounded-t">
-              <h2 class="font-bold text-base">
-                <i class="fas fa-folder mr-2"></i> ALBUM LAINNYA
-              </h2>
-            </div>
-            <div class="p-4">
-              <ul class="space-y-2">
-                <li class="border-b pb-3 mb-3">
-                  <a href="#" class="text-sm flex items-center justify-between">
-                    <span class="flex items-center">
-                      Kucing menangkap ikan
-                    </span>
-                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
-                      >224&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
-                    ></span>
-                  </a>
-                </li>
-                <li class="border-b pb-3 mb-3">
-                  <a href="#" class="text-sm flex items-center justify-between">  
-                    <span class="flex items-center"> Mambang tanah </span>
-                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
-                      >85&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
-                    ></span>
-                  </a>
-                </li>
-                <li class="border-b pb-3 mb-3">
-                  <a href="#" class="text-sm flex items-center justify-between">
-                    <span class="flex items-center"> Mambang laut </span>
-                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
-                      >300&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
-                    ></span>
-                  </a>
-                </li>
-                <li class="border-b pb-3 mb-3">
-                  <a href="#" class="text-sm flex items-center justify-between">
-                    <span class="flex items-center"> Mambang mabuk </span>
-                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
-                      >330&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
-                    ></span>
-                  </a>
-                </li>
-                <li class="border-b pb-3 mb-3">
-                  <a href="#" class="text-sm flex items-center justify-between">
-                    <span class="flex items-center"> Mambang laut </span>
-                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
-                      >220&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
-                    ></span>
-                  </a>
-                </li>
-                <li class="border-b pb-3 mb-3">
-                  <a href="#" class="text-sm flex items-center justify-between">
-                    <span class="flex items-center"> Mambang mabuk </span>
-                    <span class="text-xs text-gray-500 ml-2 whitespace-nowrap"
-                      >150&nbsp;&nbsp;<i class="fas fa-images text-xs mr-2"></i
-                    ></span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </section>
+          </div>
         </div>
       </div>
-    </main>
-    <!-- SAMPAI SINI BAGIAN DAFFA -->
+    </header>
 
-    <!-- Footer -->
-    <footer class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-gray-300 pt-6 pb-4 relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-            <div class="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
+  <main class="bg-gradient-to-br from-gray-50 via-white to-gray-100 min-h-screen">
+    <!-- Hero Banner with Interactive Slider -->
+    <section class="gallery-hero relative h-screen max-h-[800px] overflow-hidden">
+      <!-- Interactive Slider Background -->
+      <div class="absolute inset-0 z-0 gallery-hero-slider">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30 z-10"></div>
+        <div class="absolute inset-0 flex transition-transform duration-1000 ease-[cubic-bezier(0.65,0,0.35,1)]">
+          <div class="relative w-full h-full flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1800&auto=format&fit=crop" 
+                alt="Gallery Hero" 
+                class="w-full h-full object-cover object-center"
+                data-parallax data-speed="0.4">
+          </div>
+          <div class="relative w-full h-full flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=1800&auto=format&fit=crop" 
+                alt="Gallery Hero" 
+                class="w-full h-full object-cover object-center"
+                data-parallax data-speed="0.4">
+          </div>
+          <div class="relative w-full h-full flex-shrink-0">
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1800&auto=format&fit=crop" 
+                alt="Gallery Hero" 
+                class="w-full h-full object-cover object-center"
+                data-parallax data-speed="0.4">
+          </div>
         </div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-4 mb-6 md:mb-8 md:items-baseline">
-                <div class="text-center md:text-left">
-                    <div class="flex flex-col items-center md:flex-row md:items-center mb-4 md:mb-6">
-                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo" class="h-9 md:h-12 mb-2 md:mb-0 md:mr-4">
-                        <h3 class="text-lg md:text-xl font-bold text-white text-center md:text-left">Kelurahan Tanjungpinang Kota</h3>
-                    </div>
-                    <ul class="space-y-3 md:space-y-4 inline-block text-left">
-                        <li class="flex">
-                            <div class="flex items-start group">
-                                <i class="fas fa-map-marker-alt text-blue-300 mr-3 text-xl w-5 text-center mt-0.5 md:mt-1 md:mr-4 md:text-sm group-hover:text-blue-200 transition-colors"></i>
-                                <div class="text-left">
-                                    <p class="text-xs md:text-sm">Jl. Mesjid No.7 Tanjungpinang Kota<br>Kec. Tj. Pinang Kota, Kota Tanjung Pinang<br>Kepulauan Riau, Indonesia</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="flex">
-                            <div class="flex items-start group">
-                                <i class="fas fa-envelope text-blue-300 mr-3 text-lg w-5 text-center mt-0.5 md:mt-1 md:mr-4 md:text-sm group-hover:text-blue-200 transition-colors"></i>
-                                <div class="text-left">
-                                    <p class="text-sm">tpikotakel@tanjungpinangkota.go.id</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="flex">
-                            <div class="flex items-start group">
-                                <i class="fas fa-phone text-blue-300 mr-3 text-lg w-5 text-center mt-0.5 md:mt-1 md:mr-4 md:text-sm group-hover:text-blue-200 transition-colors"></i>
-                                <div class="text-left">
-                                    <p class="text-sm">(0771) 1234567</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="text-center md:text-left lg:justify-self-center">
-                    <ul class="space-y-1 md:space-y-3">
-                        <li><a href="index.html" class="hover:text-white transition-colors text-xs">Beranda</a></li>
-                        <li><a href="news.html" class="hover:text-white transition-colors text-xs">Berita</a></li>
-                        <li><a href="attent.html" class="hover:text-white transition-colors text-xs">Pengumuman</a></li>
-                        <li><a href="gallery.html" class="hover:text-white transition-colors text-xs">Gallery</a></li>
-                        <li><a href="download.html" class="hover:text-white transition-colors text-xs">Download Area</a></li>
-                    </ul>
-                </div>
-                
-                <div class="text-center md:text-left">
-                    <ul class="space-y-1 md:space-y-3">
-                        <li><a href="https://tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors text-xs">Pemkot Tanjungpinang</a></li>
-                        <li><a href="https://kominfo.tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors text-xs">Diskominfo Tanjungpinang</a></li>
-                        <li><a href="https://dpmpd.tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors text-xs">DPMPD Tanjungpinang</a></li>
-                        <li><a href="https://bappeda.tanjungpinangkota.go.id" target="_blank" class="hover:text-white transition-colors text-xs">Bappeda Tanjungpinang</a></li>
-                    </ul>
-                </div>
-                
-                <div class="text-center md:text-left">
-                    <div class="flex space-x-3 md:space-x-4 mb-4 md:mb-6 justify-center md:justify-start">
-                        <a href="https://facebook.com/kel.tpikota" target="_blank" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-700/70 flex items-center justify-center hover:bg-blue-600 hover:scale-110 transition-all duration-300">
-                            <i class="fab fa-facebook-f text-xs md:text-sm"></i>
-                        </a>
-                        <a href="https://instagram.com/kel.tpikota" target="_blank" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-blue-700/70 flex items-center justify-center hover:bg-pink-600 hover:scale-110 transition-all duration-300">
-                            <i class="fab fa-instagram text-xs md:text-sm"></i>
-                        </a>
-                    </div>
-                    <h4 class="text-sm md:text-lg font-bold text-white mb-2 md:mb-4">Jam Operasional</h4>
-                    <div class="bg-blue-900/50 p-2 md:p-4 rounded-lg border border-blue-600">
-                        <p class="text-xs md:text-sm mb-1 md:mb-2"><span class="font-medium text-blue-300">Senin - Kamis:</span> 08.00 - 16.00 WIB</p>
-                        <p class="text-xs md:text-sm"><span class="font-medium text-blue-300">Jumat:</span> 08.00 - 16.30 WIB</p>
-                    </div>
-                </div>
+      </div>
+
+      <!-- Hero Content with Animated Text -->
+      <div class="container mx-auto h-full flex items-center relative z-20 px-6">
+        <div class="max-w-4xl">
+          <h1 class="text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.1] text-white tracking-tighter">
+            <span class="block overflow-hidden">
+              <span class="block animate-slideUp [animation-delay:0.2s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
+                <span class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent drop-shadow-2xl">Galeri Interaktif</span>
+              </span>
+            </span>
+            <span class="block overflow-hidden mt-2">
+              <span class="block animate-slideUp [animation-delay:0.4s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
+                <span class="bg-gradient-to-r from-primary-400 to-red-400 bg-clip-text text-transparent drop-shadow-2xl">Tanjungpinang Kota</span>
+              </span>
+            </span>
+          </h1>
+          <div class="overflow-hidden">
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl animate-slideUp [animation-delay:0.6s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
+              Jelajahi momen-momen berharga dan perkembangan wilayah kami melalui dokumentasi visual yang interaktif
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-4 overflow-hidden">
+            <div class="animate-slideUp [animation-delay:0.8s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
+              <a href="#gallery-grid" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-600 to-red-700 text-white font-bold rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 transition-all duration-300 group border border-white/20">
+                <span class="text-lg">Jelajahi Sekarang</span>
+                <i class="fas fa-arrow-down ml-3 text-lg group-hover:translate-y-1 transition-transform duration-300"></i>
+              </a>
+            </div>
+            <div class="animate-slideUp [animation-delay:1s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
+              <a href="#video-wall" class="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-bold rounded-xl hover:bg-white/20 transition-all duration-300 group border border-white/20">
+                <i class="fas fa-play-circle mr-3"></i>
+                <span class="text-lg">Video 360°</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slider Controls -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
+        <button class="gallery-hero-prev w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="gallery-hero-next w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Scrolling Indicator -->
+      <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+        <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center p-1">
+          <div class="w-1 h-2 bg-white rounded-full animate-scrollIndicator"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Gallery Grid -->
+    <section id="gallery-grid" class="py-16 relative overflow-hidden">
+      <!-- Floating Decorative Elements -->
+      <div class="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-r from-primary-600/10 to-red-600/10 rounded-full blur-3xl animate-float"></div>
+      <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-full blur-3xl animate-float" style="animation-delay: 2s"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <span class="relative inline-block">
+              <span class="relative z-10">Galeri <span class="text-primary-600">Interaktif</span></span>
+              <span class="absolute bottom-0 left-0 w-full h-3 bg-primary-100/70 -rotate-1 -z-0"></span>
+            </span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Jelajahi koleksi dokumentasi kami dengan pengalaman yang lebih imersif
+          </p>
+        </div>
+
+        <!-- Advanced Filter with Search -->
+        <div class="mb-12 bg-white rounded-2xl shadow-lg p-6">
+          <div class="flex flex-col md:flex-row gap-4 items-center">
+            <div class="flex-1 relative">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i class="fas fa-search text-gray-400"></i>
+              </div>
+              <input type="text" class="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent" placeholder="Cari album atau kegiatan...">
+            </div>
+            <div class="flex-1 w-full">
+              <select class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                <option value="">Semua Kategori</option>
+                <option value="infrastruktur">Infrastruktur</option>
+                <option value="sosial">Sosial</option>
+                <option value="kesehatan">Kesehatan</option>
+                <option value="pendidikan">Pendidikan</option>
+                <option value="lingkungan">Lingkungan</option>
+              </select>
+            </div>
+            <div class="flex-1 w-full">
+              <select class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                <option value="">Semua Tahun</option>
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+              </select>
+            </div>
+            <button class="px-6 py-3 bg-gradient-to-r from-primary-600 to-red-700 text-white font-bold rounded-xl hover:from-red-700 hover:to-red-800 transition-all duration-300">
+              <i class="fas fa-filter mr-2"></i> Filter
+            </button>
+          </div>
+        </div>
+
+        <!-- Gallery Grid with Uniform Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 gallery-grid" id="gallery-container">
+          <!-- Gallery Card 1 - Infrastruktur -->
+          <div class="gallery-card group" data-category="infrastruktur" data-year="2024" data-title="Pembangunan Jalan RW 08" data-description="Progres pembangunan jalan lingkungan sepanjang 500m di wilayah RW 08" data-date="2024-07-15">
+            <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+              <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&h=800&auto=format&fit=crop" 
+                  alt="Pembangunan Jalan" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+              
+              <!-- Category Badge -->
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-primary-600 text-white text-xs font-bold rounded-full">Infrastruktur</span>
+              </div>
+              
+              <!-- Quick View Button -->
+              <div class="absolute top-4 right-4">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              
+              <!-- Overlay Info -->
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <h3 class="font-bold text-white text-lg mb-1">Pembangunan Jalan RW 08</h3>
+                <p class="text-gray-300 text-sm">15 Jul 2024 • 24 Foto</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Card 2 - Sosial -->
+          <div class="gallery-card group" data-category="sosial" data-year="2024" data-title="Penyaluran Bantuan Sembako" data-description="Distribusi bantuan untuk 150 keluarga kurang mampu di wilayah RW 05" data-date="2024-06-20">
+            <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+              <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=800&h=800&auto=format&fit=crop" 
+                  alt="Bantuan Sosial" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+              
+              <!-- Category Badge -->
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full">Sosial</span>
+              </div>
+              
+              <!-- Quick View Button -->
+              <div class="absolute top-4 right-4">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              
+              <!-- Overlay Info -->
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <h3 class="font-bold text-white text-lg mb-1">Penyaluran Bantuan Sembako</h3>
+                <p class="text-gray-300 text-sm">12 Jul 2024 • 18 Foto</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Card 3 - Kesehatan -->
+          <div class="gallery-card group" data-category="kesehatan" data-year="2024" data-title="Vaksinasi Booster" data-description="Pelaksanaan vaksinasi booster untuk warga lansia" data-date="2024-07-10">
+            <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+              <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=800&h=800&auto=format&fit=crop" 
+                  alt="Vaksinasi" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+              
+              <!-- Category Badge -->
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">Kesehatan</span>
+              </div>
+              
+              <!-- Featured Badge -->
+              <div class="absolute top-4 right-4">
+                <span class="px-2 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full flex items-center">
+                  <i class="fas fa-star mr-1"></i> Featured
+                </span>
+              </div>
+              
+              <!-- Overlay Info -->
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <h3 class="font-bold text-white text-lg mb-1">Vaksinasi Booster</h3>
+                <p class="text-gray-300 text-sm">10 Jul 2024 • 32 Foto</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Card 4 - Pendidikan -->
+          <div class="gallery-card group" data-category="pendidikan" data-year="2024" data-title="Pelatihan Kader Posyandu" data-description="Pelatihan untuk meningkatkan kualitas pelayanan kesehatan di posyandu" data-date="2024-07-08">
+            <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&h=800&auto=format&fit=crop" 
+                  alt="Pelatihan Kader" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+              
+              <!-- Category Badge -->
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full">Pendidikan</span>
+              </div>
+              
+              <!-- Quick View Button -->
+              <div class="absolute top-4 right-4">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              
+              <!-- Overlay Info -->
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <h3 class="font-bold text-white text-lg mb-1">Pelatihan Kader Posyandu</h3>
+                <p class="text-gray-300 text-sm">8 Jul 2024 • 28 Foto</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Card 5 - Lingkungan -->
+          <div class="gallery-card group" data-category="lingkungan" data-year="2024" data-title="Penanaman Pohon" data-description="Program penghijauan lingkungan kelurahan" data-date="2024-07-05">
+            <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+              <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&h=800&auto=format&fit=crop" 
+                  alt="Penanaman Pohon" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+              
+              <!-- Category Badge -->
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full">Lingkungan</span>
+              </div>
+              
+              <!-- Quick View Button -->
+              <div class="absolute top-4 right-4">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              
+              <!-- Overlay Info -->
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <h3 class="font-bold text-white text-lg mb-1">Penanaman Pohon</h3>
+                <p class="text-gray-300 text-sm">5 Jul 2024 • 22 Foto</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Card 6 - Perbaikan Drainase -->
+          <div class="gallery-card group" data-category="infrastruktur" data-year="2024" data-title="Perbaikan Drainase" data-description="Perbaikan sistem drainase untuk mencegah banjir" data-date="2024-06-25">
+            <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+              <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=800&h=800&auto=format&fit=crop" 
+                  alt="Perbaikan Drainase" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+              
+              <!-- Category Badge -->
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-primary-600 text-white text-xs font-bold rounded-full">Infrastruktur</span>
+              </div>
+              
+              <!-- Quick View Button -->
+              <div class="absolute top-4 right-4">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              
+              <!-- Overlay Info -->
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <h3 class="font-bold text-white text-lg mb-1">Perbaikan Drainase</h3>
+                <p class="text-gray-300 text-sm">3 Jul 2024 • 16 Foto</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Card 7 - Rapat Warga -->
+          <div class="gallery-card group" data-category="sosial" data-year="2024" data-title="Rapat Warga" data-description="Rapat koordinasi warga membahas program kelurahan" data-date="2024-07-01">
+            <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+              <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=800&h=800&auto=format&fit=crop" 
+                  alt="Rapat Warga" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+              
+              <!-- Category Badge -->
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full">Sosial</span>
+              </div>
+              
+              <!-- Quick View Button -->
+              <div class="absolute top-4 right-4">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              
+              <!-- Overlay Info -->
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <h3 class="font-bold text-white text-lg mb-1">Rapat Warga</h3>
+                <p class="text-gray-300 text-sm">1 Jul 2024 • 12 Foto</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gallery Card 8 - Posyandu -->
+          <div class="gallery-card group" data-category="kesehatan" data-year="2024" data-title="Posyandu Bulanan" data-description="Pelayanan kesehatan ibu dan anak di Posyandu Melati" data-date="2024-06-28">
+            <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
+              <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=800&h=800&auto=format&fit=crop" 
+                  alt="Posyandu" 
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+              
+              <!-- Category Badge -->
+              <div class="absolute top-4 left-4">
+                <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">Kesehatan</span>
+              </div>
+              
+              <!-- Quick View Button -->
+              <div class="absolute top-4 right-4">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              
+              <!-- Overlay Info -->
+              <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <h3 class="font-bold text-white text-lg mb-1">Posyandu Bulanan</h3>
+                <p class="text-gray-300 text-sm">28 Jun 2024 • 36 Foto</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+          <button class="inline-flex items-center px-8 py-3 bg-white border-2 border-red-600 text-red-600 font-bold rounded-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg">
+            <i class="fas fa-plus-circle mr-2"></i>
+            Muat Lebih Banyak
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Wall Section -->
+    <section id="video-wall" class="py-16 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <span class="relative inline-block">
+              <span class="relative z-10">Video <span class="text-primary-600">360°</span></span>
+              <span class="absolute bottom-0 left-0 w-full h-3 bg-primary-100/70 -rotate-1 -z-0"></span>
+            </span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Jelajahi kegiatan kelurahan melalui pengalaman video imersif
+          </p>
+        </div>
+
+        <!-- Video Grid with Hover Effects -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Video 1 - 360° Experience -->
+          <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1280&h=720&auto=format&fit=crop" 
+                alt="Video Dokumentasi" 
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+            
+            <!-- 360° Badge -->
+            <div class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center">
+              <i class="fas fa-vr-cardboard mr-1 text-primary-600"></i>
+              360° Experience
             </div>
             
-            <div class="border-t border-blue-600 pt-4 md:pt-6">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-xs text-blue-200 mb-2 md:mb-0">© 2024 Kelurahan Tanjungpinang Kota. All rights reserved.</p>
-                    <div class="flex space-x-2 md:space-x-4">
-                        <a href="#" class="text-xs text-blue-200 hover:text-white hover:underline transition-colors">Kebijakan Privasi</a>
-                        <a href="#" class="text-xs text-blue-200 hover:text-white hover:underline transition-colors">Syarat &amp; Ketentuan</a>
-                        <a href="#" class="text-xs text-blue-200 hover:text-white hover:underline transition-colors">Peta Situs</a>
-                    </div>
-                </div>
+            <!-- Play Button -->
+            <div class="absolute inset-0 flex items-center justify-center z-20">
+              <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform">
+                <i class="fas fa-play text-xl"></i>
+              </div>
             </div>
+            
+            <!-- Video Info -->
+            <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
+              <h3 class="text-xl font-bold text-white">Peresmian Taman RW 05</h3>
+              <div class="flex items-center text-sm text-gray-300 mt-2">
+                <i class="far fa-clock mr-2"></i>
+                <span>2:45 Menit</span>
+                <span class="ml-auto flex items-center">
+                  <i class="fas fa-play-circle mr-1"></i> 1.2K
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 2 - With Interactive Transcript -->
+          <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1280&h=720&auto=format&fit=crop" 
+                alt="Video Dokumentasi" 
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+            
+            <!-- Transcript Button -->
+            <button class="absolute top-4 right-4 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg">
+              <i class="fas fa-scroll"></i>
+            </button>
+            
+            <!-- Play Button -->
+            <div class="absolute inset-0 flex items-center justify-center z-20">
+              <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform">
+                <i class="fas fa-play text-xl"></i>
+              </div>
+            </div>
+            
+            <!-- Video Info -->
+            <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
+              <h3 class="text-xl font-bold text-white">Pelatihan Kader Posyandu</h3>
+              <div class="flex items-center text-sm text-gray-300 mt-2">
+                <i class="far fa-clock mr-2"></i>
+                <span>5:12 Menit</span>
+                <span class="ml-auto flex items-center">
+                  <i class="fas fa-play-circle mr-1"></i> 980
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 3 - Live Event Recording -->
+          <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50 z-10"></div>
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1280&h=720&auto=format&fit=crop" 
+                alt="Video Dokumentasi" 
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+            
+            <!-- Live Badge -->
+            <div class="absolute top-4 right-4 z-20 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
+              <span class="relative flex h-2 w-2 mr-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+              </span>
+              LIVE RECORDING
+            </div>
+            
+            <!-- Play Button -->
+            <div class="absolute inset-0 flex items-center justify-center z-20">
+              <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform">
+                <i class="fas fa-play text-xl"></i>
+              </div>
+            </div>
+            
+            <!-- Video Info -->
+            <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
+              <h3 class="text-xl font-bold text-white">Hari Lingkungan Hidup 2024</h3>
+              <div class="flex items-center text-sm text-gray-300 mt-2">
+                <i class="far fa-clock mr-2"></i>
+                <span>8:30 Menit</span>
+                <span class="ml-auto flex items-center">
+                  <i class="fas fa-play-circle mr-1"></i> 1.5K
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
-    <script src="script.js"></script>
-  </body>
+
+        <!-- Video Channel Button -->
+        <div class="text-center mt-12">
+          <a href="#" class="inline-flex items-center px-8 py-3 bg-white border-2 border-red-600 text-red-600 font-bold rounded-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg group">
+            <i class="fas fa-play-circle mr-2"></i>
+            Kunjungi Channel Video Kami
+            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo of the Month - Interactive Section -->
+    <section class="py-16 bg-gradient-to-b from-white to-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <span class="relative inline-block">
+              <span class="relative z-10">Sorotan <span class="text-primary-600">Bulan Ini</span></span>
+              <span class="absolute bottom-0 left-0 w-full h-3 bg-primary-100/70 -rotate-1 -z-0"></span>
+            </span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Dokumentasi terbaik yang menjadi sorotan di bulan Juli 2024
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Interactive Photo Viewer -->
+          <div class="relative overflow-hidden rounded-3xl shadow-2xl aspect-[4/3] photo-viewer">
+            <img src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg" 
+                alt="Foto Bulan Ini" 
+                class="w-full h-full object-cover cursor-zoom-in viewer-image">
+            
+            <!-- Zoom Controls -->
+            <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl p-2 shadow-lg flex items-center space-x-2">
+              <button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-100 viewer-zoom-in">
+                <i class="fas fa-search-plus"></i>
+              </button>
+              <button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-100 viewer-zoom-out">
+                <i class="fas fa-search-minus"></i>
+              </button>
+              <button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-100 viewer-reset">
+                <i class="fas fa-sync-alt"></i>
+              </button>
+            </div>
+            
+            <!-- Download Button -->
+            <button class="absolute bottom-6 right-6 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg flex items-center hover:bg-white transition-colors">
+              <i class="fas fa-download mr-2"></i>
+              Unduh
+            </button>
+          </div>
+          
+          <!-- Photo Details with Interactive Elements -->
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Penyerahan Bantuan Sosial RW 05</h3>
+            <p class="text-gray-600 mb-6">Momen penyerahan bantuan sosial untuk warga kurang mampu di RW 05 yang dilaksanakan pada tanggal 15 Juli 2024. Kegiatan ini merupakan bagian dari program rutin Kelurahan Tanjungpinang Kota untuk membantu masyarakat yang membutuhkan.</p>
+            
+            <!-- Interactive Stats -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="bg-white p-4 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow cursor-pointer stat-item">
+                <div class="text-primary-600 text-2xl font-bold mb-1 stat-number" data-target="150">0</div>
+                <div class="text-gray-600 text-sm">Keluarga</div>
+              </div>
+              <div class="bg-white p-4 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow cursor-pointer stat-item">
+                <div class="text-primary-600 text-2xl font-bold mb-1 stat-number" data-target="24">0</div>
+                <div class="text-gray-600 text-sm">Relawan</div>
+              </div>
+              <div class="bg-white p-4 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow cursor-pointer stat-item">
+                <div class="text-primary-600 text-2xl font-bold mb-1 stat-number" data-target="3200">0</div>
+                <div class="text-gray-600 text-sm">Views</div>
+              </div>
+            </div>
+            
+            <!-- Location Map -->
+            <div class="mb-6">
+              <div class="flex items-center text-gray-600 mb-2">
+                <i class="fas fa-map-marker-alt text-primary-600 mr-2"></i>
+                <span>Lokasi Kegiatan</span>
+              </div>
+              <div class="h-40 bg-gray-200 rounded-xl overflow-hidden relative interactive-map">
+                <img src="https://maps.googleapis.com/maps/api/staticmap?center=Tanjungpinang+Kota&zoom=15&size=600x300&maptype=roadmap&markers=color:red%7CTanjungpinang+Kota&key=YOUR_API_KEY" 
+                    alt="Map Location" 
+                    class="w-full h-full object-cover map-image">
+                <div class="absolute inset-0 flex items-center justify-center map-overlay opacity-0 hover:opacity-100 bg-black/30 transition-opacity">
+                  <button class="px-4 py-2 bg-white rounded-lg font-medium flex items-center">
+                    <i class="fas fa-expand mr-2"></i>
+                    Lihat Peta Besar
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Tags with Hover Effects -->
+            <div class="flex flex-wrap gap-2 mb-6">
+              <a href="#" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors">#bansos</a>
+              <a href="#" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors">#rw05</a>
+              <a href="#" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors">#pedulisesama</a>
+              <a href="#" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors">#tanjungpinangkota</a>
+            </div>
+            
+            <!-- Social Sharing -->
+            <div class="flex items-center space-x-4">
+              <span class="text-gray-600">Bagikan:</span>
+              <a href="#" class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="w-8 h-8 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#" class="w-8 h-8 bg-pink-600 text-white rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Monthly Timeline -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <span class="relative inline-block">
+              <span class="relative z-10">Linimasa <span class="text-primary-600">Kegiatan</span></span>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Jejak dokumentasi kegiatan Kelurahan Tanjungpinang Kota sepanjang tahun 2024
+          </p>
+        </div>
+
+        <!-- Modern Professional Timeline -->
+        <div class="timeline-modern">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-modern-item">
+            <div class="timeline-modern-icon">
+              <i class="fas fa-road"></i>
+            </div>
+            <div class="timeline-modern-content">
+              <div class="timeline-modern-date">15 Juli 2024</div>
+              <h3 class="timeline-modern-title">Pembangunan Jalan RW 08</h3>
+              <p class="timeline-modern-description">Progres pembangunan jalan lingkungan sepanjang 500m di wilayah RW 08 untuk meningkatkan aksesibilitas warga dan mendukung mobilitas sehari-hari.</p>
+              <a href="#" class="timeline-modern-link">
+                Lihat Dokumentasi
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-modern-item">
+            <div class="timeline-modern-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <div class="timeline-modern-content">
+              <div class="timeline-modern-date">12 Juli 2024</div>
+              <h3 class="timeline-modern-title">Kerja Bakti Lingkungan</h3>
+              <p class="timeline-modern-description">Kegiatan gotong royong membersihkan lingkungan sekitar dan saluran air untuk mencegah banjir serta menjaga kebersihan lingkungan.</p>
+              <a href="#" class="timeline-modern-link">
+                Lihat Dokumentasi
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-modern-item">
+            <div class="timeline-modern-icon">
+              <i class="fas fa-hands-helping"></i>
+            </div>
+            <div class="timeline-modern-content">
+              <div class="timeline-modern-date">10 Juli 2024</div>
+              <h3 class="timeline-modern-title">Penyaluran Bantuan Sosial</h3>
+              <p class="timeline-modern-description">Distribusi bantuan sosial kepada keluarga kurang mampu di wilayah kelurahan sebagai bentuk kepedulian sosial dan solidaritas masyarakat.</p>
+              <a href="#" class="timeline-modern-link">
+                Lihat Dokumentasi
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Timeline Item 4 -->
+          <div class="timeline-modern-item">
+            <div class="timeline-modern-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <div class="timeline-modern-content">
+              <div class="timeline-modern-date">05 Juli 2024</div>
+              <h3 class="timeline-modern-title">Pelatihan UMKM Digital</h3>
+              <p class="timeline-modern-description">Memberikan pelatihan pemasaran digital kepada para pelaku UMKM untuk meningkatkan daya saing produk lokal di era digital.</p>
+              <a href="#" class="timeline-modern-link">
+                Lihat Dokumentasi
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Timeline Item 5 -->
+          <div class="timeline-modern-item">
+            <div class="timeline-modern-icon">
+              <i class="fas fa-user-md"></i>
+            </div>
+            <div class="timeline-modern-content">
+              <div class="timeline-modern-date">01 Juli 2024</div>
+              <h3 class="timeline-modern-title">Vaksinasi Booster</h3>
+              <p class="timeline-modern-description">Pelaksanaan program vaksinasi booster untuk warga lansia dan kelompok rentan guna meningkatkan imunitas masyarakat.</p>
+              <a href="#" class="timeline-modern-link">
+                Lihat Dokumentasi
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Timeline Item 6 -->
+          <div class="timeline-modern-item">
+            <div class="timeline-modern-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="timeline-modern-content">
+              <div class="timeline-modern-date">28 Juni 2024</div>
+              <h3 class="timeline-modern-title">Rapat Koordinasi Warga</h3>
+              <p class="timeline-modern-description">Rapat koordinasi dengan seluruh RT/RW untuk membahas program pembangunan dan kegiatan kemasyarakatan periode mendatang.</p>
+              <a href="#" class="timeline-modern-link">
+                Lihat Dokumentasi
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- View All Button -->
+        <div class="text-center mt-12">
+          <button class="inline-flex items-center px-8 py-3 bg-white border-2 border-red-600 text-red-600 font-bold rounded-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
+            <i class="fas fa-history mr-2"></i>
+            Lihat Linimasa Lengkap
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="main-footer py-12 relative">
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Footer Column 1 -->
+        <div>
+          <div class="flex items-center space-x-3 mb-6">
+            <img
+              src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
+              alt="Logo Kelurahan"
+              class="h-12 w-12 object-contain"
+            />
+            <div>
+              <h3 class="text-xl font-bold text-white">
+                Kelurahan Tanjungpinang Kota
+              </h3>
+              <p class="text-sm text-gray-300">
+                Kecamatan Tanjungpinang Kota
+              </p>
+            </div>
+          </div>
+          <p class="text-gray-300 mb-4 text-sm">
+            Jl. Kemboja No. 12, Tanjungpinang Kota, Kepulauan Riau 29125
+          </p>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors"
+            >
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Footer Column 2 -->
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Tautan Cepat</h3>
+          <ul class="space-y-2 footer-links">
+            <li><a href="index.html" class="text-gray-300">Beranda</a></li>
+            <li><a href="news.html" class="text-gray-300">Berita</a></li>
+            <li>
+              <a href="attent.html" class="text-gray-300">Pengumuman</a>
+            </li>
+            <li><a href="gallery.html" class="text-gray-300">Galeri</a></li>
+            <li>
+              <a href="download.html" class="text-gray-300">Download</a>
+            </li>
+            <li><a href="contact.html" class="text-gray-300">Kontak</a></li>
+          </ul>
+        </div>
+
+        <!-- Footer Column 3 -->
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">
+            Layanan Publik
+          </h3>
+          <ul class="space-y-2 footer-links">
+            <li>
+              <a href="#" class="text-gray-300">Pelayanan Administrasi</a>
+            </li>
+            <li><a href="#" class="text-gray-300">Surat Keterangan</a></li>
+            <li>
+              <a href="#" class="text-gray-300">Pengaduan Masyarakat</a>
+            </li>
+            <li><a href="#" class="text-gray-300">Data Penduduk</a></li>
+            <li><a href="#" class="text-gray-300">Informasi Bansos</a></li>
+            <li><a href="#" class="text-gray-300">Regulasi</a></li>
+          </ul>
+        </div>
+
+        <!-- Footer Column 4 -->
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Kontak Kami</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt text-gray-300 mt-1 mr-3"></i>
+              <span class="text-gray-300 text-sm"
+                >Jl. Kemboja No. 12, Tanjungpinang Kota, Kepulauan Riau
+                29125</span
+              >
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt text-gray-300 mr-3"></i>
+              <span class="text-gray-300">(0771) 123456</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope text-gray-300 mr-3"></i>
+              <span class="text-gray-300"
+                >kel.tpikota@tanjungpinangkota.go.id</span
+              >
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-clock text-gray-300 mr-3"></i>
+              <span class="text-gray-300 text-sm"
+                >Senin-Jumat: 08.00 - 16.00 WIB</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-12 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            2024 Kelurahan Tanjungpinang Kota. All rights reserved.
+          </p>
+          <div class="flex space-x-6">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Kebijakan Privasi</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Syarat & Ketentuan</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Peta Situs</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button
+    id="back-to-top"
+    class="fixed bottom-8 right-8 bg-gradient-to-r from-primary-600 to-red-700 text-white p-4 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:from-red-700 hover:to-red-800 transform hover:scale-110"
+  >
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Floating Action Button -->
+  <div class="fixed bottom-8 left-8 z-50 flex flex-col space-y-3">
+    <button class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary-600 hover:bg-gray-100 transition-colors fab-button">
+      <i class="fas fa-share-alt"></i>
+    </button>
+    <button class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary-600 hover:bg-gray-100 transition-colors fab-button">
+      <i class="fas fa-download"></i>
+    </button>
+    <button class="w-12 h-12 bg-gradient-to-r from-primary-600 to-red-700 rounded-full shadow-lg flex items-center justify-center text-white hover:from-red-700 hover:to-red-800 transition-colors fab-button">
+      <i class="fas fa-comment-dots"></i>
+    </button>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox-modal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <button id="close-lightbox" class="absolute top-8 right-8 text-white text-4xl z-50">&times;</button>
+    <div class="relative w-full max-w-6xl h-full max-h-[90vh] p-8">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500 absolute opacity-30"></div>
+      </div>
+      <img id="lightbox-image" src="" alt="" class="w-full h-full object-contain">
+      <div id="lightbox-caption" class="text-white text-center mt-4"></div>
+    </div>
+  </div>
+
+  <!-- Video Modal -->
+  <div id="video-modal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <button id="close-video" class="absolute top-8 right-8 text-white text-4xl z-50">&times;</button>
+    <div class="relative w-full max-w-4xl aspect-video bg-black">
+      <iframe id="video-iframe" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Initialize AOS animation
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+      once: true,
+    });
+
+    // Hero Slider functionality
+    function initHeroSlider() {
+      const heroSlider = document.querySelector('.gallery-hero-slider > div');
+      const slides = document.querySelectorAll('.gallery-hero-slider > div > div');
+      const prevBtn = document.querySelector('.gallery-hero-prev');
+      const nextBtn = document.querySelector('.gallery-hero-next');
+      let currentIndex = 0;
+      let autoSlideInterval;
+
+      function updateSlider() {
+        heroSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
+      }
+
+      function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlider();
+      }
+
+      function startAutoSlide() {
+        autoSlideInterval = setInterval(nextSlide, 5000);
+      }
+
+      function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+      }
+
+      // Initialize
+      updateSlider();
+      startAutoSlide();
+
+      // Event Listeners
+      if (nextBtn) nextBtn.addEventListener('click', () => {
+        nextSlide();
+        stopAutoSlide();
+        startAutoSlide();
+      });
+
+      if (prevBtn) prevBtn.addEventListener('click', () => {
+        prevSlide();
+        stopAutoSlide();
+        startAutoSlide();
+      });
+
+      // Pause on hover
+      heroSlider.addEventListener('mouseenter', stopAutoSlide);
+      heroSlider.addEventListener('mouseleave', startAutoSlide);
+
+      // Parallax Effect
+      const parallaxImages = document.querySelectorAll('[data-parallax]');
+      window.addEventListener('scroll', function() {
+        const scrollPosition = window.pageYOffset;
+        parallaxImages.forEach(image => {
+          const speed = parseFloat(image.dataset.speed) || 0.5;
+          const yPos = -(scrollPosition * speed);
+          image.style.transform = `translateY(${yPos}px)`;
+        });
+      });
+    }
+
+    // Gallery Filter and Search Functionality
+    function initGalleryFilters() {
+      const filterButtons = document.querySelectorAll('.gallery-filter-btn');
+      const galleryCards = document.querySelectorAll('.gallery-card');
+      const searchInput = document.getElementById('gallery-search');
+      const sortSelect = document.getElementById('gallery-sort');
+      const viewButtons = document.querySelectorAll('.view-toggle-btn');
+      const galleryContainer = document.querySelector('.gallery-grid');
+      
+      // Filter functionality
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Update active state
+          filterButtons.forEach(btn => {
+            btn.classList.remove('active', 'bg-gradient-to-r', 'from-primary-600', 'to-red-700', 'text-white');
+            btn.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+          });
+          
+          button.classList.add('active', 'bg-gradient-to-r', 'from-primary-600', 'to-red-700', 'text-white');
+          button.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-200');
+
+          const filterValue = button.getAttribute('data-filter');
+          filterGallery(filterValue);
+        });
+      });
+      
+      // Search functionality
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const searchTerm = e.target.value.toLowerCase();
+          filterGalleryBySearch(searchTerm);
+        });
+      }
+      
+      // Sort functionality
+      if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+          sortGallery(e.target.value);
+        });
+      }
+      
+      // View toggle functionality
+      viewButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          viewButtons.forEach(btn => btn.classList.remove('active', 'bg-primary-600', 'text-white'));
+          button.classList.add('active', 'bg-primary-600', 'text-white');
+          
+          const viewType = button.getAttribute('data-view');
+          changeGalleryView(viewType);
+        });
+      });
+      
+      function filterGallery(category) {
+        galleryCards.forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'block';
+            card.classList.add('animate-fadeIn');
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+      
+      function filterGalleryBySearch(searchTerm) {
+        galleryCards.forEach(card => {
+          const title = card.getAttribute('data-title') || '';
+          const description = card.getAttribute('data-description') || '';
+          const category = card.getAttribute('data-category') || '';
+          
+          if (title.toLowerCase().includes(searchTerm) || 
+              description.toLowerCase().includes(searchTerm) || 
+              category.toLowerCase().includes(searchTerm)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+      
+      function sortGallery(sortType) {
+        const cardsArray = Array.from(galleryCards);
+        
+        cardsArray.sort((a, b) => {
+          switch(sortType) {
+            case 'newest':
+              return new Date(b.getAttribute('data-date') || '2024-01-01') - new Date(a.getAttribute('data-date') || '2024-01-01');
+            case 'oldest':
+              return new Date(a.getAttribute('data-date') || '2024-01-01') - new Date(b.getAttribute('data-date') || '2024-01-01');
+            case 'alphabetical':
+              return (a.getAttribute('data-title') || '').localeCompare(b.getAttribute('data-title') || '');
+            case 'popular':
+              // Fallback for popular sorting if needed
+              return 0;
+            default:
+              return 0;
+          }
+        });
+
+        // Re-append sorted cards
+        cardsArray.forEach(card => galleryContainer.appendChild(card));
+      }
+    }
+
+    // Lightbox functionality
+    function initLightbox() {
+      const galleryImages = document.querySelectorAll('.gallery-card img');
+      const videoCards = document.querySelectorAll('.video-card');
+      
+      // Create lightbox element
+      const lightbox = document.createElement('div');
+      lightbox.id = 'lightbox';
+      lightbox.className = 'fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300';
+      document.body.appendChild(lightbox);
+
+      // Image lightbox
+      galleryImages.forEach(image => {
+        image.addEventListener('click', () => {
+          const imgSrc = image.getAttribute('src');
+          const imgAlt = image.getAttribute('alt');
+          const card = image.closest('.gallery-card');
+          const title = card.querySelector('h3').textContent;
+          const description = card.querySelector('p').textContent;
+          
+          lightbox.innerHTML = `
+            <div class="relative max-w-6xl w-full mx-4 animate-zoomIn">
+              <button class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors z-10">
+                <i class="fas fa-times"></i>
+              </button>
+              <div class="bg-white rounded-2xl overflow-hidden shadow-2xl">
+                <img src="${imgSrc}" alt="${imgAlt}" class="w-full max-h-[70vh] object-contain">
+                <div class="p-6">
+                  <h3 class="text-2xl font-bold text-gray-900 mb-2">${title}</h3>
+                  <p class="text-gray-600">${description}</p>
+                  <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-200">
+                    <div class="flex gap-4">
+                      <button class="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                        <i class="fas fa-download"></i> Download
+                      </button>
+                      <button class="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                        <i class="fas fa-share"></i> Share
+                      </button>
+                    </div>
+                    <div class="flex gap-2">
+                      <button class="p-2 text-gray-400 hover:text-gray-600 transition-colors">
+                        <i class="fas fa-chevron-left"></i>
+                      </button>
+                      <button class="p-2 text-gray-400 hover:text-gray-600 transition-colors">
+                        <i class="fas fa-chevron-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          showLightbox();
+        });
+      });
+
+      // Video lightbox
+      videoCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const title = card.querySelector('h3').textContent;
+          
+          lightbox.innerHTML = `
+            <div class="relative max-w-6xl w-full mx-4 animate-zoomIn">
+              <button class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors z-10">
+                <i class="fas fa-times"></i>
+              </button>
+              <div class="bg-white rounded-2xl overflow-hidden shadow-2xl">
+                <div class="aspect-video bg-gray-900 flex items-center justify-center">
+                  <div class="text-center text-white">
+                    <i class="fas fa-play-circle text-6xl mb-4 opacity-50"></i>
+                    <p class="text-xl">Video Player akan diintegrasikan</p>
+                    <p class="text-sm opacity-75 mt-2">Fitur ini sedang dalam pengembangan</p>
+                  </div>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-2xl font-bold text-gray-900 mb-2">${title}</h3>
+                  <div class="flex gap-4">
+                    <button class="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                      <i class="fas fa-play"></i> Play Video
+                    </button>
+                    <button class="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                      <i class="fas fa-share"></i> Share
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          
+          showLightbox();
+        });
+      });
+
+      function showLightbox() {
+        lightbox.classList.remove('opacity-0', 'pointer-events-none');
+        lightbox.classList.add('opacity-100');
+        document.body.style.overflow = 'hidden';
+        
+        // Close button event
+        const closeBtn = lightbox.querySelector('.fa-times').parentElement;
+        closeBtn.addEventListener('click', closeLightbox);
+        
+        // Close on backdrop click
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            closeLightbox();
+          }
+        });
+        
+        // Close on escape key
+        document.addEventListener('keydown', handleEscapeKey);
+      }
+
+      function closeLightbox() {
+        lightbox.classList.add('opacity-0', 'pointer-events-none');
+        lightbox.classList.remove('opacity-100');
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', handleEscapeKey);
+      }
+
+      function handleEscapeKey(e) {
+        if (e.key === 'Escape') {
+          closeLightbox();
+        }
+      }
+    }
+
+    // Smooth scroll and back to top
+    function initSmoothScroll() {
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Back to top button
+      const backToTopBtn = document.querySelector('.back-to-top');
+      if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+          if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('show');
+          } else {
+            backToTopBtn.classList.remove('show');
+          }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+    }
+
+    // Header scroll effect
+    function initHeaderScrollEffect() {
+      const header = document.querySelector('header');
+      if (!header) return;
+
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    }
+
+    // Initialize all functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      initHeroSlider();
+      initGalleryFilters();
+      initLightbox();
+      initSmoothScroll();
+      initHeaderScrollEffect();
+
+      // Add loading animation
+      document.body.classList.add('loaded');
+    });
+
+    // Add CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes zoomIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes scrollIndicator {
+        0%, 20% {
+          transform: translateY(0);
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(16px);
+          opacity: 0;
+        }
+      }
+
+      .animate-slideUp {
+        animation: slideUp 0.8s ease-out;
+      }
+
+      .animate-fadeInUp {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .animate-zoomIn {
+        animation: zoomIn 0.3s ease-out;
+      }
+
+      .animate-scrollIndicator {
+        animation: scrollIndicator 2s infinite;
+      }
+
+      .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #dc2626, #b91c1c);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+      }
+
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .back-to-top:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+      }
+
+      header.scrolled {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .masonry-view .gallery-card {
+        break-inside: avoid;
+        margin-bottom: 1.5rem;
+      }
+
+      .timeline-view .gallery-card {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem;
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .timeline-view .gallery-card:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .timeline-view .gallery-card > div:first-child {
+        flex: 0 0 300px;
+      }
+
+      .timeline-view .gallery-card > div:last-child {
+        flex: 1;
+      }
+
+      body.loaded {
+        opacity: 1;
+      }
+
+      body {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+</body>
 </html>
