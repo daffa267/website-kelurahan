@@ -1,1429 +1,1548 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      Berita | Kelurahan Tanjungpinang Kota | Kecamatan Tanjungpinang Kota
-    </title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
 
-    <style>
-      /* Menyesuaikan posisi konten banner */
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>
+    Berita | Kelurahan Tanjungpinang Kota | Kecamatan Tanjungpinang Kota
+  </title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+  <style>
+    /* Menyesuaikan posisi konten banner */
+    .news-hero-content {
+      padding-top: 4rem;
+    }
+
+    @media (min-width: 768px) {
       .news-hero-content {
-        padding-top: 4rem;
+        padding-top: 6rem;
       }
+    }
 
-      @media (min-width: 768px) {
-        .news-hero-content {
-          padding-top: 6rem;
-        }
-      }
+    /* Header berubah merah solid saat scroll */
+    .modern-header.scrolled {
+      background: var(--primary-900) !important;
+      backdrop-filter: none !important;
+      transition: background 0.3s, backdrop-filter 0.3s;
+    }
 
-      /* Header berubah merah solid saat scroll */
-      .modern-header.scrolled {
-        background: var(--primary-900) !important;
-        backdrop-filter: none !important;
-        transition: background 0.3s, backdrop-filter 0.3s;
-      }
-
-      :root {
-        --primary-900: #800020;
-        /* Deep maroon */
-        --primary-800: #900030;
-        --primary-700: #a00040;
-        --primary-600: #b00050;
-        --primary-500: #c00060;
-        --primary-400: #d00070;
-        --primary-gradient: linear-gradient(
-          135deg,
+    :root {
+      --primary-900: #800020;
+      /* Deep maroon */
+      --primary-800: #900030;
+      --primary-700: #a00040;
+      --primary-600: #b00050;
+      --primary-500: #c00060;
+      --primary-400: #d00070;
+      --primary-gradient: linear-gradient(135deg,
           var(--primary-800) 0%,
-          var(--primary-600) 100%
-        );
-        --primary-gradient-hover: linear-gradient(
-          135deg,
+          var(--primary-600) 100%);
+      --primary-gradient-hover: linear-gradient(135deg,
           var(--primary-700) 0%,
-          var(--primary-500) 100%
-        );
-        --accent-color: #ffd700;
-        /* Gold accent */
-        --dark-maroon: #500000;
-        /* Dark maroon for footer */
+          var(--primary-500) 100%);
+      --accent-color: #ffd700;
+      /* Gold accent */
+      --dark-maroon: #500000;
+      /* Dark maroon for footer */
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      background-color: #f8fafc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    @font-face {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: optional;
+      src: url(https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap);
+    }
+
+    .fixed-container {
+      width: 90%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 90px;
+    }
+
+    /* Header Styles */
+    .modern-header {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(24, 24, 24, 0.45);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .modern-header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      pointer-events: none;
+    }
+
+    .modern-header .floating {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Glass Morphism Effect */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Navigation Items */
+    .nav-item {
+      position: relative;
+      padding: 16px 20px;
+      margin: 0 4px;
+      transition: color 0.3s ease, transform 0.3s ease;
+      color: #fff !important;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    .nav-item::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: #fff;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateX(-50%);
+    }
+
+    .nav-item:hover::after {
+      width: 100%;
+    }
+
+    .nav-item:hover {
+      color: var(--primary-800);
+      transform: translateY(-2px);
+    }
+
+    .nav-item.active {
+      font-weight: 600;
+      color: var(--primary-900);
+    }
+
+    .nav-item.active::after {
+      width: 100%;
+      background: #fff;
+    }
+
+    /* Animations */
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
       }
 
-      body {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-        font-family: "Inter", system-ui, -apple-system, sans-serif;
-        background-color: #f8fafc;
-        color: #333;
-        line-height: 1.6;
+      50% {
+        transform: translateY(-8px);
       }
+    }
 
-      @font-face {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 100 900;
-        font-display: optional;
-        src: url(https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap);
-      }
-
-      .fixed-container {
-        width: 90%;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding-top: 90px;
-      }
-
-      /* Header Styles */
-      .modern-header {
-        position: sticky !important;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        z-index: 1000;
-        background: rgba(24, 24, 24, 0.45);
-        backdrop-filter: blur(14px);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-      }
-
-      .modern-header::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        pointer-events: none;
-      }
-
-      .modern-header .floating {
-        animation: float 6s ease-in-out infinite;
-      }
-
-      /* Glass Morphism Effect */
-      .glass-card {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      }
-
-      .glass-card:hover {
-        background: rgba(255, 255, 255, 0.15);
-        transform: translateY(-5px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-        border-color: rgba(255, 255, 255, 0.25);
-      }
-
-      /* Navigation Items */
-      .nav-item {
-        position: relative;
-        padding: 16px 20px;
-        margin: 0 4px;
-        transition: color 0.3s ease, transform 0.3s ease;
-        color: #fff !important;
-        font-weight: 500;
-        text-decoration: none;
-        display: inline-block;
-        overflow: hidden;
-      }
-
-      .nav-item::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 3px;
-        background: #fff;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        transform: translateX(-50%);
-      }
-
-      .nav-item:hover::after {
-        width: 100%;
-      }
-
-      .nav-item:hover {
-        color: var(--primary-800);
-        transform: translateY(-2px);
-      }
-
-      .nav-item.active {
-        font-weight: 600;
-        color: var(--primary-900);
-      }
-
-      .nav-item.active::after {
-        width: 100%;
-        background: #fff;
-      }
-
-      /* Animations */
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-
-        50% {
-          transform: translateY(-8px);
-        }
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .animate-fade-in {
-        animation: fadeIn 0.8s ease-out forwards;
-      }
-
-      /* Hero Banner */
-      .hero-banner {
-        position: relative;
-        height: calc(100vh - 90px);
-        min-height: 410px;
-        max-height: 100vh;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        text-align: center;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none;
-      }
-
-      @media (max-width: 768px) {
-        .hero-banner {
-          min-height: 250px;
-          height: calc(85vh - 60px);
-        }
-      }
-
-      .hero-banner .hero-slide {
-        background-position: top center !important;
-      }
-
-      .hero-banner::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.45) 0%,
-          rgba(0, 0, 0, 0.65) 100%
-        );
-        z-index: 1;
-      }
-
-      .hero-banner .hero-content {
-        position: relative;
-        z-index: 2;
-        max-width: 800px;
-        padding: 0 20px;
-      }
-
-      .hero-banner .hero-slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: top center;
+    @keyframes fadeIn {
+      from {
         opacity: 0;
-        transition: opacity 1.5s ease-in-out;
+        transform: translateY(20px);
       }
 
-      .hero-banner .hero-slide.active {
+      to {
         opacity: 1;
+        transform: translateY(0);
       }
+    }
 
-      /* Content Cards */
-      .content-card {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        border: 1px solid rgba(0, 0, 0, 0.05);
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      position: relative;
+      height: calc(100vh - 90px);
+      min-height: 410px;
+      max-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .hero-banner {
+        min-height: 250px;
+        height: calc(85vh - 60px);
       }
+    }
 
-      .content-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          135deg,
+    .hero-banner .hero-slide {
+      background-position: top center !important;
+    }
+
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom,
+          rgba(0, 0, 0, 0.45) 0%,
+          rgba(0, 0, 0, 0.65) 100%);
+      z-index: 1;
+    }
+
+    .hero-banner .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero-banner .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: top center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .hero-banner .hero-slide.active {
+      opacity: 1;
+    }
+
+    /* Content Cards */
+    .content-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .content-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg,
           rgba(128, 0, 32, 0.03) 0%,
-          rgba(255, 215, 0, 0.03) 100%
-        );
-        z-index: 0;
-      }
+          rgba(255, 215, 0, 0.03) 100%);
+      z-index: 0;
+    }
 
-      .content-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-      }
+    .content-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
 
-      .content-card .card-header {
-        background: var(--primary-gradient);
-        color: white;
-        padding: 18px 24px;
-        font-weight: 600;
-        position: relative;
-        overflow: hidden;
-      }
+    .content-card .card-header {
+      background: var(--primary-gradient);
+      color: white;
+      padding: 18px 24px;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
+    }
 
-      .content-card .card-header::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
+    .content-card .card-header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
           rgba(255, 255, 255, 0.1) 0%,
-          rgba(255, 255, 255, 0) 100%
-        );
-        transform: translateX(-100%);
-        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-      }
+          rgba(255, 255, 255, 0) 100%);
+      transform: translateX(-100%);
+      transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
 
-      .content-card:hover .card-header::after {
-        transform: translateX(100%);
-      }
+    .content-card:hover .card-header::after {
+      transform: translateX(100%);
+    }
 
-      /* Section Header */
-      .section-header {
-        position: relative;
-        padding-bottom: 16px;
-        margin-bottom: 40px;
-      }
+    /* Section Header */
+    .section-header {
+      position: relative;
+      padding-bottom: 16px;
+      margin-bottom: 40px;
+    }
 
-      .section-header::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 60px;
-        height: 4px;
-        background: var(--primary-gradient);
-        border-radius: 2px;
-        transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-      }
+    .section-header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+      transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
 
-      .section-header:hover::after {
-        width: 120px;
-      }
+    .section-header:hover::after {
+      width: 120px;
+    }
 
-      /* Stats Cards */
-      .stat-card {
-        background: white;
-        border-radius: 12px;
-        padding: 30px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        text-align: center;
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-      }
+    /* Stats Cards */
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
 
-      .stat-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: var(--accent-color);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-      }
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--accent-color);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
 
-      .stat-card:hover::before {
-        transform: scaleX(1);
-      }
+    .stat-card:hover::before {
+      transform: scaleX(1);
+    }
 
-      .stat-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-      }
+    .stat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
 
-      .stat-card .stat-number {
-        font-size: 2.5rem;
-        font-weight: 700;
-        background: var(--primary-gradient);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        margin-bottom: 10px;
-      }
+    .stat-card .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+    }
 
-      /* Footer */
-      .main-footer {
-        background: var(--dark-maroon);
-        position: relative;
-        overflow: hidden;
-        color: rgba(255, 255, 255, 0.8);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
+    /* Footer */
+    .main-footer {
+      background: var(--dark-maroon);
+      position: relative;
+      overflow: hidden;
+      color: rgba(255, 255, 255, 0.8);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-      .main-footer::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-            circle at 10% 20%,
-            rgba(80, 0, 0, 0.8) 0%,
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 90% 80%,
-            rgba(255, 215, 0, 0.1) 0%,
-            transparent 50%
-          );
-        pointer-events: none;
-      }
+    .main-footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 10% 20%,
+          rgba(80, 0, 0, 0.8) 0%,
+          transparent 50%),
+        radial-gradient(circle at 90% 80%,
+          rgba(255, 215, 0, 0.1) 0%,
+          transparent 50%);
+      pointer-events: none;
+    }
 
-      .footer-links a {
-        position: relative;
-        padding-bottom: 5px;
-        transition: all 0.3s ease;
-        display: inline-block;
-      }
+    .footer-links a {
+      position: relative;
+      padding-bottom: 5px;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
 
-      .footer-links a::before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--accent-color);
-        transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      }
+    .footer-links a::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent-color);
+      transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
 
-      .footer-links a:hover {
-        color: white;
-      }
+    .footer-links a:hover {
+      color: white;
+    }
 
-      .footer-links a:hover::before {
-        width: 100%;
-      }
+    .footer-links a:hover::before {
+      width: 100%;
+    }
 
-      /* Button styles */
-      .btn-primary {
-        background: var(--primary-gradient);
-        color: white;
-        border: none;
-        padding: 14px 28px;
-        border-radius: 8px;
-        font-weight: 600;
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
-        position: relative;
-        overflow: hidden;
-      }
+    /* Button styles */
+    .btn-primary {
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
 
-      .btn-primary::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
           rgba(255, 255, 255, 0.1) 0%,
-          rgba(255, 255, 255, 0) 100%
-        );
-        transform: translateX(-100%);
-        transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+          rgba(255, 255, 255, 0) 100%);
+      transform: translateX(-100%);
+      transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-gradient-hover);
+      /* transform: translateY(-3px); */
+      box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4);
+    }
+
+    .btn-primary:hover::after {
+      transform: translateX(100%);
+    }
+
+    /* News Carousel */
+    .news-carousel-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      cursor: grab;
+    }
+
+    .news-carousel-track {
+      display: flex;
+      transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .news-carousel-slide {
+      min-width: 100%;
+      flex-shrink: 0;
+    }
+
+    .news-carousel-prev,
+    .news-carousel-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      z-index: 10;
+      cursor: pointer;
+    }
+
+    .news-carousel-prev:hover,
+    .news-carousel-next:hover {
+      background: white;
+    }
+
+    .news-carousel-prev {
+      left: 16px;
+    }
+
+    .news-carousel-next {
+      right: 16px;
+    }
+
+    .news-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #e5e7eb;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .news-indicator.active,
+    .news-indicator:hover {
+      background: var(--primary-600);
+    }
+
+    /* News Grid */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .news-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .news-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-card-img-container {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .news-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .news-card:hover .news-card-img {
+      transform: scale(1.05);
+    }
+
+    .news-card-category {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--primary-gradient);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .news-card-body {
+      padding: 20px;
+    }
+
+    .news-card-date {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .news-card-date i {
+      margin-right: 6px;
+    }
+
+    .news-card-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .news-card-excerpt {
+      color: #4b5563;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .news-card-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--primary-600);
+      font-weight: 600;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .news-card-link i {
+      margin-left: 6px;
+      transition: transform 0.3s;
+    }
+
+    .news-card-link:hover {
+      color: var(--primary-800);
+    }
+
+    .news-card-link:hover i {
+      transform: translateX(4px);
+    }
+
+    /* News Pagination */
+    .news-pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .pagination-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      margin: 0 4px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .pagination-link:hover {
+      background-color: #f3f4f6;
+      color: var(--primary-600);
+    }
+
+    .pagination-link.active {
+      background-color: var(--primary-600);
+      color: white;
+    }
+
+    .pagination-link.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* News Sidebar */
+    .news-sidebar {
+      position: sticky;
+      top: 120px;
+    }
+
+    .sidebar-widget {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .sidebar-widget-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #f3f4f6;
+      position: relative;
+    }
+
+    .sidebar-widget-title::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: var(--primary-gradient);
+    }
+
+    /* Category List */
+    .category-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .category-item {
+      margin-bottom: 8px;
+    }
+
+    .category-item a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      color: #4b5563;
+    }
+
+    .category-item a:hover {
+      background-color: rgba(128, 0, 32, 0.1);
+      color: var(--primary-800);
+    }
+
+    .category-item-count {
+      background-color: #f3f4f6;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 12px;
+    }
+
+    /* Tag List */
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-item a {
+      display: inline-block;
+      padding: 6px 12px;
+      background-color: #f3f4f6;
+      border-radius: 9999px;
+      font-size: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .tag-item a:hover {
+      background-color: var(--primary-600);
+      color: white;
+    }
+
+    /* Popular News */
+    .popular-news-item {
+      display: flex;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .popular-news-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .popular-news-number {
+      font-size: 18px;
+      font-weight: 700;
+      color: #d1d5db;
+      margin-right: 16px;
+      min-width: 24px;
+    }
+
+    .popular-news-content {
+      flex: 1;
+    }
+
+    .popular-news-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      line-height: 1.4;
+      font-size: 14px;
+    }
+
+    .popular-news-meta {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    /* --- FIX: Only one .news-hero-slide visible at a time, no overlap --- */
+    .news-hero-slide {
+      opacity: 0 !important;
+      z-index: 10 !important;
+      pointer-events: none !important;
+      transition: opacity 1s cubic-bezier(0.83, 0, 0.17, 1);
+      position: absolute;
+      inset: 0;
+    }
+
+    .news-hero-slide.active {
+      opacity: 1 !important;
+      z-index: 20 !important;
+      pointer-events: auto !important;
+    }
+
+    /* --- END FIX --- */
+
+    .popular-news-meta i {
+      margin-right: 4px;
+    }
+
+    .popular-news-meta span {
+      margin-right: 12px;
+    }
+
+    .popular-news-meta span:last-child {
+      margin-right: 0;
+    }
+
+    /* Spotlight News Tabs Styling */
+    .spotlight-tab-btn {
+      color: #6b7280;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      background: none;
+      outline: none;
+    }
+
+    .spotlight-tab-btn:hover {
+      color: #dc2626;
+      transform: translateY(-2px);
+    }
+
+    .spotlight-tab-btn.active {
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    .spotlight-tab-btn.active div {
+      opacity: 1 !important;
+    }
+
+    .spotlight-tab-content {
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .spotlight-tab-content.hidden {
+      display: none;
+    }
+
+    .spotlight-tab-content.active {
+      display: block;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
       }
 
-      .btn-primary:hover {
-        background: var(--primary-gradient-hover);
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(128, 0, 32, 0.4);
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Search Widget */
+    .news-search-form {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .news-search-input {
+      width: 100%;
+      padding: 12px 16px 12px 48px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .news-search-input:focus {
+      border-color: var(--primary-600);
+      box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+      outline: none;
+    }
+
+    .news-search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+    }
+
+    /* Newsletter Widget */
+    .newsletter-form {
+      margin-top: 16px;
+    }
+
+    .newsletter-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--primary-600);
+      box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+      outline: none;
+    }
+
+    .newsletter-btn {
+      width: 100%;
+      padding: 12px 16px;
+      background-color: var(--primary-600);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-btn:hover {
+      background-color: var(--primary-700);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .hero-banner {
+        height: 60vh;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-banner {
+        height: 50vh;
+        min-height: 400px;
       }
 
-      .btn-primary:hover::after {
-        transform: translateX(100%);
-      }
-
-      /* News Carousel */
-      .news-carousel-container {
-        position: relative;
-        overflow: hidden;
-        border-radius: 16px;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-          0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        cursor: grab;
-      }
-
-      .news-carousel-track {
-        display: flex;
-        transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
-      }
-
-      .news-carousel-slide {
-        min-width: 100%;
-        flex-shrink: 0;
-      }
-
-      .news-carousel-prev,
-      .news-carousel-next {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(255, 255, 255, 0.8);
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        z-index: 10;
-        cursor: pointer;
-      }
-
-      .news-carousel-prev:hover,
-      .news-carousel-next:hover {
-        background: white;
-      }
-
-      .news-carousel-prev {
-        left: 16px;
-      }
-
-      .news-carousel-next {
-        right: 16px;
-      }
-
-      .news-indicator {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #e5e7eb;
-        transition: all 0.3s ease;
-        cursor: pointer;
-      }
-
-      .news-indicator.active,
-      .news-indicator:hover {
-        background: var(--primary-600);
-      }
-
-      /* News Grid */
       .news-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 24px;
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-banner {
+        height: 45vh;
+        min-height: 350px;
       }
 
-      .news-card {
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      }
-
-      .news-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-      }
-
-      .news-card-img-container {
-        position: relative;
-        height: 200px;
-        overflow: hidden;
-      }
-
-      .news-card-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-
-      .news-card:hover .news-card-img {
-        transform: scale(1.05);
-      }
-
-      .news-card-category {
-        position: absolute;
-        top: 16px;
-        left: 16px;
-        background: var(--primary-gradient);
-        color: white;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: 600;
-      }
-
-      .news-card-body {
-        padding: 20px;
-      }
-
-      .news-card-date {
-        font-size: 12px;
-        color: #6b7280;
-        margin-bottom: 8px;
-        display: flex;
-        align-items: center;
-      }
-
-      .news-card-date i {
-        margin-right: 6px;
-      }
-
-      .news-card-title {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 12px;
-        line-height: 1.4;
-      }
-
-      .news-card-excerpt {
-        color: #4b5563;
-        margin-bottom: 16px;
-        font-size: 14px;
-        line-height: 1.6;
-      }
-
-      .news-card-link {
-        display: inline-flex;
-        align-items: center;
-        color: var(--primary-600);
-        font-weight: 600;
-        font-size: 14px;
-        transition: color 0.3s;
-      }
-
-      .news-card-link i {
-        margin-left: 6px;
-        transition: transform 0.3s;
-      }
-
-      .news-card-link:hover {
-        color: var(--primary-800);
-      }
-
-      .news-card-link:hover i {
-        transform: translateX(4px);
-      }
-
-      /* News Pagination */
-      .news-pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 40px;
-      }
-
-      .pagination-link {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        border-radius: 8px;
-        margin: 0 4px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-      }
-
-      .pagination-link:hover {
-        background-color: #f3f4f6;
-        color: var(--primary-600);
-      }
-
-      .pagination-link.active {
-        background-color: var(--primary-600);
-        color: white;
-      }
-
-      .pagination-link.disabled {
-        opacity: 0.5;
-        pointer-events: none;
-      }
-
-      /* News Sidebar */
-      .news-sidebar {
-        position: sticky;
-        top: 120px;
-      }
-
-      .sidebar-widget {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        padding: 24px;
+      .section-header {
         margin-bottom: 24px;
       }
+    }
 
-      .sidebar-widget-title {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 16px;
-        padding-bottom: 12px;
-        border-bottom: 2px solid #f3f4f6;
-        position: relative;
-      }
+    /* Tambahan untuk sosial vertikal di banner */
+    .hero-banner .social-vertical {
+      left: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-      .sidebar-widget-title::after {
-        content: "";
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 60px;
-        height: 2px;
-        background: var(--primary-gradient);
-      }
-
-      /* Category List */
-      .category-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .category-item {
-        margin-bottom: 8px;
-      }
-
-      .category-item a {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 12px;
-        border-radius: 6px;
-        transition: all 0.3s ease;
-        color: #4b5563;
-      }
-
-      .category-item a:hover {
-        background-color: rgba(128, 0, 32, 0.1);
-        color: var(--primary-800);
-      }
-
-      .category-item-count {
-        background-color: #f3f4f6;
-        padding: 2px 8px;
-        border-radius: 9999px;
-        font-size: 12px;
-      }
-
-      /* Tag List */
-      .tag-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .tag-item a {
-        display: inline-block;
-        padding: 6px 12px;
-        background-color: #f3f4f6;
-        border-radius: 9999px;
-        font-size: 12px;
-        transition: all 0.3s ease;
-      }
-
-      .tag-item a:hover {
-        background-color: var(--primary-600);
-        color: white;
-      }
-
-      /* Popular News */
-      .popular-news-item {
-        display: flex;
-        margin-bottom: 16px;
-        padding-bottom: 16px;
-        border-bottom: 1px solid #f3f4f6;
-      }
-
-      .popular-news-item:last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
-        border-bottom: none;
-      }
-
-      .popular-news-number {
-        font-size: 18px;
-        font-weight: 700;
-        color: #d1d5db;
-        margin-right: 16px;
-        min-width: 24px;
-      }
-
-      .popular-news-content {
-        flex: 1;
-      }
-
-      .popular-news-title {
-        font-weight: 600;
-        margin-bottom: 4px;
-        line-height: 1.4;
-        font-size: 14px;
-      }
-
-      .popular-news-meta {
-        display: flex;
-        align-items: center;
-        font-size: 12px;
-        color: #6b7280;
-      }
-
-      /* --- FIX: Only one .news-hero-slide visible at a time, no overlap --- */
-      .news-hero-slide {
-        opacity: 0 !important;
-        z-index: 10 !important;
-        pointer-events: none !important;
-        transition: opacity 1s cubic-bezier(0.83, 0, 0.17, 1);
-        position: absolute;
-        inset: 0;
-      }
-      .news-hero-slide.active {
-        opacity: 1 !important;
-        z-index: 20 !important;
-        pointer-events: auto !important;
-      }
-      /* --- END FIX --- */
-
-      .popular-news-meta i {
-        margin-right: 4px;
-      }
-
-      .popular-news-meta span {
-        margin-right: 12px;
-      }
-
-      .popular-news-meta span:last-child {
-        margin-right: 0;
-      }
-
-      /* Spotlight News Tabs Styling */
-      .spotlight-tab-btn {
-        color: #6b7280;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        border: none;
-        background: none;
-        outline: none;
-      }
-
-      .spotlight-tab-btn:hover {
-        color: #dc2626;
-        transform: translateY(-2px);
-      }
-
-      .spotlight-tab-btn.active {
-        color: #dc2626;
-        font-weight: 700;
-      }
-
-      .spotlight-tab-btn.active div {
-        opacity: 1 !important;
-      }
-
-      .spotlight-tab-content {
-        transition: opacity 0.3s ease-in-out;
-      }
-
-      .spotlight-tab-content.hidden {
-        display: none;
-      }
-
-      .spotlight-tab-content.active {
-        display: block;
-        animation: fadeInUp 0.5s ease-out;
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Search Widget */
-      .news-search-form {
-        position: relative;
-        margin-bottom: 16px;
-      }
-
-      .news-search-input {
-        width: 100%;
-        padding: 12px 16px 12px 48px;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-      }
-
-      .news-search-input:focus {
-        border-color: var(--primary-600);
-        box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
-        outline: none;
-      }
-
-      .news-search-icon {
-        position: absolute;
-        left: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #9ca3af;
-      }
-
-      /* Newsletter Widget */
-      .newsletter-form {
-        margin-top: 16px;
-      }
-
-      .newsletter-input {
-        width: 100%;
-        padding: 12px 16px;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        margin-bottom: 12px;
-        transition: all 0.3s ease;
-      }
-
-      .newsletter-input:focus {
-        border-color: var(--primary-600);
-        box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
-        outline: none;
-      }
-
-      .newsletter-btn {
-        width: 100%;
-        padding: 12px 16px;
-        background-color: var(--primary-600);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-
-      .newsletter-btn:hover {
-        background-color: var(--primary-700);
-      }
-
-      /* Responsive adjustments */
-      @media (max-width: 1024px) {
-        .hero-banner {
-          height: 60vh;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .hero-banner {
-          height: 50vh;
-          min-height: 400px;
-        }
-
-        .news-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .hero-banner {
-          height: 45vh;
-          min-height: 350px;
-        }
-
-        .section-header {
-          margin-bottom: 24px;
-        }
-      }
-
-      /* Tambahan untuk sosial vertikal di banner */
+    @media (max-width: 768px) {
       .hero-banner .social-vertical {
-        left: 2rem;
-        top: 50%;
-        transform: translateY(-50%);
+        left: 0.5rem;
+        top: auto;
+        bottom: 1rem;
+        flex-direction: row;
+        right: auto;
+        transform: none;
+      }
+    }
+
+    /* Custom Header Blur & Hover */
+    .custom-header-blur {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: background 0.3s;
+    }
+
+    .custom-header-blur:hover,
+    .custom-header-blur:focus-within {
+      background: rgba(220, 38, 38, 0.93);
+      /* merah (red-600) */
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .custom-header-blur .text-white {
+      transition: color 0.3s;
+    }
+
+    .custom-header-blur:hover .text-white {
+      color: #fff;
+    }
+
+    @media (max-width: 640px) {
+      .custom-header-blur .floating img {
+        height: 2.25rem !important;
+        /* h-9 */
+        width: 2.25rem !important;
+        /* w-9 */
       }
 
-      @media (max-width: 768px) {
-        .hero-banner .social-vertical {
-          left: 0.5rem;
-          top: auto;
-          bottom: 1rem;
-          flex-direction: row;
-          right: auto;
-          transform: none;
-        }
+      .custom-header-blur span {
+        font-size: 0.8rem !important;
       }
+    }
 
-      /* Custom Header Blur & Hover */
-      .custom-header-blur {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        transition: background 0.3s;
-      }
+    /* Modern Professional Timeline Styles */
+    .timeline-modern {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
 
-      .custom-header-blur:hover,
-      .custom-header-blur:focus-within {
-        background: rgba(220, 38, 38, 0.93);
-        /* merah (red-600) */
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-      }
+    .timeline-modern::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+      transform: translateX(-50%);
+      border-radius: 2px;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+    }
 
-      .custom-header-blur .text-white {
-        transition: color 0.3s;
-      }
+    .timeline-modern-item {
+      position: relative;
+      margin-bottom: 60px;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
 
-      .custom-header-blur:hover .text-white {
-        color: #fff;
-      }
+    .timeline-modern-item:nth-child(1) {
+      animation-delay: 0.1s;
+    }
 
-      @media (max-width: 640px) {
-        .custom-header-blur .floating img {
-          height: 2.25rem !important;
-          /* h-9 */
-          width: 2.25rem !important;
-          /* w-9 */
-        }
+    .timeline-modern-item:nth-child(2) {
+      animation-delay: 0.2s;
+    }
 
-        .custom-header-blur span {
-          font-size: 0.8rem !important;
-        }
-      }
-      /* Modern Professional Timeline Styles */
-      .timeline-modern {
-        position: relative;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
+    .timeline-modern-item:nth-child(3) {
+      animation-delay: 0.3s;
+    }
 
-      .timeline-modern::before {
-        content: '';
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 3px;
-        background: linear-gradient(180deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
-        transform: translateX(-50%);
-        border-radius: 2px;
-        box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
-      }
+    .timeline-modern-item:nth-child(4) {
+      animation-delay: 0.4s;
+    }
 
-      .timeline-modern-item {
-        position: relative;
-        margin-bottom: 60px;
+    .timeline-modern-item:nth-child(5) {
+      animation-delay: 0.5s;
+    }
+
+    .timeline-modern-item:nth-child(6) {
+      animation-delay: 0.6s;
+    }
+
+    .timeline-modern-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-modern-content {
+      position: relative;
+      width: 45%;
+      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+      padding: 32px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(10px);
+    }
+
+    .timeline-modern-content::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 0;
+      height: 0;
+      border: 15px solid transparent;
+      transform: translateY(-50%);
+    }
+
+    .timeline-modern-item:nth-child(odd) .timeline-modern-content {
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    .timeline-modern-item:nth-child(odd) .timeline-modern-content::before {
+      right: -30px;
+      border-left-color: #ffffff;
+    }
+
+    .timeline-modern-item:nth-child(even) .timeline-modern-content {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .timeline-modern-item:nth-child(even) .timeline-modern-content::before {
+      left: -30px;
+      border-right-color: #ffffff;
+    }
+
+    .timeline-modern-content:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(239, 68, 68, 0.15);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .timeline-modern-dot {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      border: 4px solid #ffffff;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2), 0 0 20px rgba(239, 68, 68, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .timeline-modern-item:hover .timeline-modern-dot {
+      transform: translate(-50%, -50%) scale(1.3);
+      box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.3), 0 0 30px rgba(239, 68, 68, 0.6);
+    }
+
+    .timeline-modern-icon {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      border: 4px solid #ffffff;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2), 0 8px 32px rgba(239, 68, 68, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .timeline-modern-item:hover .timeline-modern-icon {
+      transform: translate(-50%, -50%) scale(1.2) rotate(360deg);
+      box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.3), 0 12px 48px rgba(239, 68, 68, 0.4);
+    }
+
+    .timeline-modern-date {
+      display: inline-block;
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    }
+
+    .timeline-modern-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .timeline-modern-description {
+      font-size: 1rem;
+      color: #6b7280;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .timeline-modern-link {
+      display: inline-flex;
+      align-items: center;
+      color: #ef4444;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      padding: 8px 0;
+    }
+
+    .timeline-modern-link:hover {
+      color: #dc2626;
+      transform: translateX(5px);
+    }
+
+    .timeline-modern-link i {
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-modern-link:hover i {
+      transform: translateX(3px);
+    }
+
+    html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+    /* Gallery Hero Styles */
+    .gallery-hero {
+      margin-top: 0 !important;
+      padding-top: 0 !important;
+    }
+
+    .gallery-hero-slider {
+      position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+    }
+
+    .gallery-hero-slider>div {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+
+    .gallery-hero-slider>div>div {
+      flex: 0 0 100%;
+      position: relative;
+    }
+
+    /* Remove parallax effect */
+    .gallery-hero-slider img {
+      width: 100%;
+  height: 100%;
+  object-fit: cover;
+      will-change: transform;
+      transform: none !important;
+      object-position: top center;
+    }
+
+    /* Carousel Controls */
+    .gallery-hero-prev,
+    .gallery-hero-next {
+      transition: all 0.3s ease;
+      transform: translateY(-50%);
+    }
+
+    .gallery-hero-prev:hover,
+    .gallery-hero-next:hover {
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    /* Text Contrast Improvements */
+    .gallery-hero h1,
+    .gallery-hero p {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .gallery-hero .bg-gradient-to-r {
+      text-shadow: none;
+    }
+
+    /* Darker overlay for better contrast */
+    .gallery-hero-slider>div::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    /* Style untuk tombol utama */
+    .gallery-hero .btn-primary {
+      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      padding: 12px 24px;
+      font-weight: 600;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    /* Hover effect */
+    .gallery-hero .btn-primary:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-hero .btn-primary:hover span,
+    .gallery-hero .btn-primary:hover i {
+      color: #dc2626;
+    }
+
+    /* Efek overlay saat hover */
+    .gallery-hero .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+      z-index: -1;
+      transition: all 0.3s ease;
+    }
+
+    .gallery-hero .btn-primary:hover::after {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    }
+
+    @keyframes fadeInUp {
+      from {
         opacity: 0;
-        animation: fadeInUp 0.8s ease forwards;
+        transform: translateY(30px);
       }
 
-      .timeline-modern-item:nth-child(1) { animation-delay: 0.1s; }
-      .timeline-modern-item:nth-child(2) { animation-delay: 0.2s; }
-      .timeline-modern-item:nth-child(3) { animation-delay: 0.3s; }
-      .timeline-modern-item:nth-child(4) { animation-delay: 0.4s; }
-      .timeline-modern-item:nth-child(5) { animation-delay: 0.5s; }
-      .timeline-modern-item:nth-child(6) { animation-delay: 0.6s; }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-      .timeline-modern-item:last-child {
-        margin-bottom: 0;
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+      }
+
+      50% {
+        box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.1);
+      }
+    }
+
+    .timeline-modern-dot {
+      animation: pulse 2s infinite;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .timeline-modern::before {
+        left: 30px;
       }
 
       .timeline-modern-content {
-        position: relative;
-        width: 45%;
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-        padding: 32px;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        border: 1px solid rgba(239, 68, 68, 0.1);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        backdrop-filter: blur(10px);
+        width: calc(100% - 80px);
+        margin-left: 80px !important;
+        margin-right: 0 !important;
       }
 
       .timeline-modern-content::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        width: 0;
-        height: 0;
-        border: 15px solid transparent;
-        transform: translateY(-50%);
-      }
-
-      .timeline-modern-item:nth-child(odd) .timeline-modern-content {
-        margin-left: 0;
-        margin-right: auto;
-      }
-
-      .timeline-modern-item:nth-child(odd) .timeline-modern-content::before {
-        right: -30px;
-        border-left-color: #ffffff;
-      }
-
-      .timeline-modern-item:nth-child(even) .timeline-modern-content {
-        margin-left: auto;
-        margin-right: 0;
-      }
-
-      .timeline-modern-item:nth-child(even) .timeline-modern-content::before {
-        left: -30px;
-        border-right-color: #ffffff;
-      }
-
-      .timeline-modern-content:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 20px 60px rgba(239, 68, 68, 0.15);
-        border-color: rgba(239, 68, 68, 0.3);
-      }
-
-      .timeline-modern-dot {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 20px;
-        height: 20px;
-        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-        border: 4px solid #ffffff;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2), 0 0 20px rgba(239, 68, 68, 0.4);
-        transition: all 0.3s ease;
-      }
-
-      .timeline-modern-item:hover .timeline-modern-dot {
-        transform: translate(-50%, -50%) scale(1.3);
-        box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.3), 0 0 30px rgba(239, 68, 68, 0.6);
+        left: -30px !important;
+        right: auto !important;
+        border-right-color: #ffffff !important;
+        border-left-color: transparent !important;
       }
 
       .timeline-modern-icon {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-        border: 4px solid #ffffff;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 16px;
-        box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2), 0 8px 32px rgba(239, 68, 68, 0.3);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        left: 30px;
       }
+    }
+  </style>
+</head>
 
-      .timeline-modern-item:hover .timeline-modern-icon {
-        transform: translate(-50%, -50%) scale(1.2) rotate(360deg);
-        box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.3), 0 12px 48px rgba(239, 68, 68, 0.4);
-      }
-
-      .timeline-modern-date {
-        display: inline-block;
-        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-        color: white;
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        margin-bottom: 16px;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-      }
-
-      .timeline-modern-title {
-        font-size: 1.4rem;
-        font-weight: 700;
-        color: #1f2937;
-        margin-bottom: 12px;
-        background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .timeline-modern-description {
-        font-size: 1rem;
-        color: #6b7280;
-        line-height: 1.7;
-        margin-bottom: 20px;
-      }
-
-      .timeline-modern-link {
-        display: inline-flex;
-        align-items: center;
-        color: #ef4444;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        padding: 8px 0;
-      }
-
-      .timeline-modern-link:hover {
-        color: #dc2626;
-        transform: translateX(5px);
-      }
-
-      .timeline-modern-link i {
-        margin-left: 8px;
-        transition: transform 0.3s ease;
-      }
-
-      .timeline-modern-link:hover i {
-        transform: translateX(3px);
-      }
-
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes pulse {
-        0%, 100% {
-          box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
-        }
-        50% {
-          box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.1);
-        }
-      }
-
-      .timeline-modern-dot {
-        animation: pulse 2s infinite;
-      }
-
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .timeline-modern::before {
-          left: 30px;
-        }
-
-        .timeline-modern-content {
-          width: calc(100% - 80px);
-          margin-left: 80px !important;
-          margin-right: 0 !important;
-        }
-
-        .timeline-modern-content::before {
-          left: -30px !important;
-          right: auto !important;
-          border-right-color: #ffffff !important;
-          border-left-color: transparent !important;
-        }
-
-        .timeline-modern-icon {
-          left: 30px;
-        }
-      }
-    </style>
-  </head>
-
-  <body class="bg-gray-50">
-    <!-- Header Section -->
-    <header class="modern-header relative custom-header-blur">
-      <div class="container mx-auto px-4 py-2 md:py-3 relative z-10">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-3 md:space-x-4">
-            <div class="floating">
-              <img
-                src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
-                alt="Logo Kelurahan"
-                class="h-11 w-11 md:h-12 md:w-12 object-contain transition-all duration-300"
-              />
-            </div>
-            <div class="text-white flex flex-col justify-center">
-              <span
-                class="text-xs md:text-sm font-semibold uppercase tracking-wider block leading-tight"
-                >Kelurahan</span
-              >
-              <span class="text-base md:text-xl font-bold block leading-tight"
-                >Tanjungpinang Kota</span
-              >
-            </div>
+<body class="bg-gray-50">
+  <!-- Header Section -->
+  <header class="modern-header relative custom-header-blur">
+    <div class="container mx-auto px-4 py-2 md:py-3 relative z-10">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-3 md:space-x-4">
+          <div class="floating">
+            <img
+              src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
+              alt="Logo Kelurahan"
+              class="h-11 w-11 md:h-12 md:w-12 object-contain transition-all duration-300" />
           </div>
+          <div class="text-white flex flex-col justify-center">
+            <span
+              class="text-xs md:text-sm font-semibold uppercase tracking-wider block leading-tight">Kelurahan</span>
+            <span class="text-base md:text-xl font-bold block leading-tight">Tanjungpinang Kota</span>
+          </div>
+        </div>
 
-          <div class="hidden md:flex items-center space-x-6">
-            <div class="hidden md:flex items-center space-x-1 ml-8">
-              <a href="index.html" class="nav-item">
-                <i class="fas fa-home mr-2"></i> Beranda
-              </a>
-              <a href="news.html" class="nav-item">
-                <i class="fas fa-newspaper mr-2"></i> Berita
-              </a>
-              <a href="attent.html" class="nav-item">
-                <i class="fas fa-bullhorn mr-2"></i> Pengumuman
-              </a>
-              <a href="gallery.html" class="nav-item active">
-                <i class="fas fa-images mr-2"></i> Galeri
-              </a>
-              <a href="download.html" class="nav-item">
-                <i class="fas fa-download mr-2"></i> Download
-              </a>
-              <a href="contact.html" class="nav-item">
-                <i class="fas fa-envelope mr-2"></i> Kontak
-              </a>
-            </div>
-
-            <a
-              href="https://icms.tanjungpinangkota.go.id"
-              class="glass-card px-6 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 hover:scale-105 flex items-center"
-            >
-              <i class="fas fa-sign-in-alt mr-2 text-white"></i>
-              <span class="text-white font-medium">Login</span>
+        <div class="hidden md:flex items-center space-x-6">
+          <div class="hidden md:flex items-center space-x-1 ml-8">
+            <a href="index.html" class="nav-item">
+              <i class="fas fa-home mr-2"></i> Beranda
+            </a>
+            <a href="news.html" class="nav-item">
+              <i class="fas fa-newspaper mr-2"></i> Berita
+            </a>
+            <a href="attent.html" class="nav-item">
+              <i class="fas fa-bullhorn mr-2"></i> Pengumuman
+            </a>
+            <a href="gallery.html" class="nav-item active">
+              <i class="fas fa-images mr-2"></i> Galeri
+            </a>
+            <a href="download.html" class="nav-item">
+              <i class="fas fa-download mr-2"></i> Download
+            </a>
+            <a href="contact.html" class="nav-item">
+              <i class="fas fa-envelope mr-2"></i> Kontak
             </a>
           </div>
 
-          <button
-            id="mobile-menu-btn"
-            class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
-          >
-            <i class="fas fa-bars text-xl"></i>
-          </button>
+          <a
+            href="https://icms.tanjungpinangkota.go.id"
+            class="glass-card px-6 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 hover:scale-105 flex items-center">
+            <i class="fas fa-sign-in-alt mr-2 text-white"></i>
+            <span class="text-white font-medium">Login</span>
+          </a>
+        </div>
 
-          <div id="mobile-menu" class="md:hidden bg-white shadow-xl hidden">
-            <div class="container mx-auto px-4 py-3 space-y-2">
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors">
+          <i class="fas fa-bars text-xl"></i>
+        </button>
+
+        <div id="mobile-menu" class="md:hidden bg-white shadow-xl hidden">
+          <div class="container mx-auto px-4 py-3 space-y-2">
+            <a
+              href="index.html"
+              class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+              <i class="fas fa-home mr-3"></i> Beranda
+            </a>
+            <a
+              href="news.html"
+              class="block py-3 px-4 rounded-lg bg-gray-100 text-primary-800 font-medium">
+              <i class="fas fa-newspaper mr-3"></i> Berita
+            </a>
+            <a
+              href="attent.html"
+              class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+              <i class="fas fa-bullhorn mr-3"></i> Pengumuman
+            </a>
+            <a
+              href="gallery.html"
+              class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+              <i class="fas fa-images mr-3"></i> Galeri
+            </a>
+            <a
+              href="download.html"
+              class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+              <i class="fas fa-download mr-3"></i> Download
+            </a>
+            <a
+              href="contact.html"
+              class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+              <i class="fas fa-envelope mr-3"></i> Kontak
+            </a>
+            <div class="pt-2">
               <a
-                href="index.html"
-                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <i class="fas fa-home mr-3"></i> Beranda
+                href="https://icms.tanjungpinangkota.go.id"
+                class="btn-primary block text-center py-3">
+                <i class="fas fa-sign-in-alt mr-2"></i> Login Admin
               </a>
-              <a
-                href="news.html"
-                class="block py-3 px-4 rounded-lg bg-gray-100 text-primary-800 font-medium"
-              >
-                <i class="fas fa-newspaper mr-3"></i> Berita
-              </a>
-              <a
-                href="attent.html"
-                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <i class="fas fa-bullhorn mr-3"></i> Pengumuman
-              </a>
-              <a
-                href="gallery.html"
-                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <i class="fas fa-images mr-3"></i> Galeri
-              </a>
-              <a
-                href="download.html"
-                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <i class="fas fa-download mr-3"></i> Download
-              </a>
-              <a
-                href="contact.html"
-                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <i class="fas fa-envelope mr-3"></i> Kontak
-              </a>
-              <div class="pt-2">
-                <a
-                  href="https://icms.tanjungpinangkota.go.id"
-                  class="btn-primary block text-center py-3"
-                >
-                  <i class="fas fa-sign-in-alt mr-2"></i> Login Admin
-                </a>
-              </div>
             </div>
           </div>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
 
   <main class="bg-gradient-to-br from-gray-50 via-white to-gray-100 min-h-screen">
     <!-- Hero Banner with Interactive Slider -->
     <section class="gallery-hero relative h-screen max-h-[800px] overflow-hidden">
       <!-- Interactive Slider Background -->
       <div class="absolute inset-0 z-0 gallery-hero-slider">
-        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30 z-10"></div>
+        <!-- Dark overlay for better text contrast -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50 z-10"></div>
+
+        <!-- Carousel Slides -->
         <div class="absolute inset-0 flex transition-transform duration-1000 ease-[cubic-bezier(0.65,0,0.35,1)]">
+          <!-- Slide 1 -->
           <div class="relative w-full h-full flex-shrink-0">
             <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1800&auto=format&fit=crop" 
                 alt="Gallery Hero" 
-                class="w-full h-full object-cover object-center"
-                data-parallax data-speed="0.4">
+                class="w-full h-full object-cover object-top">
           </div>
+
+          <!-- Slide 2 -->
           <div class="relative w-full h-full flex-shrink-0">
             <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=1800&auto=format&fit=crop" 
                 alt="Gallery Hero" 
-                class="w-full h-full object-cover object-center"
-                data-parallax data-speed="0.4">
+                class="w-full h-full object-cover object-top">
           </div>
+
+          <!-- Slide 3 -->
           <div class="relative w-full h-full flex-shrink-0">
             <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1800&auto=format&fit=crop" 
                 alt="Gallery Hero" 
-                class="w-full h-full object-cover object-center"
-                data-parallax data-speed="0.4">
+                class="w-full h-full object-cover object-top">
           </div>
         </div>
       </div>
@@ -1431,32 +1550,32 @@
       <!-- Hero Content with Animated Text -->
       <div class="container mx-auto h-full flex items-center relative z-20 px-6">
         <div class="max-w-4xl">
-          <h1 class="text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.1] text-white tracking-tighter">
+          <h1 class="text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.1] text-white tracking-tighter drop-shadow-lg">
             <span class="block overflow-hidden">
               <span class="block animate-slideUp [animation-delay:0.2s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
-                <span class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent drop-shadow-2xl">Galeri Interaktif</span>
+                <span class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">Galeri Interaktif</span>
               </span>
             </span>
             <span class="block overflow-hidden mt-2">
               <span class="block animate-slideUp [animation-delay:0.4s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
-                <span class="bg-gradient-to-r from-primary-400 to-red-400 bg-clip-text text-transparent drop-shadow-2xl">Tanjungpinang Kota</span>
+                <span class="bg-gradient-to-r from-primary-400 to-red-400 bg-clip-text text-transparent">Tanjungpinang Kota</span>
               </span>
             </span>
           </h1>
           <div class="overflow-hidden">
-            <p class="text-xl text-gray-300 mb-8 max-w-2xl animate-slideUp [animation-delay:0.6s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
+            <p class="text-xl text-gray-200 mb-8 max-w-2xl animate-slideUp [animation-delay:0.6s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
               Jelajahi momen-momen berharga dan perkembangan wilayah kami melalui dokumentasi visual yang interaktif
             </p>
           </div>
           <div class="flex flex-wrap gap-4 overflow-hidden">
             <div class="animate-slideUp [animation-delay:0.8s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
-              <a href="#gallery-grid" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-primary-600 to-red-700 text-white font-bold rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-0.5 transition-all duration-300 group border border-white/20">
-                <span class="text-lg">Jelajahi Sekarang</span>
-                <i class="fas fa-arrow-down ml-3 text-lg group-hover:translate-y-1 transition-transform duration-300"></i>
+              <a href="#gallery-grid" class="btn-primary inline-flex items-center px-6 py-3">
+                <span class="text-white text-lg font-bold">Jelajahi Sekarang</span>
+                <i class="fas fa-arrow-down ml-3 text-white text-lg transition-transform duration-300 group-hover:translate-y-1"></i>
               </a>
             </div>
             <div class="animate-slideUp [animation-delay:1s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
-              <a href="#video-wall" class="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-bold rounded-xl hover:bg-white/20 transition-all duration-300 group border border-white/20">
+              <a href="#video-wall" class="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white font-bold rounded-xl hover:bg-white/30 transition-all duration-300 group border border-white/20 hover:border-white/40">
                 <i class="fas fa-play-circle mr-3"></i>
                 <span class="text-lg">Video 360°</span>
               </a>
@@ -1465,14 +1584,9 @@
         </div>
       </div>
 
-      <!-- Slider Controls -->
-      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex gap-2">
-        <button class="gallery-hero-prev w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="gallery-hero-next w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-colors">
-          <i class="fas fa-chevron-right"></i>
-        </button>
+      <!-- Slider Controls - Improved visibility -->
+      <div class="absolute bottom-8 right-8 z-20 flex gap-2 gallery-hero-pagination">
+        <!-- Tombol penomoran akan di-generate oleh JS -->
       </div>
 
       <!-- Scrolling Indicator -->
@@ -1540,22 +1654,22 @@
           <!-- Gallery Card 1 - Infrastruktur -->
           <div class="gallery-card group" data-category="infrastruktur" data-year="2024" data-title="Pembangunan Jalan RW 08" data-description="Progres pembangunan jalan lingkungan sepanjang 500m di wilayah RW 08" data-date="2024-07-15">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&h=800&auto=format&fit=crop" 
-                  alt="Pembangunan Jalan" 
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
-              
+              <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&h=800&auto=format&fit=crop"
+                alt="Pembangunan Jalan"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+
               <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-primary-600 text-white text-xs font-bold rounded-full">Infrastruktur</span>
               </div>
-              
+
               <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
                 <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
-              
+
               <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Pembangunan Jalan RW 08</h3>
@@ -1567,22 +1681,22 @@
           <!-- Gallery Card 2 - Sosial -->
           <div class="gallery-card group" data-category="sosial" data-year="2024" data-title="Penyaluran Bantuan Sembako" data-description="Distribusi bantuan untuk 150 keluarga kurang mampu di wilayah RW 05" data-date="2024-06-20">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=800&h=800&auto=format&fit=crop" 
-                  alt="Bantuan Sosial" 
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
-              
+              <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=800&h=800&auto=format&fit=crop"
+                alt="Bantuan Sosial"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+
               <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full">Sosial</span>
               </div>
-              
+
               <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
                 <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
-              
+
               <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Penyaluran Bantuan Sembako</h3>
@@ -1594,22 +1708,22 @@
           <!-- Gallery Card 3 - Kesehatan -->
           <div class="gallery-card group" data-category="kesehatan" data-year="2024" data-title="Vaksinasi Booster" data-description="Pelaksanaan vaksinasi booster untuk warga lansia" data-date="2024-07-10">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=800&h=800&auto=format&fit=crop" 
-                  alt="Vaksinasi" 
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
-              
+              <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=800&h=800&auto=format&fit=crop"
+                alt="Vaksinasi"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+
               <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">Kesehatan</span>
               </div>
-              
+
               <!-- Featured Badge -->
               <div class="absolute top-4 right-4">
                 <span class="px-2 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full flex items-center">
                   <i class="fas fa-star mr-1"></i> Featured
                 </span>
               </div>
-              
+
               <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Vaksinasi Booster</h3>
@@ -1621,22 +1735,22 @@
           <!-- Gallery Card 4 - Pendidikan -->
           <div class="gallery-card group" data-category="pendidikan" data-year="2024" data-title="Pelatihan Kader Posyandu" data-description="Pelatihan untuk meningkatkan kualitas pelayanan kesehatan di posyandu" data-date="2024-07-08">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&h=800&auto=format&fit=crop" 
-                  alt="Pelatihan Kader" 
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
-              
+              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&h=800&auto=format&fit=crop"
+                alt="Pelatihan Kader"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+
               <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full">Pendidikan</span>
               </div>
-              
+
               <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
                 <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
-              
+
               <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Pelatihan Kader Posyandu</h3>
@@ -1648,22 +1762,22 @@
           <!-- Gallery Card 5 - Lingkungan -->
           <div class="gallery-card group" data-category="lingkungan" data-year="2024" data-title="Penanaman Pohon" data-description="Program penghijauan lingkungan kelurahan" data-date="2024-07-05">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&h=800&auto=format&fit=crop" 
-                  alt="Penanaman Pohon" 
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
-              
+              <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&h=800&auto=format&fit=crop"
+                alt="Penanaman Pohon"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+
               <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full">Lingkungan</span>
               </div>
-              
+
               <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
                 <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
-              
+
               <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Penanaman Pohon</h3>
@@ -1675,22 +1789,22 @@
           <!-- Gallery Card 6 - Perbaikan Drainase -->
           <div class="gallery-card group" data-category="infrastruktur" data-year="2024" data-title="Perbaikan Drainase" data-description="Perbaikan sistem drainase untuk mencegah banjir" data-date="2024-06-25">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=800&h=800&auto=format&fit=crop" 
-                  alt="Perbaikan Drainase" 
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
-              
+              <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=800&h=800&auto=format&fit=crop"
+                alt="Perbaikan Drainase"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+
               <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-primary-600 text-white text-xs font-bold rounded-full">Infrastruktur</span>
               </div>
-              
+
               <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
                 <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
-              
+
               <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Perbaikan Drainase</h3>
@@ -1702,22 +1816,22 @@
           <!-- Gallery Card 7 - Rapat Warga -->
           <div class="gallery-card group" data-category="sosial" data-year="2024" data-title="Rapat Warga" data-description="Rapat koordinasi warga membahas program kelurahan" data-date="2024-07-01">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=800&h=800&auto=format&fit=crop" 
-                  alt="Rapat Warga" 
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
-              
+              <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=800&h=800&auto=format&fit=crop"
+                alt="Rapat Warga"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+
               <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full">Sosial</span>
               </div>
-              
+
               <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
                 <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
-              
+
               <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Rapat Warga</h3>
@@ -1729,22 +1843,22 @@
           <!-- Gallery Card 8 - Posyandu -->
           <div class="gallery-card group" data-category="kesehatan" data-year="2024" data-title="Posyandu Bulanan" data-description="Pelayanan kesehatan ibu dan anak di Posyandu Melati" data-date="2024-06-28">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=800&h=800&auto=format&fit=crop" 
-                  alt="Posyandu" 
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
-              
+              <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=800&h=800&auto=format&fit=crop"
+                alt="Posyandu"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
+
               <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">Kesehatan</span>
               </div>
-              
+
               <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
                 <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
-              
+
               <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Posyandu Bulanan</h3>
@@ -1784,23 +1898,23 @@
           <!-- Video 1 - 360° Experience -->
           <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video">
             <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50 z-10"></div>
-            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1280&h=720&auto=format&fit=crop" 
-                alt="Video Dokumentasi" 
-                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
-            
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1280&h=720&auto=format&fit=crop"
+              alt="Video Dokumentasi"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+
             <!-- 360° Badge -->
             <div class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center">
               <i class="fas fa-vr-cardboard mr-1 text-primary-600"></i>
               360° Experience
             </div>
-            
+
             <!-- Play Button -->
             <div class="absolute inset-0 flex items-center justify-center z-20">
               <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform">
                 <i class="fas fa-play text-xl"></i>
               </div>
             </div>
-            
+
             <!-- Video Info -->
             <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
               <h3 class="text-xl font-bold text-white">Peresmian Taman RW 05</h3>
@@ -1817,22 +1931,22 @@
           <!-- Video 2 - With Interactive Transcript -->
           <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video">
             <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50 z-10"></div>
-            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1280&h=720&auto=format&fit=crop" 
-                alt="Video Dokumentasi" 
-                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
-            
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1280&h=720&auto=format&fit=crop"
+              alt="Video Dokumentasi"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+
             <!-- Transcript Button -->
             <button class="absolute top-4 right-4 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg">
               <i class="fas fa-scroll"></i>
             </button>
-            
+
             <!-- Play Button -->
             <div class="absolute inset-0 flex items-center justify-center z-20">
               <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform">
                 <i class="fas fa-play text-xl"></i>
               </div>
             </div>
-            
+
             <!-- Video Info -->
             <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
               <h3 class="text-xl font-bold text-white">Pelatihan Kader Posyandu</h3>
@@ -1849,10 +1963,10 @@
           <!-- Video 3 - Live Event Recording -->
           <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video">
             <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50 z-10"></div>
-            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1280&h=720&auto=format&fit=crop" 
-                alt="Video Dokumentasi" 
-                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
-            
+            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1280&h=720&auto=format&fit=crop"
+              alt="Video Dokumentasi"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+
             <!-- Live Badge -->
             <div class="absolute top-4 right-4 z-20 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
               <span class="relative flex h-2 w-2 mr-2">
@@ -1861,14 +1975,14 @@
               </span>
               LIVE RECORDING
             </div>
-            
+
             <!-- Play Button -->
             <div class="absolute inset-0 flex items-center justify-center z-20">
               <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform">
                 <i class="fas fa-play text-xl"></i>
               </div>
             </div>
-            
+
             <!-- Video Info -->
             <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
               <h3 class="text-xl font-bold text-white">Hari Lingkungan Hidup 2024</h3>
@@ -1912,10 +2026,10 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <!-- Interactive Photo Viewer -->
           <div class="relative overflow-hidden rounded-3xl shadow-2xl aspect-[4/3] photo-viewer">
-            <img src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg" 
-                alt="Foto Bulan Ini" 
-                class="w-full h-full object-cover cursor-zoom-in viewer-image">
-            
+            <img src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg"
+              alt="Foto Bulan Ini"
+              class="w-full h-full object-cover cursor-zoom-in viewer-image">
+
             <!-- Zoom Controls -->
             <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl p-2 shadow-lg flex items-center space-x-2">
               <button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-100 viewer-zoom-in">
@@ -1928,19 +2042,19 @@
                 <i class="fas fa-sync-alt"></i>
               </button>
             </div>
-            
+
             <!-- Download Button -->
             <button class="absolute bottom-6 right-6 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg flex items-center hover:bg-white transition-colors">
               <i class="fas fa-download mr-2"></i>
               Unduh
             </button>
           </div>
-          
+
           <!-- Photo Details with Interactive Elements -->
           <div>
             <h3 class="text-2xl font-bold text-gray-900 mb-4">Penyerahan Bantuan Sosial RW 05</h3>
             <p class="text-gray-600 mb-6">Momen penyerahan bantuan sosial untuk warga kurang mampu di RW 05 yang dilaksanakan pada tanggal 15 Juli 2024. Kegiatan ini merupakan bagian dari program rutin Kelurahan Tanjungpinang Kota untuk membantu masyarakat yang membutuhkan.</p>
-            
+
             <!-- Interactive Stats -->
             <div class="grid grid-cols-3 gap-4 mb-6">
               <div class="bg-white p-4 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow cursor-pointer stat-item">
@@ -1956,26 +2070,7 @@
                 <div class="text-gray-600 text-sm">Views</div>
               </div>
             </div>
-            
-            <!-- Location Map -->
-            <div class="mb-6">
-              <div class="flex items-center text-gray-600 mb-2">
-                <i class="fas fa-map-marker-alt text-primary-600 mr-2"></i>
-                <span>Lokasi Kegiatan</span>
-              </div>
-              <div class="h-40 bg-gray-200 rounded-xl overflow-hidden relative interactive-map">
-                <img src="https://maps.googleapis.com/maps/api/staticmap?center=Tanjungpinang+Kota&zoom=15&size=600x300&maptype=roadmap&markers=color:red%7CTanjungpinang+Kota&key=YOUR_API_KEY" 
-                    alt="Map Location" 
-                    class="w-full h-full object-cover map-image">
-                <div class="absolute inset-0 flex items-center justify-center map-overlay opacity-0 hover:opacity-100 bg-black/30 transition-opacity">
-                  <button class="px-4 py-2 bg-white rounded-lg font-medium flex items-center">
-                    <i class="fas fa-expand mr-2"></i>
-                    Lihat Peta Besar
-                  </button>
-                </div>
-              </div>
-            </div>
-            
+
             <!-- Tags with Hover Effects -->
             <div class="flex flex-wrap gap-2 mb-6">
               <a href="#" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors">#bansos</a>
@@ -1983,7 +2078,7 @@
               <a href="#" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors">#pedulisesama</a>
               <a href="#" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors">#tanjungpinangkota</a>
             </div>
-            
+
             <!-- Social Sharing -->
             <div class="flex items-center space-x-4">
               <span class="text-gray-600">Bagikan:</span>
@@ -2013,8 +2108,8 @@
             <span class="relative inline-block">
               <span class="relative z-10">Linimasa <span class="text-primary-600">Kegiatan</span></span>
               <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Jejak dokumentasi kegiatan Kelurahan Tanjungpinang Kota sepanjang tahun 2024
-          </p>
+                Jejak dokumentasi kegiatan Kelurahan Tanjungpinang Kota sepanjang tahun 2024
+              </p>
         </div>
 
         <!-- Modern Professional Timeline -->
@@ -2137,8 +2232,7 @@
             <img
               src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
               alt="Logo Kelurahan"
-              class="h-12 w-12 object-contain"
-            />
+              class="h-12 w-12 object-contain" />
             <div>
               <h3 class="text-xl font-bold text-white">
                 Kelurahan Tanjungpinang Kota
@@ -2154,26 +2248,22 @@
           <div class="flex space-x-4">
             <a
               href="#"
-              class="text-gray-300 hover:text-white transition-colors"
-            >
+              class="text-gray-300 hover:text-white transition-colors">
               <i class="fab fa-facebook-f"></i>
             </a>
             <a
               href="#"
-              class="text-gray-300 hover:text-white transition-colors"
-            >
+              class="text-gray-300 hover:text-white transition-colors">
               <i class="fab fa-twitter"></i>
             </a>
             <a
               href="#"
-              class="text-gray-300 hover:text-white transition-colors"
-            >
+              class="text-gray-300 hover:text-white transition-colors">
               <i class="fab fa-instagram"></i>
             </a>
             <a
               href="#"
-              class="text-gray-300 hover:text-white transition-colors"
-            >
+              class="text-gray-300 hover:text-white transition-colors">
               <i class="fab fa-youtube"></i>
             </a>
           </div>
@@ -2221,10 +2311,8 @@
           <ul class="space-y-3">
             <li class="flex items-start">
               <i class="fas fa-map-marker-alt text-gray-300 mt-1 mr-3"></i>
-              <span class="text-gray-300 text-sm"
-                >Jl. Kemboja No. 12, Tanjungpinang Kota, Kepulauan Riau
-                29125</span
-              >
+              <span class="text-gray-300 text-sm">Jl. Kemboja No. 12, Tanjungpinang Kota, Kepulauan Riau
+                29125</span>
             </li>
             <li class="flex items-center">
               <i class="fas fa-phone-alt text-gray-300 mr-3"></i>
@@ -2232,15 +2320,11 @@
             </li>
             <li class="flex items-center">
               <i class="fas fa-envelope text-gray-300 mr-3"></i>
-              <span class="text-gray-300"
-                >kel.tpikota@tanjungpinangkota.go.id</span
-              >
+              <span class="text-gray-300">kel.tpikota@tanjungpinangkota.go.id</span>
             </li>
             <li class="flex items-center">
               <i class="fas fa-clock text-gray-300 mr-3"></i>
-              <span class="text-gray-300 text-sm"
-                >Senin-Jumat: 08.00 - 16.00 WIB</span
-              >
+              <span class="text-gray-300 text-sm">Senin-Jumat: 08.00 - 16.00 WIB</span>
             </li>
           </ul>
         </div>
@@ -2254,19 +2338,13 @@
           <div class="flex space-x-6">
             <a
               href="#"
-              class="text-gray-400 hover:text-white text-sm transition-colors"
-              >Kebijakan Privasi</a
-            >
+              class="text-gray-400 hover:text-white text-sm transition-colors">Kebijakan Privasi</a>
             <a
               href="#"
-              class="text-gray-400 hover:text-white text-sm transition-colors"
-              >Syarat & Ketentuan</a
-            >
+              class="text-gray-400 hover:text-white text-sm transition-colors">Syarat & Ketentuan</a>
             <a
               href="#"
-              class="text-gray-400 hover:text-white text-sm transition-colors"
-              >Peta Situs</a
-            >
+              class="text-gray-400 hover:text-white text-sm transition-colors">Peta Situs</a>
           </div>
         </div>
       </div>
@@ -2276,8 +2354,7 @@
   <!-- Back to Top Button -->
   <button
     id="back-to-top"
-    class="fixed bottom-8 right-8 bg-gradient-to-r from-primary-600 to-red-700 text-white p-4 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:from-red-700 hover:to-red-800 transform hover:scale-110"
-  >
+    class="fixed bottom-8 right-8 bg-gradient-to-r from-primary-600 to-red-700 text-white p-4 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:from-red-700 hover:to-red-800 transform hover:scale-110">
     <i class="fas fa-arrow-up"></i>
   </button>
 
@@ -2333,18 +2410,48 @@
       const nextBtn = document.querySelector('.gallery-hero-next');
       let currentIndex = 0;
       let autoSlideInterval;
+      const slideCount = slides.length;
 
+      // Setelah deklarasi slides dan heroSlider
+      const paginationContainer = document.querySelector('.gallery-hero-pagination');
+      paginationContainer.innerHTML = '';
+      slides.forEach((_, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'gallery-hero-page px-3 py-1 rounded font-bold bg-white/30 text-white';
+        btn.textContent = idx + 1;
+        btn.dataset.index = idx;
+        btn.addEventListener('click', () => {
+          currentIndex = idx;
+          updateSlider();
+          updatePagination();
+          stopAutoSlide();
+          startAutoSlide();
+        });
+        paginationContainer.appendChild(btn);
+      });
+
+      function updatePagination() {
+        const pages = paginationContainer.querySelectorAll('.gallery-hero-page');
+        pages.forEach((btn, idx) => {
+          btn.classList.toggle('bg-primary-600', idx === currentIndex);
+          btn.classList.toggle('text-white', idx === currentIndex);
+          btn.classList.toggle('bg-white/30', idx !== currentIndex);
+        });
+      }
+
+      // Panggil updatePagination() di updateSlider()
       function updateSlider() {
         heroSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updatePagination();
       }
 
       function nextSlide() {
-        currentIndex = (currentIndex + 1) % slides.length;
+        currentIndex = (currentIndex + 1) % slideCount;
         updateSlider();
       }
 
       function prevSlide() {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
         updateSlider();
       }
 
@@ -2377,17 +2484,22 @@
       heroSlider.addEventListener('mouseenter', stopAutoSlide);
       heroSlider.addEventListener('mouseleave', startAutoSlide);
 
-      // Parallax Effect
-      const parallaxImages = document.querySelectorAll('[data-parallax]');
-      window.addEventListener('scroll', function() {
-        const scrollPosition = window.pageYOffset;
-        parallaxImages.forEach(image => {
-          const speed = parseFloat(image.dataset.speed) || 0.5;
-          const yPos = -(scrollPosition * speed);
-          image.style.transform = `translateY(${yPos}px)`;
-        });
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+          nextSlide();
+          stopAutoSlide();
+          startAutoSlide();
+        } else if (e.key === 'ArrowLeft') {
+          prevSlide();
+          stopAutoSlide();
+          startAutoSlide();
+        }
       });
     }
+
+    // Initialize on DOM ready
+    document.addEventListener('DOMContentLoaded', initHeroSlider);
 
     // Gallery Filter and Search Functionality
     function initGalleryFilters() {
@@ -2397,7 +2509,7 @@
       const sortSelect = document.getElementById('gallery-sort');
       const viewButtons = document.querySelectorAll('.view-toggle-btn');
       const galleryContainer = document.querySelector('.gallery-grid');
-      
+
       // Filter functionality
       filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -2406,7 +2518,7 @@
             btn.classList.remove('active', 'bg-gradient-to-r', 'from-primary-600', 'to-red-700', 'text-white');
             btn.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
           });
-          
+
           button.classList.add('active', 'bg-gradient-to-r', 'from-primary-600', 'to-red-700', 'text-white');
           button.classList.remove('bg-white', 'text-gray-700', 'border', 'border-gray-200');
 
@@ -2414,7 +2526,7 @@
           filterGallery(filterValue);
         });
       });
-      
+
       // Search functionality
       if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -2422,25 +2534,25 @@
           filterGalleryBySearch(searchTerm);
         });
       }
-      
+
       // Sort functionality
       if (sortSelect) {
         sortSelect.addEventListener('change', (e) => {
           sortGallery(e.target.value);
         });
       }
-      
+
       // View toggle functionality
       viewButtons.forEach(button => {
         button.addEventListener('click', () => {
           viewButtons.forEach(btn => btn.classList.remove('active', 'bg-primary-600', 'text-white'));
           button.classList.add('active', 'bg-primary-600', 'text-white');
-          
+
           const viewType = button.getAttribute('data-view');
           changeGalleryView(viewType);
         });
       });
-      
+
       function filterGallery(category) {
         galleryCards.forEach(card => {
           if (category === 'all' || card.getAttribute('data-category') === category) {
@@ -2451,28 +2563,28 @@
           }
         });
       }
-      
+
       function filterGalleryBySearch(searchTerm) {
         galleryCards.forEach(card => {
           const title = card.getAttribute('data-title') || '';
           const description = card.getAttribute('data-description') || '';
           const category = card.getAttribute('data-category') || '';
-          
-          if (title.toLowerCase().includes(searchTerm) || 
-              description.toLowerCase().includes(searchTerm) || 
-              category.toLowerCase().includes(searchTerm)) {
+
+          if (title.toLowerCase().includes(searchTerm) ||
+            description.toLowerCase().includes(searchTerm) ||
+            category.toLowerCase().includes(searchTerm)) {
             card.style.display = 'block';
           } else {
             card.style.display = 'none';
           }
         });
       }
-      
+
       function sortGallery(sortType) {
         const cardsArray = Array.from(galleryCards);
-        
+
         cardsArray.sort((a, b) => {
-          switch(sortType) {
+          switch (sortType) {
             case 'newest':
               return new Date(b.getAttribute('data-date') || '2024-01-01') - new Date(a.getAttribute('data-date') || '2024-01-01');
             case 'oldest':
@@ -2496,7 +2608,7 @@
     function initLightbox() {
       const galleryImages = document.querySelectorAll('.gallery-card img');
       const videoCards = document.querySelectorAll('.video-card');
-      
+
       // Create lightbox element
       const lightbox = document.createElement('div');
       lightbox.id = 'lightbox';
@@ -2511,7 +2623,7 @@
           const card = image.closest('.gallery-card');
           const title = card.querySelector('h3').textContent;
           const description = card.querySelector('p').textContent;
-          
+
           lightbox.innerHTML = `
             <div class="relative max-w-6xl w-full mx-4 animate-zoomIn">
               <button class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors z-10">
@@ -2544,7 +2656,7 @@
               </div>
             </div>
           `;
-          
+
           showLightbox();
         });
       });
@@ -2553,7 +2665,7 @@
       videoCards.forEach(card => {
         card.addEventListener('click', () => {
           const title = card.querySelector('h3').textContent;
-          
+
           lightbox.innerHTML = `
             <div class="relative max-w-6xl w-full mx-4 animate-zoomIn">
               <button class="absolute -top-12 right-0 text-white text-2xl hover:text-gray-300 transition-colors z-10">
@@ -2581,7 +2693,7 @@
               </div>
             </div>
           `;
-          
+
           showLightbox();
         });
       });
@@ -2590,18 +2702,18 @@
         lightbox.classList.remove('opacity-0', 'pointer-events-none');
         lightbox.classList.add('opacity-100');
         document.body.style.overflow = 'hidden';
-        
+
         // Close button event
         const closeBtn = lightbox.querySelector('.fa-times').parentElement;
         closeBtn.addEventListener('click', closeLightbox);
-        
+
         // Close on backdrop click
         lightbox.addEventListener('click', (e) => {
           if (e.target === lightbox) {
             closeLightbox();
           }
         });
-        
+
         // Close on escape key
         document.addEventListener('keydown', handleEscapeKey);
       }
@@ -2624,7 +2736,7 @@
     function initSmoothScroll() {
       // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+        anchor.addEventListener('click', function(e) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           if (target) {
@@ -2830,4 +2942,5 @@
   </button>
 
 </body>
+
 </html>
