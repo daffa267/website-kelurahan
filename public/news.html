@@ -841,6 +841,41 @@
       }
       /* --- END FIX --- */
 
+      /* Baca Selengkapnya Hover Effect */
+      .news-card a[aria-label*="Baca selengkapnya"] {
+          display: inline-flex;
+          align-items: center;
+          transition: all 0.3s ease;
+          position: relative;
+          padding: 0.25rem 0.5rem;
+          margin-left: -0.5rem;
+      }
+
+      .news-card a[aria-label*="Baca selengkapnya"]:hover {
+          color: #800020 !important;
+      }
+
+      .news-card a[aria-label*="Baca selengkapnya"]:hover::after {
+          content: "";
+          position: absolute;
+          width: 50%; 
+          height: 100%;
+          top: 0;
+          left: 0;
+          background-color: rgba(128, 0, 32, 0.1);
+          border-radius: 0.25rem;
+          z-index: -1;
+      }
+
+      .news-card a[aria-label*="Baca selengkapnya"] i {
+          transition: transform 0.3s ease;
+          margin-left: 0.25rem;
+      }
+
+      .news-card a[aria-label*="Baca selengkapnya"]:hover i {
+          transform: translateX(4px);
+      }
+
       .popular-news-meta i {
         margin-right: 4px;
       }
@@ -1740,14 +1775,18 @@
               ></div>
 
               <div class="relative z-10 h-full flex flex-col">
-                <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+                <div
+                  class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1280&h=720&auto=format&fit=crop"
                     alt="Vaksinasi COVID-19"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <span class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+                  <span
+                    class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
+                  >
                     KESEHATAN
                   </span>
                 </div>
@@ -1767,7 +1806,8 @@
                   </h3>
 
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
-                    Kelurahan mengadakan program vaksinasi booster khusus untuk warga lansia dengan protokol kesehatan yang ketat.
+                    Kelurahan mengadakan program vaksinasi booster khusus untuk
+                    warga lansia dengan protokol kesehatan yang ketat.
                   </p>
 
                   <a
@@ -1775,7 +1815,9 @@
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
                   >
                     Baca Selengkapnya
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    <i
+                      class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"
+                    ></i>
                   </a>
                 </div>
               </div>
@@ -1792,14 +1834,18 @@
               ></div>
 
               <div class="relative z-10 h-full flex flex-col">
-                <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+                <div
+                  class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=1280&h=720&auto=format&fit=crop"
                     alt="Gotong Royong"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <span class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+                  <span
+                    class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
+                  >
                     SOSIAL
                   </span>
                 </div>
@@ -1819,7 +1865,8 @@
                   </h3>
 
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
-                    Kegiatan gotong royong membersihkan lingkungan yang diikuti oleh seluruh warga RT 05 untuk menjaga kebersihan.
+                    Kegiatan gotong royong membersihkan lingkungan yang diikuti
+                    oleh seluruh warga RT 05 untuk menjaga kebersihan.
                   </p>
 
                   <a
@@ -1827,7 +1874,9 @@
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
                   >
                     Baca Selengkapnya
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    <i
+                      class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"
+                    ></i>
                   </a>
                 </div>
               </div>
@@ -1844,14 +1893,18 @@
               ></div>
 
               <div class="relative z-10 h-full flex flex-col">
-                <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+                <div
+                  class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1280&h=720&auto=format&fit=crop"
                     alt="Pelatihan Komputer"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <span class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+                  <span
+                    class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
+                  >
                     PENDIDIKAN
                   </span>
                 </div>
@@ -1871,7 +1924,8 @@
                   </h3>
 
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
-                    Program pelatihan komputer dasar yang ditujukan untuk remaja agar dapat mengikuti perkembangan teknologi.
+                    Program pelatihan komputer dasar yang ditujukan untuk remaja
+                    agar dapat mengikuti perkembangan teknologi.
                   </p>
 
                   <a
@@ -1879,7 +1933,9 @@
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
                   >
                     Baca Selengkapnya
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    <i
+                      class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"
+                    ></i>
                   </a>
                 </div>
               </div>
@@ -1901,14 +1957,18 @@
               ></div>
 
               <div class="relative z-10 h-full flex flex-col">
-                <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+                <div
+                  class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1280&h=720&auto=format&fit=crop"
                     alt="Pembangunan Infrastruktur"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <span class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+                  <span
+                    class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
+                  >
                     INFRASTRUKTUR
                   </span>
                 </div>
@@ -1928,7 +1988,8 @@
                   </h3>
 
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
-                    Proyek pembangunan jalan beton sepanjang 200 meter di Gang Mawar untuk meningkatkan akses transportasi warga.
+                    Proyek pembangunan jalan beton sepanjang 200 meter di Gang
+                    Mawar untuk meningkatkan akses transportasi warga.
                   </p>
 
                   <a
@@ -1936,7 +1997,9 @@
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
                   >
                     Baca Selengkapnya
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    <i
+                      class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"
+                    ></i>
                   </a>
                 </div>
               </div>
@@ -1953,14 +2016,18 @@
               ></div>
 
               <div class="relative z-10 h-full flex flex-col">
-                <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+                <div
+                  class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1280&h=720&auto=format&fit=crop"
                     alt="Festival Budaya"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <span class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+                  <span
+                    class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
+                  >
                     BUDAYA
                   </span>
                 </div>
@@ -1980,7 +2047,8 @@
                   </h3>
 
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
-                    Perayaan festival budaya Melayu yang menampilkan berbagai pertunjukan seni dan kuliner tradisional Kepulauan Riau.
+                    Perayaan festival budaya Melayu yang menampilkan berbagai
+                    pertunjukan seni dan kuliner tradisional Kepulauan Riau.
                   </p>
 
                   <a
@@ -1988,7 +2056,9 @@
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
                   >
                     Baca Selengkapnya
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    <i
+                      class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"
+                    ></i>
                   </a>
                 </div>
               </div>
@@ -2005,14 +2075,18 @@
               ></div>
 
               <div class="relative z-10 h-full flex flex-col">
-                <div class="relative overflow-hidden rounded-t-2xl aspect-[4/3]">
+                <div
+                  class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=1280&h=720&auto=format&fit=crop"
                     alt="Bantuan Sosial"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <span class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+                  <span
+                    class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
+                  >
                     SOSIAL
                   </span>
                 </div>
@@ -2032,7 +2106,8 @@
                   </h3>
 
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
-                    Program bantuan sembako bulanan yang disalurkan kepada 150 keluarga kurang mampu di wilayah kelurahan.
+                    Program bantuan sembako bulanan yang disalurkan kepada 150
+                    keluarga kurang mampu di wilayah kelurahan.
                   </p>
 
                   <a
@@ -2040,7 +2115,9 @@
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
                   >
                     Baca Selengkapnya
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    <i
+                      class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"
+                    ></i>
                   </a>
                 </div>
               </div>
@@ -2432,16 +2509,20 @@
                 </div>
               </div>
             </div>
-            
+
             <!-- Dynamic View All Button -->
             <div class="text-center mt-12">
               <button
                 id="spotlight-view-all-btn"
                 class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold rounded-2xl hover:from-red-700 hover:to-red-800 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-2"
               >
-                <i class="fas fa-newspaper mr-3 group-hover:scale-110 transition-transform duration-300"></i>
+                <i
+                  class="fas fa-newspaper mr-3 group-hover:scale-110 transition-transform duration-300"
+                ></i>
                 <span id="spotlight-btn-text">Lihat Semua Berita Populer</span>
-                <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform duration-300"></i>
+                <i
+                  class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform duration-300"
+                ></i>
               </button>
             </div>
           </div>
@@ -2760,58 +2841,62 @@
       });
 
       // Spotlight News Tabs Functionality
-      const spotlightTabBtns = document.querySelectorAll('.spotlight-tab-btn');
-      const spotlightTabContents = document.querySelectorAll('.spotlight-tab-content');
-      const spotlightBtnText = document.getElementById('spotlight-btn-text');
-      const spotlightViewAllBtn = document.getElementById('spotlight-view-all-btn');
+      const spotlightTabBtns = document.querySelectorAll(".spotlight-tab-btn");
+      const spotlightTabContents = document.querySelectorAll(
+        ".spotlight-tab-content"
+      );
+      const spotlightBtnText = document.getElementById("spotlight-btn-text");
+      const spotlightViewAllBtn = document.getElementById(
+        "spotlight-view-all-btn"
+      );
 
       // Function to update button text based on active tab
       function updateSpotlightButton(activeTab) {
-        if (activeTab === 'populer') {
-          spotlightBtnText.textContent = 'Lihat Semua Berita Populer';
-        } else if (activeTab === 'terkini') {
-          spotlightBtnText.textContent = 'Lihat Semua Berita Terkini';
+        if (activeTab === "populer") {
+          spotlightBtnText.textContent = "Lihat Semua Berita Populer";
+        } else if (activeTab === "terkini") {
+          spotlightBtnText.textContent = "Lihat Semua Berita Terkini";
         }
       }
 
-      spotlightTabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const targetTab = btn.getAttribute('data-tab');
-          
+      spotlightTabBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const targetTab = btn.getAttribute("data-tab");
+
           // Remove active class from all buttons and add to clicked button
-          spotlightTabBtns.forEach(b => {
-            b.classList.remove('active');
-            const indicator = b.querySelector('div');
+          spotlightTabBtns.forEach((b) => {
+            b.classList.remove("active");
+            const indicator = b.querySelector("div");
             if (indicator) {
-              indicator.style.opacity = '0';
+              indicator.style.opacity = "0";
             }
           });
-          
-          btn.classList.add('active');
-          const activeIndicator = btn.querySelector('div');
+
+          btn.classList.add("active");
+          const activeIndicator = btn.querySelector("div");
           if (activeIndicator) {
-            activeIndicator.style.opacity = '1';
+            activeIndicator.style.opacity = "1";
           }
-          
+
           // Hide all tab contents and show target content
-          spotlightTabContents.forEach(content => {
-            content.classList.add('hidden');
-            content.classList.remove('active');
+          spotlightTabContents.forEach((content) => {
+            content.classList.add("hidden");
+            content.classList.remove("active");
           });
-          
+
           const targetContent = document.getElementById(targetTab);
           if (targetContent) {
-            targetContent.classList.remove('hidden');
-            targetContent.classList.add('active');
-            
+            targetContent.classList.remove("hidden");
+            targetContent.classList.add("active");
+
             // Add smooth fade-in animation
-            targetContent.style.opacity = '0';
+            targetContent.style.opacity = "0";
             setTimeout(() => {
-              targetContent.style.opacity = '1';
-              targetContent.style.transition = 'opacity 0.3s ease-in-out';
+              targetContent.style.opacity = "1";
+              targetContent.style.transition = "opacity 0.3s ease-in-out";
             }, 50);
           }
-          
+
           // Update button text
           updateSpotlightButton(targetTab);
         });
@@ -2819,36 +2904,45 @@
 
       // Handle View All button click
       if (spotlightViewAllBtn) {
-        spotlightViewAllBtn.addEventListener('click', () => {
+        spotlightViewAllBtn.addEventListener("click", () => {
           // Get current active tab
-          const activeTab = document.querySelector('.spotlight-tab-btn.active')?.getAttribute('data-tab') || 'populer';
-          
+          const activeTab =
+            document
+              .querySelector(".spotlight-tab-btn.active")
+              ?.getAttribute("data-tab") || "populer";
+
           // Navigate to all news section with filter parameter
-          if (activeTab === 'populer') {
+          if (activeTab === "populer") {
             // Scroll to all news section and potentially filter by popular
-            document.getElementById('all-news').scrollIntoView({ behavior: 'smooth' });
+            document
+              .getElementById("all-news")
+              .scrollIntoView({ behavior: "smooth" });
             // You can add additional logic here to filter by popular news
-          } else if (activeTab === 'terkini') {
+          } else if (activeTab === "terkini") {
             // Scroll to all news section and potentially filter by latest
-            document.getElementById('all-news').scrollIntoView({ behavior: 'smooth' });
+            document
+              .getElementById("all-news")
+              .scrollIntoView({ behavior: "smooth" });
             // You can add additional logic here to filter by latest news
           }
         });
       }
 
       // Initialize button text on page load
-      updateSpotlightButton('populer');
+      updateSpotlightButton("populer");
 
       // News Pagination Functionality
-      const pageButtons = document.querySelectorAll('.page-btn');
-      const prevBtn = document.getElementById('prev-btn');
-      const nextBtn = document.getElementById('next-btn');
+      const pageButtons = document.querySelectorAll(".page-btn");
+      const prevBtn = document.getElementById("prev-btn");
+      const nextBtn = document.getElementById("next-btn");
       const newsPages = {
-        1: document.querySelector('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3.gap-8.relative.z-10:not([id])'),
-        2: document.getElementById('news-page-2'),
-        3: document.getElementById('news-page-3')
+        1: document.querySelector(
+          ".grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3.gap-8.relative.z-10:not([id])"
+        ),
+        2: document.getElementById("news-page-2"),
+        3: document.getElementById("news-page-3"),
       };
-      
+
       let currentPage = 1;
       const totalPages = 3;
 
@@ -2856,81 +2950,109 @@
       function showPage(pageNumber) {
         // Update current page
         currentPage = pageNumber;
-        
+
         // Hide all pages
-        Object.values(newsPages).forEach(page => {
+        Object.values(newsPages).forEach((page) => {
           if (page) {
-            page.classList.add('hidden');
+            page.classList.add("hidden");
           }
         });
 
         // Show selected page
         if (newsPages[pageNumber]) {
-          newsPages[pageNumber].classList.remove('hidden');
-          
+          newsPages[pageNumber].classList.remove("hidden");
+
           // Add fade-in animation
-          newsPages[pageNumber].style.opacity = '0';
+          newsPages[pageNumber].style.opacity = "0";
           setTimeout(() => {
-            newsPages[pageNumber].style.opacity = '1';
-            newsPages[pageNumber].style.transition = 'opacity 0.3s ease-in-out';
+            newsPages[pageNumber].style.opacity = "1";
+            newsPages[pageNumber].style.transition = "opacity 0.3s ease-in-out";
           }, 50);
         }
 
         // Update button states
-        pageButtons.forEach(btn => {
-          const btnPage = btn.getAttribute('data-page');
+        pageButtons.forEach((btn) => {
+          const btnPage = btn.getAttribute("data-page");
           if (btnPage == pageNumber) {
             // Active button styling
-            btn.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
-            btn.classList.add('bg-gradient-to-r', 'from-red-600', 'to-red-700', 'text-white', 'font-bold', 'shadow-xl', 'transform', '-translate-y-1', 'border-2', 'border-white', 'active');
+            btn.classList.remove(
+              "bg-white",
+              "text-gray-700",
+              "border-gray-200"
+            );
+            btn.classList.add(
+              "bg-gradient-to-r",
+              "from-red-600",
+              "to-red-700",
+              "text-white",
+              "font-bold",
+              "shadow-xl",
+              "transform",
+              "-translate-y-1",
+              "border-2",
+              "border-white",
+              "active"
+            );
           } else {
             // Inactive button styling
-            btn.classList.remove('bg-gradient-to-r', 'from-red-600', 'to-red-700', 'text-white', 'font-bold', 'shadow-xl', 'transform', '-translate-y-1', 'border-2', 'border-white', 'active');
-            btn.classList.add('bg-white', 'text-gray-700', 'border-gray-200');
+            btn.classList.remove(
+              "bg-gradient-to-r",
+              "from-red-600",
+              "to-red-700",
+              "text-white",
+              "font-bold",
+              "shadow-xl",
+              "transform",
+              "-translate-y-1",
+              "border-2",
+              "border-white",
+              "active"
+            );
+            btn.classList.add("bg-white", "text-gray-700", "border-gray-200");
           }
         });
-        
+
         // Update arrow button states
         updateArrowButtons();
       }
-      
+
       // Function to update arrow button states
       function updateArrowButtons() {
         // Update previous button
         if (currentPage <= 1) {
-          prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+          prevBtn.classList.add("opacity-50", "cursor-not-allowed");
           prevBtn.disabled = true;
         } else {
-          prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+          prevBtn.classList.remove("opacity-50", "cursor-not-allowed");
           prevBtn.disabled = false;
         }
-        
+
         // Update next button
         if (currentPage >= totalPages) {
-          nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+          nextBtn.classList.add("opacity-50", "cursor-not-allowed");
           nextBtn.disabled = true;
         } else {
-          nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+          nextBtn.classList.remove("opacity-50", "cursor-not-allowed");
           nextBtn.disabled = false;
         }
       }
 
       // Add click event listeners to pagination buttons
-      pageButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const pageNumber = parseInt(btn.getAttribute('data-page'));
+      pageButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const pageNumber = parseInt(btn.getAttribute("data-page"));
           showPage(pageNumber);
         });
       });
-      
+
       // Add click event listeners to arrow buttons
-      prevBtn.addEventListener('click', () => {
+      prevBtn.addEventListener("click", () => {
         if (currentPage > 1) {
           showPage(currentPage - 1);
         }
       });
-      
-      nextBtn.addEventListener('click', () => {
+
+      nextBtn.addEventListener("click", () => {
         if (currentPage < totalPages) {
           showPage(currentPage + 1);
         }
