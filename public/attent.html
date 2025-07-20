@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kelurahan Tanjungpinang Kota | Kecamatan Tanjungpinang Kota</title>
+    <title>attent</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
@@ -1188,9 +1188,6 @@
                         <a href="download.html" class="nav-item">
                             <i class="fas fa-download mr-2"></i> Download
                         </a>
-                        <a href="contact.html" class="nav-item">
-                            <i class="fas fa-envelope mr-2"></i> Kontak
-                        </a>
                     </div>
 
                     <a href="https://icms.tanjungpinangkota.go.id"
@@ -1221,9 +1218,6 @@
                         <a href="download.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
                             <i class="fas fa-download mr-3"></i> Download
                         </a>
-                        <a href="contact.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
-                            <i class="fas fa-envelope mr-3"></i> Kontak
-                        </a>
                         <div class="pt-2">
                             <a href="https://icms.tanjungpinangkota.go.id" class="btn-primary block text-center py-3">
                                 <i class="fas fa-sign-in-alt mr-2"></i> Login Admin
@@ -1245,12 +1239,42 @@
                     </div>
                 </div>
 
+                 <!-- Search and Filter Section - Revisi -->
+                <div class="flex flex-col sm:flex-row justify-end items-center gap-2 mb-6">
+                    <!-- Year Filter -->
+                    <div class="w-full sm:w-36">
+                        <select id="yearFilter" class="w-full text-sm py-2 px-3 border border-gray-300 rounded-lg focus:ring-red-500  shadow-sm">
+                            <option value="">Semua</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Search Input -->
+                    <div class="w-full sm:w-64">
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Cari Pengumuman..." 
+                                class="w-full text-sm pl-4 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 shadow-sm">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <i class="fas fa-search text-gray-400 text-md"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Page 1 (Visible by default) -->
                 <div id="page1" class="announcement-page grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <!-- Card 1 -->
                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
                                     PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
@@ -1261,10 +1285,10 @@
                                     <span>25 Juni 2025</span>
                                 </div>
                                 <p class="text-black-600 mb-3 text-sm line-clamp-2">
-                                   Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
-                            <div class="flex justify-center items-center mt-auto pt-0"> <!-- Changed from pt-2 to pt-1 -->
+                            <div class="flex justify-center items-center mt-auto pt-0">
                                 <a href="#" class="px-4 py-2 text-sm font-bold text-red-600 hover:bg-red-100 hover:text-red-600 rounded-md transition-colors duration-200">
                                     Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
@@ -1273,11 +1297,17 @@
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
+                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    POTENSI WISATA BAHARI TANJUNG PINANG DAN FESTIVAL TAHUNAN YANG MENARIK
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1285,8 +1315,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                     Menyajikan berbagai objek wisata seperti Pantai Tanjung Siambang dan Pelabuhan Tradisional dengan Festival Bahari tahunan.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1298,11 +1328,17 @@
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
+                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    PROGRAM KAMPUNG TEMATIK UNGGULAN DENGAN BERBAGAI INOVASI KREATIF
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1310,8 +1346,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                    Mengembangkan Kampung Wisata Kuliner, Kampung Batik, dan Kampung Digital yang telah menciptakan 150 UMKM baru.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1326,8 +1362,14 @@
                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                   PEMBANGUNAN INFRASTRUKTUR TERKINI DAN MODERNISASI FASILITAS PUBLIK
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1335,8 +1377,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                    Tahun 2025 mendapatkan anggaran Rp 3,5 miliar untuk perbaikan jalan lingkar, drainase, dan Taman Kota cerdas.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1348,11 +1390,17 @@
                     </div>
 
                     <!-- Card 5 -->
-                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
+                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    PUSAT PENDIDIKAN DAN PELESTARIAN BUDAYA MELAYU YANG KOMPREHENSIF
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1360,8 +1408,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                    Menjadi pusat pelestarian budaya Melayu dengan Sanggar Seni dan Perpustakaan Digital Melayu.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1373,11 +1421,18 @@
                     </div>
 
                     <!-- Card 6 -->
-                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
+                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    FASILITAS KESEHATAN KELURAHAN DAN PROGRAM LAYANAN GRATIS UNGGULAN
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1385,8 +1440,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                   Memiliki Puskesmas Kelurahan, 3 Posyandu Plus, dan program "Sehat Bersama" dengan layanan gratis.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1401,11 +1456,18 @@
                 <!-- Page 2 (Hidden by default) -->
                 <div id="page2" class="announcement-page grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 hidden">
                      <!-- Card 4 -->
-                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
+                   <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                   PEMBANGUNAN INFRASTRUKTUR TERKINI DAN MODERNISASI FASILITAS PUBLIK
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1413,8 +1475,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                    Tahun 2025 mendapatkan anggaran Rp 3,5 miliar untuk perbaikan jalan lingkar, drainase, dan Taman Kota cerdas.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1429,8 +1491,15 @@
                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    PUSAT PENDIDIKAN DAN PELESTARIAN BUDAYA MELAYU YANG KOMPREHENSIF
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1438,8 +1507,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                    Menjadi pusat pelestarian budaya Melayu dengan Sanggar Seni dan Perpustakaan Digital Melayu.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1454,8 +1523,15 @@
                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    FASILITAS KESEHATAN KELURAHAN DAN PROGRAM LAYANAN GRATIS UNGGULAN
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1463,8 +1539,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                   Memiliki Puskesmas Kelurahan, 3 Posyandu Plus, dan program "Sehat Bersama" dengan layanan gratis.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1479,6 +1555,13 @@
                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
                                     PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
@@ -1489,10 +1572,10 @@
                                     <span>25 Juni 2025</span>
                                 </div>
                                 <p class="text-black-600 mb-3 text-sm line-clamp-2">
-                                   Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
-                            <div class="flex justify-center items-center mt-auto pt-0"> <!-- Changed from pt-2 to pt-1 -->
+                            <div class="flex justify-center items-center mt-auto pt-0">
                                 <a href="#" class="px-4 py-2 text-sm font-bold text-red-600 hover:bg-red-100 hover:text-red-600 rounded-md transition-colors duration-200">
                                     Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
@@ -1504,8 +1587,15 @@
                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    POTENSI WISATA BAHARI TANJUNG PINANG DAN FESTIVAL TAHUNAN YANG MENARIK
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1513,8 +1603,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                     Menyajikan berbagai objek wisata seperti Pantai Tanjung Siambang dan Pelabuhan Tradisional dengan Festival Bahari tahunan.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1526,11 +1616,18 @@
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
+                   <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    PROGRAM KAMPUNG TEMATIK UNGGULAN DENGAN BERBAGAI INOVASI KREATIF
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1538,8 +1635,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                    Mengembangkan Kampung Wisata Kuliner, Kampung Batik, dan Kampung Digital yang telah menciptakan 150 UMKM baru.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1557,6 +1654,13 @@
                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
                                     PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
@@ -1567,10 +1671,10 @@
                                     <span>25 Juni 2025</span>
                                 </div>
                                 <p class="text-black-600 mb-3 text-sm line-clamp-2">
-                                   Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
-                            <div class="flex justify-center items-center mt-auto pt-0"> <!-- Changed from pt-2 to pt-1 -->
+                            <div class="flex justify-center items-center mt-auto pt-0">
                                 <a href="#" class="px-4 py-2 text-sm font-bold text-red-600 hover:bg-red-100 hover:text-red-600 rounded-md transition-colors duration-200">
                                     Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
                                 </a>
@@ -1582,8 +1686,15 @@
                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    POTENSI WISATA BAHARI TANJUNG PINANG DAN FESTIVAL TAHUNAN YANG MENARIK
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1591,8 +1702,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                     Menyajikan berbagai objek wisata seperti Pantai Tanjung Siambang dan Pelabuhan Tradisional dengan Festival Bahari tahunan.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1607,8 +1718,15 @@
                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    PROGRAM KAMPUNG TEMATIK UNGGULAN DENGAN BERBAGAI INOVASI KREATIF
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1616,8 +1734,38 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                    Mengembangkan Kampung Wisata Kuliner, Kampung Batik, dan Kampung Digital yang telah menciptakan 150 UMKM baru.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
+                                </p>
+                            </div>
+                            <div class="flex justify-center items-center mt-auto pt-0">
+                                <a href="#" class="px-4 py-2 text-sm font-bold text-red-600 hover:bg-red-100 hover:text-red-600 rounded-md transition-colors duration-200">
+                                    Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
+                        <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
+                            <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
+                                <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
+                                </h2>
+                                <div class="flex items-center text-sm text-black-500 mb-3">
+                                    <i class="fas fa-user text-black-600 mr-2"></i>
+                                    <span class="mr-4">by admin</span>
+                                    <i class="fas fa-calendar text-black-600 mr-2"></i>
+                                    <span>25 Juni 2025</span>
+                                </div>
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1628,12 +1776,18 @@
                         </div>
                     </div>
 
-                     <!-- Card 4 -->
                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
+                                </div>
+                                
+
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                   PEMBANGUNAN INFRASTRUKTUR TERKINI DAN MODERNISASI FASILITAS PUBLIK
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1641,8 +1795,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                    Tahun 2025 mendapatkan anggaran Rp 3,5 miliar untuk perbaikan jalan lingkar, drainase, dan Taman Kota cerdas.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
@@ -1653,37 +1807,18 @@
                         </div>
                     </div>
 
-                    <!-- Card 5 -->
                     <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
                         <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
                             <div class="flex-1">
-                                <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    PUSAT PENDIDIKAN DAN PELESTARIAN BUDAYA MELAYU YANG KOMPREHENSIF
-                                </h2>
-                                <div class="flex items-center text-sm text-black-500 mb-3">
-                                    <i class="fas fa-user text-black-600 mr-2"></i>
-                                    <span class="mr-4">by admin</span>
-                                    <i class="fas fa-calendar text-black-600 mr-2"></i>
-                                    <span>25 Juni 2025</span>
+                                <div class="flex justify-center mb-4">
+                                    <div class="w-20 h-20 border border-gray-200 rounded-md overflow-hidden flex items-center justify-center">
+                                        <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png" alt="Logo Kelurahan" class="w-16 h-16 object-contain">
+                                    </div>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                    Menjadi pusat pelestarian budaya Melayu dengan Sanggar Seni dan Perpustakaan Digital Melayu.
-                                </p>
-                            </div>
-                            <div class="flex justify-center items-center mt-auto pt-0">
-                                <a href="#" class="px-4 py-2 text-sm font-bold text-red-600 hover:bg-red-100 hover:text-red-600 rounded-md transition-colors duration-200">
-                                    Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                                
 
-                    <!-- Card 6 -->
-                    <div class="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-red-500 transition-colors duration-300 hover:shadow-lg group">
-                        <div class="p-6 h-full flex flex-col" style="min-height: 280px;">
-                            <div class="flex-1">
                                 <h2 class="text-lg font-bold text-black-800 mb-3 line-clamp-2 group-hover:text-red-500 transition-colors duration-300">
-                                    FASILITAS KESEHATAN KELURAHAN DAN PROGRAM LAYANAN GRATIS UNGGULAN
+                                    PROFIL LENGKAP KELURAHAN TANJUNG PINANG KOTA SEBAGAI PUSAT PEMETINTAHAN
                                 </h2>
                                 <div class="flex items-center text-sm text-black-500 mb-3">
                                     <i class="fas fa-user text-black-600 mr-2"></i>
@@ -1691,8 +1826,8 @@
                                     <i class="fas fa-calendar text-black-600 mr-2"></i>
                                     <span>25 Juni 2025</span>
                                 </div>
-                                <p class="text-black-600 mb-4 text-sm line-clamp-2">
-                                   Memiliki Puskesmas Kelurahan, 3 Posyandu Plus, dan program "Sehat Bersama" dengan layanan gratis.
+                                <p class="text-black-600 mb-3 text-sm line-clamp-2">
+                                Kelurahan Tanjung Pinang Kota merupakan pusat pemerintahan Kota Tanjung Pinang dengan luas wilayah 12,5 km² dan populasi sekitar 15.000 jiwa.
                                 </p>
                             </div>
                             <div class="flex justify-center items-center mt-auto pt-0">
