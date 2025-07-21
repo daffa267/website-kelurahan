@@ -63,7 +63,8 @@
       margin: 0;
       padding: 0;
       overflow-x: hidden;
-      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      font-family: "Poppins", system-ui, -apple-system, sans-serif;
+      /* Menggunakan Poppins seperti pada desain baru */
       background-color: #f8fafc;
       color: #333;
       line-height: 1.6;
@@ -75,6 +76,11 @@
       font-weight: 100 900;
       font-display: optional;
       src: url(https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap);
+    }
+    
+    @font-face {
+      font-family: 'Poppins';
+      src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;800&display=swap');
     }
 
     .fixed-container {
@@ -201,71 +207,7 @@
     .animate-fade-in {
       animation: fadeIn 0.8s ease-out forwards;
     }
-
-    /* Hero Banner */
-    .hero-banner {
-      position: relative;
-      height: calc(100vh - 90px);
-      min-height: 410px;
-      max-height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-align: center;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: none;
-    }
-
-    @media (max-width: 768px) {
-      .hero-banner {
-        min-height: 250px;
-        height: calc(85vh - 60px);
-      }
-    }
-
-    .hero-banner .hero-slide {
-      background-position: top center !important;
-    }
-
-    .hero-banner::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(to bottom,
-          rgba(0, 0, 0, 0.45) 0%,
-          rgba(0, 0, 0, 0.65) 100%);
-      z-index: 1;
-    }
-
-    .hero-banner .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      padding: 0 20px;
-    }
-
-    .hero-banner .hero-slide {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: top center;
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-    }
-
-    .hero-banner .hero-slide.active {
-      opacity: 1;
-    }
-
+    
     /* Content Cards */
     .content-card {
       background: white;
@@ -954,29 +896,15 @@
     }
 
     /* Responsive adjustments */
-    @media (max-width: 1024px) {
-      .hero-banner {
-        height: 60vh;
-      }
-    }
+    @media (max-width: 1024px) {}
 
     @media (max-width: 768px) {
-      .hero-banner {
-        height: 50vh;
-        min-height: 400px;
-      }
-
       .news-grid {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 640px) {
-      .hero-banner {
-        height: 45vh;
-        min-height: 350px;
-      }
-
       .section-header {
         margin-bottom: 24px;
       }
@@ -1241,137 +1169,6 @@
       transform: translateX(3px);
     }
 
-    html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
-
-    /* Gallery Hero Styles */
-    .gallery-hero {
-      margin-top: 0 !important;
-      padding-top: 0 !important;
-    }
-
-    .gallery-hero-slider {
-      position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-    }
-
-    .gallery-hero-slider>div {
-      display: flex;
-      width: 100%;
-      height: 100%;
-    }
-
-    .gallery-hero-slider>div>div {
-      flex: 0 0 100%;
-      position: relative;
-    }
-
-    /* Remove parallax effect */
-    .gallery-hero-slider img {
-      width: 100%;
-  height: 100%;
-  object-fit: cover;
-      will-change: transform;
-      transform: none !important;
-      object-position: top center;
-    }
-
-    /* Carousel Controls */
-    .gallery-hero-prev,
-    .gallery-hero-next {
-      transition: all 0.3s ease;
-      transform: translateY(-50%);
-    }
-
-    .gallery-hero-prev:hover,
-    .gallery-hero-next:hover {
-      transform: translateY(-50%) scale(1.1);
-    }
-
-    /* Text Contrast Improvements */
-    .gallery-hero h1,
-    .gallery-hero p {
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    .gallery-hero .bg-gradient-to-r {
-      text-shadow: none;
-    }
-
-    /* Darker overlay for better contrast */
-    .gallery-hero-slider>div::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 1;
-    }
-
-    /* Style untuk tombol utama */
-    .gallery-hero .btn-primary {
-      background: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
-      color: white;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      padding: 12px 24px;
-      font-weight: 600;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    /* Hover effect */
-    .gallery-hero .btn-primary:hover {
-      background: #ffffff;
-      border-color: #ffffff;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .gallery-hero .btn-primary:hover span,
-    .gallery-hero .btn-primary:hover i {
-      color: #dc2626;
-    }
-
-    /* Efek overlay saat hover */
-    .gallery-hero .btn-primary::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-      z-index: -1;
-      transition: all 0.3s ease;
-    }
-
-    .gallery-hero .btn-primary:hover::after {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @keyframes pulse {
 
       0%,
@@ -1411,11 +1208,383 @@
         left: 30px;
       }
     }
+    
+    /* ========== NEW BANNER STYLES START ========== */
+     * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .carousel-container {
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+
+    .slide-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform-style: preserve-3d;
+    }
+
+    .slide-active {
+      transform: translateX(0) rotateY(0deg) scale(1);
+      opacity: 1;
+      z-index: 10;
+    }
+
+    .slide-next {
+      transform: translateX(100%) rotateY(-45deg) scale(0.8);
+      opacity: 0.7;
+      z-index: 5;
+    }
+
+    .slide-prev {
+      transform: translateX(-100%) rotateY(45deg) scale(0.8);
+      opacity: 0.7;
+      z-index: 5;
+    }
+
+    .slide-hidden {
+      transform: translateX(200%) rotateY(-90deg) scale(0.6);
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .slide-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    }
+
+    .slide-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.7);
+      transition: all 0.5s ease;
+    }
+
+    .slide-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg,
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(0, 0, 0, 0.1) 100%);
+      backdrop-filter: blur(1px);
+    }
+
+    .slide-1 .slide-bg {
+      /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+      background-image: url(https://images.unsplash.com/photo-1622428051717-d574287041a3?q=80&w=1932&auto=format&fit=crop) !important;
+    }
+
+    .slide-2 .slide-bg {
+      /* background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); */
+      background-image: url(https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1887&auto=format&fit=crop);
+    }
+
+    .slide-3 .slide-bg {
+      /* background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); */
+      background-image: url(https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1769&auto=format&fit=crop);
+    }
+
+    .slide-4 .slide-bg {
+      /* background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); */
+      background-image: url(https://images.unsplash.com/photo-1583344654579-24b89569ce4e?q=80&w=1887&auto=format&fit=crop);
+    }
+
+    .slide-5 .slide-bg {
+      /* background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); */
+      background-image: url(https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1770&auto=format&fit=crop);
+    }
+
+    .slide-text {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      color: white;
+    }
+
+    .slide-title {
+      font-size: clamp(3rem, 8vw, 8rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      background: linear-gradient(45deg, #ffffff, #f0f0f0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .slide-subtitle {
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      font-weight: 500;
+      margin-bottom: 2rem;
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .slide-description {
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-weight: 300;
+      max-width: 600px;
+      line-height: 1.6;
+      transform: translateY(50px);
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .slide-active .slide-title,
+    .slide-active .slide-subtitle,
+    .slide-active .slide-description {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 20;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-prev {
+      left: 2rem;
+    }
+
+    .nav-next {
+      right: 2rem;
+    }
+
+    .indicators {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .indicator {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .indicator.active {
+      background: white;
+      transform: scale(1.3);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    .indicator::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .indicator:hover::before {
+      left: 100%;
+    }
+
+    .progress-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      z-index: 20;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      width: 0%;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+    }
+
+    .slide-counter {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      z-index: 20;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      color: white;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .slide-category {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      color: white;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .thumbnail-nav {
+      position: absolute;
+      bottom: 8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .thumbnail {
+      width: 60px;
+      height: 40px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .thumbnail.active {
+      border-color: white;
+      transform: scale(1.1);
+    }
+
+    .thumbnail-bg {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: all 0.3s ease;
+    }
+
+    .thumbnail:hover .thumbnail-bg {
+      transform: scale(1.1);
+    }
+
+    .auto-play-toggle {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 20;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .auto-play-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .nav-button {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+      }
+
+      .nav-prev {
+        left: 1rem;
+      }
+
+      .nav-next {
+        right: 1rem;
+      }
+
+      .slide-category,
+      .slide-counter {
+        top: 1rem;
+      }
+
+      .slide-category {
+        left: 1rem;
+      }
+
+      .slide-counter {
+        right: 1rem;
+      }
+    }
+    /* ========== NEW BANNER STYLES END ========== */
   </style>
 </head>
 
-<body class="bg-gray-50">
-  <!-- Header Section -->
+<body class="bg-gray-900">
   <header class="modern-header relative custom-header-blur">
     <div class="container mx-auto px-4 py-2 md:py-3 relative z-10">
       <div class="flex items-center justify-between">
@@ -1506,92 +1675,136 @@
     </div>
   </header>
 
-  <main class="bg-gradient-to-br from-gray-50 via-white to-gray-100 min-h-screen">
-    <!-- Hero Banner with Interactive Slider -->
-    <section class="gallery-hero relative h-screen max-h-[800px] overflow-hidden">
-      <!-- Interactive Slider Background -->
-      <div class="absolute inset-0 z-0 gallery-hero-slider">
-        <!-- Dark overlay for better text contrast -->
-        <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50 z-10"></div>
-
-        <!-- Carousel Slides -->
-        <div class="absolute inset-0 flex transition-transform duration-1000 ease-[cubic-bezier(0.65,0,0.35,1)]">
-          <!-- Slide 1 -->
-          <div class="relative w-full h-full flex-shrink-0">
-            <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1800&auto=format&fit=crop" 
-                alt="Gallery Hero" 
-                class="w-full h-full object-cover object-top">
-          </div>
-
-          <!-- Slide 2 -->
-          <div class="relative w-full h-full flex-shrink-0">
-            <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=1800&auto=format&fit=crop" 
-                alt="Gallery Hero" 
-                class="w-full h-full object-cover object-top">
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="relative w-full h-full flex-shrink-0">
-            <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1800&auto=format&fit=crop" 
-                alt="Gallery Hero" 
-                class="w-full h-full object-cover object-top">
-          </div>
+  <main>
+    <div class="carousel-container relative w-full h-screen overflow-hidden">
+        <div class="slide-counter">
+            <span id="currentSlideNum">01</span> / <span id="totalSlides">05</span>
         </div>
-      </div>
-
-      <!-- Hero Content with Animated Text -->
-      <div class="container mx-auto h-full flex items-center relative z-20 px-6">
-        <div class="max-w-4xl">
-          <h1 class="text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.1] text-white tracking-tighter drop-shadow-lg">
-            <span class="block overflow-hidden">
-              <span class="block animate-slideUp [animation-delay:0.2s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
-                <span class="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">Galeri Interaktif</span>
-              </span>
-            </span>
-            <span class="block overflow-hidden mt-2">
-              <span class="block animate-slideUp [animation-delay:0.4s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
-                <span class="bg-gradient-to-r from-primary-400 to-red-400 bg-clip-text text-transparent">Tanjungpinang Kota</span>
-              </span>
-            </span>
-          </h1>
-          <div class="overflow-hidden">
-            <p class="text-xl text-gray-200 mb-8 max-w-2xl animate-slideUp [animation-delay:0.6s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
-              Jelajahi momen-momen berharga dan perkembangan wilayah kami melalui dokumentasi visual yang interaktif
-            </p>
-          </div>
-          <div class="flex flex-wrap gap-4 overflow-hidden">
-            <div class="animate-slideUp [animation-delay:0.8s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
-              <a href="#gallery-grid" class="btn-primary inline-flex items-center px-6 py-3">
-                <span class="text-white text-lg font-bold">Jelajahi Sekarang</span>
-                <i class="fas fa-arrow-down ml-3 text-white text-lg transition-transform duration-300 group-hover:translate-y-1"></i>
-              </a>
+        
+        <button class="auto-play-toggle" id="autoPlayToggle">
+            <span id="playIcon">⏸️</span>
+        </button>
+        
+        <div class="slide-wrapper slide-active" data-slide="0">
+            <div class="slide-content">
+                <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1920&h=1080&fit=crop" 
+                     class="slide-bg slide-1 w-full h-full object-cover"
+                     alt="Galeri Banner">
+                <div class="slide-overlay"></div>
+                <div class="slide-category">Galeri Utama</div>
+                <div class="slide-text">
+                    <h1 class="slide-title">Galeri Interaktif</h1>
+                    <h2 class="slide-subtitle">Kelurahan Tanjungpinang Kota</h2>
+                    <p class="slide-description">Jelajahi keindahan dan dinamika kehidupan masyarakat melalui dokumentasi visual yang menginspirasi</p>
+                </div>
             </div>
-            <div class="animate-slideUp [animation-delay:1s] opacity-0 translate-y-10" style="animation-fill-mode: forwards;">
-              <a href="#video-wall" class="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white font-bold rounded-xl hover:bg-white/30 transition-all duration-300 group border border-white/20 hover:border-white/40">
-                <i class="fas fa-play-circle mr-3"></i>
-                <span class="text-lg">Video 360°</span>
-              </a>
+        </div>
+        
+        <div class="slide-wrapper slide-next" data-slide="1">
+            <div class="slide-content">
+              <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=800&h=800&auto=format&fit=crop" 
+              class="slide-bg slide-2 w-full h-full object-cover"
+              alt="Galeri Banner">
+                <div class="slide-overlay"></div>
+                <div class="slide-category">Dokumentasi</div>
+                <div class="slide-text">
+                    <h1 class="slide-title">Momen Bersejarah</h1>
+                    <h2 class="slide-subtitle">Kelurahan Tanjungpinang Kota</h2>
+                    <p class="slide-description">Koleksi foto dan video yang mengabadikan perjalanan pembangunan dan pencapaian masyarakat</p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-
-      <!-- Slider Controls - Improved visibility -->
-      <div class="absolute bottom-8 right-8 z-20 flex gap-2 gallery-hero-pagination">
-        <!-- Tombol penomoran akan di-generate oleh JS -->
-      </div>
-
-      <!-- Scrolling Indicator -->
-      <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-        <div class="w-6 h-10 border-2 border-white rounded-full flex justify-center p-1">
-          <div class="w-1 h-2 bg-white rounded-full animate-scrollIndicator"></div>
+        
+        <div class="slide-wrapper slide-hidden" data-slide="2">
+            <div class="slide-content">
+              <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&h=800&auto=format&fit=crop" 
+              class="slide-bg slide-3 w-full h-full object-cover"
+              alt="Galeri Banner">
+                <div class="slide-overlay"></div>
+                <div class="slide-category">Kegiatan</div>
+                <div class="slide-text">
+                    <h1 class="slide-title">Aktivitas Komunitas</h1>
+                    <h2 class="slide-subtitle">Kelurahan Tanjungpinang Kota</h2>
+                    <p class="slide-description">Program pemberdayaan, acara budaya, dan kegiatan sosial yang memperkuat ikatan masyarakat</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Interactive Gallery Grid -->
-    <section id="gallery-grid" class="py-16 relative overflow-hidden">
-      <!-- Floating Decorative Elements -->
+        
+        <div class="slide-wrapper slide-hidden" data-slide="3">
+            <div class="slide-content">
+              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&h=800&auto=format&fit=crop" 
+              class="slide-bg slide-4 w-full h-full object-cover"
+              alt="Galeri Banner">
+                <div class="slide-overlay"></div>
+                <div class="slide-category">Fasilitas</div>
+                <div class="slide-text">
+                    <h1 class="slide-title">Infrastruktur Modern</h1>
+                    <h2 class="slide-subtitle">Kelurahan Tanjungpinang Kota</h2>
+                    <p class="slide-description">Fasilitas publik dan infrastruktur yang mendukung kenyamanan dan kemajuan masyarakat</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide-wrapper slide-hidden" data-slide="4">
+            <div class="slide-content">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&h=800&auto=format&fit=crop" 
+              class="slide-bg slide-5 w-full h-full object-cover"
+              alt="Galeri Banner">
+                <div class="slide-overlay"></div>
+                <div class="slide-category">Prestasi</div>
+                <div class="slide-text">
+                    <h1 class="slide-title">Pencapaian Gemilang</h1>
+                    <h2 class="slide-subtitle">Kelurahan Tanjungpinang Kota</h2>
+                    <p class="slide-description">Penghargaan dan prestasi yang membanggakan sebagai bukti dedikasi dalam pelayanan masyarakat</p>
+                </div>
+            </div>
+        </div>
+        
+        <button class="nav-button nav-prev" id="prevBtn">‹</button>
+        <button class="nav-button nav-next" id="nextBtn">›</button>
+        
+        <div class="thumbnail-nav">
+            <div class="thumbnail active" data-slide="0">
+                <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1920&h=1080&fit=crop"
+                     class="thumbnail-bg slide-1 w-full h-full object-cover"
+                     alt="Thumbnail">
+            </div>
+            <div class="thumbnail" data-slide="1">
+                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=800&h=800&auto=format&fit=crop"
+                     class="thumbnail-bg slide-2 w-full h-full object-cover"
+                     alt="Thumbnail">
+            </div>
+            <div class="thumbnail" data-slide="2">
+                <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&h=800&auto=format&fit=crop"
+                     class="thumbnail-bg slide-3 w-full h-full object-cover"
+                     alt="Thumbnail">
+            </div>
+            <div class="thumbnail" data-slide="3">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&h=800&auto=format&fit=crop"
+                     class="thumbnail-bg slide-4 w-full h-full object-cover"
+                     alt="Thumbnail">
+            </div>
+            <div class="thumbnail" data-slide="4">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&h=800&auto=format&fit=crop"
+                     class="thumbnail-bg slide-5 w-full h-full object-cover"
+                     alt="Thumbnail">
+            </div>
+        </div>
+        
+        <div class="indicators">
+            <div class="indicator active" data-slide="0"></div>
+            <div class="indicator" data-slide="1"></div>
+            <div class="indicator" data-slide="2"></div>
+            <div class="indicator" data-slide="3"></div>
+            <div class="indicator" data-slide="4"></div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+    
+    <section id="gallery-grid" class="py-16 relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <div class="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-r from-primary-600/10 to-red-600/10 rounded-full blur-3xl animate-float"></div>
       <div class="absolute -bottom-40 -right-40 w-80 h-80 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-full blur-3xl animate-float" style="animation-delay: 2s"></div>
 
@@ -1608,7 +1821,6 @@
           </p>
         </div>
 
-        <!-- Advanced Filter with Search -->
         <div class="mb-12 bg-white rounded-2xl shadow-lg p-6">
           <div class="flex flex-col md:flex-row gap-4 items-center">
             <div class="flex-1 relative">
@@ -1635,34 +1847,29 @@
                 <option value="2022">2022</option>
               </select>
             </div>
-            <button class="px-6 py-3 bg-gradient-to-r from-primary-600 to-red-700 text-white font-bold rounded-xl hover:from-red-700 hover:to-red-800 transition-all duration-300">
+            <button class="px-6 py-3 bg-gradient-to-r from-primary-600 to-red-700 text-white font-bold rounded-xl hover:from-red-700 hover:to-red-800 transition-all duration-300 shadow-md hover:shadow-lg">
               <i class="fas fa-filter mr-2"></i> Filter
             </button>
           </div>
         </div>
 
-        <!-- Gallery Grid with Uniform Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 gallery-grid" id="gallery-container">
-          <!-- Gallery Card 1 - Infrastruktur -->
           <div class="gallery-card group" data-category="infrastruktur" data-year="2024" data-title="Pembangunan Jalan RW 08" data-description="Progres pembangunan jalan lingkungan sepanjang 500m di wilayah RW 08" data-date="2024-07-15">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
               <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&h=800&auto=format&fit=crop"
                 alt="Pembangunan Jalan"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
-              <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-primary-600 text-white text-xs font-bold rounded-full">Infrastruktur</span>
               </div>
 
-              <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
                 <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
 
-              <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Pembangunan Jalan RW 08</h3>
                 <p class="text-gray-300 text-sm">15 Jul 2024 • 24 Foto</p>
@@ -1670,26 +1877,22 @@
             </div>
           </div>
 
-          <!-- Gallery Card 2 - Sosial -->
           <div class="gallery-card group" data-category="sosial" data-year="2024" data-title="Penyaluran Bantuan Sembako" data-description="Distribusi bantuan untuk 150 keluarga kurang mampu di wilayah RW 05" data-date="2024-06-20">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
               <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=800&h=800&auto=format&fit=crop"
                 alt="Bantuan Sosial"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
-              <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full">Sosial</span>
               </div>
 
-              <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
-                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
 
-              <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Penyaluran Bantuan Sembako</h3>
                 <p class="text-gray-300 text-sm">12 Jul 2024 • 18 Foto</p>
@@ -1697,26 +1900,22 @@
             </div>
           </div>
 
-          <!-- Gallery Card 3 - Kesehatan -->
           <div class="gallery-card group" data-category="kesehatan" data-year="2024" data-title="Vaksinasi Booster" data-description="Pelaksanaan vaksinasi booster untuk warga lansia" data-date="2024-07-10">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
               <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=800&h=800&auto=format&fit=crop"
                 alt="Vaksinasi"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
-              <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">Kesehatan</span>
               </div>
 
-              <!-- Featured Badge -->
               <div class="absolute top-4 right-4">
                 <span class="px-2 py-1 bg-yellow-500 text-white text-xs font-bold rounded-full flex items-center">
                   <i class="fas fa-star mr-1"></i> Featured
                 </span>
               </div>
 
-              <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Vaksinasi Booster</h3>
                 <p class="text-gray-300 text-sm">10 Jul 2024 • 32 Foto</p>
@@ -1724,26 +1923,22 @@
             </div>
           </div>
 
-          <!-- Gallery Card 4 - Pendidikan -->
           <div class="gallery-card group" data-category="pendidikan" data-year="2024" data-title="Pelatihan Kader Posyandu" data-description="Pelatihan untuk meningkatkan kualitas pelayanan kesehatan di posyandu" data-date="2024-07-08">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
               <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&h=800&auto=format&fit=crop"
                 alt="Pelatihan Kader"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
-              <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full">Pendidikan</span>
               </div>
 
-              <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
-                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
 
-              <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Pelatihan Kader Posyandu</h3>
                 <p class="text-gray-300 text-sm">8 Jul 2024 • 28 Foto</p>
@@ -1751,26 +1946,22 @@
             </div>
           </div>
 
-          <!-- Gallery Card 5 - Lingkungan -->
           <div class="gallery-card group" data-category="lingkungan" data-year="2024" data-title="Penanaman Pohon" data-description="Program penghijauan lingkungan kelurahan" data-date="2024-07-05">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
               <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&h=800&auto=format&fit=crop"
                 alt="Penanaman Pohon"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
-              <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-emerald-600 text-white text-xs font-bold rounded-full">Lingkungan</span>
               </div>
 
-              <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
-                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
 
-              <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Penanaman Pohon</h3>
                 <p class="text-gray-300 text-sm">5 Jul 2024 • 22 Foto</p>
@@ -1778,26 +1969,22 @@
             </div>
           </div>
 
-          <!-- Gallery Card 6 - Perbaikan Drainase -->
           <div class="gallery-card group" data-category="infrastruktur" data-year="2024" data-title="Perbaikan Drainase" data-description="Perbaikan sistem drainase untuk mencegah banjir" data-date="2024-06-25">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
               <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=800&h=800&auto=format&fit=crop"
                 alt="Perbaikan Drainase"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
-              <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-primary-600 text-white text-xs font-bold rounded-full">Infrastruktur</span>
               </div>
 
-              <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
-                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
 
-              <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Perbaikan Drainase</h3>
                 <p class="text-gray-300 text-sm">3 Jul 2024 • 16 Foto</p>
@@ -1805,26 +1992,22 @@
             </div>
           </div>
 
-          <!-- Gallery Card 7 - Rapat Warga -->
           <div class="gallery-card group" data-category="sosial" data-year="2024" data-title="Rapat Warga" data-description="Rapat koordinasi warga membahas program kelurahan" data-date="2024-07-01">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
               <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=800&h=800&auto=format&fit=crop"
                 alt="Rapat Warga"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
-              <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full">Sosial</span>
               </div>
 
-              <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
-                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
 
-              <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Rapat Warga</h3>
                 <p class="text-gray-300 text-sm">1 Jul 2024 • 12 Foto</p>
@@ -1832,26 +2015,22 @@
             </div>
           </div>
 
-          <!-- Gallery Card 8 - Posyandu -->
           <div class="gallery-card group" data-category="kesehatan" data-year="2024" data-title="Posyandu Bulanan" data-description="Pelayanan kesehatan ibu dan anak di Posyandu Melati" data-date="2024-06-28">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
               <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=800&h=800&auto=format&fit=crop"
                 alt="Posyandu"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
-              <!-- Category Badge -->
               <div class="absolute top-4 left-4">
                 <span class="px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">Kesehatan</span>
               </div>
 
-              <!-- Quick View Button -->
               <div class="absolute top-4 right-4">
-                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
 
-              <!-- Overlay Info -->
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                 <h3 class="font-bold text-white text-lg mb-1">Posyandu Bulanan</h3>
                 <p class="text-gray-300 text-sm">28 Jun 2024 • 36 Foto</p>
@@ -1860,54 +2039,43 @@
           </div>
         </div>
 
-        <!-- Load More Button -->
         <div class="text-center mt-12">
           <button class="inline-flex items-center px-8 py-3 bg-white border-2 border-red-600 text-red-600 font-bold rounded-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg">
-            <i class="fas fa-plus-circle mr-2"></i>
-            Muat Lebih Banyak
+            <i class="fas fa-plus-circle mr-2"></i> Muat Lebih Banyak
           </button>
         </div>
       </div>
     </section>
 
-    <!-- Video Wall Section -->
     <section id="video-wall" class="py-16 bg-gradient-to-b from-gray-50 to-white">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             <span class="relative inline-block">
-              <span class="relative z-10">Video <span class="text-primary-600">360°</span></span>
-              <span class="absolute bottom-0 left-0 w-full h-3 bg-primary-100/70 -rotate-1 -z-0"></span>
-            </span>
-          </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Jelajahi kegiatan kelurahan melalui pengalaman video imersif
-          </p>
+              <span class="relative z-10">Video <span class="text-primary-600">Dokumentasi</span></span>
+              <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Jelajahi kegiatan kelurahan melalui pengalaman video imersif
+              </p>
         </div>
 
-        <!-- Video Grid with Hover Effects -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Video 1 - 360° Experience -->
           <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video">
             <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50 z-10"></div>
             <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1280&h=720&auto=format&fit=crop"
               alt="Video Dokumentasi"
-              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+              class="w-full h-full object-cover transition-transform duration-700">
 
-            <!-- 360° Badge -->
             <div class="absolute top-4 left-4 z-20 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-gray-900 flex items-center">
               <i class="fas fa-vr-cardboard mr-1 text-primary-600"></i>
               360° Experience
             </div>
 
-            <!-- Play Button -->
             <div class="absolute inset-0 flex items-center justify-center z-20">
               <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform">
                 <i class="fas fa-play text-xl"></i>
               </div>
             </div>
 
-            <!-- Video Info -->
             <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
               <h3 class="text-xl font-bold text-white">Peresmian Taman RW 05</h3>
               <div class="flex items-center text-sm text-gray-300 mt-2">
@@ -1920,26 +2088,22 @@
             </div>
           </div>
 
-          <!-- Video 2 - With Interactive Transcript -->
           <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video">
             <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50 z-10"></div>
             <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1280&h=720&auto=format&fit=crop"
               alt="Video Dokumentasi"
-              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+              class="w-full h-full object-cover transition-transform duration-700">
 
-            <!-- Transcript Button -->
             <button class="absolute top-4 right-4 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg">
               <i class="fas fa-scroll"></i>
             </button>
 
-            <!-- Play Button -->
             <div class="absolute inset-0 flex items-center justify-center z-20">
               <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform">
                 <i class="fas fa-play text-xl"></i>
               </div>
             </div>
 
-            <!-- Video Info -->
             <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
               <h3 class="text-xl font-bold text-white">Pelatihan Kader Posyandu</h3>
               <div class="flex items-center text-sm text-gray-300 mt-2">
@@ -1952,14 +2116,12 @@
             </div>
           </div>
 
-          <!-- Video 3 - Live Event Recording -->
           <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video">
             <div class="absolute inset-0 bg-gradient-to-b from-black/20 to-black/50 z-10"></div>
             <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1280&h=720&auto=format&fit=crop"
               alt="Video Dokumentasi"
-              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700">
+              class="w-full h-full object-cover transition-transform duration-700">
 
-            <!-- Live Badge -->
             <div class="absolute top-4 right-4 z-20 bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center">
               <span class="relative flex h-2 w-2 mr-2">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
@@ -1968,14 +2130,12 @@
               LIVE RECORDING
             </div>
 
-            <!-- Play Button -->
             <div class="absolute inset-0 flex items-center justify-center z-20">
               <div class="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center text-white transform group-hover:scale-110 transition-transform">
                 <i class="fas fa-play text-xl"></i>
               </div>
             </div>
 
-            <!-- Video Info -->
             <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
               <h3 class="text-xl font-bold text-white">Hari Lingkungan Hidup 2024</h3>
               <div class="flex items-center text-sm text-gray-300 mt-2">
@@ -1989,7 +2149,6 @@
           </div>
         </div>
 
-        <!-- Video Channel Button -->
         <div class="text-center mt-12">
           <a href="#" class="inline-flex items-center px-8 py-3 bg-white border-2 border-red-600 text-red-600 font-bold rounded-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg group">
             <i class="fas fa-play-circle mr-2"></i>
@@ -2000,99 +2159,6 @@
       </div>
     </section>
 
-    <!-- Photo of the Month - Interactive Section -->
-    <section class="py-16 bg-gradient-to-b from-white to-gray-50">
-      <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            <span class="relative inline-block">
-              <span class="relative z-10">Sorotan <span class="text-primary-600">Bulan Ini</span></span>
-              <span class="absolute bottom-0 left-0 w-full h-3 bg-primary-100/70 -rotate-1 -z-0"></span>
-            </span>
-          </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Dokumentasi terbaik yang menjadi sorotan di bulan Juli 2024
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- Interactive Photo Viewer -->
-          <div class="relative overflow-hidden rounded-3xl shadow-2xl aspect-[4/3] photo-viewer">
-            <img src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg"
-              alt="Foto Bulan Ini"
-              class="w-full h-full object-cover cursor-zoom-in viewer-image">
-
-            <!-- Zoom Controls -->
-            <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur-sm rounded-xl p-2 shadow-lg flex items-center space-x-2">
-              <button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-100 viewer-zoom-in">
-                <i class="fas fa-search-plus"></i>
-              </button>
-              <button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-100 viewer-zoom-out">
-                <i class="fas fa-search-minus"></i>
-              </button>
-              <button class="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-100 viewer-reset">
-                <i class="fas fa-sync-alt"></i>
-              </button>
-            </div>
-
-            <!-- Download Button -->
-            <button class="absolute bottom-6 right-6 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg flex items-center hover:bg-white transition-colors">
-              <i class="fas fa-download mr-2"></i>
-              Unduh
-            </button>
-          </div>
-
-          <!-- Photo Details with Interactive Elements -->
-          <div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Penyerahan Bantuan Sosial RW 05</h3>
-            <p class="text-gray-600 mb-6">Momen penyerahan bantuan sosial untuk warga kurang mampu di RW 05 yang dilaksanakan pada tanggal 15 Juli 2024. Kegiatan ini merupakan bagian dari program rutin Kelurahan Tanjungpinang Kota untuk membantu masyarakat yang membutuhkan.</p>
-
-            <!-- Interactive Stats -->
-            <div class="grid grid-cols-3 gap-4 mb-6">
-              <div class="bg-white p-4 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow cursor-pointer stat-item">
-                <div class="text-primary-600 text-2xl font-bold mb-1 stat-number" data-target="150">0</div>
-                <div class="text-gray-600 text-sm">Keluarga</div>
-              </div>
-              <div class="bg-white p-4 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow cursor-pointer stat-item">
-                <div class="text-primary-600 text-2xl font-bold mb-1 stat-number" data-target="24">0</div>
-                <div class="text-gray-600 text-sm">Relawan</div>
-              </div>
-              <div class="bg-white p-4 rounded-xl shadow-md text-center hover:shadow-lg transition-shadow cursor-pointer stat-item">
-                <div class="text-primary-600 text-2xl font-bold mb-1 stat-number" data-target="3200">0</div>
-                <div class="text-gray-600 text-sm">Views</div>
-              </div>
-            </div>
-
-            <!-- Tags with Hover Effects -->
-            <div class="flex flex-wrap gap-2 mb-6">
-              <a href="#" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors">#bansos</a>
-              <a href="#" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors">#rw05</a>
-              <a href="#" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors">#pedulisesama</a>
-              <a href="#" class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-primary-100 hover:text-primary-700 transition-colors">#tanjungpinangkota</a>
-            </div>
-
-            <!-- Social Sharing -->
-            <div class="flex items-center space-x-4">
-              <span class="text-gray-600">Bagikan:</span>
-              <a href="#" class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="w-8 h-8 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="w-8 h-8 bg-pink-600 text-white rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="#" class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
-                <i class="fab fa-whatsapp"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Monthly Timeline -->
     <section class="py-16 bg-gray-50">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
@@ -2104,9 +2170,7 @@
               </p>
         </div>
 
-        <!-- Modern Professional Timeline -->
         <div class="timeline-modern">
-          <!-- Timeline Item 1 -->
           <div class="timeline-modern-item">
             <div class="timeline-modern-icon">
               <i class="fas fa-road"></i>
@@ -2122,7 +2186,6 @@
             </div>
           </div>
 
-          <!-- Timeline Item 2 -->
           <div class="timeline-modern-item">
             <div class="timeline-modern-icon">
               <i class="fas fa-leaf"></i>
@@ -2138,7 +2201,6 @@
             </div>
           </div>
 
-          <!-- Timeline Item 3 -->
           <div class="timeline-modern-item">
             <div class="timeline-modern-icon">
               <i class="fas fa-hands-helping"></i>
@@ -2154,7 +2216,6 @@
             </div>
           </div>
 
-          <!-- Timeline Item 4 -->
           <div class="timeline-modern-item">
             <div class="timeline-modern-icon">
               <i class="fas fa-laptop-code"></i>
@@ -2170,7 +2231,6 @@
             </div>
           </div>
 
-          <!-- Timeline Item 5 -->
           <div class="timeline-modern-item">
             <div class="timeline-modern-icon">
               <i class="fas fa-user-md"></i>
@@ -2186,7 +2246,6 @@
             </div>
           </div>
 
-          <!-- Timeline Item 6 -->
           <div class="timeline-modern-item">
             <div class="timeline-modern-icon">
               <i class="fas fa-users"></i>
@@ -2203,7 +2262,6 @@
           </div>
         </div>
 
-        <!-- View All Button -->
         <div class="text-center mt-12">
           <button class="inline-flex items-center px-8 py-3 bg-white border-2 border-red-600 text-red-600 font-bold rounded-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1">
             <i class="fas fa-history mr-2"></i>
@@ -2214,11 +2272,9 @@
     </section>
   </main>
 
-  <!-- Footer Section -->
   <footer class="main-footer py-12 relative">
     <div class="container mx-auto px-4 relative z-10">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Footer Column 1 -->
         <div>
           <div class="flex items-center space-x-3 mb-6">
             <img
@@ -2261,7 +2317,6 @@
           </div>
         </div>
 
-        <!-- Footer Column 2 -->
         <div>
           <h3 class="text-lg font-semibold text-white mb-4">Tautan Cepat</h3>
           <ul class="space-y-2 footer-links">
@@ -2274,11 +2329,9 @@
             <li>
               <a href="download.html" class="text-gray-300">Download</a>
             </li>
-            <li><a href="contact.html" class="text-gray-300">Kontak</a></li>
           </ul>
         </div>
 
-        <!-- Footer Column 3 -->
         <div>
           <h3 class="text-lg font-semibold text-white mb-4">
             Layanan Publik
@@ -2297,7 +2350,6 @@
           </ul>
         </div>
 
-        <!-- Footer Column 4 -->
         <div>
           <h3 class="text-lg font-semibold text-white mb-4">Kontak Kami</h3>
           <ul class="space-y-3">
@@ -2343,14 +2395,12 @@
     </div>
   </footer>
 
-  <!-- Back to Top Button -->
   <button
     id="back-to-top"
     class="fixed bottom-8 right-8 bg-gradient-to-r from-primary-600 to-red-700 text-white p-4 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:from-red-700 hover:to-red-800 transform hover:scale-110">
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <!-- Floating Action Button -->
   <div class="fixed bottom-8 left-8 z-50 flex flex-col space-y-3">
     <button class="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary-600 hover:bg-gray-100 transition-colors fab-button">
       <i class="fas fa-share-alt"></i>
@@ -2363,7 +2413,6 @@
     </button>
   </div>
 
-  <!-- Lightbox Modal -->
   <div id="lightbox-modal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
     <button id="close-lightbox" class="absolute top-8 right-8 text-white text-4xl z-50">&times;</button>
     <div class="relative w-full max-w-6xl h-full max-h-[90vh] p-8">
@@ -2375,7 +2424,6 @@
     </div>
   </div>
 
-  <!-- Video Modal -->
   <div id="video-modal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
     <button id="close-video" class="absolute top-8 right-8 text-white text-4xl z-50">&times;</button>
     <div class="relative w-full max-w-4xl aspect-video bg-black">
@@ -2383,7 +2431,6 @@
     </div>
   </div>
 
-  <!-- Scripts -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
@@ -2393,105 +2440,6 @@
       easing: "ease-in-out",
       once: true,
     });
-
-    // Hero Slider functionality
-    function initHeroSlider() {
-      const heroSlider = document.querySelector('.gallery-hero-slider > div');
-      const slides = document.querySelectorAll('.gallery-hero-slider > div > div');
-      const prevBtn = document.querySelector('.gallery-hero-prev');
-      const nextBtn = document.querySelector('.gallery-hero-next');
-      let currentIndex = 0;
-      let autoSlideInterval;
-      const slideCount = slides.length;
-
-      // Setelah deklarasi slides dan heroSlider
-      const paginationContainer = document.querySelector('.gallery-hero-pagination');
-      paginationContainer.innerHTML = '';
-      slides.forEach((_, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'gallery-hero-page px-3 py-1 rounded font-bold bg-white/30 text-white';
-        btn.textContent = idx + 1;
-        btn.dataset.index = idx;
-        btn.addEventListener('click', () => {
-          currentIndex = idx;
-          updateSlider();
-          updatePagination();
-          stopAutoSlide();
-          startAutoSlide();
-        });
-        paginationContainer.appendChild(btn);
-      });
-
-      function updatePagination() {
-        const pages = paginationContainer.querySelectorAll('.gallery-hero-page');
-        pages.forEach((btn, idx) => {
-          btn.classList.toggle('bg-primary-600', idx === currentIndex);
-          btn.classList.toggle('text-white', idx === currentIndex);
-          btn.classList.toggle('bg-white/30', idx !== currentIndex);
-        });
-      }
-
-      // Panggil updatePagination() di updateSlider()
-      function updateSlider() {
-        heroSlider.style.transform = `translateX(-${currentIndex * 100}%)`;
-        updatePagination();
-      }
-
-      function nextSlide() {
-        currentIndex = (currentIndex + 1) % slideCount;
-        updateSlider();
-      }
-
-      function prevSlide() {
-        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-        updateSlider();
-      }
-
-      function startAutoSlide() {
-        autoSlideInterval = setInterval(nextSlide, 5000);
-      }
-
-      function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
-      }
-
-      // Initialize
-      updateSlider();
-      startAutoSlide();
-
-      // Event Listeners
-      if (nextBtn) nextBtn.addEventListener('click', () => {
-        nextSlide();
-        stopAutoSlide();
-        startAutoSlide();
-      });
-
-      if (prevBtn) prevBtn.addEventListener('click', () => {
-        prevSlide();
-        stopAutoSlide();
-        startAutoSlide();
-      });
-
-      // Pause on hover
-      heroSlider.addEventListener('mouseenter', stopAutoSlide);
-      heroSlider.addEventListener('mouseleave', startAutoSlide);
-
-      // Keyboard navigation
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') {
-          nextSlide();
-          stopAutoSlide();
-          startAutoSlide();
-        } else if (e.key === 'ArrowLeft') {
-          prevSlide();
-          stopAutoSlide();
-          startAutoSlide();
-        }
-      });
-    }
-
-    // Initialize on DOM ready
-    document.addEventListener('DOMContentLoaded', initHeroSlider);
 
     // Gallery Filter and Search Functionality
     function initGalleryFilters() {
@@ -2624,7 +2572,7 @@
               <div class="bg-white rounded-2xl overflow-hidden shadow-2xl">
                 <img src="${imgSrc}" alt="${imgAlt}" class="w-full max-h-[70vh] object-contain">
                 <div class="p-6">
-                  <h3 class="text-2xl font-bold text-gray-900 mb-2">${title}</h3>
+                  <h3 class="font-bold text-gray-900 text-lg mb-2">${title}</h3>
                   <p class="text-gray-600">${description}</p>
                   <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-200">
                     <div class="flex gap-4">
@@ -2672,7 +2620,7 @@
                   </div>
                 </div>
                 <div class="p-6">
-                  <h3 class="text-2xl font-bold text-gray-900 mb-2">${title}</h3>
+                  <h3 class="font-bold text-gray-900 text-lg mb-2">${title}</h3>
                   <div class="flex gap-4">
                     <button class="flex items-center gap-2 px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
                       <i class="fas fa-play"></i> Play Video
@@ -2776,7 +2724,6 @@
 
     // Initialize all functionality
     document.addEventListener('DOMContentLoaded', function() {
-      initHeroSlider();
       initGalleryFilters();
       initLightbox();
       initSmoothScroll();
@@ -2928,82 +2875,299 @@
     document.head.appendChild(style);
   </script>
 
-  <!-- Back to Top Button -->
+  <script>
+    class ModernCarousel {
+      constructor() {
+        this.currentSlide = 0;
+        this.totalSlides = 5;
+        this.slides = document.querySelectorAll('.slide-wrapper');
+        this.indicators = document.querySelectorAll('.indicator');
+        this.thumbnails = document.querySelectorAll('.thumbnail');
+        this.progressBar = document.getElementById('progressBar');
+        this.currentSlideNum = document.getElementById('currentSlideNum');
+        this.autoPlayToggle = document.getElementById('autoPlayToggle');
+        this.playIcon = document.getElementById('playIcon');
+
+        this.isAutoPlaying = true;
+        this.autoPlayInterval = null;
+        this.progressInterval = null;
+        this.autoPlayDuration = 6000;
+
+        this.init();
+      }
+
+      init() {
+        // Navigation buttons
+        document.getElementById('prevBtn').addEventListener('click', () => this.prevSlide());
+        document.getElementById('nextBtn').addEventListener('click', () => this.nextSlide());
+
+        // Indicators
+        this.indicators.forEach((indicator, index) => {
+          indicator.addEventListener('click', () => this.goToSlide(index));
+        });
+
+        // Thumbnails
+        this.thumbnails.forEach((thumbnail, index) => {
+          thumbnail.addEventListener('click', () => this.goToSlide(index));
+        });
+
+        // Auto play toggle
+        this.autoPlayToggle.addEventListener('click', () => this.toggleAutoPlay());
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') this.prevSlide();
+          if (e.key === 'ArrowRight') this.nextSlide();
+          if (e.key === ' ') {
+            e.preventDefault();
+            this.toggleAutoPlay();
+          }
+        });
+
+        // Touch/swipe support
+        let startX = 0;
+        let endX = 0;
+
+        document.querySelector('.carousel-container').addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+        }, { passive: true });
+
+        document.querySelector('.carousel-container').addEventListener('touchend', (e) => {
+          endX = e.changedTouches[0].clientX;
+          const diff = startX - endX;
+
+          if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+              this.nextSlide();
+            } else {
+              this.prevSlide();
+            }
+          }
+        }, { passive: true });
+
+        // Mouse wheel navigation
+        document.querySelector('.carousel-container').addEventListener('wheel', (e) => {
+            e.preventDefault();
+            if (Math.abs(e.deltaY) > 50) {
+              if (e.deltaY > 0) {
+                this.nextSlide();
+              } else {
+                this.prevSlide();
+              }
+            }
+        }, { passive: false });
+
+
+        // Start auto play
+        this.startAutoPlay();
+
+        // Pause on hover
+        const carousel = document.querySelector('.carousel-container');
+        carousel.addEventListener('mouseenter', () => {
+          if (this.isAutoPlaying) this.pauseAutoPlay();
+        });
+        carousel.addEventListener('mouseleave', () => {
+          if (this.isAutoPlaying) this.startAutoPlay();
+        });
+      }
+
+      goToSlide(slideIndex) {
+        if (slideIndex === this.currentSlide) return;
+
+        // Update slide positions
+        this.slides.forEach((slide, index) => {
+          slide.classList.remove('slide-active', 'slide-next', 'slide-prev', 'slide-hidden');
+
+          if (index === slideIndex) {
+            slide.classList.add('slide-active');
+          } else if (index === (slideIndex + 1) % this.totalSlides) {
+            slide.classList.add('slide-next');
+          } else if (index === (slideIndex - 1 + this.totalSlides) % this.totalSlides) {
+            slide.classList.add('slide-prev');
+          } else {
+            slide.classList.add('slide-hidden');
+          }
+        });
+
+        this.currentSlide = slideIndex;
+        this.updateUI();
+        this.resetProgress();
+      }
+
+      nextSlide() {
+        const nextIndex = (this.currentSlide + 1) % this.totalSlides;
+        this.goToSlide(nextIndex);
+      }
+
+      prevSlide() {
+        const prevIndex = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+        this.goToSlide(prevIndex);
+      }
+
+      updateUI() {
+        // Update indicators
+        this.indicators.forEach((indicator, index) => {
+          indicator.classList.toggle('active', index === this.currentSlide);
+        });
+
+        // Update thumbnails
+        this.thumbnails.forEach((thumbnail, index) => {
+          thumbnail.classList.toggle('active', index === this.currentSlide);
+        });
+
+        // Update slide counter
+        this.currentSlideNum.textContent = String(this.currentSlide + 1).padStart(2, '0');
+      }
+
+      startAutoPlay() {
+        if (!this.isAutoPlaying) return;
+
+        this.pauseAutoPlay();
+
+        this.autoPlayInterval = setInterval(() => {
+          this.nextSlide();
+        }, this.autoPlayDuration);
+
+        this.startProgress();
+      }
+
+      pauseAutoPlay() {
+        if (this.autoPlayInterval) {
+          clearInterval(this.autoPlayInterval);
+          this.autoPlayInterval = null;
+        }
+
+        if (this.progressInterval) {
+          clearInterval(this.progressInterval);
+          this.progressInterval = null;
+        }
+      }
+
+      toggleAutoPlay() {
+        this.isAutoPlaying = !this.isAutoPlaying;
+        this.playIcon.textContent = this.isAutoPlaying ? '⏸️' : '▶️';
+
+        if (this.isAutoPlaying) {
+          this.startAutoPlay();
+        } else {
+          this.pauseAutoPlay();
+          this.progressBar.style.width = '0%';
+        }
+      }
+
+      startProgress() {
+        let progress = 0;
+        const increment = 100 / (this.autoPlayDuration / 50);
+
+        this.progressInterval = setInterval(() => {
+          progress += increment;
+          this.progressBar.style.width = progress + '%';
+
+          if (progress >= 100) {
+            progress = 0;
+          }
+        }, 50);
+      }
+
+      resetProgress() {
+        this.progressBar.style.width = '0%';
+        if (this.progressInterval) {
+          clearInterval(this.progressInterval);
+        }
+        if (this.isAutoPlaying) {
+          this.startProgress();
+        }
+      }
+    }
+
+    // Initialize carousel
+    document.addEventListener('DOMContentLoaded', () => {
+      new ModernCarousel();
+    });
+  </script>
   <button class="back-to-top">
     <i class="fas fa-arrow-up"></i>
   </button>
-<!-- Popup Container (Hidden by Default) -->
-<div id="visitorPopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full">
-  <div class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-56 relative">
-    <!-- Close Button (Positioned perfectly outside but attached) -->
-    <button id="closePopup" class="absolute -left-10 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-3 py-4 rounded-l-lg shadow-lg hover:bg-red-600 transition border-t border-b border-l border-gray-200">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
-    
-    <!-- Content -->
-    <div class="p-3 text-center">  <!-- Added text-center here -->
-      <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
-        <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
-        <p class="text-red-100 text-xs">Jumlah kunjungan website</p>
-      </div>
+
+  <!-- Visitor Stats Popup (Hidden by Default) -->
+  <div id="visitorPopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full">
+    <div class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-56 relative">
+      <!-- Close Button (Positioned perfectly outside but attached) -->
+      <button id="closePopup" class="absolute -left-10 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-3 py-4 rounded-l-lg shadow-lg hover:bg-red-600 transition border-t border-b border-l border-gray-200">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
       
-      <div class="py-2">
-        <div class="mb-3">
-          <h4 class="font-semibold text-gray-700 text-xs">Total Visitor</h4>
-          <p class="text-xl font-bold">262.522</p>
-          <p class="text-green-500 text-xs">10 Online</p>
+      <!-- Content -->
+      <div class="p-3 text-center">
+        <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
+          <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
+          <p class="text-red-100 text-xs">Jumlah kunjungan website</p>
         </div>
         
-        <div>
-          <h4 class="font-semibold text-gray-700 text-xs">Total View</h4>
-          <p class="text-xl font-bold">1.408.960</p>
+        <div class="py-2">
+          <div class="mb-3">
+            <h4 class="font-semibold text-gray-700 text-xs">Total Visitor</h4>
+            <p class="text-xl font-bold">262.522</p>
+            <p class="text-green-500 text-xs">10 Online</p>
+          </div>
+          
+          <div>
+            <h4 class="font-semibold text-gray-700 text-xs">Total View</h4>
+            <p class="text-xl font-bold">1.408.960</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Open Button (Right Edge) -->
-<button id="togglePopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-3 py-4 rounded-l-lg shadow-lg z-40 hover:bg-red-600 transition">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
-  </svg>
-</button>
+  <!-- Open Button (Right Edge) -->
+  <button id="togglePopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-3 py-4 rounded-l-lg shadow-lg z-40 hover:bg-red-600 transition">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
 
-<script>
-  const toggleButton = document.getElementById('togglePopup');
-  const closeButton = document.getElementById('closePopup');
-  const popup = document.getElementById('visitorPopup');
+  <script>
+    // Visitor Stats Toggle Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const toggleButton = document.getElementById('togglePopup');
+      const closeButton = document.getElementById('closePopup');
+      const popup = document.getElementById('visitorPopup');
 
-  // Open popup with bounce effect
-  toggleButton.addEventListener('click', function() {
-    popup.classList.remove('hidden');
-    setTimeout(() => {
-      popup.classList.remove('translate-x-full');
-      popup.classList.add('animate-[bounceInRight_0.3s]');
-    }, 10);
-  });
+      // Open popup with bounce effect
+      if (toggleButton) {
+        toggleButton.addEventListener('click', function() {
+          popup.classList.remove('hidden');
+          setTimeout(() => {
+            popup.classList.remove('translate-x-full');
+            popup.classList.add('animate-[bounceInRight_0.3s]');
+          }, 10);
+        });
+      }
 
-  // Close popup with slide out
-  closeButton.addEventListener('click', function() {
-    popup.classList.add('translate-x-full');
-    popup.classList.remove('animate-[bounceInRight_0.3s]');
-    setTimeout(() => {
-      popup.classList.add('hidden');
-    }, 300);
-  });
-</script>
+      // Close popup with slide out
+      if (closeButton) {
+        closeButton.addEventListener('click', function() {
+          popup.classList.add('translate-x-full');
+          popup.classList.remove('animate-[bounceInRight_0.3s]');
+          setTimeout(() => {
+            popup.classList.add('hidden');
+          }, 300);
+        });
+      }
+    });
+  </script>
 
-<style>
-  @keyframes bounceInRight {
-    0% { transform: translateX(100%) translateY(-50%); }
-    60% { transform: translateX(-10px) translateY(-50%); }
-    80% { transform: translateX(5px) translateY(-50%); }
-    100% { transform: translateX(0) translateY(-50%); }
-  }
-</style>
+  <style>
+    @keyframes bounceInRight {
+      0% { transform: translateX(100%) translateY(-50%); }
+      60% { transform: translateX(-10px) translateY(-50%); }
+      80% { transform: translateX(5px) translateY(-50%); }
+      100% { transform: translateX(0) translateY(-50%); }
+    }
+  </style>
 </body>
 
 </html>
