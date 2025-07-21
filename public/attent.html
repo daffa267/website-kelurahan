@@ -61,7 +61,7 @@
 
         /* Header Styles */
         .modern-header {
-            position: sticky !important;
+            position: fixed !important;
             top: 0;
             left: 0;
             right: 0;
@@ -1255,24 +1255,41 @@
             </div>
         </div>
     </header>
-            <div class="hero-banner h-96">
-                    <div class="hero-slide active" style="background-image: url('./images/bn3.png');"></div>
-
-                    <div class="hero-slide" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg');"></div>
-
-                    <div class="hero-slide" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1717577239_ba55e5551c63f1be75f7.jpg');"></div>
-
-                    <div class="hero-content animate-fade-in">
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-lg leading-tight">Pengumuman Kelurahan Tanjung Pinang Kota</h1>
-                        <p class="text-xl md:text-2xl mb-8 text-white/90 drop-shadow-lg max-w-2xl mx-auto">Informasi resmi dan terverifikasi untuk warga</p>
-                    </div>
-
-                    <div class="absolute bottom-12 left-0 right-0 z-10 flex justify-center">
-                        <a href="#content" class="items-center justify-cente">
-                            <i class="fas fa-ellipsis-h text-white text-5xl"></i>
-                        </a>
-                    </div>
+            <div class="hero-banner h-[500px] relative">
+                <!-- Left Arrow -->
+                <div class="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+                    </svg>
                 </div>
+
+                <!-- Slides -->
+                <div class="hero-slide active" style="background-image: url('./images/bnn.png');"></div>
+                <div class="hero-slide" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg');"></div>
+                <div class="hero-slide" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1717577239_ba55e5551c63f1be75f7.jpg');"></div>
+
+                <!-- Content -->
+                <div class="hero-content animate-fade-in mt-14 md:mt-24">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-lg leading-tight">Pengumuman Kelurahan Tanjung Pinang Kota</h1>
+                    <p class="text-xl md:text-2xl mb-8 text-white/90 drop-shadow-lg max-w-2xl mx-auto">Informasi resmi dan terverifikasi untuk warga</p>
+                </div>
+
+                <!-- Right Arrow -->
+                <div class="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+
+                <!-- Dots Indicator -->
+                <div class="absolute bottom-10 left-0 right-0 z-10 flex justify-center">
+                    <a href="#content" class="items-center justify-center flex space-x-2">
+                        <span class="w-4 h-4 rounded-full bg-white"></span>
+                        <span class="w-4 h-4 rounded-full border border-white"></span>
+                        <span class="w-4 h-4 rounded-full border border-white"></span>
+                    </a>
+                </div>
+            </div>
 
                 <main id="content" class="fixed-container py-8 md:py-16">
                     <section class="mb-8">
@@ -1999,7 +2016,7 @@
 
             <div class="border-t border-gray-700 mt-12 pt-8 text-center">
                 <p class="text-gray-400 text-sm">
-                    © 2024 Kelurahan Tanjungpinang Kota. Seluruh hak cipta dilindungi.
+                    @ Made by Kerja Praktik UMRAH 2025.
                 </p>
             </div>
         </div>
@@ -2053,5 +2070,65 @@
             });
         });
     </script>
+<!-- Popup Container (Hidden by Default) -->
+<div id="visitorPopup" class="fixed bottom-20 right-4 z-50 hidden transform transition-all duration-300 ease-out translate-y-10 opacity-0">
+  <div class="bg-white rounded-lg shadow-xl overflow-hidden w-64 border border-gray-200">
+    <!-- Header -->
+    <div class="bg-red-600 px-4 py-3">
+      <h3 class="text-white font-bold text-lg">Statistik Kunjungan</h3>
+      <p class="text-red-100 text-sm">Perhitungan jumlah kunjungan website</p>
+    </div>
+    
+    <!-- Content -->
+    <div class="p-4">
+      <div class="mb-4">
+        <h4 class="font-semibold text-gray-700">Total Visitor</h4>
+        <p class="text-2xl font-bold">262.522</p>
+        <p class="text-green-500 text-sm">10 Online</p>
+      </div>
+      
+      <div class="mb-2">
+        <h4 class="font-semibold text-gray-700">Total View</h4>
+        <p class="text-2xl font-bold">1.408.960</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toggle Button (Fixed position without vertical movement) -->
+<button id="togglePopup" class="fixed bottom-8 right-8 bg-red-500 text-white p-3 rounded-full shadow-lg z-50 hover:bg-red-600 transition-transform duration-300">
+  <svg id="popupIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+  </svg>
+</button>
+
+<script>
+  const toggleButton = document.getElementById('togglePopup');
+  const popup = document.getElementById('visitorPopup');
+  const popupIcon = document.getElementById('popupIcon');
+  let isOpen = false;
+
+  toggleButton.addEventListener('click', function() {
+    isOpen = !isOpen;
+    
+    // Toggle popup animation (slide up/down with fade)
+    if(isOpen) {
+      popup.classList.remove('hidden');
+      setTimeout(() => {
+        popup.classList.remove('translate-y-10');
+        popup.classList.remove('opacity-0');
+      }, 10);
+    } else {
+      popup.classList.add('translate-y-10');
+      popup.classList.add('opacity-0');
+      setTimeout(() => {
+        popup.classList.add('hidden');
+      }, 300);
+    }
+    
+    // Only rotate the icon (button stays in place)
+    popupIcon.style.transform = isOpen ? 'rotate(90deg)' : 'rotate(0deg)';
+  });
+</script>
 </body>
 </html>
