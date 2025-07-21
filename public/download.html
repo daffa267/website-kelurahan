@@ -1188,9 +1188,6 @@
                         <a href="download.html" class="nav-item active">
                             <i class="fas fa-download mr-2"></i> Download
                         </a>
-                        <a href="contact.html" class="nav-item">
-                            <i class="fas fa-envelope mr-2"></i> Kontak
-                        </a>
                     </div>
 
                     <a href="https://icms.tanjungpinangkota.go.id"
@@ -1221,9 +1218,6 @@
                         <a href="download.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
                             <i class="fas fa-download mr-3"></i> Download
                         </a>
-                        <a href="contact.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
-                            <i class="fas fa-envelope mr-3"></i> Kontak
-                        </a>
                         <div class="pt-2">
                             <a href="https://icms.tanjungpinangkota.go.id" class="btn-primary block text-center py-3">
                                 <i class="fas fa-sign-in-alt mr-2"></i> Login Admin
@@ -1234,16 +1228,62 @@
             </div>
         </div>
     </header>
+     <div class="hero-banner h-96">
+            <div class="hero-slide active" style="background-image: url('./images/bn3.png');"></div>
+
+            <div class="hero-slide" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg');"></div>
+
+            <div class="hero-slide" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1717577239_ba55e5551c63f1be75f7.jpg');"></div>
+
+            <div class="hero-content animate-fade-in">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-lg leading-tight">Pusat Unduhan Dokumen</h1>
+                <p class="text-xl md:text-2xl mb-8 text-white/90 drop-shadow-lg max-w-2xl mx-auto">Temukan semua formulir dan dokumen resmi Kelurahan Tanjung Pinang Kota</p>
+            </div>
+
+            <div class="absolute bottom-12 left-0 right-0 z-10 flex justify-center">
+                <a href="#content" class="items-center justify-cente">
+                    <i class="fas fa-ellipsis-h text-white text-5xl"></i>
+                </a>
+            </div>
+        </div>
         <main id="content" class="fixed-container py-8 md:py-16">
-            <section class="mb-8">
-               <div class="mb-8">
-                    <div class="flex items-center">
-                        <h1 class="text-2xl md:text-3xl font-semibold text-gray-800 flex-shrink-0">
-                            <i class="fas fa-download text-black-600 mr-2"></i> Download Area
-                        </h1>
-                        <div class="ml-4 w-full border-t-2 border-gray-200 pt-0.5"></div>
+                    <section class="mb-8">
+                    <div class="mb-8">
+                    <div class="flex flex-col md:flex-row md:items-end gap-4"> 
+                        <div class="flex items-center flex-1 min-w-0"> <!-- flex-1 dan min-w-0 agar bisa shrink -->
+                            <h1 class="text-2xl md:text-3xl font-semibold text-black whitespace-nowrap"><i class="fas fa-cloud-download text-black mr-4"></i>Download Area</h1>
+                            <div class="ml-4 w-full pt-0.5"></div>
+                        </div>
+                        
+                        <!-- Search and Filter Section - sekarang sejajar dengan judul -->
+                        <div class="flex flex-col md:flex-row md:items-center gap-4 flex-1 md:flex-none justify-end">
+                            <!-- Search Bar -->
+                            <div class="relative w-full md:w-64">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-search text-gray-400 text-sm"></i>
+                                </div>
+                                <input type="text" 
+                                    class="block w-full pl-8 pr-3 py-3 border border-gray-200 rounded-lg transition-all duration-200 text-sm" 
+                                    placeholder="Cari pengumuman...">
+                            </div>
+                            
+                            <!-- Filter Dropdown -->
+                            <div class="relative w-full md:w-48">
+                                <select class="appearance-none bg-white border border-gray-200 rounded-lg px-3 py-3 pr-8 w-full transition-all duration-200 text-sm">
+                                    <option>Semua</option>
+                                    <option>2025</option>
+                                    <option>2024</option>
+                                    <option>2023</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                    <i class="fas fa-chevron-down text-gray-400 text-sm"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                    </div>
+                </div>   
 
                 <!-- Page 1 (Visible by default) -->
                 <div id="page1" class="announcement-page grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
