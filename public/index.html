@@ -44,6 +44,21 @@
             line-height: 1.6;
         }
 
+        /* Batik Background */
+        /* body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0V0zm10 10h80v80H10V10zm10 10h60v60H20V20zm10 10h40v40H30V30zm10 10h20v20H40V40z' fill='%23800020' fill-opacity='0.2' fill-rule='evenodd'/%3E%3Cpath d='M20 20l60 60M20 80l60-60M50 20l0 60M20 50l60 0' stroke='%23800020' stroke-width='1' stroke-opacity='0.2'/%3E%3C/svg%3E");
+            background-size: 150px;
+            background-repeat: repeat;
+        } */
+
         @font-face {
             font-family: 'Inter';
             font-style: normal;
@@ -61,13 +76,13 @@
 
         /* Header Styles */
         .modern-header {
-            position: sticky !important;
+            position: fixed !important;
             top: 0;
             left: 0;
             right: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(24,24,24,0.45);
+            background: rgba(24, 24, 24, 0.45);
             backdrop-filter: blur(14px);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
@@ -166,27 +181,36 @@
         /* Hero Banner */
         .hero-banner {
             position: relative;
-            height: calc(100vh - 90px); /* 90px = tinggi header */
-            min-height: 410px;
-            max-height: 100vh;
+            height: 100vh;
+            min-height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 0;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             text-align: center;
-            margin: 0 !important;
-            padding: 0 !important;
-            border: none;
         }
+
         @media (max-width: 768px) {
             .hero-banner {
                 min-height: 250px;
                 height: calc(85vh - 60px); /* 60px header mobile */
             }
         }
+
         .hero-banner .hero-slide {
-            background-position: top center !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: top; 
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
         }
 
         .hero-banner::before {
@@ -214,7 +238,7 @@
             width: 100%;
             height: 100%;
             background-size: cover;
-            background-position: top center;
+            background-position: top;
             opacity: 0;
             transition: opacity 1.5s ease-in-out;
         }
@@ -764,7 +788,7 @@
         .gallery-image {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             transition: transform 0.7s ease;
         }
 
@@ -1106,53 +1130,85 @@
         .service-card {
             padding: 24px;
         }
-</style>
-<style>
-    /* Tambahan untuk sosial vertikal di banner */
-    .hero-banner .social-vertical {
-        left: 2rem;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-    @media (max-width: 768px) {
+    </style>
+    <style>
+        /* Tambahan untuk sosial vertikal di banner */
         .hero-banner .social-vertical {
-            left: 0.5rem;
-            top: auto;
-            bottom: 1rem;
-            flex-direction: row;
-            right: auto;
-            transform: none;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
         }
-    }
-    /* Custom Header Blur & Hover */
-    .custom-header-blur {
-        background: rgba(255,255,255,0.05);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-        transition: background 0.3s;
-    }
-    .custom-header-blur:hover,
-    .custom-header-blur:focus-within {
-        background: rgba(220,38,38,0.93); /* merah (red-600) */
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
-    }
-    .custom-header-blur .text-white {
-        transition: color 0.3s;
-    }
-    .custom-header-blur:hover .text-white {
-        color: #fff;
-    }
-    @media (max-width: 640px) {
-        .custom-header-blur .floating img {
-            height: 2.25rem !important; /* h-9 */
-            width: 2.25rem !important;  /* w-9 */
+        @media (max-width: 768px) {
+            .hero-banner .social-vertical {
+                left: 0.5rem;
+                top: auto;
+                bottom: 1rem;
+                flex-direction: row;
+                right: auto;
+                transform: none;
+            }
         }
-        .custom-header-blur span {
-            font-size: 0.8rem !important;
+        /* Custom Header Blur & Hover */
+        .custom-header-blur {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            transition: background 0.3s;
         }
-    }
-</style>
+        .custom-header-blur:hover,
+        .custom-header-blur:focus-within {
+            background: rgba(220,38,38,0.93); /* merah (red-600) */
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+        .custom-header-blur .text-white {
+            transition: color 0.3s;
+        }
+        .custom-header-blur:hover .text-white {
+            color: #fff;
+        }
+        @media (max-width: 640px) {
+            .custom-header-blur .floating img {
+                height: 2.25rem !important; /* h-9 */
+                width: 2.25rem !important;  /* w-9 */
+            }
+            .custom-header-blur span {
+                font-size: 0.8rem !important;
+            }
+        }
+    </style>
+    <style>
+        #carousel-banner {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 400px; /* Fixed height for consistency */
+        }
+        #carousel-banner .carousel-slides {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        #carousel-banner .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        #carousel-banner .carousel-img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            margin: 0 auto;
+            display: block;
+        }
+        #carousel-banner .carousel-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f5f5;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50">
@@ -1188,13 +1244,10 @@
                         <a href="download.html" class="nav-item">
                             <i class="fas fa-download mr-2"></i> Download
                         </a>
-                        <a href="contact.html" class="nav-item">
-                            <i class="fas fa-envelope mr-2"></i> Kontak
-                        </a>
                     </div>
 
                     <a href="https://icms.tanjungpinangkota.go.id"
-                        class="glass-card px-6 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 hover:scale-105 flex items-center">
+                        class="glass-card px-6 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 flex items-center">
                         <i class="fas fa-sign-in-alt mr-2 text-white"></i>
                         <span class="text-white font-medium">Login</span>
                     </a>
@@ -1220,9 +1273,6 @@
                         </a>
                         <a href="download.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
                             <i class="fas fa-download mr-3"></i> Download
-                        </a>
-                        <a href="contact.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
-                            <i class="fas fa-envelope mr-3"></i> Kontak
                         </a>
                         <div class="pt-2">
                             <a href="https://icms.tanjungpinangkota.go.id" class="btn-primary block text-center py-3">
@@ -1295,9 +1345,6 @@
                 </a>
                 <a href="download.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
                     <i class="fas fa-download mr-3"></i> Download
-                </a>
-                <a href="contact.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
-                    <i class="fas fa-envelope mr-3"></i> Kontak
                 </a>
                 <div class="pt-2">
                     <a href="https://icms.tanjungpinangkota.go.id" class="btn-primary block text-center py-3">
@@ -1535,152 +1582,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Carousel Banner Tambahan -->
-        <style>
-            #carousel-banner {
-                width: 100%;
-                max-width: 1920px; /* Sesuai lebar banner */
-                height: 384px; /* Sesuai tinggi banner */
-                margin: 0 auto 2rem;
-                overflow: hidden;
-                position: relative;
-                box-shadow: 0 4px 30px rgba(0,0,0,0.13);
-                background: #f0f0f0;
-            }
-            
-            #carousel-banner .carousel-slides {
-                display: flex;
-                width: 300%;
-                height: 100%;
-                transition: transform 0.7s ease-in-out;
-            }
-            
-            #carousel-banner .carousel-slide {
-                width: 100%;
-                height: 100%;
-                flex: 1 0 100%;
-                position: relative;
-            }
-            
-            #carousel-banner .carousel-img {
-                width: 100%;
-                height: 100%;
-                object-fit: contain; /* Tampilkan seluruh gambar tanpa crop */
-                object-position: center;
-                display: block;
-            }
-            
-            #carousel-banner .carousel-caption {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                padding: 1.5rem;
-                background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-                color: white;
-            }
-            
-            #carousel-banner .carousel-controls {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                padding: 0 1rem;
-                z-index: 10;
-            }
-            
-            #carousel-banner .carousel-indicators {
-                position: absolute;
-                bottom: 1rem;
-                left: 50%;
-                transform: translateX(-50%);
-                display: flex;
-                gap: 0.5rem;
-                z-index: 10;
-            }
-            
-            #carousel-banner .carousel-indicator {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background-color: rgba(255,255,255,0.5);
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-            
-            #carousel-banner .carousel-indicator.active {
-                background-color: white;
-                width: 20px;
-                border-radius: 5px;
-            }
-            
-            @media (max-width: 1920px) {
-                #carousel-banner {
-                    height: calc(384 * 100vw / 1920); /* Menjaga rasio tinggi */
-                }
-            }
-            
-            @media (max-width: 768px) {
-                #carousel-banner .carousel-caption {
-                    padding: 1rem;
-                }
-                
-                #carousel-banner .carousel-caption h3 {
-                    font-size: 1rem;
-                }
-                
-                #carousel-banner .carousel-caption p {
-                    display: none;
-                }
-            }
-        </style>
-        
-        <div id="carousel-banner" class="mb-8">
-            <div class="carousel-slides">
-                <!-- Slide 1 -->
-                <div class="carousel-slide">
-                    <img src="images/banner lurah.jpg" alt="Banner 1" class="carousel-img">
-                    <div class="carousel-caption">
-                        <h3 class="text-xl font-bold">Selamat Datang di Kelurahan Kami</h3>
-                        <p>Layanan terbaik untuk warga</p>
-                    </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="carousel-slide">
-                    <img src="images/excel.jpg" alt="Banner 2" class="carousel-img">
-                    <div class="carousel-caption">
-                        <h3 class="text-xl font-bold">Layanan Administrasi</h3>
-                        <p>Pengurusan dokumen dengan cepat dan mudah</p>
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="carousel-slide">
-                    <img src="images/pdf.jpg" alt="Banner 3" class="carousel-img">
-                    <div class="carousel-caption">
-                        <h3 class="text-xl font-bold">Informasi Terkini</h3>
-                        <p>Update terbaru seputar kelurahan</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="carousel-controls">
-                <button class="carousel-prev w-10 h-10 rounded-full bg-white/80 hover:bg-white text-gray-800 flex items-center justify-center shadow-md">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-next w-10 h-10 rounded-full bg-white/80 hover:bg-white text-gray-800 flex items-center justify-center shadow-md">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            
-            <div class="carousel-indicators">
-                <button class="carousel-indicator active" data-slide="0"></button>
-                <button class="carousel-indicator" data-slide="1"></button>
-                <button class="carousel-indicator" data-slide="2"></button>
-            </div>
-        </div>
         
         <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1697,10 +1598,10 @@
             const slideInterval = 5000; // 5 detik
             
             // Clone slide pertama dan terakhir untuk efek loop mulus
-            const firstSlide = slideItems[0].cloneNode(true);
-            const lastSlide = slideItems[slideCount - 1].cloneNode(true);
-            slides.appendChild(firstSlide);
-            slides.insertBefore(lastSlide, slideItems[0]);
+            const firstClone = slideItems[0].cloneNode(true);
+            const lastClone = slideItems[slideCount - 1].cloneNode(true);
+            slides.appendChild(firstClone);
+            slides.insertBefore(lastClone, slideItems[0]);
             
             // Update total slide count
             const totalSlides = slideCount + 2;
@@ -1718,7 +1619,7 @@
                     // Trigger reflow
                     void slides.offsetWidth;
                     currentIndex = slideCount - 1;
-                    slides.style.transition = 'transform 0.7s ease-in-out';
+                    slides.style.transition = 'transform 0.5s ease';
                     slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
                 } 
                 // Jika mencapai clone slide terakhir (index slideCount), geser ke slide pertama asli
@@ -1728,7 +1629,7 @@
                     // Trigger reflow
                     void slides.offsetWidth;
                     currentIndex = 0;
-                    slides.style.transition = 'transform 0.7s ease-in-out';
+                    slides.style.transition = 'transform 0.5s ease';
                     slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
                 } 
                 // Slide normal
@@ -2153,7 +2054,6 @@
                         <li><a href="#" class="text-gray-300">Struktur Organisasi</a></li>
                         <li><a href="#" class="text-gray-300">Berita & Pengumuman</a></li>
                         <li><a href="#" class="text-gray-300">Galeri Kegiatan</a></li>
-                        <li><a href="#" class="text-gray-300">Kontak Kami</a></li>
                     </ul>
                 </div>
 
@@ -2194,7 +2094,7 @@
 
             <div class="border-t border-gray-700 mt-12 pt-8 text-center">
                 <p class="text-gray-400 text-sm">
-                    © 2024 Kelurahan Tanjungpinang Kota. Seluruh hak cipta dilindungi.
+                    2024 Kelurahan Tanjungpinang Kota. Seluruh hak cipta dilindungi.
                 </p>
             </div>
         </div>
