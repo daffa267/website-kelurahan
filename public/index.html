@@ -16,11 +16,16 @@
 
     <style>
         /* Header berubah merah solid saat scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
         .modern-header.scrolled {
             background: var(--primary-900) !important;
             backdrop-filter: none !important;
             transition: background 0.3s, backdrop-filter 0.3s;
         }
+
         :root {
             --primary-900: #800020; /* Deep maroon */
             --primary-800: #900030;
@@ -482,6 +487,8 @@
             border-radius: 16px;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             cursor: grab;
+            width: 100%;
+            max-width: 100%;
         }
 
         .news-carousel-track {
@@ -578,6 +585,7 @@
         .news-tab-content {
             display: none;
             animation: fadeIn 0.5s ease-in-out;
+            overflow: visible;
         }
 
         .news-tab-content.active {
@@ -589,6 +597,8 @@
             padding: 8px 12px;
             border-radius: 8px;
             transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .news-list-item:hover {
@@ -1326,8 +1336,8 @@
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-lg leading-tight">Selamat Datang di <span class="text-accent-color">Kelurahan Tanjungpinang Kota</span></h1>
             <p class="text-xl md:text-2xl mb-8 text-white/90 drop-shadow-lg max-w-2xl mx-auto">Melayani dengan hati untuk masyarakat yang sejahtera dan mandiri</p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#berita" class="btn-primary">
-                    <i class="fas fa-newspaper mr-2"></i> Berita Terkini
+                <a href="#berita-final" class="btn-primary">
+                    <i class="fas fa-newspaper mr-2"></i> Berita Utama
                 </a>
                 
                 <a href="#layanan" class="glass-card px-6 py-3 rounded-full text-white font-medium hover:bg-white/20 hover:scale-105 transition-all">
@@ -1372,7 +1382,7 @@
 
     <main id="content" class="fixed-container py-16">
 
-        <section class="mb-20" data-aos="fade-up">
+        <section id="berita-final" class="mb-20" data-aos="fade-up">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="stat-card group" data-aos="fade-up" data-aos-delay="100">
                     <div class="stat-number animate-bounce-slow">5,102</div>
@@ -1511,7 +1521,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="overflow-y-auto" style="max-height: 280px;">
+                                <div class="overflow-visible" style="width: 100%;">
                                     <!-- Konten Tab Terkini -->
                                     <div id="terkini" class="news-tab-content active">
                                         <ul class="space-y-3">
@@ -2027,11 +2037,11 @@
                 <div>
                     <h3 class="text-white text-xl font-bold mb-6">Tautan Cepat</h3>
                     <ul class="space-y-3 footer-links">
-                        <li><a href="index.html" class="text-gray-300">Beranda</a></li>
-                        <li><a href="news.html" class="text-gray-300">Berita</a></li>
-                        <li><a href="attent.html" class="text-gray-300">Pengumuman</a></li>
-                        <li><a href="gallery.html" class="text-gray-300">Galeri</a></li>
-                        <li><a href="download.html" class="text-gray-300">Download</a></li>
+                        <li><a href="#" class="text-gray-300">Beranda</a></li>
+                        <li><a href="#" class="text-gray-300">Berita</a></li>
+                        <li><a href="#" class="text-gray-300">Pengumuman</a></li>
+                        <li><a href="#" class="text-gray-300">Galeri</a></li>
+                        <li><a href="#" class="text-gray-300">Download</a></li>
                     </ul>
                 </div>
 
@@ -2072,7 +2082,7 @@
 
             <div class="border-t border-gray-700 mt-12 pt-8 text-center">
                 <p class="text-gray-400 text-sm">
-                    @ Made by Kerja Praktik UMRAH 2025.
+                    2024 Kelurahan Tanjungpinang Kota. Seluruh hak cipta dilindungi.
                 </p>
             </div>
         </div>
@@ -2495,6 +2505,26 @@
                 } else {
                     header.classList.remove("scrolled");
                 }
+            });
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update URL tanpa reload halaman
+                        history.pushState(null, null, targetId);
+                    }
+                });
             });
 
             // News Tabs functionality
