@@ -638,9 +638,6 @@
               <a href="download.html" class="nav-item">
                 <i class="fas fa-download mr-2"></i> Download
               </a>
-              <a href="contact.html" class="nav-item">
-                <i class="fas fa-envelope mr-2"></i> Kontak
-              </a>
             </div>
 
             <a
@@ -690,12 +687,6 @@
                 class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
               >
                 <i class="fas fa-download mr-3"></i> Download
-              </a>
-              <a
-                href="contact.html"
-                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <i class="fas fa-envelope mr-3"></i> Kontak
               </a>
               <div class="pt-2">
                 <a
@@ -1094,22 +1085,28 @@
                 <h3 class="text-2xl font-bold text-gray-900 mb-6">
                   Dokumentasi Sosialisasi
                 </h3>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&h=600&auto=format&fit=crop"
-                    alt="Peserta sosialisasi"
-                    class="rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                  />
-                  <img
-                    src="https://images.unsplash.com/photo-1581093196279-1a6dd8a5e4a1?q=80&w=800&h=600&auto=format&fit=crop"
-                    alt="Demo penggunaan E-KTP Digital"
-                    class="rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                  />
-                  <img
-                    src="https://images.unsplash.com/photo-1581094794329-c811329b7821?q=80&w=800&h=600&auto=format&fit=crop"
-                    alt="Sesi tanya jawab"
-                    class="rounded-lg shadow-md hover:shadow-lg transition-shadow"
-                  />
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+                    <img
+                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&h=600&auto=format&fit=cover"
+                      alt="Peserta sosialisasi"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+                    <img
+                      src="https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/2023/02/18/syarat-dan-cara-pembuatan-KTP-digital-2208102468.png"
+                      alt="Demo penggunaan E-KTP Digital"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300 aspect-[4/3]">
+                    <img
+                      src="https://th.bing.com/th/id/R.0927df7bcf3f8fee8c74fa132a449fae?rik=1AeNGMfq%2b5sM2w&riu=http%3a%2f%2fjasapresentasi.com%2fwp-content%2fuploads%2f2019%2f05%2fSlide1-2.png&ehk=xzh%2f0BrGg5ZfZyyDbDcIyrJC9Oy%2bNqt26QK2i6eKqyU%3d&risl=&pid=ImgRaw&r=0"
+                      alt="Sesi tanya jawab"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
               </section>
             </article>
@@ -1236,23 +1233,24 @@
               class="related-news-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group"
             >
               <div class="relative h-48 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
                 <img
-                  src="https://images.unsplash.com/photo-1600880292203-75704362c4d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800&q=80"
-                  alt="Pelayanan Administrasi Digital"
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80"
+                  alt="Transformasi Digital Pelayanan Administrasi"
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
               </div>
               <div class="p-5">
-                <h3 class="text-lg font-bold text-gray-900 mb-2">
+                <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 h-14">
                   Transformasi Digital Pelayanan Administrasi
                 </h3>
-                <p class="text-gray-600 text-sm mb-4">
+                <p class="text-gray-600 text-sm mb-4 line-clamp-3 h-16">
                   Kelurahan memperkenalkan sistem pelayanan digital terbaru untuk mempermudah proses administrasi warga.
                 </p>
                 <a
                   href="#"
-                  class="text-red-600 font-medium hover:text-red-700 inline-flex items-center"
+                  class="text-red-600 font-medium hover:text-red-700 inline-flex items-center transition-colors"
                 >
                   Baca Selengkapnya
                   <i class="fas fa-chevron-right ml-1 text-xs"></i>
@@ -1263,21 +1261,22 @@
             <!-- Related News 2 -->
             <div class="related-news-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
               <div class="relative h-48 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
                 <img
-                  src="https://images.unsplash.com/photo-1581093450022-9c57f740a7d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800&q=80"
-                  alt="Pelayanan Publik Digital"
+                  src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80"
+                  alt="Inovasi Pelayanan Publik Digital"
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
               </div>
               <div class="p-5">
-                <h3 class="text-lg font-bold text-gray-900 mb-2">
+                <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 h-14">
                   Inovasi Pelayanan Publik Digital
                 </h3>
-                <p class="text-gray-600 text-sm mb-4">
+                <p class="text-gray-600 text-sm mb-4 line-clamp-3 h-16">
                   Kelurahan meluncurkan inovasi terbaru dalam pelayanan publik berbasis digital untuk warga.
                 </p>
-                <a href="#" class="text-red-600 font-medium hover:text-red-700 inline-flex items-center">
+                <a href="#" class="text-red-600 font-medium hover:text-red-700 inline-flex items-center transition-colors">
                   Baca Selengkapnya
                   <i class="fas fa-chevron-right ml-1 text-xs"></i>
                 </a>
@@ -1287,21 +1286,22 @@
             <!-- Related News 3 -->
             <div class="related-news-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
               <div class="relative h-48 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
                 <img
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=800&q=80"
-                  alt="Sosialisasi Program Digital"
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80"
+                  alt="Sosialisasi Program Digital Kelurahan"
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
                 />
               </div>
               <div class="p-5">
-                <h3 class="text-lg font-bold text-gray-900 mb-2">
+                <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 h-14">
                   Sosialisasi Program Digital Kelurahan
                 </h3>
-                <p class="text-gray-600 text-sm mb-4">
+                <p class="text-gray-600 text-sm mb-4 line-clamp-3 h-16">
                   Kelurahan menyelenggarakan sosialisasi program digital terbaru untuk meningkatkan pelayanan masyarakat.
                 </p>
-                <a href="#" class="text-red-600 font-medium hover:text-red-700 inline-flex items-center">
+                <a href="#" class="text-red-600 font-medium hover:text-red-700 inline-flex items-center transition-colors">
                   Baca Selengkapnya
                   <i class="fas fa-chevron-right ml-1 text-xs"></i>
                 </a>

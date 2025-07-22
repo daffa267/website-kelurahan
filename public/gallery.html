@@ -1456,7 +1456,7 @@
       height: 100%;
       background: linear-gradient(90deg, #667eea, #764ba2);
       width: 0%;
-      transition: width 0.1s linear;
+      transition: width 0.05s linear; /* Smooth transition for progress bar */
       box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
     }
 
@@ -1827,10 +1827,10 @@
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <i class="fas fa-search text-gray-400"></i>
               </div>
-              <input type="text" class="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent" placeholder="Cari album atau kegiatan...">
+              <input type="text" id="gallery-search-input" class="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent" placeholder="Cari album atau kegiatan...">
             </div>
             <div class="flex-1 w-full">
-              <select class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+              <select id="gallery-category-select" class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent">
                 <option value="">Semua Kategori</option>
                 <option value="infrastruktur">Infrastruktur</option>
                 <option value="sosial">Sosial</option>
@@ -1840,14 +1840,14 @@
               </select>
             </div>
             <div class="flex-1 w-full">
-              <select class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+              <select id="gallery-year-select" class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent">
                 <option value="">Semua Tahun</option>
                 <option value="2024">2024</option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
               </select>
             </div>
-            <button class="px-6 py-3 bg-gradient-to-r from-primary-600 to-red-700 text-white font-bold rounded-xl hover:from-red-700 hover:to-red-800 transition-all duration-300 shadow-md hover:shadow-lg">
+            <button id="gallery-filter-button" class="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:from-red-700 hover:to-red-800 hover:-translate-y-1">
               <i class="fas fa-filter mr-2"></i> Filter
             </button>
           </div>
@@ -1856,7 +1856,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 gallery-grid" id="gallery-container">
           <div class="gallery-card group" data-category="infrastruktur" data-year="2024" data-title="Pembangunan Jalan RW 08" data-description="Progres pembangunan jalan lingkungan sepanjang 500m di wilayah RW 08" data-date="2024-07-15">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=800&h=800&auto=format&fit=crop"
+              <img src="https://podosari.kendalkab.go.id//upload/berita/206_1727147938.jpeg"
                 alt="Pembangunan Jalan"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
@@ -1879,7 +1879,7 @@
 
           <div class="gallery-card group" data-category="sosial" data-year="2024" data-title="Penyaluran Bantuan Sembako" data-description="Distribusi bantuan untuk 150 keluarga kurang mampu di wilayah RW 05" data-date="2024-06-20">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=800&h=800&auto=format&fit=crop"
+              <img src="https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1718954074_bcd67607ce3600415d76.jpg"
                 alt="Bantuan Sosial"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
@@ -1902,7 +1902,7 @@
 
           <div class="gallery-card group" data-category="kesehatan" data-year="2024" data-title="Vaksinasi Booster" data-description="Pelaksanaan vaksinasi booster untuk warga lansia" data-date="2024-07-10">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=800&h=800&auto=format&fit=crop"
+              <img src="https://yankes.itb.ac.id/wp-content/uploads/2023/03/Vaksinasi-booster-covid-19-e1680160332231.jpg"
                 alt="Vaksinasi"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
@@ -1925,7 +1925,7 @@
 
           <div class="gallery-card group" data-category="pendidikan" data-year="2024" data-title="Pelatihan Kader Posyandu" data-description="Pelatihan untuk meningkatkan kualitas pelayanan kesehatan di posyandu" data-date="2024-07-08">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&h=800&auto=format&fit=crop"
+              <img src="https://dulohupa.id/wp-content/uploads/2021/11/dulohupa-21.jpeg"
                 alt="Pelatihan Kader"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
@@ -1948,7 +1948,7 @@
 
           <div class="gallery-card group" data-category="lingkungan" data-year="2024" data-title="Penanaman Pohon" data-description="Program penghijauan lingkungan kelurahan" data-date="2024-07-05">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=800&h=800&auto=format&fit=crop"
+              <img src="https://www.kemenkopmk.go.id/sites/default/files/articles/2022-07/IMG-20220703-WA0052.jpg"
                 alt="Penanaman Pohon"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
@@ -1971,7 +1971,7 @@
 
           <div class="gallery-card group" data-category="infrastruktur" data-year="2024" data-title="Perbaikan Drainase" data-description="Perbaikan sistem drainase untuk mencegah banjir" data-date="2024-06-25">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=800&h=800&auto=format&fit=crop"
+              <img src="https://pekalongankota.go.id/upload/berita/berita_20220704033246.jpeg"
                 alt="Perbaikan Drainase"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
@@ -1994,7 +1994,7 @@
 
           <div class="gallery-card group" data-category="sosial" data-year="2024" data-title="Rapat Warga" data-description="Rapat koordinasi warga membahas program kelurahan" data-date="2024-07-01">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=800&h=800&auto=format&fit=crop"
+              <img src="https://pbs.twimg.com/media/CfbyyRmUMAAwksS.jpg"
                 alt="Rapat Warga"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 cursor-pointer">
 
@@ -2047,7 +2047,6 @@
       </div>
     </section>
 
-    <!-- Modal Video Player -->
     <div id="videoModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4">
       <div class="relative w-full max-w-4xl mx-auto">
         <button id="closeModal" class="absolute -right-3 -top-12 text-white hover:text-gray-300 hover:scale-110 transition-all z-50 text-3xl">
@@ -2066,7 +2065,6 @@
       </div>
     </div>
 
-    <!-- Script untuk menangani pemutaran video -->
     <script>
     let currentVideoId = '';
     const videoModal = document.getElementById('videoModal');
@@ -2120,7 +2118,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="video-container">
-          <!-- Video 1: Wisata Tanjungpinang -->
           <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video cursor-pointer" 
                data-video-id="Zd2t_y2ektE"
                onclick="playVideo(this, 'Zd2t_y2ektE', 'Keliling Kota Tanjungpinang')">
@@ -2141,8 +2138,7 @@
               </div>
             </div>
           </div>
-
-          <!-- Video 2: Budaya Melayu Tanjungpinang -->
+        
           <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video cursor-pointer"
                data-video-id="9Q9q5b3V7Yk"
                onclick="playVideo(this, '9Q9q5b3V7Yk', 'Budaya Melayu Tanjungpinang')">
@@ -2156,15 +2152,14 @@
               </div>
             </div>
             <div class="absolute bottom-0 left-0 right-0 p-6 z-20">
-              <h3 class="text-xl font-bold text-white">Budaya Melayu Tanjungpinang</h3>
+              <h3 class="text-xl font-bold text-white">Explore ke Pulau Penyengat</h3>
               <div class="text-sm text-gray-300 mt-2">
                 <i class="far fa-clock mr-1"></i>
                 <span>4:35 Menit</span>
               </div>
             </div>
           </div>
-
-          <!-- Video 3: Kuliner Khas Tanjungpinang -->
+        
           <div class="video-item group relative overflow-hidden rounded-2xl shadow-xl aspect-video cursor-pointer"
                data-video-id="7X8dW5TtqyY"
                onclick="playVideo(this, '7X8dW5TtqyY', 'Kuliner Khas Tanjungpinang')">
@@ -2310,86 +2305,126 @@
     </section>
   </main>
 
-  <footer class="main-footer relative">
-        <div class="fixed-container py-16 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Tentang Kami</h3>
-                    <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
-                        alt="Logo Kelurahan"
-                        class="h-16 mb-4">
-                    <p class="text-gray-300 mb-4">
-                        Kelurahan Tanjungpinang Kota merupakan salah satu kelurahan di Kecamatan Tanjungpinang Kota, Kota Tanjungpinang, Provinsi Kepulauan Riau.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Tautan Cepat</h3>
-                    <ul class="space-y-3 footer-links">
-                        <li><a href="index.html" class="text-gray-300">Beranda</a></li>
-                        <li><a href="news.html" class="text-gray-300">Berita</a></li>
-                        <li><a href="attent.html" class="text-gray-300">Pengumuman</a></li>
-                        <li><a href="gallery.html" class="text-gray-300">Galeri</a></li>
-                        <li><a href="download.html" class="text-gray-300">Download</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Layanan</h3>
-                    <ul class="space-y-3 footer-links">
-                        <li><a href="#" class="text-gray-300">Pembuatan KTP</a></li>
-                        <li><a href="#" class="text-gray-300">Surat Domisili</a></li>
-                        <li><a href="#" class="text-gray-300">Akta Kelahiran</a></li>
-                        <li><a href="#" class="text-gray-300">Surat Nikah</a></li>
-                        <li><a href="#" class="text-gray-300">Surat Kematian</a></li>
-                        <li><a href="#" class="text-gray-300">SKTM</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Kontak Kami</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-accent-color mt-1 mr-3"></i>
-                            <span class="text-gray-300">Jl. Kuantan No.1, Tanjungpinang Kota, Kec. Tanjungpinang Kota, Kota Tanjungpinang, Kepulauan Riau 29111</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone text-accent-color mr-3"></i>
-                            <span class="text-gray-300">+62 771 123456</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope text-accent-color mr-3"></i>
-                            <span class="text-gray-300">tpikotakel@tanjungpinangkota.go.id</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-clock text-accent-color mr-3"></i>
-                            <span class="text-gray-300">Senin-Jumat: 08.00-16.00 WIB</span>
-                        </li>
-                    </ul>
-                </div>
+  <footer class="main-footer py-12 relative">
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center space-x-3 mb-6">
+            <img
+              src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
+              alt="Logo Kelurahan"
+              class="h-12 w-12 object-contain" />
+            <div>
+              <h3 class="text-xl font-bold text-white">
+                Kelurahan Tanjungpinang Kota
+              </h3>
+              <p class="text-sm text-gray-300">
+                Kecamatan Tanjungpinang Kota
+              </p>
             </div>
-
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
-                <p class="text-gray-400 text-sm">
-                    @ Made by Kerja Praktik UMRAH 2025.
-                </p>
-            </div>
+          </div>
+          <p class="text-gray-300 mb-4 text-sm">
+            Kelurahan Tanjungpinang Kota merupakan salah satu kelurahan di Kecamatan Tanjungpinang Kota, Kota Tanjungpinang, Provinsi Kepulauan Riau.
+          </p>
+          <div class="flex space-x-4">
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white transition-colors">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
         </div>
 
-        <div class="floating-element absolute bottom-10 left-10 w-16 h-16 rounded-full bg-accent-color/20"></div>
-        <div class="floating-element absolute top-20 right-20 w-24 h-24 rounded-full bg-white/5"></div>
-    </footer>
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Tautan Cepat</h3>
+          <ul class="space-y-2 footer-links">
+            <li><a href="index.html" class="text-gray-300">Beranda</a></li>
+            <li><a href="news.html" class="text-gray-300">Berita</a></li>
+            <li>
+              <a href="attent.html" class="text-gray-300">Pengumuman</a>
+            </li>
+            <li><a href="gallery.html" class="text-gray-300">Galeri</a></li>
+            <li>
+              <a href="download.html" class="text-gray-300">Download</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">
+            Layanan Publik
+          </h3>
+          <ul class="space-y-2 footer-links">
+            <li>
+              <a href="#" class="text-gray-300">Pembuatan KTP</a>
+            </li>
+            <li><a href="#" class="text-gray-300">Surat Domisili</a></li>
+            <li><a href="#" class="text-gray-300">Akta Kelahiran</a></li>
+            <li><a href="#" class="text-gray-300">Surat Nikah</a></li>
+            <li><a href="#" class="text-gray-300">Surat Kematian</a></li>
+            <li><a href="#" class="text-gray-300">SKTM</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold text-white mb-4">Kontak Kami</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fas fa-map-marker-alt text-gray-300 mt-1 mr-3"></i>
+              <span class="text-gray-300 text-sm">Jl. Kemboja No. 12, Tanjungpinang Kota, Kepulauan Riau
+                29125</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-phone-alt text-gray-300 mr-3"></i>
+              <span class="text-gray-300">(0771) 123456</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-envelope text-gray-300 mr-3"></i>
+              <span class="text-gray-300">kel.tpikota@tanjungpinangkota.go.id</span>
+            </li>
+            <li class="flex items-center">
+              <i class="fas fa-clock text-gray-300 mr-3"></i>
+              <span class="text-gray-300 text-sm">Senin-Jumat: 08.00 - 16.00 WIB</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-12 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            2024 Kelurahan Tanjungpinang Kota. All rights reserved.
+          </p>
+          <div class="flex space-x-6">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors">Kebijakan Privasi</a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors">Syarat & Ketentuan</a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors">Peta Situs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <button
     id="back-to-top"
@@ -2410,7 +2445,7 @@
   </div>
 
   <div id="lightbox-modal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-    <button id="close-lightbox" class="absolute top-8 right-8 text-white text-4xl z-50">&times;</button>
+    <button id="close-lightbox" class="absolute top-8 right-8 text-white text-4xl z-50">×</button>
     <div class="relative w-full max-w-6xl h-full max-h-[90vh] p-8">
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500 absolute opacity-30"></div>
@@ -2421,7 +2456,7 @@
   </div>
 
   <div id="video-modal" class="fixed inset-0 bg-black/90 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-    <button id="close-video" class="absolute top-8 right-8 text-white text-4xl z-50">&times;</button>
+    <button id="close-video" class="absolute top-8 right-8 text-white text-4xl z-50">×</button>
     <div class="relative w-full max-w-4xl aspect-video bg-black">
       <iframe id="video-iframe" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
     </div>
@@ -2685,14 +2720,11 @@
           
           lightbox.innerHTML = `
             <div class="relative max-w-4xl w-full mx-4 animate-zoomIn">
-              <!-- Close button - positioned outside the content -->
               <button class="absolute -top-16 right-0 text-white text-3xl hover:text-red-400 transition-colors z-10" aria-label="Close">
                 <i class="fas fa-times"></i>
               </button>
               
-              <!-- Video container -->
               <div class="bg-black rounded-2xl overflow-hidden shadow-2xl">
-                <!-- YouTube embed with autoplay -->
                 <div class="aspect-video w-full">
                   <iframe 
                     class="w-full h-full"
@@ -2704,12 +2736,10 @@
                   </iframe>
                 </div>
                 
-                <!-- Video info -->
                 <div class="p-6 bg-white dark:bg-gray-800">
                   <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-4">${title}</h3>
                   
                   <div class="flex flex-wrap gap-3">
-                    <!-- Watch on YouTube button -->
                     <a href="https://youtu.be/${videoId}" 
                        target="_blank" 
                        rel="noopener noreferrer"
@@ -2717,7 +2747,6 @@
                       <i class="fab fa-youtube"></i> Tonton di YouTube
                     </a>
                     
-                    <!-- Share button with green color -->
                     <button onclick="shareVideo('${title}', '${videoId}')" 
                             class="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors duration-300">
                       <i class="fas fa-share-alt"></i> Bagikan
@@ -2860,6 +2889,52 @@
       initLightbox();
       initSmoothScroll();
       initHeaderScrollEffect();
+
+      // --- BEGIN: Interactive Gallery Filter LOGIC ---
+      const searchInput = document.getElementById('gallery-search-input');
+      const categorySelect = document.getElementById('gallery-category-select');
+      const yearSelect = document.getElementById('gallery-year-select');
+      const filterButton = document.getElementById('gallery-filter-button');
+      const galleryCards = document.querySelectorAll('#gallery-container .gallery-card');
+
+      function applyGalleryFilters() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const selectedCategory = categorySelect.value;
+        const selectedYear = yearSelect.value;
+
+        galleryCards.forEach(card => {
+          const title = (card.dataset.title || '').toLowerCase();
+          const category = (card.dataset.category || '').toLowerCase();
+          const year = card.dataset.year || '';
+
+          const isSearchMatch = title.includes(searchTerm) || category.includes(searchTerm);
+          const isCategoryMatch = !selectedCategory || category === selectedCategory;
+          const isYearMatch = !selectedYear || year === selectedYear;
+
+          if (isSearchMatch && isCategoryMatch && isYearMatch) {
+            card.style.display = ''; // Use empty string to revert to stylesheet's display property
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      // Attach event listener to the button
+      if (filterButton) {
+        filterButton.addEventListener('click', applyGalleryFilters);
+      }
+      // Attach event listeners for live, real-time filtering for better user experience
+      if (searchInput) {
+        searchInput.addEventListener('input', applyGalleryFilters);
+      }
+      if (categorySelect) {
+        categorySelect.addEventListener('change', applyGalleryFilters);
+      }
+      if (yearSelect) {
+        yearSelect.addEventListener('change', applyGalleryFilters);
+      }
+      // --- END: Interactive Gallery Filter LOGIC ---
+
 
       // Add loading animation
       document.body.classList.add('loaded');
@@ -3023,7 +3098,8 @@
         this.isAutoPlaying = true;
         this.autoPlayInterval = null;
         this.progressInterval = null;
-        this.autoPlayDuration = 6000;
+        this.autoPlayDuration = 6000; // 6 seconds
+        this.progressStartTime = null;
 
         this.init();
       }
@@ -3033,97 +3109,68 @@
         document.getElementById('prevBtn').addEventListener('click', () => this.prevSlide());
         document.getElementById('nextBtn').addEventListener('click', () => this.nextSlide());
 
-        // Indicators
+        // Indicators and Thumbnails
         this.indicators.forEach((indicator, index) => {
           indicator.addEventListener('click', () => this.goToSlide(index));
         });
-
-        // Thumbnails
         this.thumbnails.forEach((thumbnail, index) => {
           thumbnail.addEventListener('click', () => this.goToSlide(index));
         });
 
         // Auto play toggle
         this.autoPlayToggle.addEventListener('click', () => this.toggleAutoPlay());
-
+        
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
           if (e.key === 'ArrowLeft') this.prevSlide();
           if (e.key === 'ArrowRight') this.nextSlide();
-          if (e.key === ' ') {
-            e.preventDefault();
-            this.toggleAutoPlay();
-          }
         });
 
         // Touch/swipe support
         let startX = 0;
         let endX = 0;
+        const carouselContainer = document.querySelector('.carousel-container');
 
-        document.querySelector('.carousel-container').addEventListener('touchstart', (e) => {
+        carouselContainer.addEventListener('touchstart', (e) => {
           startX = e.touches[0].clientX;
         }, { passive: true });
 
-        document.querySelector('.carousel-container').addEventListener('touchend', (e) => {
+        carouselContainer.addEventListener('touchend', (e) => {
           endX = e.changedTouches[0].clientX;
           const diff = startX - endX;
 
           if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-              this.nextSlide();
-            } else {
-              this.prevSlide();
-            }
+            if (diff > 0) this.nextSlide();
+            else this.prevSlide();
           }
         }, { passive: true });
 
-        // Mouse wheel navigation
-        document.querySelector('.carousel-container').addEventListener('wheel', (e) => {
-            e.preventDefault();
-            if (Math.abs(e.deltaY) > 50) {
-              if (e.deltaY > 0) {
-                this.nextSlide();
-              } else {
-                this.prevSlide();
-              }
-            }
-        }, { passive: false });
-
-
-        // Start auto play
-        this.startAutoPlay();
-
         // Pause on hover
-        const carousel = document.querySelector('.carousel-container');
-        carousel.addEventListener('mouseenter', () => {
-          if (this.isAutoPlaying) this.pauseAutoPlay();
-        });
-        carousel.addEventListener('mouseleave', () => {
-          if (this.isAutoPlaying) this.startAutoPlay();
-        });
+        carouselContainer.addEventListener('mouseenter', () => this.pauseAutoPlay());
+        carouselContainer.addEventListener('mouseleave', () => this.startAutoPlay());
+
+        // Start things off
+        this.goToSlide(0);
       }
 
       goToSlide(slideIndex) {
-        if (slideIndex === this.currentSlide) return;
+        // This check prevents resetting the timer if clicking the active slide's indicator
+        if (slideIndex === this.currentSlide && this.autoPlayInterval) {
+            return;
+        }
 
-        // Update slide positions
+        // Slide transition logic
         this.slides.forEach((slide, index) => {
           slide.classList.remove('slide-active', 'slide-next', 'slide-prev', 'slide-hidden');
-
-          if (index === slideIndex) {
-            slide.classList.add('slide-active');
-          } else if (index === (slideIndex + 1) % this.totalSlides) {
-            slide.classList.add('slide-next');
-          } else if (index === (slideIndex - 1 + this.totalSlides) % this.totalSlides) {
-            slide.classList.add('slide-prev');
-          } else {
-            slide.classList.add('slide-hidden');
-          }
+          if (index === slideIndex) slide.classList.add('slide-active');
+          else if (index === (slideIndex + 1) % this.totalSlides) slide.classList.add('slide-next');
+          else if (index === (slideIndex - 1 + this.totalSlides) % this.totalSlides) slide.classList.add('slide-prev');
+          else slide.classList.add('slide-hidden');
         });
 
         this.currentSlide = slideIndex;
         this.updateUI();
-        this.resetProgress();
+        this.resetAndStartTimers();
       }
 
       nextSlide() {
@@ -3137,42 +3184,44 @@
       }
 
       updateUI() {
-        // Update indicators
-        this.indicators.forEach((indicator, index) => {
-          indicator.classList.toggle('active', index === this.currentSlide);
-        });
-
-        // Update thumbnails
-        this.thumbnails.forEach((thumbnail, index) => {
-          thumbnail.classList.toggle('active', index === this.currentSlide);
-        });
-
-        // Update slide counter
+        this.indicators.forEach((indicator, index) => indicator.classList.toggle('active', index === this.currentSlide));
+        this.thumbnails.forEach((thumbnail, index) => thumbnail.classList.toggle('active', index === this.currentSlide));
         this.currentSlideNum.textContent = String(this.currentSlide + 1).padStart(2, '0');
       }
 
-      startAutoPlay() {
-        if (!this.isAutoPlaying) return;
+      resetAndStartTimers() {
+        clearInterval(this.autoPlayInterval);
+        clearInterval(this.progressInterval);
+        
+        if (this.isAutoPlaying) {
+          this.autoPlayInterval = setInterval(() => this.nextSlide(), this.autoPlayDuration);
+          
+          this.progressStartTime = Date.now();
+          this.progressBar.style.transition = 'none'; // Remove transition for instant reset
+          this.progressBar.style.width = '0%';
+          
+          // Force a reflow to apply the reset style immediately
+          void this.progressBar.offsetWidth;
 
-        this.pauseAutoPlay();
-
-        this.autoPlayInterval = setInterval(() => {
-          this.nextSlide();
-        }, this.autoPlayDuration);
-
-        this.startProgress();
+          this.progressBar.style.transition = `width ${this.autoPlayDuration}ms linear`;
+          this.progressBar.style.width = '100%';
+        }
       }
 
       pauseAutoPlay() {
-        if (this.autoPlayInterval) {
           clearInterval(this.autoPlayInterval);
-          this.autoPlayInterval = null;
-        }
-
-        if (this.progressInterval) {
           clearInterval(this.progressInterval);
-          this.progressInterval = null;
-        }
+          
+          // Freeze the progress bar by getting its computed width and setting it
+          const computedWidth = getComputedStyle(this.progressBar).width;
+          this.progressBar.style.transition = 'none';
+          this.progressBar.style.width = computedWidth;
+      }
+
+      startAutoPlay() {
+          if (this.isAutoPlaying) {
+              this.resetAndStartTimers();
+          }
       }
 
       toggleAutoPlay() {
@@ -3183,31 +3232,6 @@
           this.startAutoPlay();
         } else {
           this.pauseAutoPlay();
-          this.progressBar.style.width = '0%';
-        }
-      }
-
-      startProgress() {
-        let progress = 0;
-        const increment = 100 / (this.autoPlayDuration / 50);
-
-        this.progressInterval = setInterval(() => {
-          progress += increment;
-          this.progressBar.style.width = progress + '%';
-
-          if (progress >= 100) {
-            progress = 0;
-          }
-        }, 50);
-      }
-
-      resetProgress() {
-        this.progressBar.style.width = '0%';
-        if (this.progressInterval) {
-          clearInterval(this.progressInterval);
-        }
-        if (this.isAutoPlaying) {
-          this.startProgress();
         }
       }
     }
@@ -3221,17 +3245,14 @@
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <!-- Visitor Stats Popup (Hidden by Default) -->
   <div id="visitorPopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full">
     <div class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-56 relative">
-      <!-- Close Button (Positioned perfectly outside but attached) -->
       <button id="closePopup" class="absolute -left-10 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-3 py-4 rounded-l-lg shadow-lg hover:bg-red-600 transition border-t border-b border-l border-gray-200">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
         </svg>
       </button>
       
-      <!-- Content -->
       <div class="p-3 text-center">
         <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
           <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
@@ -3254,7 +3275,6 @@
     </div>
   </div>
 
-  <!-- Open Button (Right Edge) -->
   <button id="togglePopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-3 py-4 rounded-l-lg shadow-lg z-40 hover:bg-red-600 transition">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
@@ -3274,6 +3294,7 @@
           popup.classList.remove('hidden');
           setTimeout(() => {
             popup.classList.remove('translate-x-full');
+            popup.classList.add('animate-[bounceInRight_0.3s]');
           }, 10);
         });
       }
