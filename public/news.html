@@ -30,7 +30,8 @@
       }
 
       /* Header berubah merah solid saat scroll */
-      .modern-header.scrolled {
+      .modern-header.scrolled,
+      .modern-header:hover {
         background: var(--primary-900) !important;
         backdrop-filter: none !important;
         transition: background 0.3s, backdrop-filter 0.3s;
@@ -1045,6 +1046,63 @@
           font-size: 0.8rem !important;
         }
       }
+
+      /* Spotlight news image sizing */
+      .popular-news-item img,
+      .latest-news-item img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      /* Red title hover */
+      .popular-news-item h4:hover,
+      .latest-news-item h4:hover {
+        color: #dc2626 !important;
+      }
+
+      /* News card styles for spotlight section */
+      .popular-news-item,
+      .latest-news-item {
+        position: relative;
+        padding-bottom: 50px; /* Space for fixed metadata */
+        min-height: 320px; /* Minimum card height */
+      }
+
+      .popular-news-item .flex.items-center,
+      .latest-news-item .flex.items-center {
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        right: 16px;
+      }
+
+      /* Ellipsis for long titles */
+      .popular-news-item h4,
+      .latest-news-item h4 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-height: 3em; /* Ensure consistent height for 2 lines */
+      }
+
+      /* Card hover effects */
+      .popular-news-item:hover,
+      .latest-news-item:hover {
+        background-color: rgba(
+          220,
+          38,
+          38,
+          0.05
+        ) !important; /* Light red background */
+      }
+
+      .popular-news-item:hover h4,
+      .latest-news-item:hover h4 {
+        color: #dc2626 !important; /* Red title on card hover */
+      }
     </style>
   </head>
 
@@ -1106,7 +1164,10 @@
             <i class="fas fa-bars text-xl"></i>
           </button>
 
-          <div id="mobile-menu" class="md:hidden bg-white shadow-xl hidden">
+          <div
+            id="mobile-menu"
+            class="md:hidden absolute top-full left-0 right-0 mt-2 bg-white shadow-xl hidden"
+          >
             <div class="container mx-auto px-4 py-3 space-y-2">
               <a
                 href="index.html"
@@ -1248,7 +1309,9 @@
                   "
                 >
                   <span class="block">Sosialisasi E-KTP Digital</span>
-                  <span class="block text-red-300">untuk Seluruh Ketua RT dan RW</span>
+                  <span class="block text-red-300"
+                    >untuk Seluruh Ketua RT dan RW</span
+                  >
                 </h1>
 
                 <div class="flex flex-wrap gap-3 text-sm text-gray-300 mt-6">
@@ -1618,16 +1681,10 @@
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Semua Berita
             </h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p class="text-xl text-gray-600">
               Ikuti informasi dan kegiatan terkini yang berlangsung di
               lingkungan Kelurahan Tanjungpinang Kota.
             </p>
-            <div
-              class="absolute -top-6 -left-6 w-32 h-32 bg-primary-500/10 rounded-full blur-3xl -z-10"
-            ></div>
-            <div
-              class="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -z-10"
-            ></div>
           </div>
 
           <div
@@ -1638,40 +1695,39 @@
                 class="category-filter px-4 py-2 bg-red-600 text-white rounded-full font-medium whitespace-nowrap border border-red-700 shadow-md"
                 data-filter="all"
               >
-                Semua
+                SEMUA
               </button>
               <button
-                class="category-filter px-4 py-2 bg-white text-gray-700 rounded-full font-medium whitespace-nowrap border border-gray-200 hover:bg-gray-50"
+                class="category-filter px-4 py-2 bg-white text-gray-700 rounded-full font-medium whitespace-nowrap border border-gray-200"
                 data-filter="pemerintahan"
               >
                 PEMERINTAHAN
               </button>
               <button
-                class="category-filter px-4 py-2 bg-white text-gray-700 rounded-full font-medium whitespace-nowrap border border-gray-200 hover:bg-gray-50"
+                class="category-filter px-4 py-2 bg-white text-gray-700 rounded-full font-medium whitespace-nowrap border border-gray-200"
                 data-filter="sosial"
               >
                 SOSIAL
               </button>
               <button
-                class="category-filter px-4 py-2 bg-white text-gray-700 rounded-full font-medium whitespace-nowrap border border-gray-200 hover:bg-gray-50"
+                class="category-filter px-4 py-2 bg-white text-gray-700 rounded-full font-medium whitespace-nowrap border border-gray-200"
                 data-filter="kesehatan"
               >
                 KESEHATAN
               </button>
               <button
-                class="category-filter px-4 py-2 bg-white text-gray-700 rounded-full font-medium whitespace-nowrap border border-gray-200 hover:bg-gray-50"
+                class="category-filter px-4 py-2 bg-white text-gray-700 rounded-full font-medium whitespace-nowrap border border-gray-200"
                 data-filter="lingkungan"
               >
                 LINGKUNGAN
               </button>
               <button
-                class="category-filter px-4 py-2 bg-white text-gray-700 rounded-full font-medium whitespace-nowrap border border-gray-200 hover:bg-gray-50"
+                class="category-filter px-4 py-2 bg-white text-gray-700 rounded-full font-medium whitespace-nowrap border border-gray-200"
                 data-filter="pendidikan"
               >
                 PENDIDIKAN
               </button>
             </div>
-
             <div class="w-full md:w-80">
               <div class="relative">
                 <input
@@ -1680,9 +1736,11 @@
                   placeholder="Cari judul atau kategori..."
                   class="pl-10 pr-10 py-2 w-full rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300"
                 />
-                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                <button 
-                  id="clear-search" 
+                <i
+                  class="fas fa-search absolute left-3 top-3 text-gray-400"
+                ></i>
+                <button
+                  id="clear-search"
                   class="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600 hidden"
                   type="button"
                   title="Hapus pencarian"
@@ -1698,13 +1756,11 @@
           >
             <article
               class="news-card group relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              data-aos="fade-up"
               data-category="pemerintahan"
             >
               <div
                 class="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               ></div>
-
               <div class="relative z-10 h-full flex flex-col">
                 <div
                   class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
@@ -1723,7 +1779,6 @@
                     PEMERINTAHAN
                   </span>
                 </div>
-
                 <div class="p-6 flex-grow flex flex-col">
                   <div class="flex items-center justify-between text-sm mb-4">
                     <span class="text-gray-500 flex items-center">
@@ -1733,16 +1788,13 @@
                       <i class="far fa-eye mr-2"></i> 1.2K
                     </span>
                   </div>
-
                   <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900">
                     Sosialisasi E-KTP Digital untuk Seluruh Ketua RT dan RW
                   </h3>
-
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
                     Peluncuran program e-KTP digital untuk memudahkan
                     administrasi kependudukan di tingkat kelurahan dan RT/RW.
                   </p>
-
                   <a
                     href="news-detail1.html"
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
@@ -1756,17 +1808,13 @@
                 </div>
               </div>
             </article>
-
             <article
               class="news-card group relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              data-aos="fade-up"
-              data-aos-delay="100"
               data-category="sosial"
             >
               <div
                 class="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-primary-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               ></div>
-
               <div class="relative z-10 h-full flex flex-col">
                 <div
                   class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
@@ -1778,12 +1826,11 @@
                     loading="lazy"
                   />
                   <span
-                    class="absolute top-4 left-4 font-medium text-white bg-green-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
+                    class="absolute top-4 left-4 font-medium text-white bg-blue-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
                   >
                     SOSIAL
                   </span>
                 </div>
-
                 <div class="p-6 flex-grow flex flex-col">
                   <div class="flex items-center justify-between text-sm mb-4">
                     <span class="text-gray-500 flex items-center">
@@ -1793,16 +1840,13 @@
                       <i class="far fa-eye mr-2"></i> 980
                     </span>
                   </div>
-
                   <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900">
                     Kelurahan Raih Penghargaan Adipura Tingkat Kota
                   </h3>
-
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
                     Atas prestasi dalam menjaga kebersihan dan penghijauan
                     lingkungan, kelurahan kita meraih penghargaan Adipura.
                   </p>
-
                   <a
                     href="news-detail2.html"
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
@@ -1816,17 +1860,13 @@
                 </div>
               </div>
             </article>
-
             <article
               class="news-card group relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              data-aos="fade-up"
-              data-aos-delay="200"
               data-category="kesehatan"
             >
               <div
                 class="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-primary-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               ></div>
-
               <div class="relative z-10 h-full flex flex-col">
                 <div
                   class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
@@ -1843,7 +1883,6 @@
                     KESEHATAN
                   </span>
                 </div>
-
                 <div class="p-6 flex-grow flex flex-col">
                   <div class="flex items-center justify-between text-sm mb-4">
                     <span class="text-gray-500 flex items-center">
@@ -1853,16 +1892,13 @@
                       <i class="far fa-eye mr-2"></i> 1.3K
                     </span>
                   </div>
-
                   <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900">
                     Pelatihan UMKM: Strategi Pemasaran Digital di Era Modern
                   </h3>
-
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
                     Program pelatihan untuk pengusaha kecil dan menengah dalam
                     memanfaatkan teknologi digital untuk pemasaran.
                   </p>
-
                   <a
                     href="#"
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
@@ -1875,21 +1911,13 @@
                 </div>
               </div>
             </article>
-          </div>
-
-          <div
-            id="news-page-2"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10 hidden"
-          >
             <article
               class="news-card group relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              data-aos="fade-up"
               data-category="kesehatan"
             >
               <div
                 class="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               ></div>
-
               <div class="relative z-10 h-full flex flex-col">
                 <div
                   class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
@@ -1906,7 +1934,6 @@
                     KESEHATAN
                   </span>
                 </div>
-
                 <div class="p-6 flex-grow flex flex-col">
                   <div class="flex items-center justify-between text-sm mb-4">
                     <span class="text-gray-500 flex items-center">
@@ -1916,16 +1943,13 @@
                       <i class="far fa-eye mr-2"></i> 890
                     </span>
                   </div>
-
                   <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900">
                     Program Vaksinasi COVID-19 Booster untuk Lansia
                   </h3>
-
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
                     Kelurahan mengadakan program vaksinasi booster khusus untuk
                     warga lansia dengan protokol kesehatan yang ketat.
                   </p>
-
                   <a
                     href="#"
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
@@ -1938,17 +1962,13 @@
                 </div>
               </div>
             </article>
-
             <article
               class="news-card group relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              data-aos="fade-up"
-              data-aos-delay="100"
               data-category="sosial"
             >
               <div
                 class="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               ></div>
-
               <div class="relative z-10 h-full flex flex-col">
                 <div
                   class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
@@ -1960,12 +1980,11 @@
                     loading="lazy"
                   />
                   <span
-                    class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
+                    class="absolute top-4 left-4 font-medium text-white bg-blue-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
                   >
                     SOSIAL
                   </span>
                 </div>
-
                 <div class="p-6 flex-grow flex flex-col">
                   <div class="flex items-center justify-between text-sm mb-4">
                     <span class="text-gray-500 flex items-center">
@@ -1975,16 +1994,13 @@
                       <i class="far fa-eye mr-2"></i> 1.1K
                     </span>
                   </div>
-
                   <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900">
                     Gotong Royong Bersih-Bersih Lingkungan RT 05
                   </h3>
-
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
                     Kegiatan gotong royong membersihkan lingkungan yang diikuti
                     oleh seluruh warga RT 05 untuk menjaga kebersihan.
                   </p>
-
                   <a
                     href="#"
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
@@ -1997,17 +2013,13 @@
                 </div>
               </div>
             </article>
-
             <article
               class="news-card group relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              data-aos="fade-up"
-              data-aos-delay="200"
               data-category="pendidikan"
             >
               <div
                 class="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               ></div>
-
               <div class="relative z-10 h-full flex flex-col">
                 <div
                   class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
@@ -2024,7 +2036,6 @@
                     PENDIDIKAN
                   </span>
                 </div>
-
                 <div class="p-6 flex-grow flex flex-col">
                   <div class="flex items-center justify-between text-sm mb-4">
                     <span class="text-gray-500 flex items-center">
@@ -2034,16 +2045,13 @@
                       <i class="far fa-eye mr-2"></i> 750
                     </span>
                   </div>
-
                   <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900">
                     Pelatihan Komputer Dasar untuk Remaja
                   </h3>
-
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
                     Program pelatihan komputer dasar yang ditujukan untuk remaja
                     agar dapat mengikuti perkembangan teknologi.
                   </p>
-
                   <a
                     href="#"
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
@@ -2056,21 +2064,13 @@
                 </div>
               </div>
             </article>
-          </div>
-
-          <div
-            id="news-page-3"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10 hidden"
-          >
             <article
               class="news-card group relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              data-aos="fade-up"
               data-category="infrastruktur"
             >
               <div
                 class="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               ></div>
-
               <div class="relative z-10 h-full flex flex-col">
                 <div
                   class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
@@ -2087,7 +2087,6 @@
                     INFRASTRUKTUR
                   </span>
                 </div>
-
                 <div class="p-6 flex-grow flex flex-col">
                   <div class="flex items-center justify-between text-sm mb-4">
                     <span class="text-gray-500 flex items-center">
@@ -2097,16 +2096,13 @@
                       <i class="far fa-eye mr-2"></i> 1.5K
                     </span>
                   </div>
-
                   <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900">
                     Pembangunan Jalan Beton di Gang Mawar
                   </h3>
-
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
                     Proyek pembangunan jalan beton sepanjang 200 meter di Gang
                     Mawar untuk meningkatkan akses transportasi warga.
                   </p>
-
                   <a
                     href="#"
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
@@ -2119,17 +2115,13 @@
                 </div>
               </div>
             </article>
-
             <article
               class="news-card group relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              data-aos="fade-up"
-              data-aos-delay="100"
               data-category="budaya"
             >
               <div
                 class="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               ></div>
-
               <div class="relative z-10 h-full flex flex-col">
                 <div
                   class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
@@ -2146,7 +2138,6 @@
                     BUDAYA
                   </span>
                 </div>
-
                 <div class="p-6 flex-grow flex flex-col">
                   <div class="flex items-center justify-between text-sm mb-4">
                     <span class="text-gray-500 flex items-center">
@@ -2156,16 +2147,13 @@
                       <i class="far fa-eye mr-2"></i> 2.1K
                     </span>
                   </div>
-
                   <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900">
                     Festival Budaya Melayu Tanjungpinang 2024
                   </h3>
-
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
                     Perayaan festival budaya Melayu yang menampilkan berbagai
                     pertunjukan seni dan kuliner tradisional Kepulauan Riau.
                   </p>
-
                   <a
                     href="#"
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
@@ -2178,17 +2166,13 @@
                 </div>
               </div>
             </article>
-
             <article
               class="news-card group relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              data-aos="fade-up"
-              data-aos-delay="200"
               data-category="sosial"
             >
               <div
                 class="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
               ></div>
-
               <div class="relative z-10 h-full flex flex-col">
                 <div
                   class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
@@ -2200,12 +2184,11 @@
                     loading="lazy"
                   />
                   <span
-                    class="absolute top-4 left-4 font-medium text-white bg-red-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
+                    class="absolute top-4 left-4 font-medium text-white bg-blue-600/90 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
                   >
                     SOSIAL
                   </span>
                 </div>
-
                 <div class="p-6 flex-grow flex flex-col">
                   <div class="flex items-center justify-between text-sm mb-4">
                     <span class="text-gray-500 flex items-center">
@@ -2215,16 +2198,13 @@
                       <i class="far fa-eye mr-2"></i> 980
                     </span>
                   </div>
-
                   <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900">
                     Penyaluran Bantuan Sembako untuk Keluarga Kurang Mampu
                   </h3>
-
                   <p class="text-gray-600 mb-5 line-clamp-2 flex-grow">
                     Program bantuan sembako bulanan yang disalurkan kepada 150
                     keluarga kurang mampu di wilayah kelurahan.
                   </p>
-
                   <a
                     href="#"
                     class="inline-flex items-center font-semibold text-primary-700 hover:text-primary-900 transition group mt-auto"
@@ -2239,7 +2219,7 @@
             </article>
           </div>
 
-          <div class="flex justify-center mt-20">
+          <div class="flex justify-center mt-20" id="pagination-container">
             <nav
               class="flex items-center space-x-3 bg-white/90 backdrop-blur-xl rounded-3xl p-3 shadow-2xl border border-gray-200/50 relative"
             >
@@ -2255,37 +2235,13 @@
                   <i
                     class="fas fa-chevron-left group-hover:scale-110 transition-transform duration-300"
                   ></i>
+                  <span class="sr-only">Previous Page</span>
                 </button>
 
-                <div class="flex items-center space-x-2">
-                  <button
-                    id="page-1"
-                    data-page="1"
-                    class="page-btn px-5 py-4 rounded-2xl bg-gradient-to-r from-red-600 to-red-700 text-white font-bold shadow-xl transform -translate-y-1 border-2 border-white active"
-                  >
-                    1
-                  </button>
-                  <button
-                    id="page-2"
-                    data-page="2"
-                    class="page-btn px-5 py-4 rounded-2xl bg-white text-gray-700 hover:bg-gradient-to-r hover:from-red-600 hover:to-red-700 hover:text-white transition-all duration-300 font-semibold hover:shadow-lg hover:transform hover:-translate-y-1 border border-gray-200"
-                  >
-                    2
-                  </button>
-                  <button
-                    id="page-3"
-                    data-page="3"
-                    class="page-btn px-5 py-4 rounded-2xl bg-white text-gray-700 hover:bg-gradient-to-r hover:from-red-600 hover:to-red-700 hover:text-white transition-all duration-300 font-semibold hover:shadow-lg hover:transform hover:-translate-y-1 border border-gray-200"
-                  >
-                    3
-                  </button>
-                  <span class="px-3 text-gray-400 font-bold text-lg">...</span>
-                  <button
-                    class="px-5 py-4 rounded-2xl bg-white text-gray-700 hover:bg-gradient-to-r hover:from-red-600 hover:to-red-700 hover:text-white transition-all duration-300 font-semibold hover:shadow-lg hover:transform hover:-translate-y-1 border border-gray-200"
-                  >
-                    8
-                  </button>
-                </div>
+                <div
+                  class="flex items-center space-x-2"
+                  id="page-numbers"
+                ></div>
 
                 <button
                   id="next-btn"
@@ -2294,6 +2250,7 @@
                   <i
                     class="fas fa-chevron-right group-hover:scale-110 transition-transform duration-300"
                   ></i>
+                  <span class="sr-only">Next Page</span>
                 </button>
               </div>
             </nav>
@@ -2316,7 +2273,7 @@
           </div>
 
           <div
-            class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl p-6 md:p-8 max-w-5xl mx-auto relative overflow-hidden border border-white/20 hover:shadow-2xl transition-shadow duration-300"
+            class="bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl p-6 md:p-8 max-w-7xl mx-auto relative overflow-hidden border border-white/20 hover:shadow-2xl transition-shadow duration-300"
           >
             <div
               class="absolute -top-20 -right-20 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl -z-10"
@@ -2327,7 +2284,7 @@
 
             <div class="flex justify-center border-b border-gray-200/50 mb-8">
               <button
-                class="spotlight-tab-btn active px-6 py-3 relative hover:text-primary-700 transition-colors duration-300"
+                class="spotlight-tab-btn active px-6 py-3 relative hover:text-primary-700 transition-colors duration-300 text-lg"
                 data-tab="populer"
               >
                 <span>Populer</span>
@@ -2336,7 +2293,7 @@
                 ></div>
               </button>
               <button
-                class="spotlight-tab-btn px-6 py-3 relative hover:text-primary-700 transition-colors duration-300"
+                class="spotlight-tab-btn px-6 py-3 relative hover:text-primary-700 transition-colors duration-300 text-lg"
                 data-tab="terkini"
               >
                 <span>Terkini</span>
@@ -2348,12 +2305,232 @@
 
             <div class="relative z-10">
               <div id="populer" class="spotlight-tab-content active">
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <a href="#" class="popular-news-item group block p-4 rounded-xl hover:bg-white/50 transition-all">
+                    <div class="w-full h-full flex flex-col">
+                      <div>
+                        <div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm">
+                          <img src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg" alt="berita" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        </div>
+                        <h4 class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors mb-2">
+                          Bantuan Langsung Tunai (BLT) Tahap II Mulai Dicairkan
+                        </h4>
+                      </div>
+                      <div class="flex-grow"></div> <div class="flex items-center text-sm text-gray-500">
+                        <span><i class="far fa-calendar-alt mr-1"></i> 10 Juli 2025</span>
+                        <span class="ml-3"><i class="far fa-eye mr-1"></i> 2.4K</span>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#" class="popular-news-item group block p-4 rounded-xl hover:bg-white/50 transition-all">
+                    <div class="w-full h-full flex flex-col">
+                      <div>
+                        <div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm">
+                          <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1280&h=720&auto=format&fit=crop" alt="berita" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        </div>
+                        <h4 class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors mb-2">
+                          Festival Budaya Melayu Tanjungpinang 2024
+                        </h4>
+                      </div>
+                      <div class="flex-grow"></div> <div class="flex items-center text-sm text-gray-500">
+                        <span><i class="far fa-calendar-alt mr-1"></i> 1 Juli 2025</span>
+                        <span class="ml-3"><i class="far fa-eye mr-1"></i> 2.1K</span>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#" class="popular-news-item group block p-4 rounded-xl hover:bg-white/50 transition-all">
+                    <div class="w-full h-full flex flex-col">
+                      <div>
+                        <div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm">
+                          <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=1280&h=720&auto=format&fit=crop" alt="berita" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        </div>
+                        <h4 class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors mb-2">
+                          Pembangunan Jalan Lingkungan RW 08 Dimulai
+                        </h4>
+                      </div>
+                      <div class="flex-grow"></div> <div class="flex items-center text-sm text-gray-500">
+                        <span><i class="far fa-calendar-alt mr-1"></i> 8 Juli 2025</span>
+                        <span class="ml-3"><i class="far fa-eye mr-1"></i> 1.8K</span>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#" class="popular-news-item group block p-4 rounded-xl hover:bg-white/50 transition-all">
+                    <div class="w-full h-full flex flex-col">
+                      <div>
+                        <div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm">
+                          <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1280&h=720&auto=format&fit=crop" alt="berita" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        </div>
+                        <h4 class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors mb-2">
+                          Sosialisasi Program Vaksinasi Booster untuk Lansia
+                        </h4>
+                      </div>
+                      <div class="flex-grow"></div> <div class="flex items-center text-sm text-gray-500">
+                        <span><i class="far fa-calendar-alt mr-1"></i> 5 Juli 2025</span>
+                        <span class="ml-3"><i class="far fa-eye mr-1"></i> 1.5K</span>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#" class="popular-news-item group block p-4 rounded-xl hover:bg-white/50 transition-all">
+                    <div class="w-full h-full flex flex-col">
+                      <div>
+                        <div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm">
+                          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1280&h=720&auto=format&fit=crop" alt="berita" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        </div>
+                        <h4 class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors mb-2">
+                          Peringatan Hari Lingkungan Hidup dengan Penanaman 500 Pohon
+                        </h4>
+                      </div>
+                      <div class="flex-grow"></div> <div class="flex items-center text-sm text-gray-500">
+                        <span><i class="far fa-calendar-alt mr-1"></i> 3 Juli 2025</span>
+                        <span class="ml-3"><i class="far fa-eye mr-1"></i> 1.3K</span>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#" class="popular-news-item group block p-4 rounded-xl hover:bg-white/50 transition-all">
+                    <div class="w-full h-full flex flex-col">
+                      <div>
+                        <div class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm">
+                          <img src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?q=80&w=1280&h=720&auto=format&fit=crop" alt="berita" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        </div>
+                        <h4 class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors mb-2">
+                          Gotong Royong Bersih-Bersih Lingkungan RT 05
+                        </h4>
+                      </div>
+                      <div class="flex-grow"></div> <div class="flex items-center text-sm text-gray-500">
+                        <span><i class="far fa-calendar-alt mr-1"></i> 1 Juli 2025</span>
+                        <span class="ml-3"><i class="far fa-eye mr-1"></i> 1.1K</span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              
+              <div id="terkini" class="spotlight-tab-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <a
                     href="#"
-                    class="popular-news-item group block p-4 rounded-xl hover:bg-white/50 transition-all"
+                    class="latest-news-item group flex items-start p-4 rounded-xl hover:bg-white/50 transition-all"
                   >
-                    <div class="w-full">
+                    <div class="flex-1">
+                      <div
+                        class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
+                      >
+                        <img
+                          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1280&h=720&auto=format&fit=crop"
+                          alt="berita"
+                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <h4
+                        class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors"
+                      >
+                        Peluncuran Aplikasi Layanan Kelurahan "Tanjung Digital"
+                      </h4>
+                      <div class="flex items-center text-sm text-gray-500 mt-2">
+                        <span
+                          ><i class="far fa-calendar-alt mr-1"></i> 15 Juli 2025</span>
+                        <span class="ml-3"
+                          ><i class="far fa-eye mr-1"></i> 1.2K</span
+                        >
+                      </div>
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    class="latest-news-item group flex items-start p-4 rounded-xl hover:bg-white/50 transition-all"
+                  >
+                    <div class="flex-1">
+                      <div
+                        class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
+                      >
+                        <img
+                          src="https://images.unsplash.com/photo-1573167507387-6b4b98cb7c13?q=80&w=1280&h=720&auto=format&fit=crop"
+                          alt="berita"
+                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <h4
+                        class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors"
+                      >
+                        Rapat Koordinasi Persiapan HUT RI Ke-80 Tingkat
+                        Kelurahan
+                      </h4>
+                      <div class="flex items-center text-sm text-gray-500 mt-2">
+                        <span
+                          ><i class="far fa-calendar-alt mr-1"></i> 14 Juli
+                          2025</span
+                        >
+                        <span class="ml-3"
+                          ><i class="far fa-eye mr-1"></i> 980</span
+                        >
+                      </div>
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    class="latest-news-item group flex items-start p-4 rounded-xl hover:bg-white/50 transition-all"
+                  >
+                    <div class="flex-1">
+                      <div
+                        class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
+                      >
+                        <img
+                          src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1280&h=720&auto=format&fit=crop"
+                          alt="berita"
+                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <h4
+                        class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors"
+                      >
+                        Pelatihan UMKM: Strategi Pemasaran Digital
+                      </h4>
+                      <div class="flex items-center text-sm text-gray-500 mt-2">
+                        <span
+                          ><i class="far fa-calendar-alt mr-1"></i> 13 Juli
+                          2025</span
+                        >
+                        <span class="ml-3"
+                          ><i class="far fa-eye mr-1"></i> 1.3K</span
+                        >
+                      </div>
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    class="latest-news-item group flex items-start p-4 rounded-xl hover:bg-white/50 transition-all"
+                  >
+                    <div class="flex-1">
+                      <div
+                        class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
+                      >
+                        <img
+                          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1280&h=720&auto=format&fit=crop"
+                          alt="berita"
+                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                      <h4
+                        class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors"
+                      >
+                        Pemeriksaan Kesehatan Gratis untuk Warga Lansia
+                      </h4>
+                      <div class="flex items-center text-sm text-gray-500 mt-2">
+                        <span
+                          ><i class="far fa-calendar-alt mr-1"></i> 12 Juli
+                          2025</span
+                        >
+                        <span class="ml-3"
+                          ><i class="far fa-eye mr-1"></i> 720</span
+                        >
+                      </div>
+                    </div>
+                  </a>
+                  <a
+                    href="#"
+                    class="latest-news-item group flex items-start p-4 rounded-xl hover:bg-white/50 transition-all"
+                  >
+                    <div class="flex-1">
                       <div
                         class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
                       >
@@ -2379,17 +2556,16 @@
                       </div>
                     </div>
                   </a>
-
                   <a
                     href="#"
-                    class="popular-news-item group block p-4 rounded-xl hover:bg-white/50 transition-all"
+                    class="latest-news-item group flex items-start p-4 rounded-xl hover:bg-white/50 transition-all"
                   >
-                    <div class="w-full">
+                    <div class="flex-1">
                       <div
                         class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
                       >
                         <img
-                          src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=500&auto=format&fit=crop"
+                          src="https://images.unsplash.com/photo-1556761175-5973dc0f2c7?q=80&w=1280&h=720&auto=format&fit=crop"
                           alt="berita"
                           class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
@@ -2397,7 +2573,7 @@
                       <h4
                         class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors"
                       >
-                        Pembangunan Jalan Lingkungan RW 08 Mulai Dilaksanakan
+                        Pembangunan Jalan Lingkungan RW 08 Dimulai
                       </h4>
                       <div class="flex items-center text-sm text-gray-500 mt-2">
                         <span
@@ -2406,198 +2582,6 @@
                         >
                         <span class="ml-3"
                           ><i class="far fa-eye mr-1"></i> 1.8K</span
-                        >
-                      </div>
-                    </div>
-                  </a>
-
-                  <a
-                    href="#"
-                    class="popular-news-item group block p-4 rounded-xl hover:bg-white/50 transition-all"
-                  >
-                    <div class="w-full">
-                      <div
-                        class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
-                      >
-                        <img
-                          src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=500&auto=format&fit=crop"
-                          alt="berita"
-                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                      <h4
-                        class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors"
-                      >
-                        Sosialisasi Program Vaksinasi Booster untuk Lansia
-                      </h4>
-                      <div class="flex items-center text-sm text-gray-500 mt-2">
-                        <span
-                          ><i class="far fa-calendar-alt mr-1"></i> 5 Juli
-                          2025</span
-                        >
-                        <span class="ml-3"
-                          ><i class="far fa-eye mr-1"></i> 1.5K</span
-                        >
-                      </div>
-                    </div>
-                  </a>
-
-                  <a
-                    href="#"
-                    class="popular-news-item group block p-4 rounded-xl hover:bg-white/50 transition-all"
-                  >
-                    <div class="w-full">
-                      <div
-                        class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
-                      >
-                        <img
-                          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=500&auto=format&fit=crop"
-                          alt="berita"
-                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                      <h4
-                        class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors"
-                      >
-                        Peringatan Hari Lingkungan Hidup dengan Penanaman 500
-                        Pohon
-                      </h4>
-                      <div class="flex items-center text-sm text-gray-500 mt-2">
-                        <span
-                          ><i class="far fa-calendar-alt mr-1"></i> 3 Juli
-                          2025</span
-                        >
-                        <span class="ml-3"
-                          ><i class="far fa-eye mr-1"></i> 1.3K</span
-                        >
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-
-              <div id="terkini" class="spotlight-tab-content hidden">
-                <div class="grid md:grid-cols-2 gap-6">
-                  <a
-                    href="#"
-                    class="latest-news-item group flex items-start p-4 rounded-xl hover:bg-white/50 transition-all"
-                  >
-                    <div class="flex-1">
-                      <div
-                        class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
-                      >
-                        <img
-                          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=500&auto=format&fit=crop"
-                          alt="berita"
-                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                      <h4
-                        class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors"
-                      >
-                        Peluncuran Aplikasi Layanan Kelurahan "Tanjung Digital"
-                      </h4>
-                      <div class="flex items-center text-sm text-gray-500 mt-2">
-                        <span
-                          ><i class="far fa-calendar-alt mr-1"></i> 15 Juli
-                          2025</span
-                        >
-                        <span class="ml-3"
-                          ><i class="far fa-eye mr-1"></i> 1.2K</span
-                        >
-                      </div>
-                    </div>
-                  </a>
-
-                  <a
-                    href="#"
-                    class="latest-news-item group flex items-start p-4 rounded-xl hover:bg-white/50 transition-all"
-                  >
-                    <div class="flex-1">
-                      <div
-                        class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
-                      >
-                        <img
-                          src="https://images.unsplash.com/photo-1573167507387-6b4b98cb7c13?q=80&w=500&auto=format&fit=crop"
-                          alt="berita"
-                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                      <h4
-                        class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors"
-                      >
-                        Rapat Koordinasi Persiapan HUT RI Ke-80 Tingkat
-                        Kelurahan
-                      </h4>
-                      <div class="flex items-center text-sm text-gray-500 mt-2">
-                        <span
-                          ><i class="far fa-calendar-alt mr-1"></i> 14 Juli
-                          2025</span
-                        >
-                        <span class="ml-3"
-                          ><i class="far fa-eye mr-1"></i> 980</span
-                        >
-                      </div>
-                    </div>
-                  </a>
-
-                  <a
-                    href="#"
-                    class="latest-news-item group flex items-start p-4 rounded-xl hover:bg-white/50 transition-all"
-                  >
-                    <div class="flex-1">
-                      <div
-                        class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
-                      >
-                        <img
-                          src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=500&auto=format&fit=crop"
-                          alt="berita"
-                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                      <h4
-                        class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors"
-                      >
-                        Workshop Kewirausahaan untuk Pemuda Karang Taruna
-                      </h4>
-                      <div class="flex items-center text-sm text-gray-500 mt-2">
-                        <span
-                          ><i class="far fa-calendar-alt mr-1"></i> 13 Juli
-                          2025</span
-                        >
-                        <span class="ml-3"
-                          ><i class="far fa-eye mr-1"></i> 850</span
-                        >
-                      </div>
-                    </div>
-                  </a>
-
-                  <a
-                    href="#"
-                    class="latest-news-item group flex items-start p-4 rounded-xl hover:bg-white/50 transition-all"
-                  >
-                    <div class="flex-1">
-                      <div
-                        class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
-                      >
-                        <img
-                          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=500&auto=format&fit=crop"
-                          alt="berita"
-                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                      <h4
-                        class="font-bold text-gray-800 group-hover:text-primary-700 transition-colors"
-                      >
-                        Pemeriksaan Kesehatan Gratis untuk Warga Lansia
-                      </h4>
-                      <div class="flex items-center text-sm text-gray-500 mt-2">
-                        <span
-                          ><i class="far fa-calendar-alt mr-1"></i> 12 Juli
-                          2025</span
-                        >
-                        <span class="ml-3"
-                          ><i class="far fa-eye mr-1"></i> 720</span
                         >
                       </div>
                     </div>
@@ -2626,84 +2610,112 @@
     </main>
 
     <footer class="main-footer relative">
-        <div class="fixed-container py-16 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Tentang Kami</h3>
-                    <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
-                        alt="Logo Kelurahan"
-                        class="h-16 mb-4">
-                    <p class="text-gray-300 mb-4">
-                        Kelurahan Tanjungpinang Kota merupakan salah satu kelurahan di Kecamatan Tanjungpinang Kota, Kota Tanjungpinang, Provinsi Kepulauan Riau.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Tautan Cepat</h3>
-                    <ul class="space-y-3 footer-links">
-                        <li><a href="index.html" class="text-gray-300">Beranda</a></li>
-                        <li><a href="news.html" class="text-gray-300">Berita</a></li>
-                        <li><a href="attent.html" class="text-gray-300">Pengumuman</a></li>
-                        <li><a href="gallery.html" class="text-gray-300">Galeri</a></li>
-                        <li><a href="download.html" class="text-gray-300">Download</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Layanan</h3>
-                    <ul class="space-y-3 footer-links">
-                        <li><a href="#" class="text-gray-300">Pembuatan KTP</a></li>
-                        <li><a href="#" class="text-gray-300">Surat Domisili</a></li>
-                        <li><a href="#" class="text-gray-300">Akta Kelahiran</a></li>
-                        <li><a href="#" class="text-gray-300">Surat Nikah</a></li>
-                        <li><a href="#" class="text-gray-300">Surat Kematian</a></li>
-                        <li><a href="#" class="text-gray-300">SKTM</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-white text-xl font-bold mb-6">Kontak Kami</h3>
-                    <ul class="space-y-4">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-accent-color mt-1 mr-3"></i>
-                            <span class="text-gray-300">Jl. Kuantan No.1, Tanjungpinang Kota, Kec. Tanjungpinang Kota, Kota Tanjungpinang, Kepulauan Riau 29111</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone text-accent-color mr-3"></i>
-                            <span class="text-gray-300">+62 771 123456</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope text-accent-color mr-3"></i>
-                            <span class="text-gray-300">tpikotakel@tanjungpinangkota.go.id</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-clock text-accent-color mr-3"></i>
-                            <span class="text-gray-300">Senin-Jumat: 08.00-16.00 WIB</span>
-                        </li>
-                    </ul>
-                </div>
+      <div class="fixed-container py-16 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+          <div>
+            <h3 class="text-white text-xl font-bold mb-6">Tentang Kami</h3>
+            <img
+              src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
+              alt="Logo Kelurahan"
+              class="h-16 mb-4"
+            />
+            <p class="text-gray-300 mb-4">
+              Kelurahan Tanjungpinang Kota merupakan salah satu kelurahan di
+              Kecamatan Tanjungpinang Kota, Kota Tanjungpinang, Provinsi
+              Kepulauan Riau.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-gray-300 hover:text-white transition-colors"
+              >
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-300 hover:text-white transition-colors"
+              >
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="#"
+                class="text-gray-300 hover:text-white transition-colors"
+              >
+                <i class="fab fa-youtube"></i>
+              </a>
             </div>
+          </div>
 
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
-                <p class="text-gray-400 text-sm">
-                    @ Made by Kerja Praktik UMRAH 2025.
-                </p>
-            </div>
+          <div>
+            <h3 class="text-white text-xl font-bold mb-6">Tautan Cepat</h3>
+            <ul class="space-y-3 footer-links">
+              <li><a href="index.html" class="text-gray-300">Beranda</a></li>
+              <li><a href="news.html" class="text-gray-300">Berita</a></li>
+              <li>
+                <a href="attent.html" class="text-gray-300">Pengumuman</a>
+              </li>
+              <li><a href="gallery.html" class="text-gray-300">Galeri</a></li>
+              <li>
+                <a href="download.html" class="text-gray-300">Download</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-white text-xl font-bold mb-6">Layanan</h3>
+            <ul class="space-y-3 footer-links">
+              <li><a href="#" class="text-gray-300">Pembuatan KTP</a></li>
+              <li><a href="#" class="text-gray-300">Surat Domisili</a></li>
+              <li><a href="#" class="text-gray-300">Akta Kelahiran</a></li>
+              <li><a href="#" class="text-gray-300">Surat Nikah</a></li>
+              <li><a href="#" class="text-gray-300">Surat Kematian</a></li>
+              <li><a href="#" class="text-gray-300">SKTM</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-white text-xl font-bold mb-6">Kontak Kami</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <i
+                  class="fas fa-map-marker-alt text-accent-color mt-1 mr-3"
+                ></i>
+                <span class="text-gray-300"
+                  >Jl. Kuantan No.1, Tanjungpinang Kota, Kec. Tanjungpinang
+                  Kota, Kota Tanjungpinang, Kepulauan Riau 29111</span
+                >
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-phone text-accent-color mr-3"></i>
+                <span class="text-gray-300">+62 771 123456</span>
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-envelope text-accent-color mr-3"></i>
+                <span class="text-gray-300"
+                  >tpikotakel@tanjungpinangkota.go.id</span
+                >
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-clock text-accent-color mr-3"></i>
+                <span class="text-gray-300">Senin-Jumat: 08.00-16.00 WIB</span>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="floating-element absolute bottom-10 left-10 w-16 h-16 rounded-full bg-accent-color/20"></div>
-        <div class="floating-element absolute top-20 right-20 w-24 h-24 rounded-full bg-white/5"></div>
+        <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+          <p class="text-gray-400 text-sm">
+            @ Made by Kerja Praktik UMRAH 2025.
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="floating-element absolute bottom-10 left-10 w-16 h-16 rounded-full bg-accent-color/20"
+      ></div>
+      <div
+        class="floating-element absolute top-20 right-20 w-24 h-24 rounded-full bg-white/5"
+      ></div>
     </footer>
 
     <button
@@ -2713,23 +2725,84 @@
       <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <div
+      id="visitorPopup"
+      class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full"
+    >
+      <div
+        class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-62 relative"
+      >
+        <button
+          id="closePopup"
+          class="absolute -left-14 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg hover:bg-red-700 transition border-t border-b border-l border-gray-200 h-28 w-14 flex flex-col items-center justify-center"
+        >
+          <span
+            class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1"
+          >
+            Kunjungan
+            <span
+              class="bg-white rounded-full p-1 flex items-center justify-center h-5 w-5"
+            >
+              <i class="fas fa-chevron-down text-[10px] text-red-600"></i>
+            </span>
+          </span>
+        </button>
+
+        <div class="p-3 text-center">
+          <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
+            <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
+            <p class="text-red-100 text-xs">Jumlah kunjungan website</p>
+          </div>
+
+          <div class="py-2">
+            <div class="mb-3">
+              <h4 class="font-semibold text-gray-700 text-xs">Total Visitor</h4>
+              <p class="text-xl font-bold">262.522</p>
+              <p class="text-green-500 text-xs">10 Online</p>
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-gray-700 text-xs">Total View</h4>
+              <p class="text-xl font-bold">1.408.960</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button
+      id="togglePopup"
+      class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg z-40 hover:bg-red-700 transition h-28 w-14 flex flex-col items-center justify-center"
+    >
+      <span
+        class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1.5"
+      >
+        Kunjungan
+        <span
+          class="bg-white rounded-full p-1.5 flex items-center justify-center h-5 w-5"
+        >
+          <i class="fas fa-chevron-up text-xs text-red-600"></i>
+        </span>
+      </span>
+    </button>
+
+    <!-- AOS animation library removed for smoother category filtering -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-      // Initialize AOS animation
-      AOS.init({
-        duration: 800,
-        easing: "ease-in-out",
-        once: true,
-      });
+      // AOS initialization removed for smoother category filtering
+      // AOS.init({
+      //   duration: 800,
+      //   easing: "ease-in-out",
+      //   once: true,
+      // });
 
       // Mobile menu toggle
       const mobileMenuBtn = document.getElementById("mobile-menu-btn");
       const mobileMenu = document.getElementById("mobile-menu");
       if (mobileMenuBtn) {
-          mobileMenuBtn.addEventListener("click", () => {
-            if (mobileMenu) mobileMenu.classList.toggle("hidden");
-          });
+        mobileMenuBtn.addEventListener("click", () => {
+          if (mobileMenu) mobileMenu.classList.toggle("hidden");
+        });
       }
 
       // --- HERO NEWS CAROUSEL SCRIPT ---
@@ -2762,7 +2835,8 @@
         }
 
         function heroPrevSlide() {
-          const prevIndex = (heroCurrent - 1 + heroSlides.length) % heroSlides.length;
+          const prevIndex =
+            (heroCurrent - 1 + heroSlides.length) % heroSlides.length;
           showHeroSlide(prevIndex);
         }
 
@@ -2798,271 +2872,318 @@
 
       // Back to top button
       const backToTopBtn = document.getElementById("back-to-top");
-      if(backToTopBtn) {
+      if (backToTopBtn) {
         window.addEventListener("scroll", () => {
-            if (window.pageYOffset > 300) {
+          if (window.pageYOffset > 300) {
             backToTopBtn.classList.remove("opacity-0", "invisible");
             backToTopBtn.classList.add("opacity-100", "visible");
-            } else {
+          } else {
             backToTopBtn.classList.add("opacity-0", "invisible");
             backToTopBtn.classList.remove("opacity-100", "visible");
-            }
+          }
         });
 
         backToTopBtn.addEventListener("click", () => {
-            window.scrollTo({
+          window.scrollTo({
             top: 0,
             behavior: "smooth",
-            });
+          });
         });
       }
-      
+
       // Header scroll effect
       const header = document.querySelector(".modern-header");
-      if(header) {
+      if (header) {
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
+          if (window.scrollY > 50) {
             header.classList.add("scrolled");
-            } else {
+          } else {
             header.classList.remove("scrolled");
-            }
+          }
         });
       }
 
       // Spotlight News Tabs Functionality
       const spotlightTabBtns = document.querySelectorAll(".spotlight-tab-btn");
-      const spotlightTabContents = document.querySelectorAll(".spotlight-tab-content");
-      if(spotlightTabBtns.length > 0) {
+      const spotlightTabContents = document.querySelectorAll(
+        ".spotlight-tab-content"
+      );
+      if (spotlightTabBtns.length > 0) {
         spotlightTabBtns.forEach((btn) => {
-            btn.addEventListener("click", () => {
-                const targetTab = btn.getAttribute("data-tab");
-                spotlightTabBtns.forEach((b) => {
-                    b.classList.remove("active");
-                    b.querySelector("div").style.opacity = "0";
-                });
-                btn.classList.add("active");
-                btn.querySelector("div").style.opacity = "1";
-                spotlightTabContents.forEach((content) => {
-                    content.classList.add("hidden");
-                    content.classList.remove("active");
-                });
-                const targetContent = document.getElementById(targetTab);
-                if(targetContent) {
-                    targetContent.classList.remove("hidden");
-                    targetContent.classList.add("active");
-                }
+          btn.addEventListener("click", () => {
+            const targetTab = btn.getAttribute("data-tab");
+            spotlightTabBtns.forEach((b) => {
+              b.classList.remove("active");
+              b.querySelector("div").style.opacity = "0";
             });
+            btn.classList.add("active");
+            btn.querySelector("div").style.opacity = "1";
+            spotlightTabContents.forEach((content) => {
+              content.classList.add("hidden");
+              content.classList.remove("active");
+            });
+            const targetContent = document.getElementById(targetTab);
+            if (targetContent) {
+              targetContent.classList.remove("hidden");
+              targetContent.classList.add("active");
+            }
+          });
         });
       }
 
-      // --- UNIFIED NEWS FILTERING, SEARCH, AND PAGINATION SCRIPT ---
+      // --- UNIFIED NEWS FILTERING AND PAGINATION SCRIPT ---
       document.addEventListener("DOMContentLoaded", function () {
         // --- SELECTORS ---
         const filterButtons = document.querySelectorAll(".category-filter");
-        const searchInput = document.getElementById('news-title-search');
-        const clearSearchBtn = document.getElementById('clear-search');
-        const allNewsCards = document.querySelectorAll("#all-news .news-card");
-        const paginationContainer = document.querySelector("#all-news .flex.justify-center.mt-20");
-        const newsPageContainers = [
-            document.querySelector(".grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3.gap-8.relative.z-10:not([id])"),
-            document.getElementById("news-page-2"),
-            document.getElementById("news-page-3")
-        ].filter(Boolean);
-
-        const pageButtons = document.querySelectorAll("#all-news .page-btn");
+        const searchInput = document.getElementById("news-title-search");
+        const clearSearchBtn = document.getElementById("clear-search");
+        const allNewsCards = Array.from(
+          document.querySelectorAll("#all-news .news-card")
+        );
+        const paginationContainer = document.getElementById(
+          "pagination-container"
+        );
+        const pageNumbersContainer = document.getElementById("page-numbers");
         const prevBtn = document.getElementById("prev-btn");
         const nextBtn = document.getElementById("next-btn");
 
         // --- STATE ---
         let currentPage = 1;
-        const totalPages = 3; 
+        const cardsPerPage = 6;
+        let filteredCards = allNewsCards;
 
-        // --- CORE FILTER/SEARCH FUNCTION ---
+        // --- CORE FUNCTIONS ---
         function applyFiltersAndSearch() {
-            const category = document.querySelector('.category-filter.bg-red-600')?.dataset.filter || 'all';
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            const isFilteringActive = category !== 'all' || searchTerm !== '';
+          const category =
+            document.querySelector(".category-filter.bg-red-600")?.dataset
+              .filter || "all";
+          const searchTerm = searchInput.value.toLowerCase().trim();
 
-            if (clearSearchBtn) clearSearchBtn.classList.toggle('hidden', searchTerm === '');
-            if (paginationContainer) paginationContainer.style.display = isFilteringActive ? 'none' : 'flex';
+          // Filter cards based on search and category
+          filteredCards = allNewsCards.filter((card) => {
+            const cardCategory = (card.dataset.category || "").toLowerCase();
+            const cardTitle = (
+              card.querySelector("h3")?.textContent || ""
+            ).toLowerCase();
+            const categoryMatch =
+              category === "all" || cardCategory === category;
+            const searchMatch =
+              searchTerm === "" ||
+              cardTitle.includes(searchTerm) ||
+              cardCategory.includes(searchTerm);
+            return categoryMatch && searchMatch;
+          });
 
-            if (isFilteringActive) {
-                newsPageContainers.forEach(container => container.classList.remove('hidden'));
-            } else {
-                showPage(currentPage);
-            }
-
-            allNewsCards.forEach(card => {
-                const cardCategory = (card.dataset.category || '').toLowerCase();
-                const cardTitle = (card.querySelector('h3')?.textContent || '').toLowerCase();
-
-                const categoryMatch = category === 'all' || cardCategory === category;
-                const searchMatch = searchTerm === '' || cardTitle.includes(searchTerm) || cardCategory.includes(searchTerm);
-
-                if (isFilteringActive) {
-                    card.style.display = (categoryMatch && searchMatch) ? 'block' : 'none';
-                } else {
-                    card.style.display = 'block';
-                }
-            });
+          currentPage = 1; // Reset to first page after any filter change
+          renderPage(currentPage);
+          setupPagination();
         }
 
-        // --- PAGINATION FUNCTIONS ---
-        function showPage(pageNumber) {
-            currentPage = pageNumber;
-            newsPageContainers.forEach((container, index) => {
-                container.classList.toggle('hidden', (index + 1) !== pageNumber);
+        function setupPagination() {
+          if (!pageNumbersContainer) return;
+          pageNumbersContainer.innerHTML = "";
+          const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+
+          if (totalPages <= 1) {
+            paginationContainer.style.display = "none";
+            return;
+          }
+          paginationContainer.style.display = "flex";
+
+          for (let i = 1; i <= totalPages; i++) {
+            const pageButton = document.createElement("button");
+            pageButton.textContent = i;
+            pageButton.setAttribute("data-page", i);
+            pageButton.className =
+              "page-btn px-5 py-4 rounded-2xl bg-white text-gray-700 hover:bg-gradient-to-r hover:from-red-600 hover:to-red-700 hover:text-white transition-all duration-300 font-semibold hover:shadow-lg hover:transform hover:-translate-y-1 border border-gray-200";
+            pageNumbersContainer.appendChild(pageButton);
+
+            pageButton.addEventListener("click", () => {
+              currentPage = i;
+              renderPage(currentPage);
+              updatePaginationUI();
             });
-            updatePaginationUI();
+          }
+          updatePaginationUI();
+        }
+
+        function renderPage(page) {
+          // Hide all cards first
+          allNewsCards.forEach((card) => (card.style.display = "none"));
+
+          const start = (page - 1) * cardsPerPage;
+          const end = start + cardsPerPage;
+          const cardsToShow = filteredCards.slice(start, end);
+
+          cardsToShow.forEach((card) => (card.style.display = ""));
         }
 
         function updatePaginationUI() {
-            pageButtons.forEach(btn => {
-                const btnPage = parseInt(btn.getAttribute("data-page"));
-                const isActive = (btnPage === currentPage);
-                btn.classList.toggle('active', isActive);
-                if (isActive) {
-                    btn.classList.add('bg-gradient-to-r', 'from-red-600', 'to-red-700', 'text-white', 'font-bold', 'shadow-xl', 'transform', '-translate-y-1');
-                    btn.classList.remove('bg-white', 'text-gray-700');
-                } else {
-                    btn.classList.remove('bg-gradient-to-r', 'from-red-600', 'to-red-700', 'text-white', 'font-bold', 'shadow-xl', 'transform', '-translate-y-1');
-                    btn.classList.add('bg-white', 'text-gray-700');
-                }
-            });
+          const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
 
-            if (prevBtn && nextBtn) {
-              prevBtn.disabled = (currentPage <= 1);
-              nextBtn.disabled = (currentPage >= totalPages);
-              prevBtn.classList.toggle("opacity-50", currentPage <= 1);
-              nextBtn.classList.toggle("opacity-50", currentPage >= totalPages);
-              prevBtn.classList.toggle("cursor-not-allowed", currentPage <= 1);
-              nextBtn.classList.toggle("cursor-not-allowed", currentPage >= totalPages);
+          // Update page number buttons
+          const pageButtons =
+            pageNumbersContainer.querySelectorAll(".page-btn");
+          pageButtons.forEach((btn) => {
+            const btnPage = parseInt(btn.getAttribute("data-page"));
+            if (btnPage === currentPage) {
+              btn.classList.add(
+                "bg-gradient-to-r",
+                "from-red-600",
+                "to-red-700",
+                "text-white",
+                "font-bold",
+                "shadow-xl",
+                "transform",
+                "-translate-y-1"
+              );
+              btn.classList.remove("bg-white", "text-gray-700");
+            } else {
+              btn.classList.remove(
+                "bg-gradient-to-r",
+                "from-red-600",
+                "to-red-700",
+                "text-white",
+                "font-bold",
+                "shadow-xl",
+                "transform",
+                "-translate-y-1"
+              );
+              btn.classList.add("bg-white", "text-gray-700");
             }
+          });
+
+          // Update prev/next buttons
+          if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
+            prevBtn.classList.toggle("opacity-50", currentPage === 1);
+            nextBtn.classList.toggle("opacity-50", currentPage === totalPages);
+            prevBtn.classList.toggle("cursor-not-allowed", currentPage === 1);
+            nextBtn.classList.toggle(
+              "cursor-not-allowed",
+              currentPage === totalPages
+            );
+          }
         }
 
         // --- EVENT LISTENERS ---
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('bg-red-600', 'text-white', 'border-red-700', 'shadow-md');
-                    btn.classList.add('bg-white', 'text-gray-700', 'border-gray-200');
-                });
-                button.classList.add('bg-red-600', 'text-white', 'border-red-700', 'shadow-md');
-                button.classList.remove('bg-white', 'text-gray-700', 'border-gray-200');
-                applyFiltersAndSearch();
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            filterButtons.forEach((btn) => {
+              btn.classList.remove(
+                "bg-red-600",
+                "text-white",
+                "border-red-700",
+                "shadow-md"
+              );
+              btn.classList.add("bg-white", "text-gray-700", "border-gray-200");
             });
-        });
-
-        if (searchInput) searchInput.addEventListener('input', applyFiltersAndSearch);
-        
-        if (clearSearchBtn) clearSearchBtn.addEventListener('click', () => {
-            searchInput.value = '';
+            button.classList.add(
+              "bg-red-600",
+              "text-white",
+              "border-red-700",
+              "shadow-md"
+            );
+            button.classList.remove(
+              "bg-white",
+              "text-gray-700",
+              "border-gray-200"
+            );
             applyFiltersAndSearch();
+          });
         });
 
-        if (pageButtons.length > 0) {
-          pageButtons.forEach(btn => {
-              btn.addEventListener("click", () => showPage(parseInt(btn.getAttribute("data-page"))));
-          });
-          if (prevBtn) prevBtn.addEventListener("click", () => {
-              if (currentPage > 1) showPage(currentPage - 1);
-          });
-          if (nextBtn) nextBtn.addEventListener("click", () => {
-              if (currentPage < totalPages) showPage(currentPage + 1);
-          });
-          showPage(1);
+        if (searchInput) {
+          searchInput.addEventListener("input", applyFiltersAndSearch);
         }
+
+        if (clearSearchBtn) {
+          clearSearchBtn.addEventListener("click", () => {
+            searchInput.value = "";
+            applyFiltersAndSearch();
+          });
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener("click", () => {
+            if (currentPage > 1) {
+              currentPage--;
+              renderPage(currentPage);
+              updatePaginationUI();
+            }
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener("click", () => {
+            const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+            if (currentPage < totalPages) {
+              currentPage++;
+              renderPage(currentPage);
+              updatePaginationUI();
+            }
+          });
+        }
+
+        // --- INITIAL RENDER ---
+        applyFiltersAndSearch();
       });
+
+      // Visitor Popup script
+      const toggleButton = document.getElementById("togglePopup");
+      const closeButton = document.getElementById("closePopup");
+      const popup = document.getElementById("visitorPopup");
+
+      if (toggleButton && closeButton && popup) {
+        toggleButton.addEventListener("click", function () {
+          popup.classList.remove("hidden");
+          setTimeout(() => {
+            popup.classList.remove("translate-x-full");
+          }, 10);
+        });
+
+        closeButton.addEventListener("click", function () {
+          popup.classList.add("translate-x-full");
+          setTimeout(() => {
+            popup.classList.add("hidden");
+          }, 300);
+        });
+      }
     </script>
-    
-    <div id="visitorPopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full">
-            <div class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-62 relative">
-                <button id="closePopup" class="absolute -left-14 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg hover:bg-red-700 transition border-t border-b border-l border-gray-200 h-28 w-14 flex flex-col items-center justify-center">
-            <span class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1">
-                Kunjungan
-                <span class="bg-white rounded-full p-1 flex items-center justify-center h-5 w-5">
-                <i class="fas fa-chevron-down text-[10px] text-red-600"></i>
-                </span>
-            </span>
-            </button>
 
-                <div class="p-3 text-center">
-                <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
-                    <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
-                    <p class="text-red-100 text-xs">Jumlah kunjungan website</p>
-                </div>
-                
-                <div class="py-2">
-                    <div class="mb-3">
-                    <h4 class="font-semibold text-gray-700 text-xs">Total Visitor</h4>
-                    <p class="text-xl font-bold">262.522</p>
-                    <p class="text-green-500 text-xs">10 Online</p>
-                    </div>
-                    
-                    <div>
-                    <h4 class="font-semibold text-gray-700 text-xs">Total View</h4>
-                    <p class="text-xl font-bold">1.408.960</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
+    <style>
+      @keyframes bounceInRight {
+        0% {
+          transform: translateX(100%) translateY(-50%);
+        }
+        60% {
+          transform: translateX(-10px) translateY(-50%);
+        }
+        80% {
+          transform: translateX(5px) translateY(-50%);
+        }
+        100% {
+          transform: translateX(0) translateY(-50%);
+        }
+      }
 
-            <button id="togglePopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg z-40 hover:bg-red-700 transition h-28 w-14 flex flex-col items-center justify-center">
-            <span class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1.5">
-                Kunjungan
-                <span class="bg-white rounded-full p-1.5 flex items-center justify-center h-5 w-5">
-                <i class="fas fa-chevron-up text-xs text-red-600"></i>
-                </span>
-            </span>
-            </button>
+      #visitorPopup {
+        position: fixed;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 50;
+        transition: transform 0.3s ease-in-out;
+      }
 
-            <script>
-            const toggleButton = document.getElementById('togglePopup');
-            const closeButton = document.getElementById('closePopup');
-            const popup = document.getElementById('visitorPopup');
+      #visitorPopup.hidden {
+        display: none;
+      }
 
-            // Open popup with bounce effect
-            toggleButton.addEventListener('click', function() {
-                popup.classList.remove('hidden');
-                setTimeout(() => {
-                popup.classList.remove('translate-x-full');
-                }, 10);
-            });
-
-            // Close popup with slide out
-            closeButton.addEventListener('click', function() {
-                popup.classList.add('translate-x-full');
-                setTimeout(() => {
-                popup.classList.add('hidden');
-                }, 300);
-            });
-            </script>
-
-            <style>
-            @keyframes bounceInRight {
-                0% { transform: translateX(100%) translateY(-50%); }
-                60% { transform: translateX(-10px) translateY(-50%); }
-                80% { transform: translateX(5px) translateY(-50%); }
-                100% { transform: translateX(0) translateY(-50%); }
-            }
-            
-            #visitorPopup {
-                position: fixed;
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
-                z-index: 50;
-                transition: transform 0.3s ease-in-out;
-            }
-            
-            #visitorPopup.hidden {
-                display: none;
-            }
-            
-            #visitorPopup.translate-x-full {
-                transform: translateX(100%) translateY(-50%);
-            }
-            </style>
+      #visitorPopup.translate-x-full {
+        transform: translateX(100%) translateY(-50%);
+      }
+    </style>
   </body>
 </html>
