@@ -20,7 +20,8 @@
             scroll-behavior: smooth;
         }
 
-        .modern-header.scrolled {
+        .modern-header.scrolled,
+        .modern-header:hover {
             background: var(--primary-900) !important;
             backdrop-filter: none !important;
             transition: background 0.3s, backdrop-filter 0.3s;
@@ -310,24 +311,8 @@
         /* Section Header */
         .section-header {
             position: relative;
-            padding-bottom: 16px;
-            margin-bottom: 40px;
-        }
-
-        .section-header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--primary-gradient);
-            border-radius: 2px;
-            transition: width 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        .section-header:hover::after {
-            width: 120px;
+            padding-bottom: 8px;
+            margin-bottom: 24px;
         }
 
         /* Stats Cards */
@@ -341,23 +326,6 @@
             position: relative;
             overflow: hidden;
             border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--accent-color);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        .stat-card:hover::before {
-            transform: scaleX(1);
         }
 
         .stat-card:hover {
@@ -691,7 +659,7 @@
 
         .service-card:hover .card-icon {
             color: var(--primary-800);
-            transform: scale(1.1);
+            transform: translateX(30px) scale(1.1);
         }
 
         .card-title {
@@ -1051,14 +1019,13 @@
 
         .map-legend {
             position: absolute;
-            bottom: 16px;
-            left: 16px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 12px;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 12px 16px;
             border-radius: 8px;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
         }
         
         .map-popup {
@@ -1140,8 +1107,7 @@
         .service-card {
             padding: 24px;
         }
-    </style>
-    <style>
+
         /* Tambahan untuk sosial vertikal di banner */
         .hero-banner .social-vertical {
             left: 2rem;
@@ -1186,8 +1152,7 @@
                 font-size: 0.8rem !important;
             }
         }
-    </style>
-    <style>
+
         #carousel-banner {
             position: relative;
             overflow: hidden;
@@ -1226,10 +1191,10 @@
         <div class="container mx-auto px-4 py-2 md:py-3 relative z-10">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3 md:space-x-4">
-                    <div class="floating">
+                    <div>
                         <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
                             alt="Logo Kelurahan"
-                            class="h-11 w-11 md:h-12 md:w-12 object-contain transition-all duration-300">
+                            class="h-11 w-11 md:h-12 md:w-12 object-contain">
                     </div>
                     <div class="text-white flex flex-col justify-center">
                         <span class="text-xs md:text-sm font-semibold uppercase tracking-wider block leading-tight">Kelurahan</span>
@@ -1323,7 +1288,14 @@
             href="#"
             class="group w-12 h-12 rounded-2xl bg-gradient-to-r from-pink-500/20 to-rose-600/20 backdrop-blur-md flex items-center justify-center text-white hover:from-pink-500/40 hover:to-rose-600/40 transition-all duration-300 hover:scale-110 shadow-xl border border-white/20"
           >
-            <i class="fab fa-instagram"></i>
+            <i class="fab fa-instagram text-lg group-hover:scale-110 transition-transform duration-300"></i>
+          </a>
+
+          <a
+            href="#"
+            class="group w-12 h-12 rounded-2xl bg-gradient-to-r from-red-500/20 to-red-700/20 backdrop-blur-md flex items-center justify-center text-white hover:from-red-500/40 hover:to-red-700/40 transition-all duration-300 hover:scale-110 shadow-xl border border-white/20"
+          >
+            <i class="fab fa-youtube text-lg group-hover:scale-110 transition-transform duration-300"></i>
           </a>
         </div>
         <div class="hero-slide active" style="background-image: url('https://lendoot.com/wp-content/uploads/2024/08/Kelurahan-Tanjungpinang-Kota-salah-satu-yang-masuk-dalam-program-Kelurahan-Cantik.-ft-dok-lendoot.png');"></div>
@@ -1371,6 +1343,9 @@
                 <a href="download.html" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
                     <i class="fas fa-download mr-3"></i> Download
                 </a>
+                <a href="#layanan" class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+                    <i class="fas fa-handshake mr-3"></i> Layanan
+                </a>
                 <div class="pt-2">
                     <a href="https://icms.tanjungpinangkota.go.id" class="btn-primary block text-center py-3">
                         <i class="fas fa-sign-in-alt mr-2"></i> Login Admin
@@ -1387,37 +1362,37 @@
                 <div class="stat-card group" data-aos="fade-up" data-aos-delay="100">
                     <div class="stat-number animate-bounce-slow">5,102</div>
                     <div class="text-gray-600 font-medium">Total Penduduk</div>
-                    <div class="absolute bottom-4 right-4 text-gray-200 group-hover:text-accent-color transition-colors">
+                    <div class="absolute bottom-4 right-4 text-gray-200 group-hover:text-[#900030] transition-colors">
                         <i class="fas fa-users text-4xl opacity-30 group-hover:opacity-100 transition-all"></i>
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-br from-primary-900/5 to-accent-color/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-[#900030] transition-all duration-300 rounded-xl"></div>
                 </div>
                 
                 <div class="stat-card group" data-aos="fade-up" data-aos-delay="200">
                     <div class="stat-number animate-bounce-slow" style="animation-delay: 0.2s">24</div>
                     <div class="text-gray-600 font-medium">RT</div>
-                    <div class="absolute bottom-4 right-4 text-gray-200 group-hover:text-accent-color transition-colors">
+                    <div class="absolute bottom-4 right-4 text-gray-200 group-hover:text-[#900030] transition-colors">
                         <i class="fas fa-home text-4xl opacity-30 group-hover:opacity-100 transition-all"></i>
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-br from-primary-900/5 to-accent-color/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-[#900030] transition-all duration-300 rounded-xl"></div>
                 </div>
                 
                 <div class="stat-card group" data-aos="fade-up" data-aos-delay="300">
                     <div class="stat-number animate-bounce-slow" style="animation-delay: 0.3s">8</div>
                     <div class="text-gray-600 font-medium">RW</div>
-                    <div class="absolute bottom-4 right-4 text-gray-200 group-hover:text-accent-color transition-colors">
+                    <div class="absolute bottom-4 right-4 text-gray-200 group-hover:text-[#900030] transition-colors">
                         <i class="fas fa-map-marked-alt text-4xl opacity-30 group-hover:opacity-100 transition-all"></i>
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-br from-primary-900/5 to-accent-color/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-[#900030] transition-all duration-300 rounded-xl"></div>
                 </div>
                 
                 <div class="stat-card group" data-aos="fade-up" data-aos-delay="400">
                     <div class="stat-number animate-bounce-slow" style="animation-delay: 0.4s">12</div>
                     <div class="text-gray-600 font-medium">Program Unggulan</div>
-                    <div class="absolute bottom-4 right-4 text-gray-200 group-hover:text-accent-color transition-colors">
+                    <div class="absolute bottom-4 right-4 text-gray-200 group-hover:text-[#900030] transition-colors">
                         <i class="fas fa-trophy text-4xl opacity-30 group-hover:opacity-100 transition-all"></i>
                     </div>
-                    <div class="absolute inset-0 bg-gradient-to-br from-primary-900/5 to-accent-color/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+                    <div class="absolute inset-0 border-2 border-transparent group-hover:border-[#900030] transition-all duration-300 rounded-xl"></div>
                 </div>
             </div>
         </section>
@@ -1430,7 +1405,7 @@
                             <i class="fas fa-newspaper text-primary-600 mr-3"></i>
                             Berita Utama
                         </h2>
-                        <a href="news.html" class="inline-flex items-center text-red-600 hover:text-white font-medium text-sm transition-all hover:scale-105 group border-2 border-red-600 hover:bg-red-600 px-4 py-2 rounded-lg">
+                        <a href="news.html" class="inline-flex items-center text-[#900030] hover:text-white font-medium text-sm transition-all hover:scale-105 group border-2 border-[#900030] hover:bg-[#900030] px-4 py-2 rounded-lg">
                             <span class="mr-2">Lihat Semua</span>
                             <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </a>
@@ -1449,7 +1424,7 @@
                                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                                             <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
                                                 <div class="mb-3">
-                                                    <span class="inline-block bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-2">SOSIAL</span>
+                                                    <span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-2">SOSIAL</span>
                                                     <span class="text-xs text-gray-300 ml-2">25 Juni 2024</span>
                                                 </div>
                                                 <h3 class="text-xl font-bold mb-3 leading-tight">
@@ -1466,7 +1441,7 @@
                                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                                             <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
                                                 <div class="mb-3">
-                                                    <span class="inline-block bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-2">PEMBANGUNAN</span>
+                                                    <span class="inline-block bg-red-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-2">PEMBANGUNAN</span>
                                                     <span class="text-xs text-gray-300 ml-2">23 Juni 2024</span>
                                                 </div>
                                                 <h3 class="text-xl font-bold mb-3 leading-tight">
@@ -1483,7 +1458,7 @@
                                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                                             <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
                                                 <div class="mb-3">
-                                                    <span class="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-2">LINGKUNGAN</span>
+                                                    <span class="inline-block bg-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold mb-2">LINGKUNGAN</span>
                                                     <span class="text-xs text-gray-300 ml-2">20 Juni 2024</span>
                                                 </div>
                                                 <h3 class="text-xl font-bold mb-3 leading-tight">
@@ -1607,117 +1582,6 @@
                 </div>
             </div>
         </section>
-        
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.getElementById('carousel-banner');
-            const slides = carousel.querySelector('.carousel-slides');
-            const slideItems = carousel.querySelectorAll('.carousel-slide');
-            const prevBtn = carousel.querySelector('.carousel-prev');
-            const nextBtn = carousel.querySelector('.carousel-next');
-            const indicators = carousel.querySelectorAll('.carousel-indicator');
-            
-            let currentIndex = 0;
-            let intervalId;
-            const slideCount = slideItems.length;
-            const slideInterval = 5000; // 5 detik
-            
-            // Clone slide pertama dan terakhir untuk efek loop mulus
-            const firstClone = slideItems[0].cloneNode(true);
-            const lastClone = slideItems[slideCount - 1].cloneNode(true);
-            slides.appendChild(firstClone);
-            slides.insertBefore(lastClone, slideItems[0]);
-            
-            // Update total slide count
-            const totalSlides = slideCount + 2;
-            slides.style.width = `${totalSlides * 100}%`;
-            
-            // Geser ke slide asli pertama
-            slides.style.transform = 'translateX(-100%)';
-            
-            // Fungsi untuk memindahkan ke slide tertentu dengan loop mulus
-            function goToSlide(index) {
-                // Jika mencapai clone slide pertama (index -1), geser ke slide terakhir asli
-                if (index < 0) {
-                    slides.style.transition = 'none';
-                    slides.style.transform = `translateX(-${slideCount * 100}%)`;
-                    // Trigger reflow
-                    void slides.offsetWidth;
-                    currentIndex = slideCount - 1;
-                    slides.style.transition = 'transform 0.5s ease';
-                    slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
-                } 
-                // Jika mencapai clone slide terakhir (index slideCount), geser ke slide pertama asli
-                else if (index >= slideCount) {
-                    slides.style.transition = 'none';
-                    slides.style.transform = 'translateX(-100%)';
-                    // Trigger reflow
-                    void slides.offsetWidth;
-                    currentIndex = 0;
-                    slides.style.transition = 'transform 0.5s ease';
-                    slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
-                } 
-                // Slide normal
-                else {
-                    currentIndex = index;
-                    slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
-                }
-                
-                // Update indikator
-                indicators.forEach((indicator, i) => {
-                    indicator.classList.toggle('active', i === currentIndex);
-                });
-            }
-            
-            // Fungsi untuk pindah ke slide berikutnya
-            function nextSlide() {
-                goToSlide(currentIndex + 1);
-            }
-            
-            // Fungsi untuk pindah ke slide sebelumnya
-            function prevSlide() {
-                goToSlide(currentIndex - 1);
-            }
-            
-            // Mulai autoplay
-            function startAutoPlay() {
-                intervalId = setInterval(nextSlide, slideInterval);
-            }
-            
-            // Hentikan autoplay
-            function stopAutoPlay() {
-                clearInterval(intervalId);
-            }
-            
-            // Event listeners
-            nextBtn.addEventListener('click', () => {
-                stopAutoPlay();
-                nextSlide();
-                startAutoPlay();
-            });
-            
-            prevBtn.addEventListener('click', () => {
-                stopAutoPlay();
-                prevSlide();
-                startAutoPlay();
-            });
-            
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    stopAutoPlay();
-                    goToSlide(index);
-                    startAutoPlay();
-                });
-            });
-            
-            // Pause saat hover
-            carousel.addEventListener('mouseenter', stopAutoPlay);
-            carousel.addEventListener('mouseleave', startAutoPlay);
-            
-            // Mulai carousel
-            startAutoPlay();
-        });
-        </script>
 
         <section id="layanan" class="mb-20" data-aos="fade-up">
             <div class="section-header">
@@ -2052,6 +1916,7 @@
                         <li><a href="#" class="text-gray-300">Pengumuman</a></li>
                         <li><a href="#" class="text-gray-300">Galeri</a></li>
                         <li><a href="#" class="text-gray-300">Download</a></li>
+                        <li><a href="#layanan" class="text-gray-300">Layanan</a></li>
                     </ul>
                 </div>
 
@@ -2103,6 +1968,116 @@
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('carousel-banner');
+            const slides = carousel.querySelector('.carousel-slides');
+            const slideItems = carousel.querySelectorAll('.carousel-slide');
+            const prevBtn = carousel.querySelector('.carousel-prev');
+            const nextBtn = carousel.querySelector('.carousel-next');
+            const indicators = carousel.querySelectorAll('.carousel-indicator');
+            
+            let currentIndex = 0;
+            let intervalId;
+            const slideCount = slideItems.length;
+            const slideInterval = 5000; // 5 detik
+            
+            // Clone slide pertama dan terakhir untuk efek loop mulus
+            const firstClone = slideItems[0].cloneNode(true);
+            const lastClone = slideItems[slideCount - 1].cloneNode(true);
+            slides.appendChild(firstClone);
+            slides.insertBefore(lastClone, slideItems[0]);
+            
+            // Update total slide count
+            const totalSlides = slideCount + 2;
+            slides.style.width = `${totalSlides * 100}%`;
+            
+            // Geser ke slide asli pertama
+            slides.style.transform = 'translateX(-100%)';
+            
+            // Fungsi untuk memindahkan ke slide tertentu dengan loop mulus
+            function goToSlide(index) {
+                // Jika mencapai clone slide pertama (index -1), geser ke slide terakhir asli
+                if (index < 0) {
+                 slides.style.transition = 'none';
+                 slides.style.transform = `translateX(-${slideCount * 100}%)`;
+                 // Trigger reflow
+                 void slides.offsetWidth;
+                 currentIndex = slideCount - 1;
+                 slides.style.transition = 'transform 0.5s ease';
+                 slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+                } 
+                // Jika mencapai clone slide terakhir (index slideCount), geser ke slide pertama asli
+                else if (index >= slideCount) {
+                 slides.style.transition = 'none';
+                 slides.style.transform = 'translateX(-100%)';
+                 // Trigger reflow
+                 void slides.offsetWidth;
+                 currentIndex = 0;
+                 slides.style.transition = 'transform 0.5s ease';
+                 slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+                } 
+                // Slide normal
+                else {
+                 currentIndex = index;
+                 slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+                }
+                
+                // Update indikator
+                indicators.forEach((indicator, i) => {
+                 indicator.classList.toggle('active', i === currentIndex);
+                });
+            }
+            
+            // Fungsi untuk pindah ke slide berikutnya
+            function nextSlide() {
+             goToSlide(currentIndex + 1);
+            }
+            
+            // Fungsi untuk pindah ke slide sebelumnya
+            function prevSlide() {
+             goToSlide(currentIndex - 1);
+            }
+            
+            // Mulai autoplay
+            function startAutoPlay() {
+             intervalId = setInterval(nextSlide, slideInterval);
+            }
+            
+            // Hentikan autoplay
+            function stopAutoPlay() {
+             clearInterval(intervalId);
+            }
+            
+            // Event listeners
+            nextBtn.addEventListener('click', () => {
+             stopAutoPlay();
+             nextSlide();
+             startAutoPlay();
+            });
+            
+            prevBtn.addEventListener('click', () => {
+             stopAutoPlay();
+             prevSlide();
+             startAutoPlay();
+            });
+            
+            indicators.forEach((indicator, index) => {
+             indicator.addEventListener('click', () => {
+              stopAutoPlay();
+              goToSlide(index);
+              startAutoPlay();
+             });
+            });
+
+            // Pause saat hover
+            carousel.addEventListener('mouseenter', stopAutoPlay);
+            carousel.addEventListener('mouseleave', startAutoPlay);
+            
+            // Mulai carousel
+            startAutoPlay();
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize AOS animation
@@ -2565,97 +2540,95 @@
                     activateNewsTab(btn);
                 });
             });
+
+            // Smooth scroll to Layanan Kami section
+            document.querySelectorAll('a[href="#layanan"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = document.querySelector(this.getAttribute('href'));
+                    const headerOffset = 100; // Adjust for header height
+                    const elementPosition = section.offsetTop;
+                    const offsetPosition = elementPosition - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                });
+            });
         });
     </script>
-    <div id="visitorPopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full">
-            <div class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-64 relative">
-                <button id="closePopup" class="absolute -left-14 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg hover:bg-red-700 transition border-t border-b border-l border-gray-200 h-28 w-14 flex flex-col items-center justify-center">
-            <span class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1">
-                Kunjungan
-                <span class="bg-white rounded-full p-1 flex items-center justify-center h-5 w-5">
-                <i class="fas fa-chevron-down text-[10px] text-red-600"></i>
-                </span>
-            </span>
-            </button>
+    <!-- Popup Container (Hidden by Default) -->
+<div id="visitorPopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full">
+  <div class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-56 relative">
+    <!-- Close Button (Positioned perfectly outside but attached) -->
+    <button id="closePopup" class="absolute -left-10 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-3 py-4 rounded-l-lg shadow-lg hover:bg-red-600 transition border-t border-b border-l border-gray-200">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+    
+    <!-- Content -->
+    <div class="p-3 text-center">  <!-- Added text-center here -->
+      <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
+        <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
+        <p class="text-red-100 text-xs">Jumlah kunjungan website</p>
+      </div>
+      
+      <div class="py-2">
+        <div class="mb-3">
+          <h4 class="font-semibold text-gray-700 text-xs">Total Visitor</h4>
+          <p class="text-xl font-bold">262.522</p>
+          <p class="text-green-500 text-xs">10 Online</p>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold text-gray-700 text-xs">Total View</h4>
+          <p class="text-xl font-bold">1.408.960</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-                <div class="p-3 text-center">
-                <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
-                    <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
-                    <p class="text-red-100 text-xs">Jumlah kunjungan website</p>
-                </div>
-                
-                <div class="py-2">
-                    <div class="mb-3">
-                    <h4 class="font-semibold text-gray-700 text-xs">Total Visitor</h4>
-                    <p class="text-xl font-bold">262.522</p>
-                    <p class="text-green-500 text-xs">10 Online</p>
-                    </div>
-                    
-                    <div>
-                    <h4 class="font-semibold text-gray-700 text-xs">Total View</h4>
-                    <p class="text-xl font-bold">1.408.960</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
+<!-- Open Button (Right Edge) -->
+<button id="togglePopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-3 py-4 rounded-l-lg shadow-lg z-40 hover:bg-red-600 transition">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+  </svg>
+</button>
 
-            <button id="togglePopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg z-40 hover:bg-red-700 transition h-28 w-14 flex flex-col items-center justify-center">
-            <span class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1.5">
-                Kunjungan
-                <span class="bg-white rounded-full p-1.5 flex items-center justify-center h-5 w-5">
-                <i class="fas fa-chevron-up text-xs text-red-600"></i>
-                </span>
-            </span>
-            </button>
+<script>
+  const toggleButton = document.getElementById('togglePopup');
+  const closeButton = document.getElementById('closePopup');
+  const popup = document.getElementById('visitorPopup');
 
-            <script>
-            const toggleButton = document.getElementById('togglePopup');
-            const closeButton = document.getElementById('closePopup');
-            const popup = document.getElementById('visitorPopup');
+  // Open popup with bounce effect
+  toggleButton.addEventListener('click', function() {
+    popup.classList.remove('hidden');
+    setTimeout(() => {
+      popup.classList.remove('translate-x-full');
+    }, 10);
+  });
 
-            // Open popup with bounce effect
-            toggleButton.addEventListener('click', function() {
-                popup.classList.remove('hidden');
-                setTimeout(() => {
-                popup.classList.remove('translate-x-full');
-                }, 10);
-            });
+  // Close popup with slide out
+  closeButton.addEventListener('click', function() {
+    popup.classList.add('translate-x-full');
+    popup.classList.remove('animate-[bounceInRight_0.3s]');
+    setTimeout(() => {
+      popup.classList.add('hidden');
+    }, 300);
+  });
+</script>
 
-            // Close popup with slide out
-            closeButton.addEventListener('click', function() {
-                popup.classList.add('translate-x-full');
-                setTimeout(() => {
-                popup.classList.add('hidden');
-                }, 300);
-            });
-            </script>
-
-            <style>
-            @keyframes bounceInRight {
-                0% { transform: translateX(100%) translateY(-50%); }
-                60% { transform: translateX(-10px) translateY(-50%); }
-                80% { transform: translateX(5px) translateY(-50%); }
-                100% { transform: translateX(0) translateY(-50%); }
-            }
-            
-            #visitorPopup {
-                position: fixed;
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
-                z-index: 50;
-                transition: transform 0.3s ease-in-out;
-            }
-            
-            #visitorPopup.hidden {
-                display: none;
-            }
-            
-            #visitorPopup.translate-x-full {
-                transform: translateX(100%) translateY(-50%);
-            }
-            </style>
+<style>
+  @keyframes bounceInRight {
+    0% { transform: translateX(100%) translateY(-50%); }
+    60% { transform: translateX(-10px) translateY(-50%); }
+    80% { transform: translateX(5px) translateY(-50%); }
+    100% { transform: translateX(0) translateY(-50%); }
+  }
+</style>
 </body>
 
 </html>
