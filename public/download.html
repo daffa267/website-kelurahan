@@ -483,24 +483,37 @@
         </div>
     </div>
 
-   <main class="py-[60px] bg-[#f8fafc]">
-    <div class="fixed-container">
-        <div class="flex justify-between items-center mb-[30px] flex-wrap gap-5">
-            <h2 class="text-3xl font-semibold text-red-600"><i class="fas fa-cloud-download"></i>Download Area</h2>
-            <div class="flex gap-[15px] flex-wrap">
-                <div class="relative min-w-[250px]">
-                    <i class="fas fa-search absolute left-[15px] top-1/2 -translate-y-1/2 text-[#9ca3af]"  ></i>
-                    <input type="text" id="searchInput" placeholder="Cari dokumen..." class="w-full pl-10 pr-[15px] py-[10px] rounded-lg border border-[#e5e7eb] bg-white transition-all focus:border-[#c00060] focus:outline-none ">
+   <main id="content" class="fixed-container py-8 md:py-16">
+    <section class="mb-8">
+        <div class="mb-8">
+            <div class="flex flex-col md:flex-row md:items-end gap-4"> 
+                <div class="flex items-center flex-1 min-w-0"> 
+                    <h1 class="text-2xl md:text-3xl font-semibold text-red-600 whitespace-nowrap">
+                        <i class="fas fa-cloud-download text-red-600 mr-4"></i>Download Area
+                    </h1>
+                    <div class="ml-4 w-full pt-0.5"></div>
                 </div>
-                <div class="relative min-w-[180px]">
-                    <select id="fileTypeFilter" class="w-full px-[15px] py-[10px] rounded-lg border border-[#e5e7eb] bg-white appearance-none cursor-pointer focus:border-[#c00060] focus:outline-none  ">
-                        <option value="all">Semua</option>
-                        <option value="pdf">PDF</option>
-                        <option value="doc">DOCX</option>
-                        <option value="xls">Excel</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-[15px] flex items-center">
-                        <i class="fas fa-chevron-down text-[#6b7280]"></i>
+                
+                <div class="flex flex-col md:flex-row md:items-center gap-4 flex-1 md:flex-none justify-end">
+                    <div class="relative w-full md:w-64">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-gray-400 text-sm"></i>
+                        </div>
+                        <input type="text" id="searchInput"
+                            class="block w-full pl-8 pr-3 py-3 border border-gray-200 rounded-lg transition-all duration-200 text-sm" 
+                            placeholder="Cari pengumuman...">
+                    </div>
+                    
+                    <div class="relative w-full md:w-48">
+                        <select id="announcement-year-filter" class="appearance-none bg-white border border-gray-200 rounded-lg px-3 py-3 pr-8 w-full transition-all duration-200 text-sm">
+                            <option value="Semua">Semua</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                            <i class="fas fa-chevron-down text-gray-400 text-sm"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -511,99 +524,84 @@
                 <thead>
                     <tr>
                         <th class="text-left w-12 py-[15px] px-5 bg-[#900030] text-white font-semibold">No.</th>
-                        <th class="text-left py-[15px] px-5 bg-[#900030] text-white font-semibold">Nama File</th>
-                        <th class="text-left py-[15px] px-5 bg-[#900030] text-white font-semibold">Deskripsi</th>
+                        <th class="text-left w-2/5 py-[15px] px-5 bg-[#900030] text-white font-semibold">Nama File</th>
+                        <th class="text-left w-2/5 py-[15px] px-5 bg-[#900030] text-white font-semibold">Deskripsi</th>
                         <th class="text-center py-[15px] px-5 bg-[#900030] text-white font-semibold">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="hover:bg-[#f9fafb]">
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">1</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">Infografis Kelurahan Tanjungpinang Kota Tahun 2022-2023</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">Informasi Teresela Setiap Saat</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle text-center whitespace-nowrap">
-                        <div class="inline-flex items-center justify-center gap-2">
-                            <!-- Tombol View (sekarang putih + border merah) -->
-                            <button class="view-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-white text-[#de1010] border border-[#de1010] hover:bg-[#de1010] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#de1010] focus:ring-opacity-50">
-                                <i class="fas fa-eye"></i>
-                                <span class="sr-only">View</span>
-                            </button>
-                            
-                            <!-- Tombol Download (sekarang merah, hover merah tua) -->
-                            <button class="download-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-[#de1010] text-white border border-[#de1010] hover:bg-[#b91c1c] focus:outline-none focus:ring-2 focus:ring-[#b91c1c] focus:ring-opacity-50">
-                                <i class="fas fa-cloud-download"></i>
-                                <span class="sr-only">Download</span>
-                            </button>
-                        </div>
-                    </td>
+                <tbody id="tableBody">
+                    <tr>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top">1</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-justify break-words">Infografis Kelurahan Tanjungpinang Kota Tahun 2022-2023</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-justify break-words">Informasi Teresela Setiap Saat</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-center whitespace-nowrap">
+                            <div class="inline-flex items-center justify-center gap-2">
+                                <button class="view-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-white text-[#de1010] border border-[#de1010] hover:bg-[#de1010] hover:text-white">
+                                    <i class="fas fa-eye"></i>
+                                    <span class="sr-only">View</span>
+                                </button>
+                                <button class="download-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-[#de1010] text-white border border-[#de1010] hover:bg-[#b91c1c]">
+                                    <i class="fas fa-cloud-download"></i>
+                                    <span class="sr-only">Download</span>
+                                </button>
+                            </div>
+                        </td>
                     </tr>
-                    <tr class="hover:bg-[#f9fafb]">
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">2</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">Jumlah Aparatur Kelurahan Tanjungpinang Kota Menurut Pendidikan dan Jenis Kelamin, tahun 2023</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">Informasi Teresela Setiap Saat</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle text-center">
-                            <!-- Tombol View (sekarang putih + border merah) -->
-                            <button class="view-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-white text-[#de1010] border border-[#de1010] hover:bg-[#de1010] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#de1010] focus:ring-opacity-50">
+                    <tr>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top">2</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-justify break-words">Jumlah Aparatur Kelurahan Tanjungpinang Kota Menurut Pendidikan dan Jenis Kelamin, tahun 2023</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-justify break-words">Informasi Teresela Setiap Saat</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-center">
+                            <button class="view-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-white text-[#de1010] border border-[#de1010] hover:bg-[#de1010] hover:text-white">
                                 <i class="fas fa-eye"></i>
                                 <span class="sr-only">View</span>
                             </button>
-                            
-                            <!-- Tombol Download (sekarang merah, hover merah tua) -->
-                            <button class="download-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-[#de1010] text-white border border-[#de1010] hover:bg-[#b91c1c] focus:outline-none focus:ring-2 focus:ring-[#b91c1c] focus:ring-opacity-50">
+                            <button class="download-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-[#de1010] text-white border border-[#de1010] hover:bg-[#b91c1c]">
                                 <i class="fas fa-cloud-download"></i>
                                 <span class="sr-only">Download</span>
                             </button>
                         </td>
                     </tr>
-                    <tr class="hover:bg-[#f9fafb]">
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">3</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">Jumlah PNS Kelurahan Tanjungpinang Kota menurut golongan</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">Informasi Teresela Setiap Saat</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle text-center">
-                            <!-- Tombol View (sekarang putih + border merah) -->
-                            <button class="view-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-white text-[#de1010] border border-[#de1010] hover:bg-[#de1010] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#de1010] focus:ring-opacity-50">
+                    <tr>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top">3</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-justify break-words">Jumlah PNS Kelurahan Tanjungpinang Kota menurut golongan</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-justify break-words">Informasi Teresela Setiap Saat</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-center">
+                            <button class="view-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-white text-[#de1010] border border-[#de1010] hover:bg-[#de1010] hover:text-white">
                                 <i class="fas fa-eye"></i>
                                 <span class="sr-only">View</span>
                             </button>
-                            
-                            <!-- Tombol Download (sekarang merah, hover merah tua) -->
-                            <button class="download-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-[#de1010] text-white border border-[#de1010] hover:bg-[#b91c1c] focus:outline-none focus:ring-2 focus:ring-[#b91c1c] focus:ring-opacity-50">
+                            <button class="download-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-[#de1010] text-white border border-[#de1010] hover:bg-[#b91c1c]">
                                 <i class="fas fa-cloud-download"></i>
                                 <span class="sr-only">Download</span>
                             </button>
                         </td>
                     </tr>
-                    <tr class="hover:bg-[#f9fafb]">
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">4</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">Jumlah Penduduk Kelurahan Tanjungpinang Kota Menurut Jenis Pekerjaan dan Jenis Kelamin, 2021-2023</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">Informasi Teresela Setiap Saat</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle text-center">
-                            <!-- Tombol View (sekarang putih + border merah) -->
-                            <button class="view-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-white text-[#de1010] border border-[#de1010] hover:bg-[#de1010] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#de1010] focus:ring-opacity-50">
+                    <tr>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top">4</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-justify break-words">Jumlah Penduduk Kelurahan Tanjungpinang Kota Menurut Jenis Pekerjaan dan Jenis Kelamin, 2021-2023</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-justify break-words">Informasi Teresela Setiap Saat</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-center">
+                            <button class="view-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-white text-[#de1010] border border-[#de1010] hover:bg-[#de1010] hover:text-white">
                                 <i class="fas fa-eye"></i>
                                 <span class="sr-only">View</span>
                             </button>
-                            
-                            <!-- Tombol Download (sekarang merah, hover merah tua) -->
-                            <button class="download-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-[#de1010] text-white border border-[#de1010] hover:bg-[#b91c1c] focus:outline-none focus:ring-2 focus:ring-[#b91c1c] focus:ring-opacity-50">
+                            <button class="download-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-[#de1010] text-white border border-[#de1010] hover:bg-[#b91c1c]">
                                 <i class="fas fa-cloud-download"></i>
                                 <span class="sr-only">Download</span>
                             </button>
                         </td>
                     </tr>
-                    <tr class="hover:bg-[#f9fafb]">
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">5</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">Jumlah Penduduk Kelurahan Tanjungpinang Kota Menurut Tingkat Pendidikan dan Jenis Kelamin, 2021-2023</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle">Informasi Teresela Setiap Saat</td>
-                        <td class="py-[15px] px-5 border-b border-[#f3f4f6] align-middle text-center">
-                            <!-- Tombol View (sekarang putih + border merah) -->
-                            <button class="view-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-white text-[#de1010] border border-[#de1010] hover:bg-[#de1010] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#de1010] focus:ring-opacity-50">
+                    <tr>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top">5</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-justify break-words">Jumlah Penduduk Kelurahan Tanjungpinang Kota Menurut Tingkat Pendidikan dan Jenis Kelamin, 2021-2023</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-justify break-words">Informasi Teresela Setiap Saat</td>
+                        <td class="py-[15px] px-5 border-b-2 border-[#f3f4f6] align-top text-center">
+                            <button class="view-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-white text-[#de1010] border border-[#de1010] hover:bg-[#de1010] hover:text-white">
                                 <i class="fas fa-eye"></i>
                                 <span class="sr-only">View</span>
                             </button>
-                            
-                            <!-- Tombol Download (sekarang merah, hover merah tua) -->
-                            <button class="download-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-[#de1010] text-white border border-[#de1010] hover:bg-[#b91c1c] focus:outline-none focus:ring-2 focus:ring-[#b91c1c] focus:ring-opacity-50">
+                            <button class="download-btn px-4 py-2 rounded-md font-semibold text-sm cursor-pointer transition-colors bg-[#de1010] text-white border border-[#de1010] hover:bg-[#b91c1c]">
                                 <i class="fas fa-cloud-download"></i>
                                 <span class="sr-only">Download</span>
                             </button>
@@ -611,18 +609,43 @@
                     </tr>
                 </tbody>
             </table>
+            
+            <!-- Not Found Message -->
+            <div id="notFoundMessage" class="hidden text-center py-8">
+                <i class="fas fa-search text-gray-400 text-4xl mb-4"></i>
+                <h3 class="text-xl font-semibold text-gray-600">Data tidak ditemukan</h3>
+                <p class="text-gray-500">Coba dengan kata kunci yang berbeda</p>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="flex justify-center mt-8">
+                <nav class="flex items-center gap-1">
+                    <button class="pagination-btn px-3 py-1 rounded-md border border-[#de1010] text-[#de1010] hover:bg-[#de1010] hover:text-white">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="pagination-btn px-3 py-1 rounded-md bg-[#de1010] text-white border border-[#de1010]">1</button>
+                    <button class="pagination-btn px-3 py-1 rounded-md border border-[#de1010] text-[#de1010] hover:bg-[#de1010] hover:text-white">2</button>
+                    <button class="pagination-btn px-3 py-1 rounded-md border border-[#de1010] text-[#de1010] hover:bg-[#de1010] hover:text-white">3</button>
+                    <button class="pagination-btn px-3 py-1 rounded-md border border-[#de1010] text-[#de1010] hover:bg-[#de1010] hover:text-white">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </nav>
+            </div>
         </div>
-    </div>
+    </section>
 </main>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Search functionality
         const searchInput = document.getElementById('searchInput');
-        const tableRows = document.querySelectorAll('tbody tr');
+        const tableBody = document.getElementById('tableBody');
+        const tableRows = tableBody.querySelectorAll('tr');
+        const notFoundMessage = document.getElementById('notFoundMessage');
         
+        // Search functionality
         searchInput.addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();
+            let hasResults = false;
             
             tableRows.forEach(row => {
                 const fileName = row.cells[1].textContent.toLowerCase();
@@ -630,47 +653,75 @@
                 
                 if (fileName.includes(searchTerm) || fileDesc.includes(searchTerm)) {
                     row.style.display = '';
+                    hasResults = true;
                 } else {
                     row.style.display = 'none';
                 }
             });
+            
+            // Show/hide not found message
+            if (!hasResults && searchTerm.length > 0) {
+                notFoundMessage.classList.remove('hidden');
+                tableBody.classList.add('hidden');
+            } else {
+                notFoundMessage.classList.add('hidden');
+                tableBody.classList.remove('hidden');
+            }
         });
         
-        // Filter by file type
-        const fileTypeFilter = document.getElementById('fileTypeFilter');
+        // Filter by year
+        const yearFilter = document.getElementById('announcement-year-filter');
         
-        fileTypeFilter.addEventListener('change', function() {
-            const selectedType = this.value;
+        yearFilter.addEventListener('change', function() {
+            const selectedYear = this.value;
+            
+            if (selectedYear === 'Semua') {
+                tableRows.forEach(row => row.style.display = '');
+                notFoundMessage.classList.add('hidden');
+                tableBody.classList.remove('hidden');
+                return;
+            }
+            
+            let hasResults = false;
             
             tableRows.forEach(row => {
-                if (selectedType === 'all') {
-                    row.style.display = '';
-                    return;
-                }
+                const yearContent = row.cells[1].textContent;
+                const matchesYear = yearContent.includes(selectedYear);
                 
-                const fileName = row.cells[1].textContent.toLowerCase();
-                const fileExtension = fileName.split('.').pop();
-                
-                if (fileExtension.includes(selectedType)) {
+                if (matchesYear) {
                     row.style.display = '';
+                    hasResults = true;
                 } else {
                     row.style.display = 'none';
                 }
             });
+            
+            // Show/hide not found message
+            if (!hasResults) {
+                notFoundMessage.classList.remove('hidden');
+                tableBody.classList.add('hidden');
+            } else {
+                notFoundMessage.classList.add('hidden');
+                tableBody.classList.remove('hidden');
+            }
         });
         
         // Button click handlers
         document.querySelectorAll('.view-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const fileName = this.closest('tr').cells[1].textContent;
-                alert(`Membuka file: ${fileName}`);
             });
         });
         
         document.querySelectorAll('.download-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const fileName = this.closest('tr').cells[1].textContent;
-                alert(`Mengunduh file: ${fileName}`);
+            });
+        });
+        
+        // Pagination buttons
+        document.querySelectorAll('.pagination-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
             });
         });
     });
