@@ -1,8 +1,8 @@
 1. Beranda
     Widget : kasih nama icon misal statistik kunjungan.
     Logo dibuat diam (index.html done)
-    Hover dibuat ke kanan saja
-    Animasi bawah layanan ganti yang bagus lagi.
+    Hover dibuat ke kanan saja (Done)
+    Animasi bawah layanan ganti yang bagus lagi.(underline nya dihapus (DONE))
     
 2. Berita
     Halaman Berita detail Margin kiri kartu bawah disamakan dengan konten atas
