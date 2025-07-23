@@ -2159,70 +2159,93 @@
         });
     </script>
     <div id="visitorPopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full">
-  <div class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-56 relative">
-    <button id="closePopup" class="absolute -left-10 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-3 py-4 rounded-l-lg shadow-lg hover:bg-red-600 transition border-t border-b border-l border-gray-200">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
-    
-    <div class="p-3 text-center">  <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
-        <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
-        <p class="text-red-100 text-xs">Jumlah kunjungan website</p>
-      </div>
-      
-      <div class="py-2">
-        <div class="mb-3">
-          <h4 class="font-semibold text-gray-700 text-xs">Total Visitor</h4>
-          <p class="text-xl font-bold">262.522</p>
-          <p class="text-green-500 text-xs">10 Online</p>
-        </div>
-        
-        <div>
-          <h4 class="font-semibold text-gray-700 text-xs">Total View</h4>
-          <p class="text-xl font-bold">1.408.960</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+            <div class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-64 relative">
+                <button id="closePopup" class="absolute -left-14 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg hover:bg-red-700 transition border-t border-b border-l border-gray-200 h-28 w-14 flex flex-col items-center justify-center">
+            <span class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1">
+                Kunjungan
+                <span class="bg-white rounded-full p-1 flex items-center justify-center h-5 w-5">
+                <i class="fas fa-chevron-down text-[10px] text-red-600"></i>
+                </span>
+            </span>
+            </button>
 
-<button id="togglePopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-500 text-white px-3 py-4 rounded-l-lg shadow-lg z-40 hover:bg-red-600 transition">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
-  </svg>
-</button>
+                <div class="p-3 text-center">
+                <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
+                    <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
+                    <p class="text-red-100 text-xs">Jumlah kunjungan website</p>
+                </div>
+                
+                <div class="py-2">
+                    <div class="mb-3">
+                    <h4 class="font-semibold text-gray-700 text-xs">Total Visitor</h4>
+                    <p class="text-xl font-bold">262.522</p>
+                    <p class="text-green-500 text-xs">10 Online</p>
+                    </div>
+                    
+                    <div>
+                    <h4 class="font-semibold text-gray-700 text-xs">Total View</h4>
+                    <p class="text-xl font-bold">1.408.960</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
 
-<script>
-  const toggleButton = document.getElementById('togglePopup');
-  const closeButton = document.getElementById('closePopup');
-  const popup = document.getElementById('visitorPopup');
+            <button id="togglePopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg z-40 hover:bg-red-700 transition h-28 w-14 flex flex-col items-center justify-center">
+            <span class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1.5">
+                Kunjungan
+                <span class="bg-white rounded-full p-1.5 flex items-center justify-center h-5 w-5">
+                <i class="fas fa-chevron-up text-xs text-red-600"></i>
+                </span>
+            </span>
+            </button>
 
-  // Open popup with bounce effect
-  toggleButton.addEventListener('click', function() {
-    popup.classList.remove('hidden');
-    setTimeout(() => {
-      popup.classList.remove('translate-x-full');
-    }, 10);
-  });
+            <script>
+            const toggleButton = document.getElementById('togglePopup');
+            const closeButton = document.getElementById('closePopup');
+            const popup = document.getElementById('visitorPopup');
 
-  // Close popup with slide out
-  closeButton.addEventListener('click', function() {
-    popup.classList.add('translate-x-full');
-    popup.classList.remove('animate-[bounceInRight_0.3s]');
-    setTimeout(() => {
-      popup.classList.add('hidden');
-    }, 300);
-  });
-</script>
+            // Open popup with bounce effect
+            toggleButton.addEventListener('click', function() {
+                popup.classList.remove('hidden');
+                setTimeout(() => {
+                popup.classList.remove('translate-x-full');
+                }, 10);
+            });
 
-<style>
-  @keyframes bounceInRight {
-    0% { transform: translateX(100%) translateY(-50%); }
-    60% { transform: translateX(-10px) translateY(-50%); }
-    80% { transform: translateX(5px) translateY(-50%); }
-    100% { transform: translateX(0) translateY(-50%); }
-  }
-</style>
+            // Close popup with slide out
+            closeButton.addEventListener('click', function() {
+                popup.classList.add('translate-x-full');
+                setTimeout(() => {
+                popup.classList.add('hidden');
+                }, 300);
+            });
+            </script>
+
+            <style>
+            @keyframes bounceInRight {
+                0% { transform: translateX(100%) translateY(-50%); }
+                60% { transform: translateX(-10px) translateY(-50%); }
+                80% { transform: translateX(5px) translateY(-50%); }
+                100% { transform: translateX(0) translateY(-50%); }
+            }
+            
+            #visitorPopup {
+                position: fixed;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+                z-index: 50;
+                transition: transform 0.3s ease-in-out;
+            }
+            
+            #visitorPopup.hidden {
+                display: none;
+            }
+            
+            #visitorPopup.translate-x-full {
+                transform: translateX(100%) translateY(-50%);
+            }
+            </style>
 </body>
 </html>
