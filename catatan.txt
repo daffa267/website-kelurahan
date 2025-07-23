@@ -1,5 +1,5 @@
 1. Beranda
-    Widget : kasih nama icon misal statistik kunjungan.
+    Widget : kasih nama icon misal statistik kunjungan. (sudah)
     Logo dibuat diam (index.html done)
     Hover dibuat ke kanan saja
     Animasi bawah layanan ganti yang bagus lagi.
@@ -16,4 +16,4 @@
     Kategori hapus
     
 5. Download 
-    Buat list pakai tabel saja
+    Buat list pakai tabel saja (progress)
