@@ -7,23 +7,18 @@
     <title>
       Berita | Kelurahan Tanjungpinang Kota | Kecamatan Tanjungpinang Kota
     </title>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
       /* Header berubah merah solid saat scroll */
-      .modern-header.scrolled {
+      .modern-header.scrolled,
+      .modern-header:hover {
         background: var(--primary-900) !important;
         backdrop-filter: none !important;
         transition: background 0.3s, backdrop-filter 0.3s;
@@ -250,37 +245,57 @@
       }
 
       /* Article Content Styles */
-      .article-content {
-        color: #4b5563;
+      .modern-card {
+          background: linear-gradient(145deg, #ffffff, #f8fafc);
+          border: 1px solid rgba(148, 163, 184, 0.1);
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      
+      .modern-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      
+      .article-content { 
+        color: #4b5563; 
       }
 
-      .article-content h2,
-      .article-content h3,
-      .article-content h4 {
-        color: #1f2937;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        font-weight: 700;
+      .article-content h2, 
+      .article-content h3 { 
+        color: #1f2937; 
+        margin-top: 2rem; 
+        margin-bottom: 1rem; 
+        font-weight: 700; 
       }
 
-      .article-content p {
-        margin-bottom: 1.5rem;
-        line-height: 1.7;
+      .article-content p { 
+        margin-bottom: 1.5rem; 
+        line-height: 1.7; 
       }
 
-      .lead-paragraph {
-        background: linear-gradient(to right, #f0fdf4, #dcfce7);
-        padding: 1.5rem;
-        border-left: 4px solid var(--green-600);
-        margin-bottom: 2rem;
-        border-radius: 0.5rem;
+      .lead-paragraph { 
+        background: linear-gradient(to right, #f0fdf4, #dcfce7); 
       }
 
-      .lead-paragraph p {
-        font-size: 1.125rem;
-        line-height: 1.75;
-        color: #1f2937;
-        font-weight: 500;
+      .program-card { 
+        background-color: white; 
+        border: 1px solid #e5e7eb; 
+        transition: all 0.3s ease; 
+      }
+
+      .program-card:hover { 
+        transform: translateY(-0.25rem); 
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
+      }
+
+      .stats-section { 
+        background: linear-gradient(to right, #f0fdf4, #dcfce7); 
+        border: 1px solid #d1fae5; 
+      }
+
+      .line-clamp-2 { 
+        display: -webkit-box; -webkit-line-clamp: 2; 
+        -webkit-box-orient: vertical; overflow: hidden; 
       }
 
       .quote-box {
@@ -310,20 +325,6 @@
         line-height: 1;
       }
 
-      .program-card {
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: 0.75rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e5e7eb;
-        transition: all 0.3s ease;
-      }
-
-      .program-card:hover {
-        transform: translateY(-0.25rem);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-      }
-
       .icon-container {
         width: 3rem;
         height: 3rem;
@@ -333,15 +334,6 @@
         justify-content: center;
         margin-right: 1rem;
         flex-shrink: 0;
-      }
-
-      .stats-section {
-        background: linear-gradient(to right, #f0fdf4, #dcfce7);
-        padding: 2rem;
-        border-radius: 1rem;
-        box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
-        border: 1px solid #d1fae5;
-        margin: 2rem 0;
       }
 
       .stat-item {
@@ -406,17 +398,17 @@
       }
 
       /* Related News Section */
-      .related-news-card {
-        background-color: white;
-        border-radius: 0.75rem;
-        overflow: hidden;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+      .related-news-card { 
+        background-color: white; 
+        border-radius: 0.75rem; 
+        overflow: hidden; 
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+        transition: all 0.3s ease; 
       }
 
-      .related-news-card:hover {
-        transform: translateY(-0.5rem);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      .related-news-card:hover { 
+        transform: translateY(-0.5rem); 
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); 
       }
 
       .related-news-card img {
@@ -432,6 +424,49 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+      }
+
+      /* Custom styles for the hero section */
+      .hero-gradient-overlay {
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.75) 0%,
+          rgba(0, 0, 0, 0.5) 25%,
+          rgba(0, 0, 0, 0.3) 45%,
+          rgba(0, 0, 0, 0.15) 65%,
+          rgba(0, 0, 0, 0.05) 80%,
+          transparent 95%
+        );
+      }
+
+      /* Banner Share Button Animation - Uniform for all icons */
+      .banner-share-container {
+        perspective: 1000px;
+      }
+      .share-option {
+        opacity: 0;
+        transform: translateY(10px) rotateY(90deg);
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+      #banner-share-btn:hover .share-option:nth-child(1) {
+        opacity: 1;
+        transform: translateY(0) rotateY(0);
+        transition-delay: 0.1s;
+      }
+      #banner-share-btn:hover .share-option:nth-child(2) {
+        opacity: 1;
+        transform: translateY(0) rotateY(0);
+        transition-delay: 0.2s;
+      }
+      #banner-share-btn:hover .share-option:nth-child(3) {
+        opacity: 1;
+        transform: translateY(0) rotateY(0);
+        transition-delay: 0.3s;
+      }
+      #banner-share-btn:hover .share-option:nth-child(4) {
+        opacity: 1;
+        transform: translateY(0) rotateY(0);
+        transition-delay: 0.4s;
       }
 
       /* Footer Styles */
@@ -600,12 +635,10 @@
       <div class="container mx-auto px-4 py-2 md:py-3 relative z-10">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-3 md:space-x-4">
-            <div class="floating">
-              <img
-                src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
-                alt="Logo Kelurahan"
-                class="h-11 w-11 md:h-12 md:w-12 object-contain transition-all duration-300"
-              />
+            <div>
+              <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
+                  alt="Logo Kelurahan"
+                  class="h-11 w-11 md:h-12 md:w-12 object-contain">
             </div>
             <div class="text-white flex flex-col justify-center">
               <span
@@ -704,51 +737,6 @@
     >
       <!-- News Detail Hero Section -->
       <section class="relative h-[500px] overflow-hidden">
-        <style>
-          /* Custom styles for the hero section */
-          .hero-gradient-overlay {
-            background: linear-gradient(
-              to bottom,
-              rgba(0, 0, 0, 0.75) 0%,
-              rgba(0, 0, 0, 0.5) 25%,
-              rgba(0, 0, 0, 0.3) 45%,
-              rgba(0, 0, 0, 0.15) 65%,
-              rgba(0, 0, 0, 0.05) 80%,
-              transparent 95%
-            );
-          }
-
-          /* Banner Share Button Animation - Uniform for all icons */
-          .banner-share-container {
-            perspective: 1000px;
-          }
-          .share-option {
-            opacity: 0;
-            transform: translateY(10px) rotateY(90deg);
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-          }
-          #banner-share-btn:hover .share-option:nth-child(1) {
-            opacity: 1;
-            transform: translateY(0) rotateY(0);
-            transition-delay: 0.1s;
-          }
-          #banner-share-btn:hover .share-option:nth-child(2) {
-            opacity: 1;
-            transform: translateY(0) rotateY(0);
-            transition-delay: 0.2s;
-          }
-          #banner-share-btn:hover .share-option:nth-child(3) {
-            opacity: 1;
-            transform: translateY(0) rotateY(0);
-            transition-delay: 0.3s;
-          }
-          #banner-share-btn:hover .share-option:nth-child(4) {
-            opacity: 1;
-            transform: translateY(0) rotateY(0);
-            transition-delay: 0.4s;
-          }
-        </style>
-
         <div class="absolute inset-0">
           <div class="relative w-full h-full overflow-hidden">
             <!-- Main dark overlay dengan gradasi halus -->
@@ -959,547 +947,232 @@
         </div>
       </section>
 
-      <!-- Required Font Awesome for icons -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
       <!-- Article Content Section -->
       <section id="article-content" class="py-16 relative">
         <div class="container mx-auto px-6">
-          <div class="max-w-4xl mx-auto">
-            <!-- Sticky Share Buttons (initially hidden on mobile) -->
-            <div class="lg:hidden fixed bottom-6 right-6 z-50">
-              <button
-                id="mobile-share-toggle"
-                class="w-14 h-14 bg-green-600 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-green-700 transition-all transform hover:scale-110"
-              >
-                <i class="fas fa-share-alt text-xl"></i>
-              </button>
-            </div>
+          <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
 
-            <!-- Featured Image with Parallax Effect -->
-            <div
-              class="mb-12 rounded-2xl overflow-hidden shadow-2xl relative h-96"
-              data-aos="fade-up"
-            >
-              <div
-                class="parallax-img-container absolute inset-0 overflow-hidden"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200&h=600&auto=format&fit=crop"
-                  alt="Penyerahan Penghargaan Adipura"
-                  class="w-full h-full object-cover object-center"
-                />
-              </div>
-              <div
-                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6"
-              >
-                <p class="text-sm text-white italic">
-                  Momen penyerahan penghargaan Adipura kepada Kelurahan
-                  Tanjungpinang Kota oleh Walikota Tanjungpinang
-                </p>
-              </div>
-            </div>
+              <div class="lg:col-span-2 space-y-12">
+                <div class="rounded-2xl overflow-hidden shadow-2xl relative h-96" data-aos="fade-up">
+                  <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200&h=600&auto=format&fit=crop" alt="Penyerahan Penghargaan Adipura" class="w-full h-full object-cover object-center" />
+                  <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                    <p class="text-sm text-white italic">Momen penyerahan penghargaan Adipura kepada Kelurahan Tanjungpinang Kota oleh Walikota Tanjungpinang</p>
+                  </div>
+                </div>
 
-            <!-- Article Content with Typography Improvements -->
-            <article
-              class="article-content prose prose-lg max-w-none"
-              data-aos="fade-up"
-            >
-              <!-- Lead Paragraph with Highlight -->
-              <div
-                class="lead-paragraph bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border-l-4 border-green-500 mb-8"
-              >
-                <p class="text-xl text-gray-800 leading-relaxed font-medium">
-                  <span class="text-green-600 font-bold">Tanjungpinang</span> -
-                  Kelurahan Tanjungpinang Kota meraih prestasi membanggakan
-                  dengan menerima penghargaan Adipura tingkat kota untuk
-                  kategori kelurahan terbersih dan terhijau tahun 2024.
-                  Penghargaan ini diberikan sebagai apresiasi atas komitmen dan
-                  kerja keras seluruh warga dalam menjaga kebersihan dan
-                  kelestarian lingkungan.
-                </p>
-              </div>
-
-              <!-- Content Sections -->
-              <section class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                  Pencapaian yang Membanggakan
-                </h2>
-                <p class="text-gray-700 leading-relaxed mb-6">
-                  Penghargaan Adipura yang diterima oleh Kelurahan Tanjungpinang
-                  Kota merupakan hasil dari upaya konsisten dalam menerapkan
-                  program-program lingkungan yang berkelanjutan. Penilaian
-                  dilakukan berdasarkan beberapa kriteria utama, termasuk
-                  pengelolaan sampah, penghijauan, kebersihan fasilitas umum,
-                  dan partisipasi masyarakat dalam menjaga lingkungan.
-                </p>
-
-                <p class="text-gray-700 leading-relaxed mb-8">
-                  "Ini adalah pencapaian yang luar biasa bagi kita semua.
-                  Penghargaan ini tidak hanya milik pemerintah kelurahan, tetapi
-                  milik seluruh warga yang telah berpartisipasi aktif dalam
-                  menjaga kebersihan dan kelestarian lingkungan," ujar Lurah
-                  Tanjungpinang Kota, Bapak Drs. Ahmad Syahrial, M.Si., saat
-                  menerima penghargaan di Balai Kota Tanjungpinang.
-                </p>
-
-                <!-- Quote Box with Author Image -->
-                <figure
-                  class="quote-box bg-white p-6 rounded-xl shadow-lg border border-green-100 my-8"
-                >
-                  <blockquote
-                    class="text-lg italic text-gray-800 mb-4 relative"
-                  >
-                    <i
-                      class="fas fa-quote-left text-green-200 text-4xl absolute -top-2 -left-2 opacity-50"
-                    ></i>
-                    <p class="pl-8">
-                      "Penghargaan ini adalah bukti nyata bahwa dengan kerja
-                      sama yang baik antara pemerintah dan masyarakat, kita
-                      dapat menciptakan lingkungan yang bersih, sehat, dan
-                      berkelanjutan untuk generasi mendatang."
+                <article class="article-content prose prose-lg max-w-none" data-aos="fade-up">
+                  <div class="lead-paragraph p-6 rounded-xl border-l-4 border-green-500 mb-8">
+                    <p class="text-xl text-gray-800 leading-relaxed font-medium">
+                      <span class="text-green-600 font-bold">Tanjungpinang</span> - Kelurahan Tanjungpinang Kota meraih prestasi membanggakan dengan menerima penghargaan Adipura tingkat kota untuk kategori kelurahan terbersih dan terhijau tahun 2024. Penghargaan ini diberikan sebagai apresiasi atas komitmen dan kerja keras seluruh warga dalam menjaga kebersihan dan kelestarian lingkungan.
                     </p>
-                    <i
-                      class="fas fa-quote-right text-green-200 text-4xl absolute bottom-0 right-0 opacity-50"
-                    ></i>
-                  </blockquote>
-                  <figcaption class="flex items-center mt-4">
-                    <img
-                      src="https://randomuser.me/api/portraits/men/42.jpg"
-                      alt="Lurah Tanjungpinang Kota"
-                      class="w-12 h-12 rounded-full mr-4 border-2 border-green-500"
-                    />
-                    <div>
-                      <div class="text-green-700 font-semibold">
-                        Drs. Ahmad Syahrial, M.Si.
-                      </div>
-                      <div class="text-sm text-gray-600">
-                        Lurah Tanjungpinang Kota
-                      </div>
+                  </div>
+                  <section class="mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Pencapaian yang Membanggakan</h2>
+                    <p>Penghargaan Adipura yang diterima oleh Kelurahan Tanjungpinang Kota merupakan hasil dari upaya konsisten dalam menerapkan program-program lingkungan yang berkelanjutan. Penilaian dilakukan berdasarkan beberapa kriteria utama, termasuk pengelolaan sampah, penghijauan, kebersihan fasilitas umum, dan partisipasi masyarakat dalam menjaga lingkungan.</p>
+                    <p>"Ini adalah pencapaian yang luar biasa bagi kita semua. Penghargaan ini tidak hanya milik pemerintah kelurahan, tetapi milik seluruh warga yang telah berpartisipasi aktif dalam menjaga kebersihan dan kelestarian lingkungan," ujar Lurah Tanjungpinang Kota, Bapak Drs. Ahmad Syahrial, M.Si., saat menerima penghargaan di Balai Kota Tanjungpinang.</p>
+                    <figure class="quote-box bg-white p-6 rounded-xl shadow-lg border border-green-100 my-8">
+                      <blockquote class="text-lg italic text-gray-800 mb-4 relative pl-8"><i class="fas fa-quote-left text-green-200 text-4xl absolute -top-2 -left-2 opacity-50"></i>"Penghargaan ini adalah bukti nyata bahwa dengan kerja sama yang baik antara pemerintah dan masyarakat, kita dapat menciptakan lingkungan yang bersih, sehat, dan berkelanjutan untuk generasi mendatang."</blockquote>
+                      <figcaption class="flex items-center mt-4">
+                        <img src="https://randomuser.me/api/portraits/men/42.jpg" alt="Lurah Tanjungpinang Kota" class="w-12 h-12 rounded-full mr-4 border-2 border-green-500" />
+                        <div><div class="text-green-700 font-semibold">Drs. Ahmad Syahrial, M.Si.</div><div class="text-sm text-gray-600">Lurah Tanjungpinang Kota</div></div>
+                      </figcaption>
+                    </figure>
+                  </section>
+                </article>
+
+                <section>
+                  <h2 class="text-3xl font-bold text-gray-900 mb-6">Program-Program Unggulan</h2>
+                  <div class="grid md:grid-cols-2 gap-6 my-8">
+                    <div class="program-card p-6 rounded-xl"><div class="flex items-center mb-4"><div class="icon-container w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"><i class="fas fa-recycle"></i></div><h3 class="text-xl font-bold text-gray-900">Bank Sampah Kelurahan</h3></div><p class="text-gray-600">Program pengelolaan sampah terpadu dengan sistem bank sampah yang melibatkan seluruh RT/RW, berhasil mengurangi volume sampah hingga 40%.</p></div>
+                    <div class="program-card p-6 rounded-xl"><div class="flex items-center mb-4"><div class="icon-container w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"><i class="fas fa-seedling"></i></div><h3 class="text-xl font-bold text-gray-900">Gerakan Satu Rumah Satu Pohon</h3></div><p class="text-gray-600">Kampanye penghijauan yang berhasil menanam lebih dari 2.000 pohon di area kelurahan dan meningkatkan ruang terbuka hijau.</p></div>
+                    <div class="program-card p-6 rounded-xl"><div class="flex items-center mb-4"><div class="icon-container w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"><i class="fas fa-broom"></i></div><h3 class="text-xl font-bold text-gray-900">Jumat Bersih Bersama</h3></div><p class="text-gray-600">Kegiatan gotong royong rutin setiap hari Jumat yang melibatkan seluruh warga untuk membersihkan lingkungan sekitar.</p></div>
+                    <div class="program-card p-6 rounded-xl"><div class="flex items-center mb-4"><div class="icon-container w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"><i class="fas fa-graduation-cap"></i></div><h3 class="text-xl font-bold text-gray-900">Edukasi Lingkungan</h3></div><p class="text-gray-600">Program sosialisasi dan edukasi kepada masyarakat tentang pentingnya menjaga lingkungan dan pengelolaan sampah yang baik.</p></div>
+                  </div>
+                </section>
+
+                <section>
+                  <div class="stats-section p-8 rounded-2xl">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Dampak Positif Program Lingkungan</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                      <div class="stat-item text-center p-4 rounded-lg shadow-sm"><div class="text-4xl font-bold text-green-600 mb-2">40%</div><div class="text-gray-600 font-medium">Pengurangan Sampah</div></div>
+                      <div class="stat-item text-center p-4 rounded-lg shadow-sm"><div class="text-4xl font-bold text-emerald-600 mb-2">2,000+</div><div class="text-gray-600 font-medium">Pohon Ditanam</div></div>
+                      <div class="stat-item text-center p-4 rounded-lg shadow-sm"><div class="text-4xl font-bold text-blue-600 mb-2">85%</div><div class="text-gray-600 font-medium">Partisipasi Warga</div></div>
+                      <div class="stat-item text-center p-4 rounded-lg shadow-sm"><div class="text-4xl font-bold text-purple-600 mb-2">15</div><div class="text-gray-600 font-medium">RT/RW Terlibat</div></div>
                     </div>
-                  </figcaption>
-                </figure>
+                  </div>
+                </section>
+
+                <section>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-6">Dokumentasi Kegiatan</h3>
+                  <div class="grid md:grid-cols-3 gap-4">
+                    <div class="gallery-item rounded-xl shadow-lg"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&h=300&auto=format&fit=crop" alt="Bank Sampah" class="w-full h-48 object-cover"/><div class="p-4 bg-white"><p class="text-sm text-gray-600">Kegiatan Bank Sampah Kelurahan</p></div></div>
+                    <div class="gallery-item rounded-xl shadow-lg"><img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=400&h=300&auto=format&fit=crop" alt="Penanaman Pohon" class="w-full h-48 object-cover"/><div class="p-4 bg-white"><p class="text-sm text-gray-600">Program Penanaman Pohon</p></div></div>
+                    <div class="gallery-item rounded-xl shadow-lg"><img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=400&h=300&auto=format&fit=crop" alt="Gotong Royong" class="w-full h-48 object-cover"/><div class="p-4 bg-white"><p class="text-sm text-gray-600">Gotong Royong Jumat Bersih</p></div></div>
+                  </div>
+                </section>
+                
+                <section class="mt-16">
+                  <div class="modern-card rounded-3xl p-8">
+                      <div class="flex items-center justify-between mb-8">
+                          <h3 class="text-3xl font-bold gradient-text">💬 Komentar (12)</h3>
+                          <button class="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-emerald-600 hover:to-green-700 transition-all">
+                              Tulis Komentar
+                          </button>
+                      </div>
+
+                      <!-- Comment Form -->
+                      <div class="glass-effect rounded-2xl p-6 mb-8">
+                          <div class="flex space-x-4">
+                              <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl flex items-center justify-center text-white font-bold">
+                                  A
+                              </div>
+                              <div class="flex-1">
+                                  <textarea placeholder="Bagikan pendapat Anda tentang pencapaian ini..." 
+                                            class="w-full p-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 resize-none" 
+                                            rows="3"></textarea>
+                                  <div class="flex justify-between items-center mt-4">
+                                      <div class="flex space-x-2">
+                                          <button class="text-slate-400 hover:text-emerald-500 transition-colors">
+                                              <i class="fas fa-image"></i>
+                                          </button>
+                                          <button class="text-slate-400 hover:text-emerald-500 transition-colors">
+                                              <i class="fas fa-smile"></i>
+                                          </button>
+                                      </div>
+                                      <button class="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-6 py-2 rounded-xl font-semibold hover:from-emerald-600 hover:to-green-700 transition-all">
+                                          Kirim
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <!-- Comments List -->
+                      <div class="space-y-6">
+                          <div class="flex space-x-4">
+                              <img src="https://randomuser.me/api/portraits/women/32.jpg" 
+                                   alt="User" 
+                                   class="w-12 h-12 rounded-2xl object-cover border-2 border-emerald-200">
+                              <div class="flex-1">
+                                  <div class="bg-slate-50 rounded-2xl p-4">
+                                      <div class="flex items-center justify-between mb-2">
+                                          <h4 class="font-bold text-slate-800">Sari Dewi</h4>
+                                          <span class="text-sm text-slate-500">2 jam lalu</span>
+                                      </div>
+                                      <p class="text-slate-700">Selamat untuk Kelurahan Tanjungpinang Kota! Semoga pencapaian ini bisa menginspirasi kelurahan lain untuk lebih peduli lingkungan. 🌱</p>
+                                  </div>
+                                  <div class="flex items-center space-x-4 mt-3 text-sm text-slate-500">
+                                      <button class="hover:text-emerald-600 transition-colors">
+                                          <i class="fas fa-thumbs-up mr-1"></i> 8
+                                      </button>
+                                      <button class="hover:text-emerald-600 transition-colors">Balas</button>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="flex space-x-4">
+                              <img src="https://randomuser.me/api/portraits/men/45.jpg" 
+                                   alt="User" 
+                                   class="w-12 h-12 rounded-2xl object-cover border-2 border-emerald-200">
+                              <div class="flex-1">
+                                  <div class="bg-slate-50 rounded-2xl p-4">
+                                      <div class="flex items-center justify-between mb-2">
+                                          <h4 class="font-bold text-slate-800">Budi Santoso</h4>
+                                          <span class="text-sm text-slate-500">4 jam lalu</span>
+                                      </div>
+                                      <p class="text-slate-700">Program bank sampahnya sangat inovatif! Saya berharap program serupa bisa diterapkan di kelurahan saya juga.</p>
+                                  </div>
+                                  <div class="flex items-center space-x-4 mt-3 text-sm text-slate-500">
+                                      <button class="hover:text-emerald-600 transition-colors">
+                                          <i class="fas fa-thumbs-up mr-1"></i> 12
+                                      </button>
+                                      <button class="hover:text-emerald-600 transition-colors">Balas</button>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="flex space-x-4">
+                              <img src="https://randomuser.me/api/portraits/women/28.jpg" 
+                                   alt="User" 
+                                   class="w-12 h-12 rounded-2xl object-cover border-2 border-emerald-200">
+                              <div class="flex-1">
+                                  <div class="bg-slate-50 rounded-2xl p-4">
+                                      <div class="flex items-center justify-between mb-2">
+                                          <h4 class="font-bold text-slate-800">Maya Putri</h4>
+                                          <span class="text-sm text-slate-500">6 jam lalu</span>
+                                      </div>
+                                      <p class="text-slate-700">Bangga sekali dengan pencapaian ini! Sebagai warga Tanjungpinang, saya merasakan langsung dampak positif dari program-program lingkungan yang dilakukan. 👏</p>
+                                  </div>
+                                  <div class="flex items-center space-x-4 mt-3 text-sm text-slate-500">
+                                      <button class="hover:text-emerald-600 transition-colors">
+                                          <i class="fas fa-thumbs-up mr-1"></i> 15
+                                      </button>
+                                      <button class="hover:text-emerald-600 transition-colors">Balas</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="text-center mt-8">
+                          <button class="text-emerald-600 font-semibold hover:text-emerald-700 transition-colors">
+                              Muat Komentar Lainnya (9)
+                          </button>
+                      </div>
+                  </div>
               </section>
+              </div>
 
-              <!-- Program Highlights -->
-              <section class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                  Program-Program Unggulan
-                </h2>
-                <p class="text-gray-700 leading-relaxed mb-6">
-                  Keberhasilan meraih penghargaan Adipura tidak terlepas dari
-                  berbagai program inovatif yang telah dijalankan oleh Kelurahan
-                  Tanjungpinang Kota selama tahun 2024:
-                </p>
+              <div class="lg:col-span-1">
+                <div class="lg:sticky top-24 space-y-8">
 
-                <div class="grid md:grid-cols-2 gap-6 my-8">
-                  <!-- Program Card 1 -->
-                  <div
-                    class="program-card bg-white p-6 rounded-xl shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                  >
-                    <div class="flex items-center mb-4">
-                      <div
-                        class="icon-container w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"
-                      >
-                        <i class="fas fa-recycle"></i>
-                      </div>
-                      <h3 class="text-xl font-bold text-gray-900">
-                        Bank Sampah Kelurahan
-                      </h3>
-                    </div>
-                    <p class="text-gray-600">
-                      Program pengelolaan sampah terpadu dengan sistem bank
-                      sampah yang melibatkan seluruh RT/RW, berhasil mengurangi
-                      volume sampah hingga 40%.
-                    </p>
-                  </div>
-
-                  <!-- Program Card 2 -->
-                  <div
-                    class="program-card bg-white p-6 rounded-xl shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                  >
-                    <div class="flex items-center mb-4">
-                      <div
-                        class="icon-container w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"
-                      >
-                        <i class="fas fa-seedling"></i>
-                      </div>
-                      <h3 class="text-xl font-bold text-gray-900">
-                        Gerakan Satu Rumah Satu Pohon
-                      </h3>
-                    </div>
-                    <p class="text-gray-600">
-                      Kampanye penghijauan yang berhasil menanam lebih dari
-                      2.000 pohon di area kelurahan dan meningkatkan ruang
-                      terbuka hijau.
-                    </p>
-                  </div>
-
-                  <!-- Program Card 3 -->
-                  <div
-                    class="program-card bg-white p-6 rounded-xl shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                  >
-                    <div class="flex items-center mb-4">
-                      <div
-                        class="icon-container w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"
-                      >
-                        <i class="fas fa-broom"></i>
-                      </div>
-                      <h3 class="text-xl font-bold text-gray-900">
-                        Jumat Bersih Bersama
-                      </h3>
-                    </div>
-                    <p class="text-gray-600">
-                      Kegiatan gotong royong rutin setiap hari Jumat yang
-                      melibatkan seluruh warga untuk membersihkan lingkungan
-                      sekitar.
-                    </p>
-                  </div>
-
-                  <!-- Program Card 4 -->
-                  <div
-                    class="program-card bg-white p-6 rounded-xl shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                  >
-                    <div class="flex items-center mb-4">
-                      <div
-                        class="icon-container w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"
-                      >
-                        <i class="fas fa-graduation-cap"></i>
-                      </div>
-                      <h3 class="text-xl font-bold text-gray-900">
-                        Edukasi Lingkungan
-                      </h3>
-                    </div>
-                    <p class="text-gray-600">
-                      Program sosialisasi dan edukasi kepada masyarakat tentang
-                      pentingnya menjaga lingkungan dan pengelolaan sampah yang
-                      baik.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              <!-- Statistics Section -->
-              <section class="mb-12">
-                <div
-                  class="stats-section bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-2xl shadow-inner border border-green-100"
-                >
-                  <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">
-                    Dampak Positif Program Lingkungan
-                  </h2>
-                  <div class="grid md:grid-cols-4 gap-6">
-                    <div
-                      class="stat-item text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
-                    >
-                      <div class="text-4xl font-bold text-green-600 mb-2">
-                        40%
-                      </div>
-                      <div class="text-gray-600 font-medium">
-                        Pengurangan Sampah
-                      </div>
-                    </div>
-                    <div
-                      class="stat-item text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
-                    >
-                      <div class="text-4xl font-bold text-emerald-600 mb-2">
-                        2,000+
-                      </div>
-                      <div class="text-gray-600 font-medium">Pohon Ditanam</div>
-                    </div>
-                    <div
-                      class="stat-item text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
-                    >
-                      <div class="text-4xl font-bold text-blue-600 mb-2">
-                        85%
-                      </div>
-                      <div class="text-gray-600 font-medium">
-                        Partisipasi Warga
-                      </div>
-                    </div>
-                    <div
-                      class="stat-item text-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
-                    >
-                      <div class="text-4xl font-bold text-purple-600 mb-2">
-                        15
-                      </div>
-                      <div class="text-gray-600 font-medium">
-                        RT/RW Terlibat
-                      </div>
+                  <div class="bg-white rounded-xl shadow-lg p-6 border">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Berita Terkait</h2>
+                    <div class="grid grid-cols-1 gap-6">
+                        <a href="#" class="related-news-card block group">
+                          <div class="h-40 overflow-hidden rounded-lg relative">
+                            <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=500&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                            <span class="absolute top-3 right-3 bg-green-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">Lingkungan</span>
+                          </div>
+                          <div class="pt-4">
+                            <h3 class="font-bold text-gray-900 group-hover:text-green-600 transition-colors mb-1">Kelurahan Terbaik dalam Pengelolaan Sampah 2024</h3>
+                            <p class="text-sm text-gray-500" data-time="2024-03-15T10:30:00"></p>
+                          </div>
+                        </a>
+                        <a href="#" class="related-news-card block group">
+                          <div class="h-40 overflow-hidden rounded-lg relative">
+                            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=500&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                            <span class="absolute top-3 right-3 bg-green-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">Lingkungan</span>
+                          </div>
+                          <div class="pt-4">
+                            <h3 class="font-bold text-gray-900 group-hover:text-green-600 transition-colors mb-1">Program Penghijauan Perkotaan Tahun 2024</h3>
+                            <p class="text-sm text-gray-500" data-time="2024-03-14T15:45:00"></p>
+                          </div>
+                        </a>
+                        <a href="#" class="related-news-card block group">
+                          <div class="h-40 overflow-hidden rounded-lg relative">
+                            <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=500&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                            <span class="absolute top-3 right-3 bg-green-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full">Lingkungan</span>
+                          </div>
+                          <div class="pt-4">
+                            <h3 class="font-bold text-gray-900 group-hover:text-green-600 transition-colors mb-1">Pelatihan Pengomposan untuk Masyarakat</h3>
+                            <p class="text-sm text-gray-500" data-time="2024-03-13T09:15:00"></p>
+                          </div>
+                        </a>
                     </div>
                   </div>
                 </div>
-              </section>
-
-              <!-- Gallery Section -->
-              <section class="mb-12">
-                <h3 class="text-2xl font-bold text-gray-900 mb-6">
-                  Dokumentasi Kegiatan
-                </h3>
-                <div class="grid md:grid-cols-3 gap-4 gallery-grid">
-                  <div
-                    class="gallery-item rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-all duration-300"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=400&h=300&auto=format&fit=crop"
-                      alt="Bank Sampah"
-                      class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                    <div class="p-4 bg-white">
-                      <p class="text-sm text-gray-600">
-                        Kegiatan Bank Sampah Kelurahan
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="gallery-item rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-all duration-300"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=400&h=300&auto=format&fit=crop"
-                      alt="Penanaman Pohon"
-                      class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                    <div class="p-4 bg-white">
-                      <p class="text-sm text-gray-600">
-                        Program Penanaman Pohon
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="gallery-item rounded-xl overflow-hidden shadow-lg transform hover:-translate-y-2 transition-all duration-300"
-                  >
-                    <img
-                      src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=400&h=300&auto=format&fit=crop"
-                      alt="Gotong Royong"
-                      class="w-full h-48 object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                    <div class="p-4 bg-white">
-                      <p class="text-sm text-gray-600">
-                        Gotong Royong Jumat Bersih
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Mobile Share Modal -->
-      <div
-        id="mobile-share-modal"
-        class="fixed inset-0 bg-black/80 z-50 flex items-end justify-center hidden"
-      >
-        <div
-          class="bg-white w-full rounded-t-3xl p-6 transform transition-all duration-300 translate-y-full"
-        >
-          <div class="flex justify-between items-center mb-6">
-            <h3 class="text-xl font-bold text-gray-900">Bagikan Artikel</h3>
-            <button
-              id="close-share-modal"
-              class="text-gray-500 hover:text-gray-700"
-            >
-              <i class="fas fa-times text-2xl"></i>
-            </button>
-          </div>
-          <div class="grid grid-cols-4 gap-4 mb-6">
-            <a
-              href="#"
-              class="flex flex-col items-center justify-center p-3 rounded-xl hover:bg-gray-100 transition-colors"
-            >
-              <div
-                class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mb-2"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </div>
-              <span class="text-xs text-gray-600">Facebook</span>
-            </a>
-            <a
-              href="#"
-              class="flex flex-col items-center justify-center p-3 rounded-xl hover:bg-gray-100 transition-colors"
-            >
-              <div
-                class="w-12 h-12 bg-blue-400 text-white rounded-full flex items-center justify-center mb-2"
-              >
-                <i class="fab fa-twitter"></i>
-              </div>
-              <span class="text-xs text-gray-600">Twitter</span>
-            </a>
-            <a
-              href="#"
-              class="flex flex-col items-center justify-center p-3 rounded-xl hover:bg-gray-100 transition-colors"
-            >
-              <div
-                class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mb-2"
-              >
-                <i class="fab fa-whatsapp"></i>
-              </div>
-              <span class="text-xs text-gray-600">WhatsApp</span>
-            </a>
-            <a
-              href="#"
-              class="flex flex-col items-center justify-center p-3 rounded-xl hover:bg-gray-100 transition-colors"
-            >
-              <div
-                class="w-12 h-12 bg-gray-200 text-gray-700 rounded-full flex items-center justify-center mb-2"
-              >
-                <i class="fas fa-link"></i>
-              </div>
-              <span class="text-xs text-gray-600">Salin Tautan</span>
-            </a>
-          </div>
-          <button
-            class="w-full py-3 bg-gray-100 text-gray-800 font-medium rounded-lg hover:bg-gray-200 transition-colors"
-          >
-            Batal
-          </button>
-        </div>
-      </div>
-
-      <script>
-        // Mobile share toggle
-        const mobileShareToggle = document.getElementById(
-          "mobile-share-toggle"
-        );
-        const mobileShareModal = document.getElementById("mobile-share-modal");
-        const closeShareModal = document.getElementById("close-share-modal");
-
-        if (mobileShareToggle && mobileShareModal) {
-          mobileShareToggle.addEventListener("click", () => {
-            mobileShareModal.classList.remove("hidden");
-            setTimeout(() => {
-              mobileShareModal
-                .querySelector("div")
-                .classList.remove("translate-y-full");
-            }, 10);
-          });
-
-          closeShareModal.addEventListener("click", () => {
-            mobileShareModal
-              .querySelector("div")
-              .classList.add("translate-y-full");
-            setTimeout(() => {
-              mobileShareModal.classList.add("hidden");
-            }, 300);
-          });
-        }
-      </script>
-
-      <!-- Related News Section -->
-      <section class="py-12 bg-gray-50">
-        <div class="container mx-auto px-6">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Berita Terkait
-            </h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-              Informasi lain yang mungkin Anda minati terkait lingkungan dan
-              penghargaan
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-3 gap-8">
-            <!-- Related News 1 -->
-            <div
-              class="related-news-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2"
-            >
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=500&auto=format&fit=crop"
-                  alt="Related News"
-                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div class="p-6">
-                <div class="flex items-center text-sm text-gray-500 mb-3">
-                  <span
-                    ><i class="far fa-calendar-alt mr-2"></i>10 Juli 2024</span
-                  >
-                  <span class="ml-4"><i class="far fa-eye mr-2"></i>1.2K</span>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">
-                  Kelurahan Terbaik dalam Pengelolaan Sampah 2024
-                </h3>
-                <p class="text-gray-600 mb-4 line-clamp-2">
-                  Penghargaan tambahan untuk inovasi pengelolaan sampah berbasis
-                  masyarakat.
-                </p>
-                <a
-                  href="#"
-                  class="text-green-600 font-semibold hover:text-green-800 transition-colors flex items-center"
-                >
-                  Baca Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
-                </a>
               </div>
             </div>
-
-            <!-- Related News 2 -->
-            <div
-              class="related-news-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2"
-            >
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=500&auto=format&fit=crop"
-                  alt="Related News"
-                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
+            
+            <section class="mt-16 pt-12 border-t">
+              <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Rekomendasi Untuk Anda</h2></div>
+              <div class="grid md:grid-cols-3 gap-8">
+                  <div class="related-news-card"><img src="https://images.unsplash.com/photo-1569163139394-de4e4f43e4e3?q=80&w=500&auto=format&fit=crop" class="h-48 w-full object-cover"/><div class="p-6"><h3 class="text-xl font-bold text-gray-900 mb-3">Inovasi Hijau di Tingkat Kelurahan</h3><p class="text-gray-600 mb-4 line-clamp-2">Melihat berbagai terobosan kelurahan-kelurahan di Indonesia dalam menjaga lingkungan.</p><a href="#" class="text-green-600 font-semibold hover:text-green-800">Baca Selengkapnya <i class="fas fa-arrow-right ml-1"></i></a></div></div>
+                  <div class="related-news-card"><img src="https://images.unsplash.com/photo-1509099395498-a26c959ba59b?q=80&w=500&auto=format&fit=crop" class="h-48 w-full object-cover"/><div class="p-6"><h3 class="text-xl font-bold text-gray-900 mb-3">Partisipasi Warga: Kunci Sukses Adipura</h3><p class="text-gray-600 mb-4 line-clamp-2">Bagaimana peran aktif masyarakat menjadi faktor penentu dalam meraih penghargaan kebersihan kota.</p><a href="#" class="text-green-600 font-semibold hover:text-green-800">Baca Selengkapnya <i class="fas fa-arrow-right ml-1"></i></a></div></div>
+                  <div class="related-news-card"><img src="https://images.unsplash.com/photo-1611847111326-62c16a195535?q=80&w=500&auto=format&fit=crop" class="h-48 w-full object-cover"/><div class="p-6"><h3 class="text-xl font-bold text-gray-900 mb-3">Menjaga Adipura: Tantangan Setelah Juara</h3><p class="text-gray-600 mb-4 line-clamp-2">Langkah-langkah strategis yang perlu diambil untuk mempertahankan prestasi kebersihan lingkungan.</p><a href="#" class="text-green-600 font-semibold hover:text-green-800">Baca Selengkapnya <i class="fas fa-arrow-right ml-1"></i></a></div></div>
               </div>
-              <div class="p-6">
-                <div class="flex items-center text-sm text-gray-500 mb-3">
-                  <span
-                    ><i class="far fa-calendar-alt mr-2"></i>5 Juli 2024</span
-                  >
-                  <span class="ml-4"><i class="far fa-eye mr-2"></i>980</span>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">
-                  Program Penghijauan Perkotaan Tahun 2024
-                </h3>
-                <p class="text-gray-600 mb-4 line-clamp-2">
-                  Inisiatif kelurahan dalam meningkatkan ruang terbuka hijau di
-                  wilayah perkotaan.
-                </p>
-                <a
-                  href="#"
-                  class="text-green-600 font-semibold hover:text-green-800 transition-colors flex items-center"
-                >
-                  Baca Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-              </div>
-            </div>
-
-            <!-- Related News 3 -->
-            <div
-              class="related-news-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-2"
-            >
-              <div class="h-48 overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=500&auto=format&fit=crop"
-                  alt="Related News"
-                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div class="p-6">
-                <div class="flex items-center text-sm text-gray-500 mb-3">
-                  <span
-                    ><i class="far fa-calendar-alt mr-2"></i>1 Juli 2024</span
-                  >
-                  <span class="ml-4"><i class="far fa-eye mr-2"></i>1.5K</span>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">
-                  Pelatihan Pengomposan untuk Masyarakat
-                </h3>
-                <p class="text-gray-600 mb-4 line-clamp-2">
-                  Workshop pengelolaan sampah organik menjadi kompos untuk
-                  mengurangi limbah rumah tangga.
-                </p>
-                <a
-                  href="#"
-                  class="text-green-600 font-semibold hover:text-green-800 transition-colors flex items-center"
-                >
-                  Baca Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-              </div>
-            </div>
+           </section>
           </div>
         </div>
       </section>
@@ -1669,6 +1342,54 @@
         once: true,
       });
 
+      // Format relative time
+      function formatRelativeTime(dateTime) {
+        const now = new Date();
+        const diffMs = now - new Date(dateTime);
+        const diffMins = Math.round(diffMs / 60000);
+        const diffHours = Math.round(diffMins / 60);
+        const diffDays = Math.round(diffHours / 24);
+
+        if (diffMins < 1) return 'Baru saja';
+        if (diffMins < 60) return `${diffMins} menit yang lalu`;
+        if (diffHours < 24) return `${diffHours} jam yang lalu`;
+        
+        // If more than 24 hours, show the date
+        return new Date(dateTime).toLocaleDateString('id-ID', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+      }
+
+      // Initialize time formatting for all time elements
+      document.addEventListener('DOMContentLoaded', function() {
+        const timeElements = document.querySelectorAll('[data-time]');
+        timeElements.forEach(el => {
+          const dateTime = el.getAttribute('data-time');
+          if (dateTime) {
+            el.textContent = formatRelativeTime(dateTime);
+          }
+        });
+      });
+
+      // Header scroll effect
+      const modernHeader = document.querySelector('.modern-header');
+      if (modernHeader) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 100) {
+            modernHeader.classList.add('scrolled');
+          } else {
+            modernHeader.classList.remove('scrolled');
+          }
+        });
+
+        // Initialize header state on page load
+        if (window.scrollY > 100) {
+          modernHeader.classList.add('scrolled');
+        }
+      }
+
       // Mobile menu toggle
       const mobileMenuBtn = document.getElementById("mobile-menu-btn");
       const mobileMenu = document.getElementById("mobile-menu");
@@ -1679,6 +1400,33 @@
 
       // Hero banner carousel
       // (Script .hero-slide dihapus agar tidak bentrok dengan script utama .news-hero-slide)
+
+      // Mobile share toggle
+      const mobileShareToggle = document.getElementById(
+        "mobile-share-toggle"
+      );
+      const mobileShareModal = document.getElementById("mobile-share-modal");
+      const closeShareModal = document.getElementById("close-share-modal");
+
+      if (mobileShareToggle && mobileShareModal) {
+        mobileShareToggle.addEventListener("click", () => {
+          mobileShareModal.classList.remove("hidden");
+          setTimeout(() => {
+            mobileShareModal
+              .querySelector("div")
+              .classList.remove("translate-y-full");
+          }, 10);
+        });
+
+        closeShareModal.addEventListener("click", () => {
+          mobileShareModal
+            .querySelector("div")
+            .classList.add("translate-y-full");
+          setTimeout(() => {
+            mobileShareModal.classList.add("hidden");
+          }, 300);
+        });
+      }
 
       // --- HERO NEWS CAROUSEL SIMPLE & WORKING SCRIPT ---
       document.addEventListener("DOMContentLoaded", function () {
