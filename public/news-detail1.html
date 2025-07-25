@@ -23,7 +23,8 @@
 
     <style>
       /* Header berubah merah solid saat scroll */
-      .modern-header.scrolled {
+      .modern-header.scrolled,
+      .modern-header:hover {
         background: var(--primary-900) !important;
         backdrop-filter: none !important;
         transition: background 0.3s, backdrop-filter 0.3s;
@@ -203,13 +204,13 @@
       .fade-to-white-smooth {
         background: linear-gradient(
           to top,
-          rgba(255, 255, 255, 1) 0%,
-          rgba(255, 255, 255, 0.98) 15%,
-          rgba(255, 255, 255, 0.9) 30%,
-          rgba(255, 255, 255, 0.7) 45%,
-          rgba(255, 255, 255, 0.4) 60%,
-          rgba(255, 255, 255, 0.15) 75%,
-          rgba(255, 255, 255, 0.05) 85%,
+          #f8fafc 0%,
+          rgba(248, 250, 252, 0.98) 15%,
+          rgba(248, 250, 252, 0.9) 30%,
+          rgba(248, 250, 252, 0.7) 45%,
+          rgba(248, 250, 252, 0.4) 60%,
+          rgba(248, 250, 252, 0.15) 75%,
+          rgba(248, 250, 252, 0.05) 85%,
           transparent 100%
         );
       }
@@ -224,39 +225,24 @@
         );
       }
 
-      .parallax-bg {
-        position: absolute;
-        inset: 0;
-        overflow: hidden;
-      }
-
-      .parallax-bg::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          to bottom,
-          from-green-900/80 via-green-800/70 to-green-900/90
-        );
-        z-index: 10;
-      }
-
-      .parallax-bg img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        transform: scale(1.1);
-      }
-
       /* Article Content Styles */
+      .modern-card {
+        background: linear-gradient(145deg, #ffffff, #f8fafc);
+        border: 1px solid rgba(148, 163, 184, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .modern-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+
       .article-content {
         color: #4b5563;
       }
 
       .article-content h2,
-      .article-content h3,
-      .article-content h4 {
+      .article-content h3 {
         color: #1f2937;
         margin-top: 2rem;
         margin-bottom: 1rem;
@@ -268,134 +254,11 @@
         line-height: 1.7;
       }
 
-      .lead-paragraph {
-        background: linear-gradient(to right, #f0fdf4, #dcfce7);
-        padding: 1.5rem;
-        border-left: 4px solid var(--green-600);
-        margin-bottom: 2rem;
-        border-radius: 0.5rem;
-      }
-
-      .quote-box {
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: 0.75rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        border: 1px solid #d1fae5;
-        margin: 2rem 0;
-      }
-
-      .quote-box blockquote {
-        font-size: 1.125rem;
-        font-style: italic;
-        color: #1f2937;
-        position: relative;
-        padding-left: 2rem;
-      }
-
-      .quote-box blockquote::before {
-        content: '"';
-        position: absolute;
-        left: 0;
-        top: 0;
-        font-size: 3rem;
-        color: #d1fae5;
-        line-height: 1;
-      }
-
-      .program-card {
-        background-color: white;
-        padding: 1.5rem;
-        border-radius: 0.75rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e5e7eb;
-        transition: all 0.3s ease;
-      }
-
-      .program-card:hover {
-        transform: translateY(-0.25rem);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-      }
-
-      .icon-container {
-        width: 3rem;
-        height: 3rem;
-        border-radius: 9999px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 1rem;
-        flex-shrink: 0;
-      }
-
-      .stats-section {
-        background: linear-gradient(to right, #f0fdf4, #dcfce7);
-        padding: 2rem;
-        border-radius: 1rem;
-        box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
-        border: 1px solid #d1fae5;
-        margin: 2rem 0;
-      }
-
-      .stat-item {
-        background-color: white;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-      }
-
-      .stat-item:hover {
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      }
-
-      .gallery-grid {
-        display: grid;
-        gap: 1rem;
-      }
-
-      .gallery-item {
-        border-radius: 0.75rem;
+      .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         overflow: hidden;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-      }
-
-      .gallery-item:hover {
-        transform: translateY(-0.5rem);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-      }
-
-      .gallery-item img {
-        transition: transform 0.5s ease;
-      }
-
-      .gallery-item:hover img {
-        transform: scale(1.05);
-      }
-
-      .cta-section {
-        background: linear-gradient(to right, var(--green-600), #059669);
-        color: white;
-        padding: 2rem;
-        border-radius: 1rem;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        margin: 2rem 0;
-      }
-
-      .cta-btn {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.75rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      }
-
-      .cta-btn:hover {
-        transform: translateY(-0.25rem);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
       }
 
       /* Related News Section */
@@ -405,6 +268,56 @@
         overflow: hidden;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      
+      /* THIS IS THE FIX: This rule now ONLY applies to the recommendation cards at the bottom */
+      section.border-t .related-news-card .p-6 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 3.5rem;
+        position: relative;
+      }
+
+      .related-news-card .p-6 {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .related-news-card .read-more-btn {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.5rem 1.5rem 1.5rem;
+        background: white;
+        border-top: none;
+        border-radius: 0 0 0.75rem 0.75rem;
+      }
+
+      .related-news-card .read-more-btn a {
+        color: #e11d48;
+        font-weight: 600;
+        transition: color 0.2s;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .related-news-card .read-more-btn a:hover {
+        color: #9f1239;
+      }
+
+      .related-news-card .read-more-btn i {
+        transition: transform 0.2s;
+        margin-left: 0.25rem;
+      }
+
+      .related-news-card .read-more-btn a:hover i {
+        transform: translateX(3px);
       }
 
       .related-news-card:hover {
@@ -420,21 +333,34 @@
         transform: scale(1.05);
       }
 
-      .line-clamp-2 {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        line-clamp: 2;
-        box-orient: vertical;
+      /* Banner Share Button Animation */
+      .banner-share-container {
+        perspective: 1000px;
       }
-
-      .line-clamp-3 {
-        -webkit-line-clamp: 3;
-        line-clamp: 3;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+      .share-option {
+        opacity: 0;
+        transform: translateY(10px) rotateY(90deg);
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+      #banner-share-btn:hover .share-option:nth-child(1) {
+        opacity: 1;
+        transform: translateY(0) rotateY(0);
+        transition-delay: 0.1s;
+      }
+      #banner-share-btn:hover .share-option:nth-child(2) {
+        opacity: 1;
+        transform: translateY(0) rotateY(0);
+        transition-delay: 0.2s;
+      }
+      #banner-share-btn:hover .share-option:nth-child(3) {
+        opacity: 1;
+        transform: translateY(0) rotateY(0);
+        transition-delay: 0.3s;
+      }
+      #banner-share-btn:hover .share-option:nth-child(4) {
+        opacity: 1;
+        transform: translateY(0) rotateY(0);
+        transition-delay: 0.4s;
       }
 
       /* Footer Styles */
@@ -497,7 +423,7 @@
         position: fixed;
         bottom: 2rem;
         right: 2rem;
-        background-color: var(--green-600);
+        background-color: var(--primary-600);
         color: white;
         width: 3.5rem;
         height: 3.5rem;
@@ -518,30 +444,8 @@
       }
 
       #back-to-top:hover {
-        background-color: var(--green-700);
+        background-color: var(--primary-700);
         transform: translateY(-0.25rem);
-      }
-
-      /* Animations */
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0) rotate(0deg);
-        }
-        50% {
-          transform: translateY(-20px) rotate(5deg);
-        }
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
       }
 
       /* Responsive Adjustments */
@@ -556,10 +460,6 @@
           height: 50vh;
           min-height: 400px;
         }
-
-        .custom-header-blur span {
-          font-size: 0.8rem !important;
-        }
       }
 
       @media (max-width: 640px) {
@@ -567,47 +467,20 @@
           height: 45vh;
           min-height: 350px;
         }
-
-        .article-content h2 {
-          font-size: 1.5rem;
-        }
-
-        .lead-paragraph p {
-          font-size: 1rem;
-        }
-
-        .stats-section {
-          padding: 1rem;
-        }
-
-        .gallery-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .cta-section .flex {
-          flex-direction: column;
-        }
-
-        .cta-btn {
-          width: 100%;
-          justify-content: center;
-          margin-bottom: 0.5rem;
-        }
       }
     </style>
   </head>
 
   <body class="bg-gray-50">
-    <!-- Header Section -->
     <header class="modern-header relative custom-header-blur">
       <div class="container mx-auto px-4 py-2 md:py-3 relative z-10">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-3 md:space-x-4">
-            <div class="floating">
+            <div>
               <img
                 src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
                 alt="Logo Kelurahan"
-                class="h-11 w-11 md:h-12 md:w-12 object-contain transition-all duration-300"
+                class="h-11 w-11 md:h-12 md:w-12 object-contain"
               />
             </div>
             <div class="text-white flex flex-col justify-center">
@@ -620,7 +493,6 @@
               >
             </div>
           </div>
-
           <div class="hidden md:flex items-center space-x-6">
             <div class="hidden md:flex items-center space-x-1 ml-8">
               <a href="index.html" class="nav-item">
@@ -639,7 +511,6 @@
                 <i class="fas fa-download mr-2"></i> Download
               </a>
             </div>
-
             <a
               href="https://icms.tanjungpinangkota.go.id"
               class="glass-card px-6 py-2 rounded-full text-sm hover:bg-white/20 transition-all duration-300 hover:scale-105 flex items-center"
@@ -648,56 +519,12 @@
               <span class="text-white font-medium">Login</span>
             </a>
           </div>
-
           <button
             id="mobile-menu-btn"
             class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
           >
             <i class="fas fa-bars text-xl"></i>
           </button>
-
-          <div id="mobile-menu" class="md:hidden bg-white shadow-xl hidden">
-            <div class="container mx-auto px-4 py-3 space-y-2">
-              <a
-                href="index.html"
-                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <i class="fas fa-home mr-3"></i> Beranda
-              </a>
-              <a
-                href="news.html"
-                class="block py-3 px-4 rounded-lg bg-gray-100 text-primary-800 font-medium"
-              >
-                <i class="fas fa-newspaper mr-3"></i> Berita
-              </a>
-              <a
-                href="attent.html"
-                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <i class="fas fa-bullhorn mr-3"></i> Pengumuman
-              </a>
-              <a
-                href="gallery.html"
-                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <i class="fas fa-images mr-3"></i> Galeri
-              </a>
-              <a
-                href="download.html"
-                class="block py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                <i class="fas fa-download mr-3"></i> Download
-              </a>
-              <div class="pt-2">
-                <a
-                  href="https://icms.tanjungpinangkota.go.id"
-                  class="btn-primary block text-center py-3"
-                >
-                  <i class="fas fa-sign-in-alt mr-2"></i> Login Admin
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </header>
@@ -705,83 +532,28 @@
     <main
       class="bg-gradient-to-br from-gray-50 via-white to-gray-100 min-h-screen"
     >
-      <!-- News Detail Hero Section -->
       <section class="relative h-[500px] overflow-hidden">
-        <style>
-          /* Custom styles for the hero section */
-          .hero-gradient-overlay {
-            background: linear-gradient(
-              to bottom,
-              rgba(0, 0, 0, 0.75) 0%,
-              rgba(0, 0, 0, 0.5) 25%,
-              rgba(0, 0, 0, 0.3) 45%,
-              rgba(0, 0, 0, 0.15) 65%,
-              rgba(0, 0, 0, 0.05) 80%,
-              transparent 95%
-            );
-          }
-
-          /* Banner Share Button Animation - Uniform for all icons */
-          .banner-share-container {
-            perspective: 1000px;
-          }
-          .share-option {
-            opacity: 0;
-            transform: translateY(10px) rotateY(90deg);
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-          }
-          #banner-share-btn:hover .share-option:nth-child(1) {
-            opacity: 1;
-            transform: translateY(0) rotateY(0);
-            transition-delay: 0.1s;
-          }
-          #banner-share-btn:hover .share-option:nth-child(2) {
-            opacity: 1;
-            transform: translateY(0) rotateY(0);
-            transition-delay: 0.2s;
-          }
-          #banner-share-btn:hover .share-option:nth-child(3) {
-            opacity: 1;
-            transform: translateY(0) rotateY(0);
-            transition-delay: 0.3s;
-          }
-          #banner-share-btn:hover .share-option:nth-child(4) {
-            opacity: 1;
-            transform: translateY(0) rotateY(0);
-            transition-delay: 0.4s;
-          }
-        </style>
-
         <div class="absolute inset-0">
           <div class="relative w-full h-full overflow-hidden">
-            <!-- Main dark overlay dengan gradasi halus -->
             <div class="absolute inset-0 z-10 hero-gradient-overlay"></div>
-
-            <!-- Vignette effect untuk depth -->
             <div class="absolute inset-0 z-15 vignette-effect"></div>
-
-            <!-- Background Image -->
             <img
               src="https://images.unsplash.com/photo-1573167507387-6b4b98cb7c13?q=80&w=1280&h=720&auto=format&fit=crop"
-              alt="Lingkungan Kelurahan"
+              alt="Sosialisasi Pemerintahan"
               class="w-full h-full object-cover object-center"
               loading="lazy"
             />
-
-            <!-- Enhanced smooth fade to white -->
             <div
               class="absolute bottom-0 left-0 right-0 h-2/5 z-20 fade-to-white-smooth"
             ></div>
           </div>
         </div>
 
-        <!-- Hero Content -->
         <div
           class="container mx-auto px-6 h-full flex items-end pb-24 relative z-30"
           style="transform: translateY(-40px)"
         >
           <div class="max-w-4xl w-full">
-            <!-- Breadcrumb -->
             <nav class="mb-8">
               <div class="flex items-center space-x-2 text-gray-300 text-sm">
                 <a href="index.html" class="hover:text-white transition-colors">
@@ -796,7 +568,6 @@
               </div>
             </nav>
 
-            <!-- Share Button in Banner -->
             <div class="absolute right-6 bottom-24 z-40 banner-share-container">
               <button id="banner-share-btn" class="relative group">
                 <div
@@ -805,89 +576,43 @@
                   <span class="font-medium text-sm">Bagikan Berita</span>
                   <i class="fas fa-share-alt"></i>
                 </div>
-
-                <!-- Share Options (initially hidden) -->
                 <div
                   class="absolute right-0 bottom-full mb-3 opacity-0 invisible transition-all duration-300 transform translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0"
                 >
                   <div class="flex flex-col items-end space-y-4">
-                    <!-- Facebook - Uniform Animation -->
                     <a
                       href="#"
-                      class="share-option relative w-10 h-10 rounded-full bg-blue-600 text-white overflow-hidden group/facebook"
+                      class="share-option relative w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center"
                       title="Share on Facebook"
                     >
-                      <div
-                        class="absolute inset-0 flex items-center justify-center transition-all duration-300 group-hover/facebook:opacity-0 group-hover/facebook:-translate-y-2"
-                      >
-                        <i class="fab fa-facebook-f"></i>
-                      </div>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 translate-y-2 group-hover/facebook:opacity-100 group-hover/facebook:translate-y-0"
-                      >
-                        <i class="fab fa-facebook-f text-blue-100"></i>
-                      </div>
+                      <i class="fab fa-facebook-f"></i>
                     </a>
-
-                    <!-- Twitter - Uniform Animation -->
                     <a
                       href="#"
-                      class="share-option relative w-10 h-10 rounded-full bg-blue-400 text-white overflow-hidden group/twitter"
+                      class="share-option relative w-10 h-10 rounded-full bg-blue-400 text-white flex items-center justify-center"
                       title="Share on Twitter"
                     >
-                      <div
-                        class="absolute inset-0 flex items-center justify-center transition-all duration-300 group-hover/twitter:opacity-0 group-hover/twitter:-translate-y-2"
-                      >
-                        <i class="fab fa-twitter"></i>
-                      </div>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 translate-y-2 group-hover/twitter:opacity-100 group-hover/twitter:translate-y-0"
-                      >
-                        <i class="fab fa-twitter text-blue-100"></i>
-                      </div>
+                      <i class="fab fa-twitter"></i>
                     </a>
-
-                    <!-- WhatsApp - Uniform Animation -->
                     <a
                       href="#"
-                      class="share-option relative w-10 h-10 rounded-full bg-green-500 text-white overflow-hidden group/whatsapp"
+                      class="share-option relative w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center"
                       title="Share on WhatsApp"
                     >
-                      <div
-                        class="absolute inset-0 flex items-center justify-center transition-all duration-300 group-hover/whatsapp:opacity-0 group-hover/whatsapp:-translate-y-2"
-                      >
-                        <i class="fab fa-whatsapp"></i>
-                      </div>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 translate-y-2 group-hover/whatsapp:opacity-100 group-hover/whatsapp:translate-y-0"
-                      >
-                        <i class="fab fa-whatsapp text-green-100"></i>
-                      </div>
+                      <i class="fab fa-whatsapp"></i>
                     </a>
-
-                    <!-- Email - Same as before -->
                     <a
-                      href="mailto:?subject=Bagikan%20Artikel&body=Saya%20ingin%20berbagi%20artikel%20ini%20dengan%20Anda%3A%0A%0A[Isi%20Pesan%20Anda%20di%20sini]%0A%0A"
-                      class="share-option relative w-10 h-10 rounded-full bg-red-500 text-white overflow-hidden group/email"
+                      href="mailto:?subject=Bagikan%20Artikel"
+                      class="share-option relative w-10 h-10 rounded-full bg-gray-500 text-white flex items-center justify-center"
                       title="Share via Email"
                     >
-                      <div
-                        class="absolute inset-0 flex items-center justify-center transition-all duration-300 group-hover/email:opacity-0 group-hover/email:-translate-y-2"
-                      >
-                        <i class="fas fa-envelope"></i>
-                      </div>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center transition-all duration-300 opacity-0 translate-y-2 group-hover/email:opacity-100 group-hover/email:translate-y-0"
-                      >
-                        <i class="fas fa-envelope-open-text text-red-100"></i>
-                      </div>
+                      <i class="fas fa-envelope"></i>
                     </a>
                   </div>
                 </div>
               </button>
             </div>
 
-            <!-- Category Badge -->
             <div class="mb-2">
               <span
                 class="inline-flex items-center bg-red-600/90 text-white px-3 py-1 rounded-full text-xs font-semibold border border-white/20"
@@ -901,7 +626,6 @@
               </span>
             </div>
 
-            <!-- Title with Enhanced Shadow -->
             <h1
               class="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-white"
               style="
@@ -915,35 +639,16 @@
               >
             </h1>
 
-            <!-- Meta Info -->
             <div class="flex flex-wrap gap-3 text-sm text-gray-300 mt-6">
-              <div
-                class="flex items-center bg-black/30 px-3 py-1 rounded-full"
-                style="
-                  backdrop-filter: blur(6px);
-                  -webkit-backdrop-filter: blur(6px);
-                "
-              >
+              <div class="flex items-center bg-black/30 px-3 py-1 rounded-full">
                 <i class="far fa-calendar-alt mr-1"></i>
                 <span>10 Juli 2024</span>
               </div>
-              <div
-                class="flex items-center bg-black/30 px-3 py-1 rounded-full"
-                style="
-                  backdrop-filter: blur(6px);
-                  -webkit-backdrop-filter: blur(6px);
-                "
-              >
+              <div class="flex items-center bg-black/30 px-3 py-1 rounded-full">
                 <i class="far fa-user mr-1"></i>
                 <span>Admin Kelurahan</span>
               </div>
-              <div
-                class="flex items-center bg-black/30 px-3 py-1 rounded-full"
-                style="
-                  backdrop-filter: blur(6px);
-                  -webkit-backdrop-filter: blur(6px);
-                "
-              >
+              <div class="flex items-center bg-black/30 px-3 py-1 rounded-full">
                 <i class="far fa-eye mr-1"></i>
                 <span>1.2K Views</span>
               </div>
@@ -952,905 +657,711 @@
                 style="
                   background: rgba(255, 255, 255, 0.1);
                   backdrop-filter: blur(10px);
-                  -webkit-backdrop-filter: blur(10px);
                 "
               >
                 <i class="far fa-clock mr-2"></i>
                 <span>5 min read</span>
               </div>
             </div>
-            <div class="mt-8" data-aos="fade-up" data-aos-delay="500"></div>
           </div>
         </div>
       </section>
 
-      <!-- Required Font Awesome for icons -->
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      />
-
-      <!-- Article Content Section -->
-      <section id="article-content" class="py-16 relative">
+      <section id="article-content" class="py-16 relative bg-gray-50">
         <div class="container mx-auto px-6">
-          <div class="max-w-4xl mx-auto">
-            <!-- Sticky Share Buttons (initially hidden on mobile) -->
-            <div class="lg:hidden fixed bottom-6 right-6 z-50">
-              <button
-                id="mobile-share-toggle"
-                class="w-14 h-14 bg-green-600 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-green-700 transition-all transform hover:scale-110"
-              >
-                <i class="fas fa-share-alt text-xl"></i>
-              </button>
-            </div>
-
-            <!-- Featured Image with Parallax Effect -->
-            <div
-              class="mb-12 rounded-2xl overflow-hidden shadow-2xl relative h-96"
-              data-aos="fade-up"
-            >
-              <div
-                class="parallax-img-container absolute inset-0 overflow-hidden"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1573167507387-6b4b98cb7c13?q=80&w=1280&h=720&auto=format&fit=crop"
-                  alt="Penyerahan Penghargaan Adipura"
-                  class="w-full h-full object-cover object-center"
-                />
-              </div>
-              <div
-                class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6"
-              >
-                <p class="text-sm text-white italic">
-                  Momen penyerahan penghargaan Adipura kepada Kelurahan
-                  Tanjungpinang Kota oleh Walikota Tanjungpinang
-                </p>
-              </div>
-            </div>
-
-            <!-- Article Content with Typography Improvements -->
-            <article
-              class="article-content prose prose-lg max-w-none"
-              data-aos="fade-up"
-            >
-              <!-- Lead Paragraph with Highlight -->
-              <div
-                class="lead-paragraph bg-gradient-to-r from-red-50 to-pink-50 p-6 rounded-xl border-l-4 border-red-500 mb-8"
-              >
-                <p class="text-xl text-gray-800 leading-relaxed font-medium">
-                  <span class="text-red-600 font-bold">Tanjungpinang</span> -
-                  Kelurahan Tanjungpinang Kota mengadakan sosialisasi E-KTP
-                  Digital untuk seluruh Ketua RT dan RW se-Kelurahan. Acara ini
-                  bertujuan memberikan pemahaman tentang penggunaan dan manfaat
-                  E-KTP Digital dalam pelayanan administrasi kependudukan.
-                </p>
-              </div>
-
-              <!-- Content Sections -->
-              <section class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                  Implementasi E-KTP Digital
-                </h2>
-                <p class="text-gray-700 leading-relaxed mb-6">
-                  Sosialisasi ini menjelaskan cara mengakses dan menggunakan
-                  E-KTP Digital melalui aplikasi resmi dari Dukcapil. Dengan
-                  E-KTP Digital, warga tidak perlu membawa kartu fisik saat
-                  mengurus berbagai keperluan administrasi.
-                </p>
-
-                <p class="text-gray-700 leading-relaxed mb-8">
-                  "Ini adalah langkah modernisasi pelayanan kependudukan. Kami
-                  ingin seluruh ketua RT/RW memahami betul cara menggunakannya
-                  agar bisa membantu warga di wilayah masing-masing," ujar Lurah
-                  Tanjungpinang Kota, Bapak Drs. Ahmad Syahrial, M.Si.
-                </p>
-              </section>
-
-              <!-- Statistics Section -->
-              <section class="mb-12">
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                  Data E-KTP Digital
-                </h2>
-                <div class="grid md:grid-cols-3 gap-6 my-8">
-                  <!-- Stat 1 -->
-                  <div class="bg-red-100 p-6 rounded-xl shadow-lg border border-red-200">
-                    <div class="text-4xl font-bold text-red-600 mb-2">100%</div>
-                    <div class="text-gray-600">RT/RW yang mengikuti sosialisasi</div>
-                  </div>
-                  
-                  <!-- Stat 2 -->
-                  <div class="bg-red-100 p-6 rounded-xl shadow-lg border border-red-200">
-                    <div class="text-4xl font-bold text-red-600 mb-2">1.250+</div>
-                    <div class="text-gray-600">Warga telah aktif menggunakan E-KTP Digital</div>
-                  </div>
-                  
-                  <!-- Stat 3 -->
-                  <div class="bg-red-100 p-6 rounded-xl shadow-lg border border-red-200">
-                    <div class="text-4xl font-bold text-red-600 mb-2">85%</div>
-                    <div class="text-gray-600">Pengurangan waktu pelayanan administrasi</div>
-                  </div>
-                </div>
-
-                <p class="text-gray-700 leading-relaxed mb-6">
-                  Sosialisasi ini merupakan bagian dari program transformasi
-                  digital pelayanan publik di Kelurahan Tanjungpinang Kota.
-                  Dengan E-KTP Digital, proses administrasi seperti pembuatan
-                  surat keterangan dan pelayanan lainnya menjadi lebih cepat dan
-                  efisien.
-                </p>
-              </section>
-
-              <!-- Gallery Section -->
-              <section class="mb-12">
-                <h3 class="text-2xl font-bold text-gray-900 mb-6">
-                  Dokumentasi Sosialisasi
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300 aspect-[4/3]">
-                    <img
-                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&h=600&auto=format&fit=cover"
-                      alt="Peserta sosialisasi"
-                      class="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300 aspect-[4/3]">
-                    <img
-                      src="https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/2023/02/18/syarat-dan-cara-pembuatan-KTP-digital-2208102468.png"
-                      alt="Demo penggunaan E-KTP Digital"
-                      class="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div class="relative overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300 aspect-[4/3]">
-                    <img
-                      src="https://th.bing.com/th/id/R.0927df7bcf3f8fee8c74fa132a449fae?rik=1AeNGMfq%2b5sM2w&riu=http%3a%2f%2fjasapresentasi.com%2fwp-content%2fuploads%2f2019%2f05%2fSlide1-2.png&ehk=xzh%2f0BrGg5ZfZyyDbDcIyrJC9Oy%2bNqt26QK2i6eKqyU%3d&risl=&pid=ImgRaw&r=0"
-                      alt="Sesi tanya jawab"
-                      class="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-              </section>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Mobile Share Modal -->
-      <div
-        id="mobile-share-modal"
-        class="fixed inset-0 bg-black/80 z-50 flex items-end justify-center hidden"
-      >
-        <div
-          class="bg-white w-full rounded-t-3xl p-6 transform transition-all duration-300 translate-y-full"
-        >
-          <div class="flex justify-between items-center mb-6">
-            <h3 class="text-xl font-bold text-gray-900">Bagikan Artikel</h3>
-            <button
-              id="close-share-modal"
-              class="text-gray-500 hover:text-gray-700"
-            >
-              <i class="fas fa-times text-2xl"></i>
-            </button>
-          </div>
-          <div class="grid grid-cols-4 gap-4 mb-6">
-            <a
-              href="#"
-              class="flex flex-col items-center justify-center p-3 rounded-xl hover:bg-gray-100 transition-colors"
-            >
-              <div
-                class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mb-2"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </div>
-              <span class="text-xs text-gray-600">Facebook</span>
-            </a>
-            <a
-              href="#"
-              class="flex flex-col items-center justify-center p-3 rounded-xl hover:bg-gray-100 transition-colors"
-            >
-              <div
-                class="w-12 h-12 bg-blue-400 text-white rounded-full flex items-center justify-center mb-2"
-              >
-                <i class="fab fa-twitter"></i>
-              </div>
-              <span class="text-xs text-gray-600">Twitter</span>
-            </a>
-            <a
-              href="#"
-              class="flex flex-col items-center justify-center p-3 rounded-xl hover:bg-gray-100 transition-colors"
-            >
-              <div
-                class="w-12 h-12 bg-green-500 text-white rounded-full flex items-center justify-center mb-2"
-              >
-                <i class="fab fa-whatsapp"></i>
-              </div>
-              <span class="text-xs text-gray-600">WhatsApp</span>
-            </a>
-            <a
-              href="#"
-              class="flex flex-col items-center justify-center p-3 rounded-xl hover:bg-gray-100 transition-colors"
-            >
-              <div
-                class="w-12 h-12 bg-gray-200 text-gray-700 rounded-full flex items-center justify-center mb-2"
-              >
-                <i class="fas fa-link"></i>
-              </div>
-              <span class="text-xs text-gray-600">Salin Tautan</span>
-            </a>
-          </div>
-          <button
-            class="w-full py-3 bg-gray-100 text-gray-800 font-medium rounded-lg hover:bg-gray-200 transition-colors"
-          >
-            Batal
-          </button>
-        </div>
-      </div>
-
-      <script>
-        // Mobile share toggle
-        const mobileShareToggle = document.getElementById(
-          "mobile-share-toggle"
-        );
-        const mobileShareModal = document.getElementById("mobile-share-modal");
-        const closeShareModal = document.getElementById("close-share-modal");
-
-        if (mobileShareToggle && mobileShareModal) {
-          mobileShareToggle.addEventListener("click", () => {
-            mobileShareModal.classList.remove("hidden");
-            setTimeout(() => {
-              mobileShareModal
-                .querySelector("div")
-                .classList.remove("translate-y-full");
-            }, 10);
-          });
-
-          closeShareModal.addEventListener("click", () => {
-            mobileShareModal
-              .querySelector("div")
-              .classList.add("translate-y-full");
-            setTimeout(() => {
-              mobileShareModal.classList.add("hidden");
-            }, 300);
-          });
-        }
-      </script>
-
-      <!-- Related News Section -->
-      <section class="py-12 bg-gray-50">
-        <div class="container mx-auto px-6">
-          <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Berita Terkait
-            </h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-              Informasi lain yang mungkin Anda minati terkait lingkungan dan
-              penghargaan
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-3 gap-8">
-            <!-- Related News 1 -->
-            <div
-              class="related-news-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group"
-            >
-              <div class="relative h-48 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
-                <img
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80"
-                  alt="Transformasi Digital Pelayanan Administrasi"
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
-              </div>
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 h-14">
-                  Transformasi Digital Pelayanan Administrasi
-                </h3>
-                <p class="text-gray-600 text-sm mb-4 line-clamp-3 h-16">
-                  Kelurahan memperkenalkan sistem pelayanan digital terbaru untuk mempermudah proses administrasi warga.
-                </p>
-                <a
-                  href="#"
-                  class="text-red-600 font-medium hover:text-red-700 inline-flex items-center transition-colors"
+          <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+              <div class="lg:col-span-2 space-y-12">
+                <div
+                  class="rounded-2xl overflow-hidden shadow-2xl relative h-96"
+                  data-aos="fade-up"
                 >
-                  Baca Selengkapnya
-                  <i class="fas fa-chevron-right ml-1 text-xs"></i>
-                </a>
+                  <img
+                    src="https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/2023/02/18/syarat-dan-cara-pembuatan-KTP-digital-2208102468.png"
+                    alt="Demo Aplikasi E-KTP Digital"
+                    class="w-full h-full object-cover object-center"
+                  />
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6"
+                  >
+                    <p class="text-sm text-white italic">
+                      Momen demonstrasi penggunaan aplikasi E-KTP Digital kepada
+                      peserta sosialisasi.
+                    </p>
+                  </div>
+                </div>
+
+                <article
+                  class="article-content prose prose-lg max-w-none"
+                  data-aos="fade-up"
+                >
+                  <div
+                    class="bg-gradient-to-r from-red-50 to-pink-50 p-6 rounded-xl border-l-4 border-red-500 mb-8"
+                  >
+                    <p
+                      class="text-xl text-gray-800 leading-relaxed font-medium"
+                    >
+                      <span class="text-red-600 font-bold">Tanjungpinang</span>
+                      - Kelurahan Tanjungpinang Kota mengadakan sosialisasi
+                      E-KTP Digital untuk seluruh Ketua RT dan RW se-Kelurahan.
+                      Acara ini bertujuan memberikan pemahaman tentang
+                      penggunaan dan manfaat E-KTP Digital dalam pelayanan
+                      administrasi kependudukan.
+                    </p>
+                  </div>
+                  <section class="mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                      Implementasi E-KTP Digital
+                    </h2>
+                    <p>
+                      Sosialisasi ini menjelaskan cara mengakses dan menggunakan
+                      E-KTP Digital melalui aplikasi resmi dari Dukcapil. Dengan
+                      E-KTP Digital, warga tidak perlu membawa kartu fisik saat
+                      mengurus berbagai keperluan administrasi.
+                    </p>
+
+                    <figure
+                      class="bg-white p-6 rounded-xl shadow-lg border border-red-100 my-8"
+                    >
+                      <blockquote
+                        class="text-lg italic text-gray-800 mb-4 relative pl-8"
+                      >
+                        <i
+                          class="fas fa-quote-left text-red-200 text-4xl absolute -top-2 -left-2 opacity-50"
+                        ></i
+                        >"Ini adalah langkah modernisasi pelayanan kependudukan.
+                        Kami ingin seluruh ketua RT/RW memahami betul cara
+                        menggunakannya agar bisa membantu warga di wilayah
+                        masing-masing."
+                      </blockquote>
+                      <figcaption class="flex items-center mt-4">
+                        <img
+                          src="https://randomuser.me/api/portraits/men/42.jpg"
+                          alt="Lurah Tanjungpinang Kota"
+                          class="w-12 h-12 rounded-full mr-4 border-2 border-red-500"
+                        />
+                        <div>
+                          <div class="text-red-700 font-semibold">
+                            Drs. Ahmad Syahrial, M.Si.
+                          </div>
+                          <div class="text-sm text-gray-600">
+                            Lurah Tanjungpinang Kota
+                          </div>
+                        </div>
+                      </figcaption>
+                    </figure>
+                  </section>
+                </article>
+
+                <section>
+                  <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                    Poin-Poin Utama Sosialisasi
+                  </h2>
+                  <div class="grid md:grid-cols-2 gap-6 my-8">
+                    <div
+                      class="bg-white border border-gray-200 p-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    >
+                      <div class="flex items-center mb-4">
+                        <div
+                          class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"
+                        >
+                          <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">
+                          Partisipasi Penuh RT/RW
+                        </h3>
+                      </div>
+                      <p class="text-gray-600">
+                        Kehadiran 100% dari seluruh Ketua RT dan RW menunjukkan
+                        antusiasme tinggi terhadap program digitalisasi ini.
+                      </p>
+                    </div>
+                    <div
+                      class="bg-white border border-gray-200 p-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    >
+                      <div class="flex items-center mb-4">
+                        <div
+                          class="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"
+                        >
+                          <i class="fas fa-user-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">
+                          Aktivasi Warga
+                        </h3>
+                      </div>
+                      <p class="text-gray-600">
+                        Ditargetkan lebih dari 1,250 warga akan mengaktifkan
+                        E-KTP Digital setelah sosialisasi ini disebarluaskan.
+                      </p>
+                    </div>
+                    <div
+                      class="bg-white border border-gray-200 p-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    >
+                      <div class="flex items-center mb-4">
+                        <div
+                          class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"
+                        >
+                          <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">
+                          Peningkatan Efisiensi
+                        </h3>
+                      </div>
+                      <p class="text-gray-600">
+                        Diperkirakan terjadi peningkatan efisiensi pelayanan
+                        administrasi kependudukan hingga 85% dengan E-KTP
+                        Digital.
+                      </p>
+                    </div>
+                    <div
+                      class="bg-white border border-gray-200 p-6 rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    >
+                      <div class="flex items-center mb-4">
+                        <div
+                          class="w-12 h-12 bg-rose-500 rounded-full flex items-center justify-center mr-4 text-white text-xl"
+                        >
+                          <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900">
+                          Edukasi Berkelanjutan
+                        </h3>
+                      </div>
+                      <p class="text-gray-600">
+                        Kelurahan akan terus memberikan edukasi dan pendampingan
+                        kepada warga dalam proses aktivasi dan penggunaan.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+
+                <section>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-6">
+                    Dokumentasi Kegiatan
+                  </h3>
+                  <div class="grid md:grid-cols-3 gap-4">
+                    <div
+                      class="related-news-card rounded-xl shadow-lg overflow-hidden"
+                    >
+                      <img
+                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&h=300&auto=format&fit=crop"
+                        alt="Peserta sosialisasi"
+                        class="w-full h-48 object-cover"
+                      />
+                      <div class="p-4 bg-white">
+                        <p class="text-sm text-gray-600">
+                          Peserta sosialisasi E-KTP Digital
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="related-news-card rounded-xl shadow-lg overflow-hidden"
+                    >
+                      <img
+                        src="https://assets.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/2023/02/18/syarat-dan-cara-pembuatan-KTP-digital-2208102468.png"
+                        alt="Demo Aplikasi"
+                        class="w-full h-48 object-cover"
+                      />
+                      <div class="p-4 bg-white">
+                        <p class="text-sm text-gray-600">
+                          Demo penggunaan aplikasi E-KTP
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="related-news-card rounded-xl shadow-lg overflow-hidden"
+                    >
+                      <img
+                        src="https://th.bing.com/th/id/R.0927df7bcf3f8fee8c74fa132a449fae?rik=1AeNGMfq%2b5sM2w&riu=http%3a%2f%2fjasapresentasi.com%2fwp-content%2fuploads%2f2019%2f05%2fSlide1-2.png&ehk=xzh%2f0BrGg5ZfZyyDbDcIyrJC9Oy%2bNqt26QK2i6eKqyU%3d&risl=&pid=ImgRaw&r=0"
+                        alt="Sesi Tanya Jawab"
+                        class="w-full h-48 object-cover"
+                      />
+                      <div class="p-4 bg-white">
+                        <p class="text-sm text-gray-600">
+                          Sesi tanya jawab bersama peserta
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="mt-16">
+                  <div class="modern-card rounded-3xl p-8">
+                    <div class="flex items-center justify-between mb-8">
+                      <h3 class="text-3xl font-bold gradient-text">
+                        💬 Komentar (8)
+                      </h3>
+                      <button
+                        class="bg-gradient-to-r from-rose-600 to-red-700 text-white px-6 py-3 rounded-xl font-semibold hover:from-rose-700 hover:to-red-800 transition-all"
+                      >
+                        Tulis Komentar
+                      </button>
+                    </div>
+
+                    <div class="glass-effect rounded-2xl p-6 mb-8">
+                      <div class="flex space-x-4">
+                        <div
+                          class="w-12 h-12 bg-gradient-to-br from-rose-600 to-red-700 rounded-2xl flex items-center justify-center text-white font-bold"
+                        >
+                          A
+                        </div>
+                        <div class="flex-1">
+                          <textarea
+                            placeholder="Bagikan pendapat Anda tentang pencapaian ini..."
+                            class="w-full p-4 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-rose-600 resize-none"
+                            rows="3"
+                          ></textarea>
+                          <div class="flex justify-between items-center mt-4">
+                            <div class="flex space-x-2">
+                              <button
+                                class="text-slate-400 hover:text-rose-600 transition-colors"
+                              >
+                                <i class="fas fa-image"></i>
+                              </button>
+                              <button
+                                class="text-slate-400 hover:text-rose-600 transition-colors"
+                              >
+                                <i class="fas fa-smile"></i>
+                              </button>
+                            </div>
+                            <button
+                              class="bg-gradient-to-r from-rose-600 to-red-700 text-white px-6 py-2 rounded-xl font-semibold hover:from-rose-700 hover:to-red-800 transition-all"
+                            >
+                              Kirim
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="space-y-6">
+                      <div class="flex space-x-4">
+                        <img
+                          src="https://randomuser.me/api/portraits/women/32.jpg"
+                          alt="User"
+                          class="w-12 h-12 rounded-2xl object-cover border-2 border-rose-200"
+                        />
+                        <div class="flex-1">
+                          <div class="bg-slate-50 rounded-2xl p-4">
+                            <div class="flex items-center justify-between mb-2">
+                              <h4 class="font-bold text-slate-800">
+                                Sari Dewi
+                              </h4>
+                              <span class="text-sm text-slate-500"
+                                >2 jam lalu</span
+                              >
+                            </div>
+                            <p class="text-slate-700">
+                              Mantap! Semoga dengan adanya E-KTP digital, urusan
+                              administrasi jadi lebih cepat dan mudah.
+                            </p>
+                          </div>
+                          <div
+                            class="flex items-center space-x-4 mt-3 text-sm text-slate-500"
+                          >
+                            <button
+                              class="hover:text-rose-700 transition-colors"
+                            >
+                              <i class="fas fa-thumbs-up mr-1"></i> 8
+                            </button>
+                            <button
+                              class="hover:text-rose-700 transition-colors"
+                            >
+                              Balas
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="flex space-x-4">
+                        <img
+                          src="https://randomuser.me/api/portraits/men/45.jpg"
+                          alt="User"
+                          class="w-12 h-12 rounded-2xl object-cover border-2 border-rose-200"
+                        />
+                        <div class="flex-1">
+                          <div class="bg-slate-50 rounded-2xl p-4">
+                            <div class="flex items-center justify-between mb-2">
+                              <h4 class="font-bold text-slate-800">
+                                Budi Santoso
+                              </h4>
+                              <span class="text-sm text-slate-500"
+                                >4 jam lalu</span
+                              >
+                            </div>
+                            <p class="text-slate-700">
+                              Perlu sosialisasi lebih lanjut ke warga langsung,
+                              tidak hanya RT/RW.
+                            </p>
+                          </div>
+                          <div
+                            class="flex items-center space-x-4 mt-3 text-sm text-slate-500"
+                          >
+                            <button
+                              class="hover:text-rose-700 transition-colors"
+                            >
+                              <i class="fas fa-thumbs-up mr-1"></i> 12
+                            </button>
+                            <button
+                              class="hover:text-rose-700 transition-colors"
+                            >
+                              Balas
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="flex space-x-4">
+                        <img
+                          src="https://randomuser.me/api/portraits/women/28.jpg"
+                          alt="User"
+                          class="w-12 h-12 rounded-2xl object-cover border-2 border-rose-200"
+                        />
+                        <div class="flex-1">
+                          <div class="bg-slate-50 rounded-2xl p-4">
+                            <div class="flex items-center justify-between mb-2">
+                              <h4 class="font-bold text-slate-800">
+                                Maya Putri
+                              </h4>
+                              <span class="text-sm text-slate-500"
+                                >6 jam lalu</span
+                              >
+                            </div>
+                            <p class="text-slate-700">
+                              Terobosan yang bagus dari Kelurahan Tanjungpinang
+                              Kota! 👍
+                            </p>
+                          </div>
+                          <div
+                            class="flex items-center space-x-4 mt-3 text-sm text-slate-500"
+                          >
+                            <button
+                              class="hover:text-rose-700 transition-colors"
+                            >
+                              <i class="fas fa-thumbs-up mr-1"></i> 15
+                            </button>
+                            <button
+                              class="hover:text-rose-700 transition-colors"
+                            >
+                              Balas
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="text-center mt-8">
+                      <button
+                        class="text-rose-600 font-semibold hover:text-rose-700 transition-colors"
+                      >
+                        Muat Komentar Lainnya (5)
+                      </button>
+                    </div>
+                  </div>
+                </section>
+              </div>
+
+              <div class="lg:col-span-1">
+                <div class="lg:sticky top-24 space-y-8">
+                  <div
+                    class="bg-white rounded-xl shadow-lg p-6 border"
+                    data-aos="fade-left"
+                  >
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">
+                      Berita Terkait
+                    </h2>
+                    <div class="grid grid-cols-1 gap-6">
+                      <a href="#" class="related-news-card block group">
+                        <div class="h-40 overflow-hidden rounded-lg relative">
+                          <img
+                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=500&auto=format&fit=crop"
+                            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <span
+                            class="absolute top-3 right-3 bg-red-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full"
+                            >Pemerintahan</span
+                          >
+                        </div>
+                        <div class="p-6">
+                          <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            Transformasi Digital Pelayanan Administrasi
+                          </h3>
+                          <p
+                            class="text-sm text-gray-500"
+                            data-time="2024-07-20T10:30:00"
+                          ></p>
+                        </div>
+                      </a>
+                      <a href="#" class="related-news-card block group">
+                        <div class="h-40 overflow-hidden rounded-lg relative">
+                          <img
+                            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=500&auto=format&fit=crop"
+                            class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <span
+                            class="absolute top-3 right-3 bg-red-600 text-white text-xs font-semibold px-2.5 py-1 rounded-full"
+                            >Pemerintahan</span
+                          >
+                        </div>
+                        <div class="p-6">
+                          <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            Inovasi Pelayanan Publik Digital
+                          </h3>
+                          <p
+                            class="text-sm text-gray-500"
+                            data-time="2024-07-18T15:45:00"
+                          ></p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- Related News 2 -->
-            <div class="related-news-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
-              <div class="relative h-48 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
-                <img
-                  src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80"
-                  alt="Inovasi Pelayanan Publik Digital"
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
+            <section class="mt-16 pt-12 border-t">
+              <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                  Rekomendasi Untuk Anda
+                </h2>
               </div>
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 h-14">
-                  Inovasi Pelayanan Publik Digital
-                </h3>
-                <p class="text-gray-600 text-sm mb-4 line-clamp-3 h-16">
-                  Kelurahan meluncurkan inovasi terbaru dalam pelayanan publik berbasis digital untuk warga.
-                </p>
-                <a href="#" class="text-red-600 font-medium hover:text-red-700 inline-flex items-center transition-colors">
-                  Baca Selengkapnya
-                  <i class="fas fa-chevron-right ml-1 text-xs"></i>
-                </a>
+              <div class="grid md:grid-cols-3 gap-8">
+                <div
+                  class="related-news-card"
+                  data-aos="fade-up"
+                  data-aos-delay="100"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=500&auto=format&fit=crop"
+                    class="h-48 w-full object-cover"
+                  />
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">
+                      Transformasi Digital Pelayanan Administrasi
+                    </h3>
+                    <p class="text-gray-600 mb-4 line-clamp-2 flex-grow">
+                      Kelurahan memperkenalkan sistem pelayanan digital terbaru
+                      untuk mempermudah proses administrasi warga.
+                    </p>
+                    <div class="read-more-btn">
+                      <a href="#">
+                        Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="related-news-card"
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=500&auto=format&fit=crop"
+                    class="h-48 w-full object-cover"
+                  />
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">
+                      Inovasi Pelayanan Publik Digital
+                    </h3>
+                    <p class="text-gray-600 mb-4 line-clamp-2 flex-grow">
+                      Kelurahan meluncurkan inovasi terbaru dalam pelayanan
+                      publik berbasis digital untuk warga.
+                    </p>
+                    <div class="read-more-btn">
+                      <a href="#">
+                        Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="related-news-card"
+                  data-aos="fade-up"
+                  data-aos-delay="300"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=500&auto=format&fit=crop"
+                    class="h-48 w-full object-cover"
+                  />
+                  <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">
+                      Sosialisasi Program Digital Kelurahan
+                    </h3>
+                    <p class="text-gray-600 mb-4 line-clamp-2 flex-grow">
+                      Kelurahan menyelenggarakan sosialisasi program digital
+                      terbaru untuk meningkatkan pelayanan masyarakat.
+                    </p>
+                    <div class="read-more-btn">
+                      <a href="#">
+                        Baca Selengkapnya <i class="fas fa-arrow-right"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <!-- Related News 3 -->
-            <div class="related-news-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow group">
-              <div class="relative h-48 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10"></div>
-                <img
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600&q=80"
-                  alt="Sosialisasi Program Digital Kelurahan"
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  loading="lazy"
-                />
-              </div>
-              <div class="p-5">
-                <h3 class="text-lg font-bold text-gray-900 mb-2 line-clamp-2 h-14">
-                  Sosialisasi Program Digital Kelurahan
-                </h3>
-                <p class="text-gray-600 text-sm mb-4 line-clamp-3 h-16">
-                  Kelurahan menyelenggarakan sosialisasi program digital terbaru untuk meningkatkan pelayanan masyarakat.
-                </p>
-                <a href="#" class="text-red-600 font-medium hover:text-red-700 inline-flex items-center transition-colors">
-                  Baca Selengkapnya
-                  <i class="fas fa-chevron-right ml-1 text-xs"></i>
-                </a>
-              </div>
-            </div>
+            </section>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- Footer Section -->
-    <footer class="main-footer py-12 relative">
-      <div class="container mx-auto px-4 relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- Footer Column 1 -->
-          <div>
-            <div class="flex items-center space-x-3 mb-6">
-              <img
-                src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
-                alt="Logo Kelurahan"
-                class="h-12 w-12 object-contain"
-              />
+    <footer class="main-footer relative">
+      <div class="fixed-container py-16 relative z-10">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
               <div>
-                <h3 class="text-xl font-bold text-white">
-                  Kelurahan Tanjungpinang Kota
-                </h3>
-                <p class="text-sm text-gray-300">
-                  Kecamatan Tanjungpinang Kota
-                </p>
+                  <h3 class="text-white text-xl font-bold mb-6">Tentang Kami</h3>
+                  <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
+                      alt="Logo Kelurahan"
+                      class="h-16 mb-4">
+                  <p class="text-gray-300 mb-4">
+                      Kelurahan Tanjungpinang Kota merupakan salah satu kelurahan di Kecamatan Tanjungpinang Kota, Kota Tanjungpinang, Provinsi Kepulauan Riau.
+                  </p>
+                  <div class="flex space-x-4">
+                      <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                          <i class="fab fa-facebook-f"></i>
+                      </a>
+                      <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                          <i class="fab fa-instagram"></i>
+                      </a>
+                      <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                          <i class="fab fa-youtube"></i>
+                      </a>
+                  </div>
               </div>
-            </div>
-            <p class="text-gray-300 mb-4 text-sm">
-              Jl. Kemboja No. 12, Tanjungpinang Kota, Kepulauan Riau 29125
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="#"
-                class="text-gray-300 hover:text-white transition-colors"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-300 hover:text-white transition-colors"
-              >
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-300 hover:text-white transition-colors"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a
-                href="#"
-                class="text-gray-300 hover:text-white transition-colors"
-              >
-                <i class="fab fa-youtube"></i>
-              </a>
-            </div>
+
+              <div>
+                  <h3 class="text-white text-xl font-bold mb-6">Tautan Cepat</h3>
+                  <ul class="space-y-3 footer-links">
+                      <li><a href="index.html" class="text-gray-300">Beranda</a></li>
+                      <li><a href="news.html" class="text-gray-300">Berita</a></li>
+                      <li><a href="attent.html" class="text-gray-300">Pengumuman</a></li>
+                      <li><a href="gallery.html" class="text-gray-300">Galeri</a></li>
+                      <li><a href="download.html" class="text-gray-300">Download</a></li>
+                  </ul>
+              </div>
+
+              <div>
+                  <h3 class="text-white text-xl font-bold mb-6">Layanan</h3>
+                  <ul class="space-y-3 footer-links">
+                      <li><a href="#" class="text-gray-300">Pembuatan KTP</a></li>
+                      <li><a href="#" class="text-gray-300">Surat Domisili</a></li>
+                      <li><a href="#" class="text-gray-300">Akta Kelahiran</a></li>
+                      <li><a href="#" class="text-gray-300">Surat Nikah</a></li>
+                      <li><a href="#" class="text-gray-300">Surat Kematian</a></li>
+                      <li><a href="#" class="text-gray-300">SKTM</a></li>
+                  </ul>
+              </div>
+
+              <div>
+                  <h3 class="text-white text-xl font-bold mb-6">Kontak Kami</h3>
+                  <ul class="space-y-4">
+                      <li class="flex items-start">
+                          <i class="fas fa-map-marker-alt text-accent-color mt-1 mr-3"></i>
+                          <span class="text-gray-300">Jl. Kuantan No.1, Tanjungpinang Kota, Kec. Tanjungpinang Kota, Kota Tanjungpinang, Kepulauan Riau 29111</span>
+                      </li>
+                      <li class="flex items-center">
+                          <i class="fas fa-phone text-accent-color mr-3"></i>
+                          <span class="text-gray-300">+62 771 123456</span>
+                      </li>
+                      <li class="flex items-center">
+                          <i class="fas fa-envelope text-accent-color mr-3"></i>
+                          <span class="text-gray-300">tpikotakel@tanjungpinangkota.go.id</span>
+                      </li>
+                      <li class="flex items-center">
+                          <i class="fas fa-clock text-accent-color mr-3"></i>
+                          <span class="text-gray-300">Senin-Jumat: 08.00-16.00 WIB</span>
+                      </li>
+                  </ul>
+              </div>
           </div>
 
-          <!-- Footer Column 2 -->
-          <div>
-            <h3 class="text-lg font-semibold text-white mb-4">Tautan Cepat</h3>
-            <ul class="space-y-2 footer-links">
-              <li><a href="index.html" class="text-gray-300">Beranda</a></li>
-              <li><a href="news.html" class="text-gray-300">Berita</a></li>
-              <li>
-                <a href="attent.html" class="text-gray-300">Pengumuman</a>
-              </li>
-              <li><a href="gallery.html" class="text-gray-300">Galeri</a></li>
-              <li>
-                <a href="download.html" class="text-gray-300">Download</a>
-              </li>
-              <li><a href="contact.html" class="text-gray-300">Kontak</a></li>
-            </ul>
+          <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+              <p class="text-gray-400 text-sm">
+                  © 2025 Design by Kerja Praktik UMRAH.
+              </p>
           </div>
-
-          <!-- Footer Column 3 -->
-          <div>
-            <h3 class="text-lg font-semibold text-white mb-4">
-              Layanan Publik
-            </h3>
-            <ul class="space-y-2 footer-links">
-              <li>
-                <a href="#" class="text-gray-300">Pelayanan Administrasi</a>
-              </li>
-              <li><a href="#" class="text-gray-300">Surat Keterangan</a></li>
-              <li>
-                <a href="#" class="text-gray-300">Pengaduan Masyarakat</a>
-              </li>
-              <li><a href="#" class="text-gray-300">Data Penduduk</a></li>
-              <li><a href="#" class="text-gray-300">Informasi Bansos</a></li>
-              <li><a href="#" class="text-gray-300">Regulasi</a></li>
-            </ul>
-          </div>
-
-          <!-- Footer Column 4 -->
-          <div>
-            <h3 class="text-lg font-semibold text-white mb-4">Kontak Kami</h3>
-            <ul class="space-y-3">
-              <li class="flex items-start">
-                <i class="fas fa-map-marker-alt text-gray-300 mt-1 mr-3"></i>
-                <span class="text-gray-300 text-sm"
-                  >Jl. Kemboja No. 12, Tanjungpinang Kota, Kepulauan Riau
-                  29125</span
-                >
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-phone-alt text-gray-300 mr-3"></i>
-                <span class="text-gray-300">(0771) 123456</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-envelope text-gray-300 mr-3"></i>
-                <span class="text-gray-300"
-                  >kel.tpikota@tanjungpinangkota.go.id</span
-                >
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-clock text-gray-300 mr-3"></i>
-                <span class="text-gray-300 text-sm"
-                  >Senin-Jumat: 08.00 - 16.00 WIB</span
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="border-t border-gray-700 mt-12 pt-8">
-          <div class="flex flex-col md:flex-row justify-between items-center">
-            <p class="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2025 Design by Kerja Praktik UMRAH.
-            </p>
-            <div class="flex space-x-6">
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white text-sm transition-colors"
-                >Kebijakan Privasi</a
-              >
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white text-sm transition-colors"
-                >Syarat & Ketentuan</a
-              >
-              <a
-                href="#"
-                class="text-gray-400 hover:text-white text-sm transition-colors"
-                >Peta Situs</a
-              >
-            </div>
-          </div>
-        </div>
       </div>
-    </footer>
 
-    <!-- Back to Top Button -->
-    <button
-      id="back-to-top"
-      class="fixed bottom-8 right-8 bg-green-600 text-white p-4 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-green-700 transform hover:-translate-y-1"
-    >
+      <div class="floating-element absolute bottom-10 left-10 w-16 h-16 rounded-full bg-accent-color/20"></div>
+      <div class="floating-element absolute top-20 right-20 w-24 h-24 rounded-full bg-white/5"></div>
+  </footer>
+
+    <button id="back-to-top">
       <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-      // Initialize AOS animation
       AOS.init({
         duration: 800,
         easing: "ease-in-out",
         once: true,
       });
 
-      // Mobile menu toggle
-      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
+      function formatRelativeTime(dateTime) {
+        const now = new Date();
+        const diffMs = now - new Date(dateTime);
+        const diffMins = Math.round(diffMs / 60000);
+        const diffHours = Math.round(diffMins / 60);
+        const diffDays = Math.round(diffHours / 24);
 
-      mobileMenuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-      });
+        if (diffMins < 1) return "Baru saja";
+        if (diffMins < 60) return `${diffMins} menit yang lalu`;
+        if (diffHours < 24) return `${diffHours} jam yang lalu`;
 
-      // Hero banner carousel
-      // (Script .hero-slide dihapus agar tidak bentrok dengan script utama .news-hero-slide)
+        return new Date(dateTime).toLocaleDateString("id-ID", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        });
+      }
 
-      // --- HERO NEWS CAROUSEL SIMPLE & WORKING SCRIPT ---
       document.addEventListener("DOMContentLoaded", function () {
-        console.log("DOM loaded, initializing carousel...");
-
-        const heroSlides = document.querySelectorAll(".news-hero-slide");
-        const heroIndicators = document.querySelectorAll(".indicator-dot");
-        const heroPrev = document.getElementById("news-hero-prev");
-        const heroNext = document.getElementById("news-hero-next");
-        const progressBar = document.querySelector(
-          ".news-hero-nav .bg-gradient-to-r"
-        );
-        const progressText = document.querySelector(".news-hero-nav span");
-
-        console.log("Found slides:", heroSlides.length);
-        console.log("Found indicators:", heroIndicators.length);
-
-        let heroCurrent = 0;
-        let heroInterval = null;
-
-        function showHeroSlide(idx) {
-          console.log("Showing slide:", idx);
-          heroSlides.forEach((slide, i) => {
-            if (i === idx) {
-              slide.classList.add("active");
-              slide.style.opacity = "1";
-              slide.style.zIndex = "20";
-              slide.style.pointerEvents = "auto";
-            } else {
-              slide.classList.remove("active");
-              slide.style.opacity = "0";
-              slide.style.zIndex = "10";
-              slide.style.pointerEvents = "none";
-            }
-          });
-          heroIndicators.forEach((dot, i) => {
-            if (i === idx) {
-              dot.classList.add("active");
-            } else {
-              dot.classList.remove("active");
-            }
-          });
-          if (progressBar)
-            progressBar.style.width = `${
-              ((idx + 1) / heroSlides.length) * 100
-            }%`;
-          if (progressText)
-            progressText.textContent = `${idx + 1}/${heroSlides.length}`;
-        }
-
-        function heroNextSlide() {
-          heroCurrent = (heroCurrent + 1) % heroSlides.length;
-          showHeroSlide(heroCurrent);
-        }
-
-        function heroPrevSlide() {
-          heroCurrent =
-            (heroCurrent - 1 + heroSlides.length) % heroSlides.length;
-          showHeroSlide(heroCurrent);
-        }
-
-        function startAutoSlide() {
-          if (heroInterval) clearInterval(heroInterval);
-          heroInterval = setInterval(() => {
-            console.log("Auto slide triggered");
-            heroNextSlide();
-          }, 5000);
-        }
-
-        // Initialize
-        showHeroSlide(0);
-        startAutoSlide();
-
-        // Event listeners
-        if (heroNext) {
-          heroNext.addEventListener("click", () => {
-            heroNextSlide();
-            startAutoSlide();
-          });
-        }
-
-        if (heroPrev) {
-          heroPrev.addEventListener("click", () => {
-            heroPrevSlide();
-            startAutoSlide();
-          });
-        }
-
-        heroIndicators.forEach((dot, i) => {
-          dot.addEventListener("click", () => {
-            heroCurrent = i;
-            showHeroSlide(heroCurrent);
-            startAutoSlide();
-          });
+        const timeElements = document.querySelectorAll("[data-time]");
+        timeElements.forEach((el) => {
+          const dateTime = el.getAttribute("data-time");
+          if (dateTime) {
+            el.textContent = formatRelativeTime(dateTime);
+          }
         });
 
-        console.log("Carousel initialized successfully");
-      });
-      // --- END HERO NEWS CAROUSEL SCRIPT ---
+        const modernHeader = document.querySelector(".modern-header");
+        if (modernHeader) {
+          window.addEventListener("scroll", () => {
+            if (window.scrollY > 100) {
+              modernHeader.classList.add("scrolled");
+            } else {
+              modernHeader.classList.remove("scrolled");
+            }
+          });
+          if (window.scrollY > 100) {
+            modernHeader.classList.add("scrolled");
+          }
+        }
 
-      // Scroll to news section when arrow down is clicked
-      document.addEventListener("DOMContentLoaded", function () {
-        const scrollToNewsBtn = document.getElementById("scroll-to-news");
-        const newsSection = document.querySelector(".py-16.lg\\:py-24"); // Target section "Semua Berita"
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        if (mobileMenuBtn) {
+          mobileMenuBtn.addEventListener("click", () => {
+            if (mobileMenu) mobileMenu.classList.toggle("hidden");
+          });
+        }
 
-        if (scrollToNewsBtn && newsSection) {
-          scrollToNewsBtn.addEventListener("click", function () {
-            newsSection.scrollIntoView({
+        const backToTopBtn = document.getElementById("back-to-top");
+        if (backToTopBtn) {
+          window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 300) {
+              backToTopBtn.classList.add("visible");
+            } else {
+              backToTopBtn.classList.remove("visible");
+            }
+          });
+          backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+              top: 0,
               behavior: "smooth",
-              block: "start",
             });
           });
-        }
-      });
-
-      // Back to top button
-      const backToTopBtn = document.getElementById("back-to-top");
-
-      window.addEventListener("scroll", () => {
-        if (window.pageYOffset > 300) {
-          backToTopBtn.classList.remove("opacity-0", "invisible");
-          backToTopBtn.classList.add("opacity-100", "visible");
-        } else {
-          backToTopBtn.classList.add("opacity-0", "invisible");
-          backToTopBtn.classList.remove("opacity-100", "visible");
-        }
-      });
-
-      backToTopBtn.addEventListener("click", () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      });
-
-      // Spotlight News Tabs Functionality
-      const spotlightTabBtns = document.querySelectorAll(".spotlight-tab-btn");
-      const spotlightTabContents = document.querySelectorAll(
-        ".spotlight-tab-content"
-      );
-      const spotlightBtnText = document.getElementById("spotlight-btn-text");
-      const spotlightViewAllBtn = document.getElementById(
-        "spotlight-view-all-btn"
-      );
-
-      // Function to update button text based on active tab
-      function updateSpotlightButton(activeTab) {
-        if (activeTab === "populer") {
-          spotlightBtnText.textContent = "Lihat Semua Berita Populer";
-        } else if (activeTab === "terkini") {
-          spotlightBtnText.textContent = "Lihat Semua Berita Terkini";
-        }
-      }
-
-      spotlightTabBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const targetTab = btn.getAttribute("data-tab");
-
-          // Remove active class from all buttons and add to clicked button
-          spotlightTabBtns.forEach((b) => {
-            b.classList.remove("active");
-            const indicator = b.querySelector("div");
-            if (indicator) {
-              indicator.style.opacity = "0";
-            }
-          });
-
-          btn.classList.add("active");
-          const activeIndicator = btn.querySelector("div");
-          if (activeIndicator) {
-            activeIndicator.style.opacity = "1";
-          }
-
-          // Hide all tab contents and show target content
-          spotlightTabContents.forEach((content) => {
-            content.classList.add("hidden");
-            content.classList.remove("active");
-          });
-
-          const targetContent = document.getElementById(targetTab);
-          if (targetContent) {
-            targetContent.classList.remove("hidden");
-            targetContent.classList.add("active");
-
-            // Add smooth fade-in animation
-            targetContent.style.opacity = "0";
-            setTimeout(() => {
-              targetContent.style.opacity = "1";
-              targetContent.style.transition = "opacity 0.3s ease-in-out";
-            }, 50);
-          }
-
-          // Update button text
-          updateSpotlightButton(targetTab);
-        });
-      });
-
-      // Handle View All button click
-      if (spotlightViewAllBtn) {
-        spotlightViewAllBtn.addEventListener("click", () => {
-          // Get current active tab
-          const activeTab =
-            document
-              .querySelector(".spotlight-tab-btn.active")
-              ?.getAttribute("data-tab") || "populer";
-
-          // Navigate to all news section with filter parameter
-          if (activeTab === "populer") {
-            // Scroll to all news section and potentially filter by popular
-            document
-              .getElementById("all-news")
-              .scrollIntoView({ behavior: "smooth" });
-            // You can add additional logic here to filter by popular news
-          } else if (activeTab === "terkini") {
-            // Scroll to all news section and potentially filter by latest
-            document
-              .getElementById("all-news")
-              .scrollIntoView({ behavior: "smooth" });
-            // You can add additional logic here to filter by latest news
-          }
-        });
-      }
-
-      // Initialize button text on page load
-      updateSpotlightButton("populer");
-
-      // News Pagination Functionality
-      const pageButtons = document.querySelectorAll(".page-btn");
-      const prevBtn = document.getElementById("prev-btn");
-      const nextBtn = document.getElementById("next-btn");
-      const newsPages = {
-        1: document.querySelector(
-          ".grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3.gap-8.relative.z-10:not([id])"
-        ),
-        2: document.getElementById("news-page-2"),
-        3: document.getElementById("news-page-3"),
-      };
-
-      let currentPage = 1;
-      const totalPages = 3;
-
-      // Function to show specific page
-      function showPage(pageNumber) {
-        // Update current page
-        currentPage = pageNumber;
-
-        // Hide all pages
-        Object.values(newsPages).forEach((page) => {
-          if (page) {
-            page.classList.add("hidden");
-          }
-        });
-
-        // Show selected page
-        if (newsPages[pageNumber]) {
-          newsPages[pageNumber].classList.remove("hidden");
-
-          // Add fade-in animation
-          newsPages[pageNumber].style.opacity = "0";
-          setTimeout(() => {
-            newsPages[pageNumber].style.opacity = "1";
-            newsPages[pageNumber].style.transition = "opacity 0.3s ease-in-out";
-          }, 50);
-        }
-
-        // Update button states
-        pageButtons.forEach((btn) => {
-          const btnPage = btn.getAttribute("data-page");
-          if (btnPage == pageNumber) {
-            // Active button styling
-            btn.classList.remove(
-              "bg-white",
-              "text-gray-700",
-              "border-gray-200"
-            );
-            btn.classList.add(
-              "bg-gradient-to-r",
-              "from-red-600",
-              "to-red-700",
-              "text-white",
-              "font-bold",
-              "shadow-xl",
-              "transform",
-              "-translate-y-1",
-              "border-2",
-              "border-white",
-              "active"
-            );
-          } else {
-            // Inactive button styling
-            btn.classList.remove(
-              "bg-gradient-to-r",
-              "from-red-600",
-              "to-red-700",
-              "text-white",
-              "font-bold",
-              "shadow-xl",
-              "transform",
-              "-translate-y-1",
-              "border-2",
-              "border-white",
-              "active"
-            );
-            btn.classList.add("bg-white", "text-gray-700", "border-gray-200");
-          }
-        });
-
-        // Update arrow button states
-        updateArrowButtons();
-      }
-
-      // Function to update arrow button states
-      function updateArrowButtons() {
-        // Update previous button
-        if (currentPage <= 1) {
-          prevBtn.classList.add("opacity-50", "cursor-not-allowed");
-          prevBtn.disabled = true;
-        } else {
-          prevBtn.classList.remove("opacity-50", "cursor-not-allowed");
-          prevBtn.disabled = false;
-        }
-
-        // Update next button
-        if (currentPage >= totalPages) {
-          nextBtn.classList.add("opacity-50", "cursor-not-allowed");
-          nextBtn.disabled = true;
-        } else {
-          nextBtn.classList.remove("opacity-50", "cursor-not-allowed");
-          nextBtn.disabled = false;
-        }
-      }
-
-      // Add click event listeners to pagination buttons
-      pageButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const pageNumber = parseInt(btn.getAttribute("data-page"));
-          showPage(pageNumber);
-        });
-      });
-
-      // Add click event listeners to arrow buttons
-      prevBtn.addEventListener("click", () => {
-        if (currentPage > 1) {
-          showPage(currentPage - 1);
-        }
-      });
-
-      nextBtn.addEventListener("click", () => {
-        if (currentPage < totalPages) {
-          showPage(currentPage + 1);
-        }
-      });
-
-      // Initialize with page 1 visible
-      showPage(1);
-
-      // Header scroll effect
-      const header = document.querySelector(".modern-header");
-
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
         }
       });
     </script>
