@@ -13,7 +13,7 @@
     Desain ubah jadi mirip berita
     
 4. Galeri
-    Kategori hapus
+    Kategori hapus (Done)
     
 5. Download 
     Buat list pakai tabel saja (100%)

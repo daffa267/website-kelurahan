@@ -1451,7 +1451,8 @@
 
     .progress-bar {
       height: 100%;
-      background: linear-gradient(90deg, #667eea, #764ba2);
+      background: linear-gradient(90deg,
+          #667eea, #764ba2);
       width: 0%;
       transition: width 0.05s linear; /* Smooth transition for progress bar */
       box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
@@ -1817,24 +1818,27 @@
           </p>
         </div>
 
-        <div class="mb-12 bg-white rounded-2xl shadow-lg p-6">
-          <div class="flex flex-col md:flex-row gap-4 items-center">
-            <div class="flex-1 relative">
-              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <i class="fas fa-search text-gray-400"></i>
+        <div class="mb-12 max-w-3xl ml-auto">
+          <div class="flex flex-col sm:flex-row gap-4 items-center justify-end">
+            <div class="relative w-full md:w-64">
+              <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                <i class="fas fa-search"></i>
               </div>
-              <input type="text" id="gallery-search-input" class="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent" placeholder="Cari album atau kegiatan...">
+              <input type="text" id="gallery-search-input" class="block w-full pl-10 pr-3 py-3 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent" placeholder="Cari galeri...">
             </div>
-            <div class="flex-1 w-full">
-              <select id="gallery-year-select" class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+            <div class="relative w-full md:w-48">
+              <select id="gallery-year-select" class="appearance-none w-full px-3 py-3 pr-8 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm">
                 <option value="">Semua Tahun</option>
                 <option value="2024">2024</option>
                 <option value="2023">2023</option>
                 <option value="2022">2022</option>
               </select>
+              <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <i class="fas fa-chevron-down text-gray-400"></i>
+              </div>
             </div>
-            <button id="gallery-filter-button" class="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-bold rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:from-red-700 hover:to-red-800 hover:-translate-y-1">
-              <i class="fas fa-filter mr-2"></i> Filter
+            <button id="gallery-filter-button" class="w-full md:w-auto px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-medium rounded-lg hover:from-red-700 hover:to-red-800 flex items-center justify-center">
+              <i class="fas fa-filter mr-2"></i> Terapkan
             </button>
           </div>
         </div>
@@ -1851,7 +1855,7 @@
               </div>
 
               <div class="absolute top-4 right-4">
-                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg hover:bg-white">
+                <button class="gallery-expand w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-md hover:shadow-lg">
                   <i class="fas fa-expand"></i>
                 </button>
               </div>
@@ -2363,7 +2367,7 @@
 
             <div class="border-t border-gray-700 mt-12 pt-8 text-center">
                 <p class="text-gray-400 text-sm">
-                    © 2025 Design by Kerja Praktik UMRAH.
+                    2025 Design by Kerja Praktik UMRAH.
                 </p>
             </div>
         </div>
@@ -2374,7 +2378,7 @@
 
   <button
     id="back-to-top"
-    class="fixed bottom-8 right-8 bg-gradient-to-r from-primary-600 to-red-700 text-white p-4 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:from-red-700 hover:to-red-800 transform hover:scale-110">
+    class="fixed bottom-8 right-8 bg-gradient-to-r from-primary-600 to-red-700 text-white p-4 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:from-red-700 hover:to-red-800 flex items-center justify-center">
     <i class="fas fa-arrow-up"></i>
   </button>
 
@@ -2563,171 +2567,25 @@
         lightbox.innerHTML = `
           <div class="relative max-w-6xl mx-4 my-8 animate-zoomIn">
             
-            <div class="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-2xl inline-flex flex-col" style="max-width: 100%;">
-              
-              <button class="absolute top-3 right-3 text-gray-600 dark:text-gray-300 hover:text-red-500 transition-colors z-50 bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-full w-9 h-9 flex items-center justify-center shadow-md" aria-label="Close">
-                <i class="fas fa-times"></i>
-              </button>
-
-              <div class="w-full overflow-hidden flex items-center justify-center bg-black">
-                <img src="${src}" alt="${alt}" 
-                    class="w-full h-auto max-h-[75vh] object-contain"
-                    loading="lazy">
-              </div>
-              
-              <div class="w-full p-6 border-t border-gray-200 dark:border-gray-700">
-                <div class="mb-4">
-                  <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-2">${title}</h3>
-                  ${description ? `<p class="text-gray-600 dark:text-gray-300">${description}</p>` : ''}
-                </div>
-                
-                <div class="flex flex-wrap justify-between items-center gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                  <div class="flex flex-wrap gap-3">
-                    <a href="${src}" download 
-                      class="flex items-center gap-2 px-5 py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors duration-300"
-                      title="Download image">
-                      <i class="fas fa-download"></i> Unduh
-                    </a>
-                    
-                    <button onclick="shareImage('${title}', '${src}')" 
-                            class="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors duration-300"
-                            title="Share image">
-                      <i class="fas fa-share-alt"></i> Bagikan
-                    </button>
-                  </div>
-                  
-                  <div class="flex items-center gap-2">
-                    <span class="text-sm text-gray-500 dark:text-gray-400">
-                      ${index + 1} / ${images.length}
-                    </span>
-                    <button class="p-2 text-gray-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors" 
-                            onclick="event.stopPropagation(); navigateImage(-1)"
-                            ${images.length <= 1 ? 'disabled' : ''}>
-                      <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="p-2 text-gray-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
-                            onclick="event.stopPropagation(); navigateImage(1)"
-                            ${images.length <= 1 ? 'disabled' : ''}>
-                      <i class="fas fa-chevron-right"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-500 absolute opacity-30"></div>
             </div>
+            <img id="lightbox-image" src="${src}" alt="${alt}" 
+                class="w-full h-full object-contain">
+            <div id="lightbox-caption" class="text-white text-center mt-4">${title}</div>
           </div>
         `;
-
+        
         // Add event listeners
         const closeBtn = lightbox.querySelector('.fa-times').parentElement;
         closeBtn.addEventListener('click', closeLightbox);
+        
+        showLightbox();
       }
 
       // Navigation between images
       window.navigateImage = function(direction) {
         showImage(currentImageIndex + direction);
-      };
-
-      // Share functionality
-      window.shareImage = async function(title, imageUrl) {
-        try {
-          if (navigator.share) {
-            await navigator.share({
-              title: title,
-              text: 'Lihat gambar dari Galeri Kelurahan',
-              url: imageUrl,
-            });
-          } else {
-            // Fallback for browsers that don't support Web Share API
-            const shareUrl = `${window.location.origin}${window.location.pathname}?image=${encodeURIComponent(imageUrl)}`;
-            await navigator.clipboard.writeText(shareUrl);
-            alert('Tautan gambar telah disalin ke clipboard');
-          }
-        } catch (err) {
-          console.error('Error sharing:', err);
-        }
-      };
-
-      // Initialize lightbox for each image
-      galleryImages.forEach((image, index) => {
-        image.addEventListener('click', (e) => {
-          e.preventDefault();
-          currentImageIndex = index;
-          showImage(currentImageIndex);
-          showLightbox();
-        });
-      });
-
-      // Video lightbox with YouTube embed
-      videoCards.forEach(card => {
-        card.addEventListener('click', (e) => {
-          e.preventDefault();
-          const title = card.querySelector('h3')?.textContent || 'Video';
-          const videoId = card.getAttribute('data-video-id');
-          
-          lightbox.innerHTML = `
-            <div class="relative max-w-4xl w-full mx-4 animate-zoomIn">
-              <button class="absolute -top-16 right-0 text-white text-3xl hover:text-red-400 transition-colors z-10" aria-label="Close">
-                <i class="fas fa-times"></i>
-              </button>
-              
-              <div class="bg-black rounded-2xl overflow-hidden shadow-2xl">
-                <div class="aspect-video w-full">
-                  <iframe 
-                    class="w-full h-full"
-                    src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0&rel=0"
-                    title="${title}"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                  </iframe>
-                </div>
-                
-                <div class="p-6 bg-white dark:bg-gray-800">
-                  <h3 class="font-bold text-xl text-gray-900 dark:text-white mb-4">${title}</h3>
-                  
-                  <div class="flex flex-wrap gap-3">
-                    <a href="https://youtu.be/${videoId}" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="flex items-center gap-2 px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors duration-300">
-                      <i class="fab fa-youtube"></i> Tonton di YouTube
-                    </a>
-                    
-                    <button onclick="shareVideo('${title}', '${videoId}')" 
-                            class="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors duration-300">
-                      <i class="fas fa-share-alt"></i> Bagikan
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `;
-          
-          // Add event listeners
-          const closeBtn = lightbox.querySelector('.fa-times').parentElement;
-          closeBtn.addEventListener('click', closeLightbox);
-          
-          showLightbox();
-        });
-      });
-      
-      // Share video function
-      window.shareVideo = async function(title, videoId) {
-        const videoUrl = `https://youtu.be/${videoId}`;
-        try {
-          if (navigator.share) {
-            await navigator.share({
-              title: title,
-              text: 'Tonton video dari Galeri Kelurahan',
-              url: videoUrl,
-            });
-          } else {
-            await navigator.clipboard.writeText(videoUrl);
-            alert('Tautan video telah disalin ke clipboard');
-          }
-        } catch (err) {
-          console.error('Error sharing:', err);
-        }
       };
 
       function showLightbox() {
