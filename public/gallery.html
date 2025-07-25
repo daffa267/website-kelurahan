@@ -33,10 +33,11 @@
     }
 
     /* Header berubah merah solid saat scroll */
-    .modern-header.scrolled {
-      background: var(--primary-900) !important;
-      backdrop-filter: none !important;
-      transition: background 0.3s, backdrop-filter 0.3s;
+    .modern-header.scrolled,
+    .modern-header:hover {
+        background: var(--primary-900) !important;
+        backdrop-filter: none !important;
+        transition: background 0.3s, backdrop-filter 0.3s;
     }
 
     :root {
@@ -113,10 +114,6 @@
       bottom: 0;
       background: rgba(0, 0, 0, 0);
       pointer-events: none;
-    }
-
-    .modern-header .floating {
-      animation: float 6s ease-in-out infinite;
     }
 
     /* Glass Morphism Effect */
@@ -1589,11 +1586,10 @@
     <div class="container mx-auto px-4 py-2 md:py-3 relative z-10">
       <div class="flex items-center justify-between">
         <div class="flex items-center space-x-3 md:space-x-4">
-          <div class="floating">
-            <img
-              src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
+          <div>
+            <img src="https://tpikotakel.tanjungpinangkota.go.id/img/logo-tpi.182f9638.png"
               alt="Logo Kelurahan"
-              class="h-11 w-11 md:h-12 md:w-12 object-contain transition-all duration-300" />
+              class="h-11 w-11 md:h-12 md:w-12 object-contain">
           </div>
           <div class="text-white flex flex-col justify-center">
             <span
@@ -1828,16 +1824,6 @@
                 <i class="fas fa-search text-gray-400"></i>
               </div>
               <input type="text" id="gallery-search-input" class="block w-full pl-10 pr-3 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent" placeholder="Cari album atau kegiatan...">
-            </div>
-            <div class="flex-1 w-full">
-              <select id="gallery-category-select" class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent">
-                <option value="">Semua Kategori</option>
-                <option value="infrastruktur">Infrastruktur</option>
-                <option value="sosial">Sosial</option>
-                <option value="kesehatan">Kesehatan</option>
-                <option value="pendidikan">Pendidikan</option>
-                <option value="lingkungan">Lingkungan</option>
-              </select>
             </div>
             <div class="flex-1 w-full">
               <select id="gallery-year-select" class="block w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent">
