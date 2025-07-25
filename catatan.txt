@@ -5,7 +5,7 @@
     Animasi bawah layanan ganti yang bagus lagi.(underline nya dihapus (DONE))
     
 2. Berita
-    Halaman Berita detail Margin kiri kartu bawah disamakan dengan konten atas (50%)
+    Halaman Berita detail Margin kiri kartu bawah disamakan dengan konten atas (98%)
     Halaman Berita utama sorotan berita kontennya jadikan 3 dengan atasnya (Done).
     
 3. Pengumuman 
