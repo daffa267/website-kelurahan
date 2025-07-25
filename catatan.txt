@@ -16,4 +16,4 @@
     Kategori hapus
     
 5. Download 
-    Buat list pakai tabel saja (progress 80%)
+    Buat list pakai tabel saja (100%)
