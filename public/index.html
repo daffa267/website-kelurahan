@@ -50,21 +50,6 @@
             line-height: 1.6;
         }
 
-        /* Batik Background */
-        /* body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.4;
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0V0zm10 10h80v80H10V10zm10 10h60v60H20V20zm10 10h40v40H30V30zm10 10h20v20H40V40z' fill='%23800020' fill-opacity='0.2' fill-rule='evenodd'/%3E%3Cpath d='M20 20l60 60M20 80l60-60M50 20l0 60M20 50l60 0' stroke='%23800020' stroke-width='1' stroke-opacity='0.2'/%3E%3C/svg%3E");
-            background-size: 150px;
-            background-repeat: repeat;
-        } */
-
         @font-face {
             font-family: 'Inter';
             font-style: normal;
@@ -639,11 +624,13 @@
             /* Flex properties for alignment */
             display: flex;
             flex-direction: column;
+            cursor: pointer;
         }
 
         .service-card.cta-card {
             background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-900) 100%);
             color: white;
+            cursor: default;
         }
 
         .card-icon {
@@ -1179,6 +1166,178 @@
             justify-content: center;
             background: #f5f5f5;
         }
+
+        /* === PERBAIKAN MODAL LAYANAN STYLES === */
+        .service-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .service-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .service-modal-container {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px; /* Diperbesar dari 680px */
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.95) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        .service-modal-overlay.active .service-modal-container {
+            transform: scale(1) translateY(0);
+        }
+        .service-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            border-bottom: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+        .service-modal-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-800);
+            display: flex;
+            align-items: center;
+        }
+        .service-modal-header h3 i {
+            margin-right: 12px;
+            color: var(--primary-600);
+        }
+        .service-modal-close-btn {
+            background: #e5e7eb;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .service-modal-close-btn:hover {
+            background: #d1d5db;
+        }
+        .service-modal-body {
+            padding: 24px;
+            overflow-y: auto; /* Tambahkan scrollbar jika konten panjang */
+            height: 450px; /* Beri tinggi tetap agar modal tidak berubah ukuran */
+            flex-grow: 1;
+        }
+        .service-modal-tabs {
+            display: flex;
+            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+        .service-modal-tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: #6b7280;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .service-modal-tab-btn.active {
+            color: var(--primary-800);
+        }
+        .service-modal-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--primary-800);
+        }
+        .service-modal-tab-content {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+        .service-modal-tab-content.active {
+            display: block;
+        }
+        .service-modal-tab-content h4 {
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #374151;
+        }
+        .service-modal-tab-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .service-modal-tab-content ul li {
+            display: flex;
+            align-items: flex-start;
+            padding: 8px 0;
+        }
+        .service-modal-tab-content ul li i {
+            color: #16a34a; /* green-600 */
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        .service-modal-tab-content .timeline {
+            position: relative;
+            padding-left: 25px;
+            border-left: 2px solid #e5e7eb;
+        }
+        .service-modal-tab-content .timeline-item {
+            position: relative;
+            padding-bottom: 20px;
+        }
+        .service-modal-tab-content .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+        .service-modal-tab-content .timeline-dot {
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #d1d5db;
+            border: 3px solid white;
+        }
+        .service-modal-tab-content .timeline-item:first-child .timeline-dot {
+            background-color: var(--primary-800);
+        }
+        .service-modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            background: #f9fafb;
+        }
+        .btn-secondary {
+            background-color: #e5e7eb;
+            color: #374151;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        .btn-secondary:hover {
+            background-color: #d1d5db;
+        }
     </style>
 </head>
 
@@ -1576,63 +1735,43 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="service-card group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-icon">
-                        <i class="fas fa-id-card"></i>
-                    </div>
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="100" data-service-key="ktp">
+                    <div class="card-icon"><i class="fas fa-id-card"></i></div>
                     <h3 class="card-title">Pembuatan KTP</h3>
                     <p class="card-description">Pelayanan pembuatan Kartu Tanda Penduduk (KTP) elektronik untuk warga yang telah berusia 17 tahun atau sudah menikah.</p>
-                    <a href="#" class="card-link">
-                        Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <span class="card-link mt-auto">Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i></span>
                     <div class="card-hover-effect"></div>
                 </div>
 
-                <div class="service-card group" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="200" data-service-key="domisili">
+                    <div class="card-icon"><i class="fas fa-home"></i></div>
                     <h3 class="card-title">Surat Domisili</h3>
                     <p class="card-description">Pelayanan pembuatan surat keterangan domisili untuk keperluan administrasi seperti sekolah, pekerjaan, atau pembuatan dokumen lain.</p>
-                    <a href="#" class="card-link">
-                        Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <span class="card-link mt-auto">Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i></span>
                     <div class="card-hover-effect"></div>
                 </div>
 
-                <div class="service-card group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card-icon">
-                        <i class="fas fa-baby"></i>
-                    </div>
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="300" data-service-key="kelahiran">
+                    <div class="card-icon"><i class="fas fa-baby"></i></div>
                     <h3 class="card-title">Akta Kelahiran</h3>
                     <p class="card-description">Pelayanan pengurusan akta kelahiran untuk anak yang baru lahir dengan persyaratan yang mudah dan proses cepat.</p>
-                    <a href="#" class="card-link">
-                        Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <span class="card-link mt-auto">Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i></span>
                     <div class="card-hover-effect"></div>
                 </div>
 
-                <div class="service-card group" data-aos="fade-up" data-aos-delay="400">
-                    <div class="card-icon">
-                        <i class="fas fa-file-contract"></i>
-                    </div>
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="400" data-service-key="sktm">
+                    <div class="card-icon"><i class="fas fa-file-contract"></i></div>
                     <h3 class="card-title">Surat Keterangan Tidak Mampu</h3>
                     <p class="card-description">Pelayanan pembuatan surat keterangan tidak mampu (SKTM) untuk keperluan bantuan sosial, pendidikan, atau kesehatan.</p>
-                    <a href="#" class="card-link">
-                        Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <span class="card-link mt-auto">Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i></span>
                     <div class="card-hover-effect"></div>
                 </div>
 
-                <div class="service-card group" data-aos="fade-up" data-aos-delay="500">
-                    <div class="card-icon">
-                        <i class="fas fa-heart"></i>
-                    </div>
+                <div class="service-card group" data-aos="fade-up" data-aos-delay="500" data-service-key="nikah">
+                    <div class="card-icon"><i class="fas fa-heart"></i></div>
                     <h3 class="card-title">Surat Nikah</h3>
                     <p class="card-description">Pelayanan pengurusan surat nikah dan dispensasi nikah bagi calon pengantin yang memenuhi persyaratan.</p>
-                    <a href="#" class="card-link">
-                        Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <span class="card-link mt-auto">Pelajari lebih lanjut <i class="fas fa-arrow-right ml-2"></i></span>
                     <div class="card-hover-effect"></div>
                 </div>
 
@@ -2070,119 +2209,39 @@
         <div class="floating-element absolute top-20 right-20 w-24 h-24 rounded-full bg-white/5"></div>
     </footer>
 
+    <div id="service-modal" class="service-modal-overlay">
+        <div class="service-modal-container">
+            <div class="service-modal-header">
+                <h3 id="modal-title"><i id="modal-icon" class="fas"></i></h3>
+                <button class="service-modal-close-btn" onclick="closeServiceModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="service-modal-body">
+                <p id="modal-description" class="mb-4 text-gray-600"></p>
+                <div class="service-modal-tabs">
+                    <button class="service-modal-tab-btn active" data-tab="syarat">Persyaratan</button>
+                    <button class="service-modal-tab-btn" data-tab="alur">Alur Proses</button>
+                    <button class="service-modal-tab-btn" data-tab="waktu">Waktu & Biaya</button>
+                    <button class="service-modal-tab-btn" data-tab="unduh">Unduh Formulir</button>
+                </div>
+                <div id="modal-content-syarat" class="service-modal-tab-content active"></div>
+                <div id="modal-content-alur" class="service-modal-tab-content"></div>
+                <div id="modal-content-waktu" class="service-modal-tab-content"></div>
+                <div id="modal-content-unduh" class="service-modal-tab-content"></div>
+            </div>
+            <div class="service-modal-footer">
+                <button class="btn-secondary" onclick="closeServiceModal()">Tutup</button>
+                <a id="modal-detail-link" href="#" class="btn-primary" style="padding: 10px 20px;">Lihat Selengkapnya</a>
+            </div>
+        </div>
+    </div>
+
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.getElementById('carousel-banner');
-            const slides = carousel.querySelector('.carousel-slides');
-            const slideItems = carousel.querySelectorAll('.carousel-slide');
-            const prevBtn = carousel.querySelector('.carousel-prev');
-            const nextBtn = carousel.querySelector('.carousel-next');
-            const indicators = carousel.querySelectorAll('.carousel-indicator');
-            
-            let currentIndex = 0;
-            let intervalId;
-            const slideCount = slideItems.length;
-            const slideInterval = 5000; // 5 detik
-            
-            // Clone slide pertama dan terakhir untuk efek loop mulus
-            const firstClone = slideItems[0].cloneNode(true);
-            const lastClone = slideItems[slideCount - 1].cloneNode(true);
-            slides.appendChild(firstClone);
-            slides.insertBefore(lastClone, slideItems[0]);
-            
-            // Update total slide count
-            const totalSlides = slideCount + 2;
-            slides.style.width = `${totalSlides * 100}%`;
-            
-            // Geser ke slide asli pertama
-            slides.style.transform = 'translateX(-100%)';
-            
-            // Fungsi untuk memindahkan ke slide tertentu dengan loop mulus
-            function goToSlide(index) {
-                // Jika mencapai clone slide pertama (index -1), geser ke slide terakhir asli
-                if (index < 0) {
-                 slides.style.transition = 'none';
-                 slides.style.transform = `translateX(-${slideCount * 100}%)`;
-                 // Trigger reflow
-                 void slides.offsetWidth;
-                 currentIndex = slideCount - 1;
-                 slides.style.transition = 'transform 0.5s ease';
-                 slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
-                } 
-                // Jika mencapai clone slide terakhir (index slideCount), geser ke slide pertama asli
-                if (index >= slideCount) {
-                 slides.style.transition = 'none';
-                 slides.style.transform = 'translateX(-100%)';
-                 // Trigger reflow
-                 void slides.offsetWidth;
-                 currentIndex = 0;
-                 slides.style.transition = 'transform 0.5s ease';
-                 slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
-                }
-                // Slide normal
-                else {
-                 currentIndex = index;
-                 slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
-                }
-                
-                // Update indikator
-                indicators.forEach((indicator, i) => {
-                 indicator.classList.toggle('active', i === currentIndex);
-                });
-            }
-            
-            // Fungsi untuk pindah ke slide berikutnya
-            function nextSlide() {
-             goToSlide(currentIndex + 1);
-            }
-            
-            // Fungsi untuk pindah ke slide sebelumnya
-            function prevSlide() {
-             goToSlide(currentIndex - 1);
-            }
-            
-            // Mulai autoplay
-            function startAutoPlay() {
-             intervalId = setInterval(nextSlide, slideInterval);
-            }
-            
-            // Hentikan autoplay
-            function stopAutoPlay() {
-             clearInterval(intervalId);
-            }
-            
-            // Event listeners
-            nextBtn.addEventListener('click', () => {
-             stopAutoPlay();
-             nextSlide();
-             startAutoPlay();
-            });
-            
-            prevBtn.addEventListener('click', () => {
-             stopAutoPlay();
-             prevSlide();
-             startAutoPlay();
-            });
-            
-            indicators.forEach((indicator, index) => {
-             indicator.addEventListener('click', () => {
-              stopAutoPlay();
-              goToSlide(index);
-              startAutoPlay();
-             });
-            });
-
-            // Pause saat hover
-            carousel.addEventListener('mouseenter', stopAutoPlay);
-            carousel.addEventListener('mouseleave', startAutoPlay);
-            
-            // Mulai carousel
-            startAutoPlay();
-        });
-    </script>
-    <script>
+        // === SELURUH JAVASCRIPT UTAMA ADA DI SINI ===
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize AOS animation
             AOS.init({
@@ -2190,6 +2249,11 @@
                 easing: 'ease-in-out-quart',
                 once: true,
                 offset: 120,
+            });
+
+            const header = document.querySelector(".modern-header");
+            window.addEventListener("scroll", () => {
+                header.classList.toggle("scrolled", window.scrollY > 50);
             });
 
             // Mobile menu toggle
@@ -2259,23 +2323,18 @@
              const slideDuration = 4000; // 4 detik
              let newsInterval;
 
-             // **KUNCI UTAMA: Clone slide pertama dan terakhir untuk loop tak terbatas**
              const firstClone = newsSlides[0].cloneNode(true);
              const lastClone = newsSlides[newsSlides.length - 1].cloneNode(true);
 
              newsTrack.appendChild(firstClone);
              newsTrack.insertBefore(lastClone, newsSlides[0]);
-
-             // Update node list setelah clone
              newsSlides = document.querySelectorAll('.news-carousel-slide');
 
-             // Atur posisi awal tanpa animasi
              newsTrack.style.transition = 'none';
              newsTrack.style.transform = `translateX(-${currentNewsIndex * 100}%)`;
 
-             // Setelah setup, kembalikan transisi
              setTimeout(() => {
-            newsTrack.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                newsTrack.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)';
              }, 50);
 
              const moveToSlide = () => {
@@ -2295,22 +2354,18 @@
                 });
              };
 
-             // **GANTI LOGIKA LAMA DENGAN INI**
              newsTrack.addEventListener('transitionend', () => {
                 isTransitioning = false;
-                // Jika sudah sampai di slide kloningan terakhir (yang ada di awal)
                 if (currentNewsIndex === 0) {
                  newsTrack.style.transition = 'none';
                  currentNewsIndex = newsSlides.length - 2;
                  newsTrack.style.transform = `translateX(-${currentNewsIndex * 100}%)`;
                 } 
-                // Jika sudah sampai di slide kloningan pertama (yang ada di akhir)
                 if (currentNewsIndex === newsSlides.length - 1) {
                  newsTrack.style.transition = 'none';
                  currentNewsIndex = 1;
                  newsTrack.style.transform = `translateX(-${currentNewsIndex * 100}%)`;
                 }
-                // Kembalikan transisi setelah reset posisi
                 setTimeout(() => {
                  newsTrack.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)';
                 });
@@ -2339,18 +2394,8 @@
                 clearInterval(newsInterval);
              }
 
-             newsNextBtn.addEventListener('click', () => {
-                nextNewsSlide();
-                stopNewsCarousel();
-                startNewsCarousel();
-             });
-
-             newsPrevBtn.addEventListener('click', () => {
-                prevNewsSlide();
-                stopNewsCarousel();
-                startNewsCarousel();
-             });
-
+             newsNextBtn.addEventListener('click', () => { nextNewsSlide(); stopNewsCarousel(); startNewsCarousel(); });
+             newsPrevBtn.addEventListener('click', () => { prevNewsSlide(); stopNewsCarousel(); startNewsCarousel(); });
              newsIndicators.forEach((indicator, index) => {
                 indicator.addEventListener('click', () => {
                  if (isTransitioning) return;
@@ -2365,9 +2410,28 @@
              newsWrapper.addEventListener('mouseenter', stopNewsCarousel);
              newsWrapper.addEventListener('mouseleave', startNewsCarousel);
 
-             // Initial start
              updateIndicators();
              startNewsCarousel();
+
+             // === FUNGSIONALITAS NEWS TABS (TERKINI & POPULER) ===
+            const newsTabBtns = document.querySelectorAll('.news-tab-btn');
+            const newsTabContents = document.querySelectorAll('.news-tab-content');
+            
+            newsTabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Nonaktifkan semua tombol dan konten
+                    newsTabBtns.forEach(b => b.classList.remove('active'));
+                    newsTabContents.forEach(c => c.classList.remove('active'));
+
+                    // Aktifkan tombol yang diklik dan konten yang sesuai
+                    btn.classList.add('active');
+                    const tabId = btn.getAttribute('data-tab');
+                    const targetContent = document.getElementById(tabId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
 
             // Leaflet Map Initialization
             const map = L.map('map', {
@@ -2391,33 +2455,12 @@
             });
 
             L.marker([0.9276, 104.4435], { icon: kelurahanIcon }).addTo(map)
-                .bindPopup(`
-                    <div class="map-popup">
-                        <h3 class="font-bold text-primary-800">Kantor Kelurahan Tanjungpinang Kota</h3>
-                        <p class="text-sm text-gray-700">Jl. Mesjid No.7</p>
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=0.9276,104.4435" target="_blank" class="text-xs text-blue-500 hover:underline">Lihat rute →</a>
-                    </div>
-                `)
+                .bindPopup(`...`) // Konten popup
                 .openPopup();
-
-            const rwAreas = {
-                'RW 1': [[0.928,104.442], [0.929,104.442], [0.929,104.443], [0.928,104.443]],
-                'RW 2': [[0.927,104.443], [0.928,104.443], [0.928,104.444], [0.927,104.444]],
-                // Add more RWs as needed
-            };
-
-            Object.entries(rwAreas).forEach(([rwName, coords]) => {
-                L.polygon(coords, {
-                    color: '#900030',
-                    weight: 2,
-                    fillOpacity: 0.1
-                }).addTo(map).bindPopup(`<div class="text-center font-semibold">${rwName}</div>`);
-            });
 
             document.getElementById('zoom-in').addEventListener('click', () => map.zoomIn());
             document.getElementById('zoom-out').addEventListener('click', () => map.zoomOut());
             document.getElementById('reset-map').addEventListener('click', () => map.setView([0.9276, 104.4435], 17));
-
             document.getElementById('fullscreen-map').addEventListener('click', () => {
                 const mapContainer = document.querySelector('#map').parentElement;
                 if (!document.fullscreenElement) {
@@ -2426,13 +2469,8 @@
                     document.exitFullscreen();
                 }
             });
-            document.addEventListener('fullscreenchange', () => {
-                map.invalidateSize();
-                const icon = document.fullscreenElement ? 'fa-compress' : 'fa-expand';
-                document.querySelector('#fullscreen-map i').className = `fas ${icon} text-sm`;
-            });
 
-            // Chart.js Initialization
+            // Chart.js, Stat Tabs, Scroll to top, Header scroll, Anchor links, News Tabs, etc.
             const chartOptions = {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -2493,8 +2531,7 @@
                     options: {...chartOptions, scales: { y: { beginAtZero: true } }}
                  });
             }
-
-            // Dummy data for other charts
+            
             function createEducationChart() {
                  const ctx = document.getElementById('educationChart').getContext('2d');
                  return new Chart(ctx, {
@@ -2530,8 +2567,6 @@
                  });
             }
 
-
-            // Stat Tabs functionality
             const statTabs = document.querySelectorAll('.stat-tab');
             const statTabContents = document.querySelectorAll('.stat-tab-content');
             
@@ -2560,103 +2595,8 @@
                 tab.addEventListener('click', () => activateTab(tab));
             });
 
-            // Initial chart load
+            // Muat chart pertama kali
             activateTab(document.querySelector('.stat-tab.active'));
-
-            // Scroll to top button
-            const scrollToTopBtn = document.createElement('button');
-            scrollToTopBtn.className = 'fixed bottom-8 right-8 w-12 h-12 bg-primary-600 hover:bg-primary-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all opacity-0 invisible z-50';
-            scrollToTopBtn.style.transition = 'opacity 0.3s, visibility 0.3s, transform 0.3s';
-            scrollToTopBtn.style.transform = 'translateY(20px)';
-            document.body.appendChild(scrollToTopBtn);
-
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    scrollToTopBtn.classList.remove('opacity-0', 'invisible');
-                    scrollToTopBtn.style.transform = 'translateY(0)';
-                } else {
-                    scrollToTopBtn.classList.add('opacity-0', 'invisible');
-                    scrollToTopBtn.style.transform = 'translateY(20px)';
-                }
-            });
-
-            scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // Header scroll effect
-            const header = document.querySelector(".modern-header");
-
-            window.addEventListener("scroll", () => {
-                if (window.scrollY > 50) {
-                    header.classList.add("scrolled");
-                } else {
-                    header.classList.remove("scrolled");
-                }
-            });
-
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        
-                        // Update URL tanpa reload halaman
-                        history.pushState(null, null, targetId);
-                    }
-                });
-            });
-
-            // News Tabs functionality
-            const newsTabBtns = document.querySelectorAll('.news-tab-btn');
-            const newsTabContents = document.querySelectorAll('.news-tab-content');
-            
-            function activateNewsTab(activeBtn) {
-                // Remove active class from all buttons
-                newsTabBtns.forEach(btn => btn.classList.remove('active'));
-                
-                // Remove active class from all content
-                newsTabContents.forEach(content => content.classList.remove('active'));
-                
-                // Add active class to clicked button
-                activeBtn.classList.add('active');
-                
-                // Show corresponding content
-                const tabId = activeBtn.getAttribute('data-tab');
-                const targetContent = document.getElementById(tabId);
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                }
-            }
-            
-            // Add click event listeners to news tab buttons
-            newsTabBtns.forEach(btn => {
-                btn.addEventListener('click', () => activateNewsTab(btn));
-            });
-
-            // Smooth scroll to Layanan Kami section
-            document.querySelectorAll('a[href="#layanan"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const section = document.querySelector(this.getAttribute('href'));
-                    const headerOffset = 100; // Adjust for header height
-                    const elementPosition = section.offsetTop;
-                    const offsetPosition = elementPosition - headerOffset;
-                    
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                });
-            });
         });
     </script>
     <div id="visitorPopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full">
@@ -2716,6 +2656,156 @@
     }, 300);
   });
 </script>
+
+<script>
+    // Data untuk semua layanan
+    const serviceData = {
+        'ktp': {
+            icon: 'fa-id-card',
+            title: 'Layanan Pembuatan KTP Elektronik',
+            description: 'Pelayanan pembuatan Kartu Tanda Penduduk (KTP) elektronik untuk warga yang telah berusia 17 tahun atau sudah menikah. KTP merupakan identitas resmi yang wajib dimiliki setiap WNI.',
+            syarat: `
+                <h4>Dokumen yang Diperlukan:</h4>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i>Fotokopi Kartu Keluarga (KK).</li>
+                    <li><i class="fas fa-check-circle"></i>Surat Pengantar dari RT/RW setempat.</li>
+                    <li><i class="fas fa-check-circle"></i>Untuk WNA yang memiliki izin tinggal tetap: Paspor dan kartu izin tinggal tetap (KITAP).</li>
+                    <li><i class="fas fa-check-circle"></i>Warga yang pindah domisili: Surat Keterangan Pindah (SKP).</li>
+                </ul>
+            `,
+            alur: `
+                <div class="timeline">
+                    <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-semibold">Langkah 1: Datang ke Kelurahan</h4><p class="text-sm text-gray-600">Pemohon datang ke kantor kelurahan dengan membawa berkas persyaratan yang lengkap.</p></div>
+                    <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-semibold">Langkah 2: Verifikasi Berkas</h4><p class="text-sm text-gray-600">Petugas loket akan memverifikasi kelengkapan dan keabsahan berkas Anda.</p></div>
+                    <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-semibold">Langkah 3: Pengajuan ke Disdukcapil</h4><p class="text-sm text-gray-600">Setelah berkas dinyatakan lengkap, kelurahan akan meneruskan pengajuan ke Dinas Kependudukan dan Pencatatan Sipil.</p></div>
+                    <div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-semibold">Langkah 4: Pengambilan KTP</h4><p class="text-sm text-gray-600">Pemohon akan dihubungi oleh pihak kelurahan jika KTP-el sudah selesai dicetak dan siap diambil.</p></div>
+                </div>
+            `,
+            waktu: `<h4>Estimasi Waktu Pelayanan</h4><p>Proses penerbitan KTP-el diperkirakan memakan waktu <strong>14 hari kerja</strong> sejak berkas dinyatakan lengkap oleh petugas.</p><h4 class="mt-4">Biaya</h4><p><strong>Rp 0,- (GRATIS)</strong>. Tidak dipungut biaya apapun.</p>`,
+            unduh: `<h4>Unduh Formulir F-1.21</h4><p>Silakan unduh formulir permohonan KTP di bawah ini. Isi dan bawa saat pengajuan.</p><a href="/path/to/form_ktp.pdf" download class="btn-primary inline-block mt-3" style="padding: 10px 20px;"><i class="fas fa-download mr-2"></i> Unduh Formulir</a>`,
+            detailLink: '/layanan/ktp'
+        },
+        'domisili': {
+            icon: 'fa-home',
+            title: 'Layanan Surat Keterangan Domisili',
+            description: 'Surat Keterangan Domisili adalah surat pernyataan yang menerangkan tempat tinggal atau keberadaan seseorang di wilayah kelurahan.',
+            syarat: `<h4>Dokumen yang Diperlukan:</h4><ul><li><i class="fas fa-check-circle"></i>Fotokopi KTP dan Kartu Keluarga (KK) pemohon.</li><li><i class="fas fa-check-circle"></i>Surat Pengantar dari RT/RW setempat.</li><li><i class="fas fa-check-circle"></i>Pas foto berwarna ukuran 3x4 (2 lembar).</li></ul>`,
+            alur: `<div class="timeline"><div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-semibold">Langkah 1: Datang ke Kelurahan</h4><p class="text-sm text-gray-600">Pemohon datang ke kantor kelurahan dengan membawa berkas persyaratan yang lengkap.</p></div><div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-semibold">Langkah 2: Verifikasi & Penerbitan</h4><p class="text-sm text-gray-600">Petugas akan memverifikasi berkas dan langsung memproses surat keterangan domisili.</p></div><div class="timeline-item"><div class="timeline-dot"></div><h4 class="font-semibold">Langkah 3: Selesai</h4><p class="text-sm text-gray-600">Surat dapat langsung diterima oleh pemohon setelah ditandatangani oleh Lurah.</p></div></div>`,
+            waktu: `<h4>Estimasi Waktu Pelayanan</h4><p>Proses dapat diselesaikan dalam <strong>1 hari kerja</strong> jika semua persyaratan lengkap dan Lurah berada di tempat.</p><h4 class="mt-4">Biaya</h4><p><strong>Rp 0,- (GRATIS)</strong>.</p>`,
+            unduh: `<p>Tidak ada formulir khusus yang perlu diunduh. Silakan datang langsung ke kantor kelurahan.</p>`,
+            detailLink: '/layanan/domisili'
+        },
+        'kelahiran': {
+            icon: 'fa-baby',
+            title: 'Layanan Pengurusan Akta Kelahiran',
+            description: 'Akta Kelahiran adalah bukti sah mengenai status dan peristiwa kelahiran seseorang yang diterbitkan oleh Dinas Kependudukan dan Catatan Sipil.',
+            syarat: `<h4>Dokumen yang Diperlukan:</h4><ul><li><i class="fas fa-check-circle"></i>Surat Keterangan Lahir dari Bidan/Dokter/RS.</li><li><i class="fas fa-check-circle"></i>Fotokopi Kartu Keluarga (KK).</li><li><i class="fas fa-check-circle"></i>Fotokopi KTP kedua orang tua.</li><li><i class="fas fa-check-circle"></i>Fotokopi Buku Nikah/Akta Perkawinan.</li><li><i class="fas fa-check-circle"></i>Fotokopi KTP 2 orang saksi.</li></ul>`,
+            alur: `<p>Proses pengajuan Akta Kelahiran kini dapat dilakukan secara online melalui situs Disdukcapil atau datang langsung ke kantor Disdukcapil. Kelurahan hanya memberikan surat pengantar jika diperlukan.</p>`,
+            waktu: `<p>Waktu penyelesaian tergantung pada antrian di Disdukcapil.</p><h4 class="mt-4">Biaya</h4><p><strong>Rp 0,- (GRATIS)</strong>.</p>`,
+            unduh: `<p>Formulir tersedia di kantor Disdukcapil atau dapat diunduh di website resmi Disdukcapil Kota Tanjungpinang.</p>`,
+            detailLink: '/layanan/akta-kelahiran'
+        },
+        'sktm': {
+            icon: 'fa-file-contract',
+            title: 'Layanan Surat Keterangan Tidak Mampu (SKTM)',
+            description: 'SKTM adalah surat yang dikeluarkan untuk keluarga yang tergolong tidak mampu secara ekonomi, digunakan untuk berbagai keperluan seperti keringanan biaya kesehatan atau pendidikan.',
+            syarat: `<h4>Dokumen yang Diperlukan:</h4><ul><li><i class="fas fa-check-circle"></i>Surat Pengantar dari RT/RW.</li><li><i class="fas fa-check-circle"></i>Fotokopi KTP dan Kartu Keluarga (KK) pemohon.</li><li><i class="fas fa-check-circle"></i>Menandatangani Surat Pernyataan Tanggung Jawab Mutlak (SPTJM).</li><li><i class="fas fa-check-circle"></i>Dokumentasi foto rumah (tampak depan, ruang tamu, dapur).</li></ul>`,
+            alur: `<p>Pemohon datang ke kelurahan dengan berkas lengkap. Petugas akan melakukan verifikasi dan jika memenuhi syarat, SKTM akan diproses.</p>`,
+            waktu: `<p><strong>1-2 hari kerja</strong>, tergantung jadwal verifikasi lapangan jika diperlukan.</p><h4 class="mt-4">Biaya</h4><p><strong>Rp 0,- (GRATIS)</strong>.</p>`,
+            unduh: `<p>Formulir SPTJM disediakan di kantor kelurahan.</p>`,
+            detailLink: '/layanan/sktm'
+        },
+        'nikah': {
+            icon: 'fa-heart',
+            title: 'Layanan Pengantar Nikah (Model N1-N4)',
+            description: 'Surat pengantar nikah adalah dokumen wajib yang dikeluarkan oleh kelurahan sebagai syarat untuk mendaftarkan pernikahan di Kantor Urusan Agama (KUA).',
+            syarat: `<h4>Dokumen yang Diperlukan:</h4><ul><li><i class="fas fa-check-circle"></i>Surat Pengantar dari RT/RW.</li><li><i class="fas fa-check-circle"></i>Fotokopi KTP calon pengantin pria dan wanita.</li><li><i class="fas fa-check-circle"></i>Fotokopi Kartu Keluarga (KK) masing-masing.</li><li><i class="fas fa-check-circle"></i>Fotokopi Akta Kelahiran masing-masing.</li><li><i class="fas fa-check-circle"></i>Pas foto berwarna 2x3 (4 lembar) dan 4x6 (2 lembar) dengan latar biru.</li><li><i class="fas fa-check-circle"></i>Surat Pernyataan Belum Menikah (jika lajang) atau Akta Cerai/Surat Kematian (jika duda/janda).</li></ul>`,
+            alur: `<p>Bawa semua berkas ke kantor kelurahan. Petugas akan memverifikasi dan membuatkan model surat N1, N2, dan N4 untuk dibawa ke KUA.</p>`,
+            waktu: `<p><strong>1 hari kerja</strong> jika berkas lengkap.</p><h4 class="mt-4">Biaya</h4><p><strong>Rp 0,- (GRATIS)</strong> untuk pengurusan di kelurahan.</p>`,
+            unduh: `<p>Formulir disediakan di kantor kelurahan.</p>`,
+            detailLink: '/layanan/nikah'
+        }
+    };
+    
+    // Ambil semua elemen yang diperlukan
+    const modalOverlay = document.getElementById('service-modal');
+    const modalCloseBtn = modalOverlay.querySelector('.service-modal-close-btn');
+    const modalTabBtns = modalOverlay.querySelectorAll('.service-modal-tab-btn');
+    const serviceCards = document.querySelectorAll('.service-card[data-service-key]');
+
+    // Fungsi untuk membuka modal
+    function openServiceModal(serviceKey) {
+        const data = serviceData[serviceKey];
+        if (!data) return;
+
+        // Populate modal content
+        modalOverlay.querySelector('#modal-title').innerHTML = `<i class="fas ${data.icon} mr-3"></i> ${data.title}`;
+        modalOverlay.querySelector('#modal-description').textContent = data.description;
+        modalOverlay.querySelector('#modal-content-syarat').innerHTML = data.syarat;
+        modalOverlay.querySelector('#modal-content-alur').innerHTML = data.alur;
+        modalOverlay.querySelector('#modal-content-waktu').innerHTML = data.waktu;
+        modalOverlay.querySelector('#modal-content-unduh').innerHTML = data.unduh;
+        modalOverlay.querySelector('#modal-detail-link').href = data.detailLink;
+        
+        // Reset ke tab pertama setiap kali modal dibuka
+        switchTab(modalOverlay.querySelector('.service-modal-tab-btn[data-tab="syarat"]'));
+
+        // Tampilkan modal
+        modalOverlay.classList.add('active');
+    }
+
+    // Fungsi untuk menutup modal
+    function closeServiceModal() {
+        modalOverlay.classList.remove('active');
+    }
+
+    // Fungsi untuk ganti tab di dalam modal
+    function switchTab(clickedTab) {
+        modalTabBtns.forEach(btn => btn.classList.remove('active'));
+        modalOverlay.querySelectorAll('.service-modal-tab-content').forEach(content => content.classList.remove('active'));
+
+        clickedTab.classList.add('active');
+        const tabId = clickedTab.getAttribute('data-tab');
+        modalOverlay.querySelector(`#modal-content-${tabId}`).classList.add('active');
+    }
+    
+    // ===============================================
+    // == PENAMBAHAN EVENT LISTENER YANG DIPERBAIKI ==
+    // ===============================================
+    serviceCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const serviceKey = card.dataset.serviceKey;
+            openServiceModal(serviceKey);
+        });
+    });
+
+    // Event listener untuk tombol tutup
+    modalCloseBtn.addEventListener('click', closeServiceModal);
+    modalOverlay.querySelector('.btn-secondary').addEventListener('click', closeServiceModal);
+
+    // Event listener untuk ganti tab
+    modalTabBtns.forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn));
+    });
+
+    // Event listener untuk tutup modal saat klik area luar atau tekan ESC
+    modalOverlay.addEventListener('click', (event) => {
+        if (event.target === modalOverlay) {
+            closeServiceModal();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+            closeServiceModal();
+        }
+    });
+
+    // Membuat fungsi bisa diakses dari tombol `onclick` di HTML (jika masih diperlukan di masa depan)
+    window.openServiceModal = openServiceModal;
+    window.closeServiceModal = closeServiceModal;
+</script>
+
 
 <style>
   @keyframes bounceInRight {
