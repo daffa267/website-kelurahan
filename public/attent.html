@@ -2802,66 +2802,49 @@
       <i class="fas fa-arrow-up"></i>
     </button>
 
-    <div
-      id="visitorPopup"
-      class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full"
-    >
-      <div
-        class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-62 relative"
-      >
-        <button
-          id="closePopup"
-          class="absolute -left-14 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg hover:bg-red-700 transition border-t border-b border-l border-gray-200 h-28 w-14 flex flex-col items-center justify-center"
-        >
-          <span
-            class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1"
-          >
-            Kunjungan
-            <span
-              class="bg-white rounded-full p-1 flex items-center justify-center h-5 w-5"
-            >
-              <i class="fas fa-chevron-down text-[10px] text-red-600"></i>
-            </span>
-          </span>
-        </button>
+     <div id="visitorPopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full">
+        <div class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-64 relative">
+            <button id="closePopup" class="absolute -left-14 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg hover:bg-red-700 transition border-t border-b border-l border-gray-200 h-28 w-14 flex flex-col items-center justify-center">
+                <span class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1">
+                    Kunjungan
+                    <span class="bg-white rounded-full p-1 flex items-center justify-center h-5 w-5">
+                    <i class="fas fa-chevron-down text-[10px] text-red-600"></i>
+                    </span>
+                </span>
+            </button>
 
-        <div class="p-3 text-center">
-          <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
-            <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
-            <p class="text-red-100 text-xs">Jumlah kunjungan website</p>
-          </div>
-
-          <div class="py-2">
-            <div class="mb-3">
-              <h4 class="font-semibold text-gray-700 text-xs">Total Visitor</h4>
-              <p class="text-xl font-bold">262.522</p>
-              <p class="text-green-500 text-xs">10 Online</p>
+            <div class="p-3 text-center">
+                <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
+                    <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
+                    <p class="text-red-100 text-xs">Jumlah kunjungan website</p>
+                </div>
+                
+                <div class="py-2">
+                    <div class="mb-3">
+                        <h4 class="font-semibold text-gray-700 text-xs">Total Visitor</h4>
+                        <p class="text-xl font-bold">262.522</p>
+                        <p class="text-green-500 text-xs">10 Online</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-gray-700 text-xs">Total View</h4>
+                        <p class="text-xl font-bold">1.408.960</p>
+                    </div>
+                </div>
             </div>
-
-            <div>
-              <h4 class="font-semibold text-gray-700 text-xs">Total View</h4>
-              <p class="text-xl font-bold">1.408.960</p>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
 
-    <button
-      id="togglePopup"
-      class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg z-40 hover:bg-red-700 transition h-28 w-14 flex flex-col items-center justify-center"
-    >
-      <span
-        class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1.5"
-      >
-        Kunjungan
-        <span
-          class="bg-white rounded-full p-1.5 flex items-center justify-center h-5 w-5"
-        >
-          <i class="fas fa-chevron-up text-xs text-red-600"></i>
+    <button id="togglePopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg z-40 hover:bg-red-700 transition h-28 w-14 flex flex-col items-center justify-center">
+        <span class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1.5">
+            Kunjungan
+            <span class="bg-white rounded-full p-1.5 flex items-center justify-center h-5 w-5">
+            <i class="fas fa-chevron-up text-xs text-red-600"></i>
+            </span>
         </span>
-      </span>
     </button>
+      </div>
+    </div>
 
     <!-- AOS animation library removed for smoother category filtering -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
