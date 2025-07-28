@@ -793,20 +793,12 @@
             });
         }
         
-        // Button click handlers for View and Download
+        // Button click handlers for View
         document.querySelectorAll('.view-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const fileName = this.closest('tr').cells[1].textContent;
                 // Add your logic for viewing the file
                 console.log('View file:', fileName);
-            });
-        });
-        
-        document.querySelectorAll('.download-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const fileName = this.closest('tr').cells[1].textContent;
-                // Add your logic for downloading the file
-                console.log('Download file:', fileName);
             });
         });
         
@@ -1087,162 +1079,5 @@
             });
         });
     </script>
-   
-<!-- Popup View -->
-<div id="viewPopup" class="fixed inset-0 z-[9999] hidden flex items-center justify-center bg-black bg-opacity-80 transition-opacity duration-300 overflow-hidden">
-    <div class="bg-transparent w-full h-full transform transition-all duration-300 ease-out scale-95 opacity-0 relative">
-        <!-- Header with file name and action buttons -->
-        <div class="absolute top-0 left-0 right-0 z-10 flex justify-between items-center p-4">
-            <div class="text-white font-medium truncate max-w-[50%]" id="pdfFileName">
-                Infografis Kelurahan Tanjungpinang Kota Tahun 2022-2023.pdf
-            </div>
-            <div class="flex items-center space-x-4">
-                <button id="shareBtn" class="text-white hover:text-blue-400 p-2 rounded-full" title="Share">
-                    <i class="fas fa-share-alt fa-lg"></i>
-                </button>
-                <button id="downloadBtn" class="text-white hover:text-green-400 p-2 rounded-full" title="Download">
-                    <i class="fas fa-cloud-download fa-lg"></i>
-                </button>
-                <button id="closeViewPopup" class="text-white hover:text-gray-300 p-2 rounded-full" title="Close">
-                    <i class="fas fa-times fa-lg"></i>
-                </button>
-            </div>
-        </div>
-        
-        <!-- PDF Viewer Container -->
-        <div class="absolute inset-0 flex items-center justify-center p-16 pt-16 pb-24">
-            <!-- Navigation Arrows -->
-            <button id="prevPage" class="absolute left-4 text-white hover:text-blue-400 p-4 z-20 bg-black bg-opacity-50 rounded-full">
-                <i class="fas fa-chevron-left fa-xs rounded-lg"></i>
-            </button>
-            
-            <!-- Actual PDF Viewer -->
-            <div class="w-full h-full">
-                <iframe 
-                    id="pdfViewer"
-                    src="bilah.pdf" 
-                    class="w-full h-full"
-                    frameborder="0"
-                    allowfullscreen>
-                </iframe>
-            </div>
-            
-            <button id="nextPage" class="absolute right-4 text-white hover:text-blue-400 p-4 z-20 bg-black bg-opacity-50 rounded-full">
-                <i class="fas fa-chevron-right fa-xs rounded-lg"></i>
-            </button>
-        </div>
-        
-        <!-- Footer with zoom controls and page info -->
-        <div class="absolute bottom-0 left-0 right-0 p-4 flex justify-center items-center space-x-8 bg-black bg-opacity-70">
-            <button id="zoomOut" class="text-white hover:text-blue-400 p-2">
-                <i class="fas fa-circle-minus fa-lg "></i>
-            </button>
-            <span class="text-white text-[14px]" id="pageInfo">Page 1 / 5</span>
-            <button id="zoomIn" class="text-white hover:text-blue-400 p-2">
-                <i class="fas fa-circle-plus fa-lg"></i>
-            </button>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Fungsi untuk menampilkan popup dengan animasi
-    function showPopup(popupElement, pdfUrl, fileName) {
-        // Set PDF file name
-        document.getElementById('pdfFileName').textContent = fileName;
-        
-        // Set PDF source
-        document.getElementById('pdfViewer').src = pdfUrl + '#view=fitH';
-        
-        popupElement.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-        setTimeout(() => {
-            popupElement.style.opacity = '1';
-            const popupContent = popupElement.querySelector('div > div');
-            popupContent.classList.remove('scale-95', 'opacity-0');
-        }, 10);
-    }
-
-    // Fungsi untuk menyembunyikan popup dengan animasi
-    function hidePopup(popupElement) {
-        popupElement.style.opacity = '0';
-        const popupContent = popupElement.querySelector('div > div');
-        popupContent.classList.add('scale-95', 'opacity-0');
-        setTimeout(() => {
-            popupElement.classList.add('hidden');
-            document.body.style.overflow = '';
-        }, 300);
-    }
-
-    // PDF Navigation and Zoom Controls
-    document.getElementById('prevPage').addEventListener('click', function() {
-        const iframe = document.getElementById('pdfViewer');
-        // Implement previous page functionality
-        // This would require PDF.js for proper implementation
-        alert('Previous page functionality would be implemented with PDF.js');
-    });
-
-    document.getElementById('nextPage').addEventListener('click', function() {
-        const iframe = document.getElementById('pdfViewer');
-        // Implement next page functionality
-        alert('Next page functionality would be implemented with PDF.js');
-    });
-
-    document.getElementById('zoomIn').addEventListener('click', function() {
-        const iframe = document.getElementById('pdfViewer');
-        // Implement zoom in
-        const currentSrc = iframe.src.split('#')[0];
-        iframe.src = currentSrc + '#zoom=150';
-    });
-
-    document.getElementById('zoomOut').addEventListener('click', function() {
-        const iframe = document.getElementById('pdfViewer');
-        // Implement zoom out
-        const currentSrc = iframe.src.split('#')[0];
-        iframe.src = currentSrc + '#zoom=50';
-    });
-
-    // View Button Handler
-    document.querySelectorAll('.view-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const pdfUrl = this.getAttribute('data-pdf-url');
-            const fileName = this.getAttribute('data-file-name');
-            showPopup(document.getElementById('viewPopup'), pdfUrl, fileName);
-        });
-    });
-
-    // Close Buttons
-    document.getElementById('closeViewPopup').addEventListener('click', function() {
-        hidePopup(document.getElementById('viewPopup'));
-    });
-
-    // Download Button
-    document.getElementById('downloadBtn').addEventListener('click', function() {
-        const pdfUrl = document.getElementById('pdfViewer').src.split('#')[0];
-        window.open(pdfUrl, '_blank');
-    });
-
-    // Share Button
-    document.getElementById('shareBtn').addEventListener('click', function() {
-        const pdfUrl = document.getElementById('pdfViewer').src.split('#')[0];
-        if (navigator.share) {
-            navigator.share({
-                title: document.getElementById('pdfFileName').textContent,
-                url: pdfUrl
-            }).catch(err => {
-                console.log('Error sharing:', err);
-            });
-        } else {
-            alert('Share URL: ' + pdfUrl);
-        }
-    });
-
-    // Close when clicking outside
-    document.getElementById('viewPopup').addEventListener('click', function(e) {
-        if (e.target === this) {
-            hidePopup(this);
-        }
-    });
-</script>
 </body>
 </html>
