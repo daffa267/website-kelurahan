@@ -453,14 +453,14 @@
         </div>
     </header>
 
-    <div class="hero-banner h-[500px] relative">
+    <div class="hero-banner h-[550px] relative">
         <div id="prev-slide" class="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer opacity-70 hover:opacity-100 transition-opacity">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
             </svg>
         </div>
 
-        <div class="hero-slide active" style="background-image: url('./images/bn2.png');"></div>
+        <div class="hero-slide active" style="background-image: url('./images/merput.png');"></div>
         <div class="hero-slide" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg');"></div>
         <div class="hero-slide" style="background-image: url('https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1717577239_ba55e5551c63f1be75f7.jpg');"></div>
 
@@ -1079,5 +1079,58 @@
             });
         });
     </script>
+<!-- PDF Viewer Modal - Simplified Version -->
+<div id="pdfModal" class="hidden fixed inset-0 z-[1000] bg-black/80 overflow-auto">
+  <div class="absolute inset-0">
+    <!-- Perfect Circle Close Button -->
+    <button id="closeModal"
+            class="absolute z-50 grid place-items-center hover:bg-white/15 rounded-full text-white hover:text-gray-300 transition-all"
+            style="
+            top: 14px;
+            right: 140px;
+            width: 35px;
+            height: 35px;
+            ">
+    <i class="fas fa-times text-lg"></i>
+    </button>
+    
+    <!-- PDF Viewer Container (Full Screen) -->
+    <iframe id="pdfViewer" class="w-full h-full" frameborder="0"></iframe>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('pdfModal');
+    const pdfViewer = document.getElementById('pdfViewer');
+    const closeBtn = document.getElementById('closeModal');
+    
+    // Handle view button clicks
+    document.querySelectorAll('.view-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const row = this.closest('tr');
+        const fileName = row.querySelector('td:nth-child(2)').textContent;
+        
+        // Set PDF source (adjust path as needed)
+        pdfViewer.src = `./file/bilah.pdf`;
+        
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    
+    // Close modal
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    
+    function closeModal() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      pdfViewer.src = '';
+    }
+  });
+</script>
 </body>
 </html>
