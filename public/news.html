@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-t" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>
@@ -109,10 +109,6 @@
         bottom: 0;
         background: rgba(0, 0, 0, 0);
         pointer-events: none;
-      }
-
-      .modern-header .floating {
-        animation: float 6s ease-in-out infinite;
       }
 
       /* Glass Morphism Effect */
@@ -694,6 +690,68 @@
         opacity: 0.5;
         pointer-events: none;
       }
+
+      /* --- NEW: Pagination Transition Styles --- */
+      @keyframes slide-in-from-right {
+        from {
+          transform: translateX(30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .slide-in-from-right {
+        animation: slide-in-from-right 0.4s ease-out forwards;
+      }
+
+      @keyframes slide-out-to-left {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(-30px);
+          opacity: 0;
+        }
+      }
+
+      .slide-out-to-left {
+        animation: slide-out-to-left 0.4s ease-out forwards;
+      }
+
+      @keyframes slide-in-from-left {
+        from {
+          transform: translateX(-30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .slide-in-from-left {
+        animation: slide-in-from-left 0.4s ease-out forwards;
+      }
+
+      @keyframes slide-out-to-right {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(30px);
+          opacity: 0;
+        }
+      }
+
+      .slide-out-to-right {
+        animation: slide-out-to-right 0.4s ease-out forwards;
+      }
+      /* --- END: Pagination Transition Styles --- */
 
       /* News Sidebar */
       .news-sidebar {
@@ -1977,6 +2035,7 @@
           </div>
 
           <div
+            id="news-grid"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10"
           >
             <article
@@ -2014,7 +2073,9 @@
                     </span>
                   </div>
                   <a href="news-detail1.html" class="block">
-                    <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer">
+                    <h3
+                      class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer"
+                    >
                       Sosialisasi E-KTP Digital untuk Seluruh Ketua RT dan RW
                     </h3>
                   </a>
@@ -2024,7 +2085,7 @@
                   </p>
                   <a
                     href="news-detail1.html"
-                    class="inline-flex items-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto"
+                    class="inline-flex items-center justify-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto w-full text-center"
                     aria-label="Baca selengkapnya tentang Sosialisasi E-KTP Digital"
                   >
                     Baca Selengkapnya
@@ -2068,7 +2129,9 @@
                     </span>
                   </div>
                   <a href="news-detail2.html" class="block">
-                    <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer">
+                    <h3
+                      class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer"
+                    >
                       Kelurahan Raih Penghargaan Adipura Tingkat Kota
                     </h3>
                   </a>
@@ -2078,7 +2141,7 @@
                   </p>
                   <a
                     href="news-detail2.html"
-                    class="inline-flex items-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto"
+                    class="inline-flex items-center justify-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto w-full text-center"
                     aria-label="Baca selengkapnya tentang Kelurahan Raih Penghargaan Adipura Tingkat Kota"
                   >
                     Baca Selengkapnya
@@ -2122,7 +2185,9 @@
                     </span>
                   </div>
                   <a href="#" class="block">
-                    <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer">
+                    <h3
+                      class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer"
+                    >
                       Pelatihan UMKM: Strategi Pemasaran Digital di Era Modern
                     </h3>
                   </a>
@@ -2132,7 +2197,7 @@
                   </p>
                   <a
                     href="#"
-                    class="inline-flex items-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto"
+                    class="inline-flex items-center justify-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto w-full text-center"
                   >
                     Baca Selengkapnya
                     <i
@@ -2175,7 +2240,9 @@
                     </span>
                   </div>
                   <a href="#" class="block">
-                    <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer">
+                    <h3
+                      class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer"
+                    >
                       Program Vaksinasi COVID-19 Booster untuk Lansia
                     </h3>
                   </a>
@@ -2185,7 +2252,7 @@
                   </p>
                   <a
                     href="#"
-                    class="inline-flex items-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto"
+                    class="inline-flex items-center justify-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto w-full text-center"
                   >
                     Baca Selengkapnya
                     <i
@@ -2228,7 +2295,9 @@
                     </span>
                   </div>
                   <a href="#" class="block">
-                    <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer">
+                    <h3
+                      class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer"
+                    >
                       Gotong Royong Bersih-Bersih Lingkungan RT 05
                     </h3>
                   </a>
@@ -2238,7 +2307,7 @@
                   </p>
                   <a
                     href="#"
-                    class="inline-flex items-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto"
+                    class="inline-flex items-center justify-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto w-full text-center"
                   >
                     Baca Selengkapnya
                     <i
@@ -2281,7 +2350,9 @@
                     </span>
                   </div>
                   <a href="#" class="block">
-                    <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer">
+                    <h3
+                      class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer"
+                    >
                       Pelatihan Komputer Dasar untuk Remaja
                     </h3>
                   </a>
@@ -2291,7 +2362,7 @@
                   </p>
                   <a
                     href="#"
-                    class="inline-flex items-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto"
+                    class="inline-flex items-center justify-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto w-full text-center"
                   >
                     Baca Selengkapnya
                     <i
@@ -2334,7 +2405,9 @@
                     </span>
                   </div>
                   <a href="#" class="block">
-                    <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer">
+                    <h3
+                      class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer"
+                    >
                       Pembangunan Jalan Beton di Gang Mawar
                     </h3>
                   </a>
@@ -2344,7 +2417,7 @@
                   </p>
                   <a
                     href="#"
-                    class="inline-flex items-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto"
+                    class="inline-flex items-center justify-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto w-full text-center"
                   >
                     Baca Selengkapnya
                     <i
@@ -2387,7 +2460,9 @@
                     </span>
                   </div>
                   <a href="#" class="block">
-                    <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer">
+                    <h3
+                      class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer"
+                    >
                       Festival Budaya Melayu Tanjungpinang 2024
                     </h3>
                   </a>
@@ -2397,7 +2472,7 @@
                   </p>
                   <a
                     href="#"
-                    class="inline-flex items-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto"
+                    class="inline-flex items-center justify-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto w-full text-center"
                   >
                     Baca Selengkapnya
                     <i
@@ -2440,7 +2515,9 @@
                     </span>
                   </div>
                   <a href="#" class="block">
-                    <h3 class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer">
+                    <h3
+                      class="text-xl font-bold mb-4 leading-snug text-gray-900 hover:text-red-600 transition-colors duration-300 cursor-pointer"
+                    >
                       Penyaluran Bantuan Sembako untuk Keluarga Kurang Mampu
                     </h3>
                   </a>
@@ -2450,7 +2527,7 @@
                   </p>
                   <a
                     href="#"
-                    class="inline-flex items-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto"
+                    class="inline-flex items-center justify-center font-semibold text-primary-700 hover:text-red-600 transition-colors duration-300 group mt-auto w-full text-center"
                   >
                     Baca Selengkapnya
                     <i
@@ -3039,13 +3116,6 @@
           </p>
         </div>
       </div>
-
-      <div
-        class="floating-element absolute bottom-10 left-10 w-16 h-16 rounded-full bg-accent-color/20"
-      ></div>
-      <div
-        class="floating-element absolute top-20 right-20 w-24 h-24 rounded-full bg-white/5"
-      ></div>
     </footer>
 
     <button
@@ -3253,7 +3323,7 @@
         });
       }
 
-      // --- UNIFIED NEWS FILTERING AND PAGINATION SCRIPT ---
+      // --- UNIFIED NEWS FILTERING AND PAGINATION SCRIPT (UPDATED) ---
       document.addEventListener("DOMContentLoaded", function () {
         // --- SELECTORS ---
         const filterButtons = document.querySelectorAll(".category-filter");
@@ -3262,6 +3332,7 @@
         const allNewsCards = Array.from(
           document.querySelectorAll("#all-news .news-card")
         );
+        const newsGrid = document.getElementById("news-grid");
         const paginationContainer = document.getElementById(
           "pagination-container"
         );
@@ -3273,15 +3344,83 @@
         let currentPage = 1;
         const cardsPerPage = 6;
         let filteredCards = allNewsCards;
+        let isAnimating = false;
 
         // --- CORE FUNCTIONS ---
+
+        // This function just updates the DOM to show the correct cards
+        function displayCardsForPage(page) {
+          const start = (page - 1) * cardsPerPage;
+          const end = start + cardsPerPage;
+
+          // Determine which cards should be visible
+          const visibleCards = filteredCards.slice(start, end);
+
+          // Hide all cards, then show only the visible ones
+          allNewsCards.forEach((card) => {
+            if (visibleCards.includes(card)) {
+              card.style.display = "";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        }
+
+        // Handles the animated transition between pages
+        function transitionToPage(newPage) {
+          if (isAnimating || newPage === currentPage) return;
+
+          const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
+          if (newPage < 1 || newPage > totalPages) return;
+
+          isAnimating = true;
+
+          const direction = newPage > currentPage ? "next" : "prev";
+          const outClass =
+            direction === "next"
+              ? "slide-out-to-left"
+              : "slide-out-to-right";
+          const inClass =
+            direction === "next"
+              ? "slide-in-from-right"
+              : "slide-in-from-left";
+
+          newsGrid.classList.add(outClass);
+
+          const onAnimationOutEnd = () => {
+            newsGrid.removeEventListener("animationend", onAnimationOutEnd);
+
+            // Update content
+            currentPage = newPage;
+            displayCardsForPage(currentPage);
+            updatePaginationUI();
+
+            // Animate in
+            newsGrid.classList.remove(outClass);
+            newsGrid.classList.add(inClass);
+
+            const onAnimationInEnd = () => {
+              newsGrid.removeEventListener("animationend", onAnimationInEnd);
+              newsGrid.classList.remove(inClass);
+              isAnimating = false;
+            };
+            newsGrid.addEventListener("animationend", onAnimationInEnd, {
+              once: true,
+            });
+          };
+
+          newsGrid.addEventListener("animationend", onAnimationOutEnd, {
+            once: true,
+          });
+        }
+
+        // Applies filters and search, then resets the view
         function applyFiltersAndSearch() {
           const category =
             document.querySelector(".category-filter.bg-red-600")?.dataset
               .filter || "all";
           const searchTerm = searchInput.value.toLowerCase().trim();
 
-          // Filter cards based on search and category
           filteredCards = allNewsCards.filter((card) => {
             const cardCategory = (card.dataset.category || "").toLowerCase();
             const cardTitle = (
@@ -3296,11 +3435,12 @@
             return categoryMatch && searchMatch;
           });
 
-          currentPage = 1; // Reset to first page after any filter change
-          renderPage(currentPage);
+          currentPage = 1;
+          displayCardsForPage(currentPage);
           setupPagination();
         }
 
+        // Sets up the pagination buttons based on filtered results
         function setupPagination() {
           if (!pageNumbersContainer) return;
           pageNumbersContainer.innerHTML = "";
@@ -3321,29 +3461,16 @@
             pageNumbersContainer.appendChild(pageButton);
 
             pageButton.addEventListener("click", () => {
-              currentPage = i;
-              renderPage(currentPage);
-              updatePaginationUI();
+              transitionToPage(i);
             });
           }
           updatePaginationUI();
         }
 
-        function renderPage(page) {
-          // Hide all cards first
-          allNewsCards.forEach((card) => (card.style.display = "none"));
-
-          const start = (page - 1) * cardsPerPage;
-          const end = start + cardsPerPage;
-          const cardsToShow = filteredCards.slice(start, end);
-
-          cardsToShow.forEach((card) => (card.style.display = ""));
-        }
-
+        // Updates the styles of pagination buttons (active, disabled states)
         function updatePaginationUI() {
           const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
 
-          // Update page number buttons
           const pageButtons =
             pageNumbersContainer.querySelectorAll(".page-btn");
           pageButtons.forEach((btn) => {
@@ -3375,7 +3502,6 @@
             }
           });
 
-          // Update prev/next buttons
           if (prevBtn && nextBtn) {
             prevBtn.disabled = currentPage === 1;
             nextBtn.disabled = currentPage === totalPages;
@@ -3392,6 +3518,7 @@
         // --- EVENT LISTENERS ---
         filterButtons.forEach((button) => {
           button.addEventListener("click", () => {
+            if (isAnimating) return;
             filterButtons.forEach((btn) => {
               btn.classList.remove(
                 "bg-red-600",
@@ -3417,11 +3544,19 @@
         });
 
         if (searchInput) {
-          searchInput.addEventListener("input", applyFiltersAndSearch);
+          let searchTimeout;
+          searchInput.addEventListener("input", () => {
+            if (isAnimating) return;
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+              applyFiltersAndSearch();
+            }, 300);
+          });
         }
 
         if (clearSearchBtn) {
           clearSearchBtn.addEventListener("click", () => {
+            if (isAnimating) return;
             searchInput.value = "";
             applyFiltersAndSearch();
           });
@@ -3429,22 +3564,13 @@
 
         if (prevBtn) {
           prevBtn.addEventListener("click", () => {
-            if (currentPage > 1) {
-              currentPage--;
-              renderPage(currentPage);
-              updatePaginationUI();
-            }
+            transitionToPage(currentPage - 1);
           });
         }
 
         if (nextBtn) {
           nextBtn.addEventListener("click", () => {
-            const totalPages = Math.ceil(filteredCards.length / cardsPerPage);
-            if (currentPage < totalPages) {
-              currentPage++;
-              renderPage(currentPage);
-              updatePaginationUI();
-            }
+            transitionToPage(currentPage + 1);
           });
         }
 
@@ -3494,6 +3620,31 @@
           trendingOverlay.classList.remove("visible");
         });
       }
+
+      // Back to top button functionality
+      const backToTopButton = document.createElement("button");
+      backToTopButton.id = "back-to-top";
+      backToTopButton.className =
+        "fixed bottom-8 right-8 bg-gradient-to-r from-red-700 to-red-800 text-white p-4 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:from-red-700 hover:to-red-800 flex items-center justify-center z-[9999]";
+      backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+      document.body.appendChild(backToTopButton);
+
+      window.addEventListener("scroll", function () {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.remove("opacity-0", "invisible");
+          backToTopButton.classList.add("opacity-100", "visible");
+        } else {
+          backToTopButton.classList.remove("opacity-100", "visible");
+          backToTopButton.classList.add("opacity-0", "invisible");
+        }
+      });
+
+      backToTopButton.addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
     </script>
   </body>
 </html>

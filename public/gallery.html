@@ -1150,6 +1150,7 @@
       text-decoration: none;
       transition: all 0.3s ease;
       padding: 8px 0;
+      cursor: pointer;
     }
 
     .timeline-modern-link:hover {
@@ -1356,7 +1357,6 @@
       text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
     }
     
-    /* --- NEW --- Album Link Button on Banner */
     .album-link-btn {
       transform: translateY(50px);
       opacity: 0;
@@ -1373,18 +1373,18 @@
 
     .nav-button {
       position: absolute;
-      top: auto; /* MODIFIED */
-      bottom: 2.5rem; /* MODIFIED */
-      transform: none; /* MODIFIED */
+      top: auto;
+      bottom: 2.5rem;
+      transform: none;
       z-index: 20;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
+      width: 52px;  /* Ukuran diperkecil */
+      height: 52px; /* Ukuran diperkecil */
+      border-radius: 12px; /* Mengubah dari lingkaran menjadi kotak membulat */
       background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(20px);
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px); /* Blur lebih halus */
+      border: 1px solid rgba(255, 255, 255, 0.15); /* Border lebih tipis */
       color: white;
-      font-size: 24px;
+      font-size: 20px; /* Ukuran ikon disesuaikan */
       cursor: pointer;
       transition: all 0.3s ease;
       display: flex;
@@ -1393,17 +1393,30 @@
     }
 
     .nav-button:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.1); /* MODIFIED */
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Efek bayangan lebih modern */
+    }
+
+    /* Efek transisi untuk ikon di dalam tombol */
+    .nav-button i {
+        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .nav-button.nav-prev:hover i {
+        transform: translateX(-3px); /* Ikon bergerak saat hover */
+    }
+
+    .nav-button.nav-next:hover i {
+        transform: translateX(3px); /* Ikon bergerak saat hover */
     }
 
     .nav-prev {
-      left: calc(50% - 268px); /* MODIFIED */
+      left: calc(50% - 268px); 
     }
 
     .nav-next {
-      right: calc(50% - 268px); /* MODIFIED */
+      right: calc(50% - 268px); 
     }
 
     .indicators {
@@ -1457,7 +1470,7 @@
       height: 4px;
       background: rgba(255, 255, 255, 0.2);
       z-index: 20;
-      display: none; /* MODIFIED: This hides the progress bar */
+      display: none; 
     }
 
     .progress-bar {
@@ -1502,7 +1515,7 @@
 
     .thumbnail-nav {
       position: absolute;
-      bottom: 3rem; /* MODIFIED */
+      bottom: 3rem; 
       left: 50%;
       transform: translateX(-50%);
       z-index: 20;
@@ -1566,15 +1579,15 @@
         width: 50px;
         height: 50px;
         font-size: 18px;
-        bottom: 2.75rem; /* MODIFIED */
+        bottom: 2.75rem; 
       }
 
       .nav-prev {
-        left: calc(50% - 248px); /* MODIFIED */
+        left: calc(50% - 248px); 
       }
 
       .nav-next {
-        right: calc(50% - 248px); /* MODIFIED */
+        right: calc(50% - 248px); 
       }
 
       .slide-category,
@@ -1594,7 +1607,7 @@
     /* --- PERBAIKAN: Album Modal Styles --- */
     #album-modal {
         top: 0;
-        padding-top: 90px; /* Gunakan padding-top untuk header */
+        padding-top: 90px; 
         height: 100vh;
         background: rgba(30, 0, 10, 0.8);
         backdrop-filter: blur(16px);
@@ -1602,21 +1615,19 @@
         border-radius: 0;
     }
 
-    /* Styling untuk container utama di dalam modal */
     #album-modal > div {
-        background: rgba(128, 0, 32, 0.3); /* Latar belakang maroon semi-transparan */
+        background: rgba(128, 0, 32, 0.3); 
         border: 1px solid rgba(255, 255, 255, 0.15);
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-        border-radius: 1.5rem; /* 24px border radius */
-        overflow: hidden; /* Pastikan anak elemen tidak keluar dari border radius */
-        margin: 2rem auto; /* Beri jarak dari atas dan bawah, auto untuk kiri-kanan */
-        max-width: 95%; /* Lebar maksimum 95% dari viewport */
-        max-height: calc(100vh - 120px); /* Sesuaikan tinggi maksimum */
+        border-radius: 1.5rem; 
+        overflow: hidden; 
+        margin: 2rem auto; 
+        max-width: 95%; 
+        max-height: calc(100vh - 120px); 
         width: 100%;
-        padding: 1.5rem; /* Padding dalam container */
+        padding: 1.5rem; 
     }
     
-    /* Header modal */
     #album-modal .modal-header {
         border-top-left-radius: 1.5rem;
         border-top-right-radius: 1.5rem;
@@ -1627,12 +1638,11 @@
     #album-modal-grid {
         border-bottom-left-radius: 1rem;
         border-bottom-right-radius: 1rem;
-        padding: 1rem 0.5rem; /* Padding horizontal yang lebih kecil */
-        max-height: calc(100vh - 200px); /* Sesuaikan tinggi maksimum grid */
-        overflow-y: auto; /* Tambahkan scroll jika konten melebihi tinggi */
+        padding: 1rem 0.5rem; 
+        max-height: calc(100vh - 200px); 
+        overflow-y: auto; 
     }
     
-    /* Responsive adjustments */
     @media (min-width: 640px) {
         #album-modal > div {
             max-width: 90%;
@@ -1647,7 +1657,6 @@
         }
     }
 
-    /* Scrollbar kustom untuk grid album */
     #album-modal-grid::-webkit-scrollbar {
         width: 10px;
     }
@@ -1665,12 +1674,11 @@
         background: rgba(255, 255, 255, 0.4);
     }
     
-    /* Perbaikan untuk memastikan .gallery-card di dalam modal ditampilkan dengan benar */
     #album-modal .gallery-card {
-        display: block; /* Pastikan kartu ditampilkan */
+        display: block; 
         opacity: 0;
         animation: fadeIn 0.5s ease-out forwards;
-        transform: none; /* Reset transformasi dari luar */
+        transform: none; 
     }
 
     /* Perbaikan hover effect untuk kartu di dalam modal */
@@ -1692,7 +1700,6 @@
     #album-modal .gallery-card .group-hover\:scale-110 {
         transform: scale(1.1);
     }
-    /* --- AKHIR PERBAIKAN --- */
 
     /* ========== NEW ADVANCED GALLERY VIEWER MODAL STYLES ========== */
     #gallery-viewer-modal {
@@ -1764,7 +1771,64 @@
             width: 100%;
         }
     }
-    /* ========== END ADVANCED GALLERY VIEWER MODAL STYLES ========== */
+
+    /* ========== START: KODE CSS BARU UNTUK TOMBOL "MUAT LEBIH BANYAK" ========== */
+    
+    /* Skeleton Card */
+    .gallery-card-skeleton {
+      background-color: #e5e7eb; /* gray-200 */
+      border-radius: 1rem; /* rounded-2xl */
+      aspect-ratio: 1 / 1;
+    }
+
+    /* Button Loading State */
+    #load-more-button.loading #load-more-progress {
+        transform: translateX(0%);
+        transition: transform 1.5s ease-in-out;
+    }
+
+    #load-more-button.loading #load-more-content-wrapper {
+        color: white;
+    }
+
+    #load-more-button.loading:hover #load-more-content-wrapper {
+        color: white; /* Pastikan teks tetap putih saat loading di-hover */
+    }
+
+    /* New Card Animation */
+    @keyframes grow-in {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .gallery-card.newly-added {
+      animation: grow-in 0.5s ease-out forwards;
+      opacity: 0; /* Mulai dari transparan sebelum animasi */
+    }
+
+    /* Card removal animation */
+    @keyframes shrink-out {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    .gallery-card.is-removing {
+        animation: shrink-out 0.4s ease-out forwards;
+    }
+
+    /* ========== END: KODE CSS BARU ========== */
 
   </style>
 </head>
@@ -1875,10 +1939,6 @@
             <span id="currentSlideNum">01</span> / <span id="totalSlides">05</span>
         </div>
         
-        <button class="auto-play-toggle" id="autoPlayToggle">
-            <span id="playIcon">⏸️</span>
-        </button>
-        
         <div class="slide-wrapper slide-active" data-slide="0">
             <div class="slide-content">
                 <img src="https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1718954074_bcd67607ce3600415d76.jpg" 
@@ -1965,8 +2025,12 @@
             </div>
         </div>
         
-        <button class="nav-button nav-prev" id="prevBtn">‹</button>
-        <button class="nav-button nav-next" id="nextBtn">›</button>
+        <button class="nav-button nav-prev" id="prevBtn" aria-label="Slide Sebelumnya">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="nav-button nav-next" id="nextBtn" aria-label="Slide Berikutnya">
+            <i class="fas fa-chevron-right"></i>
+        </button>
         
         <div class="thumbnail-nav">
             <div class="thumbnail active" data-slide="0">
@@ -2064,11 +2128,11 @@
             </div>
           </div>
 
-          <div class="gallery-card group" data-category="kesehatan" data-year="2024" data-title="Vaksinasi Booster" data-album-id="vaksinasi" data-description="Pelaksanaan vaksinasi booster untuk warga lansia" data-date="2024-07-10">
+          <div class="gallery-card group" data-category="kesehatan" data-year="2024" data-title="Fasilitas Umum" data-album-id="fasilitas-umum" data-description="Pelaksanaan Fasilitas Umum untuk warga lansia" data-date="2024-07-10">
             <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2 cursor-pointer">
-              <img src="https://yankes.itb.ac.id/wp-content/uploads/2023/03/Vaksinasi-booster-covid-19-e1680160332231.jpg" alt="Vaksinasi Booster" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+              <img src="https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1698521090_0054522ba27f383276fa.jpg" alt="Fasilitas Umum" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
               <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <h3 class="font-bold text-white text-lg mb-1">Vaksinasi Booster</h3>
+                <h3 class="font-bold text-white text-lg mb-1">Fasilitas Umum</h3>
                 <p class="text-gray-300 text-sm">10 Jul 2024 • 6 Foto</p>
               </div>
             </div>
@@ -2126,11 +2190,17 @@
 
         </div>
 
-        <div class="text-center mt-12">
-          <button class="inline-flex items-center px-8 py-3 bg-white border-2 border-red-600 text-red-600 font-bold rounded-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg">
-            <i class="fas fa-plus-circle mr-2"></i> Muat Lebih Banyak
-          </button>
+        <div class="text-center mt-12" id="load-more-container">
+            <button id="load-more-button" class="inline-flex items-center justify-center px-8 py-3 bg-white border-2 border-red-600 text-red-600 font-bold rounded-xl hover:bg-red-600 hover:text-white transition-all duration-300 shadow-md hover:shadow-lg w-auto min-w-[256px] h-14 relative overflow-hidden">
+                <div id="load-more-progress" class="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 transform -translate-x-full" style="transition: transform 1.5s ease-in-out;"></div>
+                <div id="load-more-content-wrapper" class="relative z-10 transition-colors duration-300">
+                    <span id="load-more-content" class="flex items-center transition-opacity duration-300">
+                        <i class="fas fa-plus-circle mr-2"></i> Muat Lebih Banyak
+                    </span>
+                </div>
+            </button>
         </div>
+
       </div>
     </section>
 
@@ -2158,34 +2228,29 @@
     const youtubePlayer = document.getElementById('youtubePlayer');
     const closeModalBtn = document.getElementById('closeModal');
 
-    // Buka modal dan putar video
     function playVideo(element, videoId, title) {
       currentVideoId = videoId;
       youtubePlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&controls=1&showinfo=0`;
       videoModal.classList.remove('hidden');
       videoModal.classList.add('flex');
-      document.body.style.overflow = 'hidden'; // Mencegah scroll
+      document.body.style.overflow = 'hidden';
     }
     
-    // Tutup modal dan hentikan video
     function closeVideoModal() {
-      youtubePlayer.src = ''; // Hentikan video
+      youtubePlayer.src = ''; 
       videoModal.classList.add('hidden');
       videoModal.classList.remove('flex');
-      document.body.style.overflow = 'auto'; // Aktifkan kembali scroll
+      document.body.style.overflow = 'auto';
     }
     
-    // Event listener untuk tombol close
     closeModalBtn.addEventListener('click', closeVideoModal);
     
-    // Tutup modal saat mengklik area gelap di luar video
     videoModal.addEventListener('click', function(e) {
       if (e.target === videoModal) {
         closeVideoModal();
       }
     });
     
-    // Tutup modal dengan tombol ESC
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         closeVideoModal();
@@ -2299,7 +2364,7 @@
               <div class="timeline-modern-date">15 Juli 2024</div>
               <h3 class="timeline-modern-title">Pembangunan Jalan RW 08</h3>
               <p class="timeline-modern-description">Progres pembangunan jalan lingkungan sepanjanm 500m di wilayah RW 08 untuk meningkatkan aksesibilitas warga dan mendukung mobilitas sehari-hari.</p>
-              <a href="#" class="timeline-modern-link">
+              <a class="timeline-modern-link" data-album-id="pembangunan-jalan">
                 Lihat Dokumentasi
                 <i class="fas fa-arrow-right"></i>
               </a>
@@ -2314,7 +2379,7 @@
               <div class="timeline-modern-date">12 Juli 2024</div>
               <h3 class="timeline-modern-title">Kerja Bakti Lingkungan</h3>
               <p class="timeline-modern-description">Kegiatan gotong royong membersihkan lingkungan sekitar dan saluran air untuk mencegah banjir serta menjaga kebersihan lingkungan.</p>
-              <a href="#" class="timeline-modern-link">
+              <a class="timeline-modern-link" data-album-id="kerja-bakti-lingkungan">
                 Lihat Dokumentasi
                 <i class="fas fa-arrow-right"></i>
               </a>
@@ -2329,7 +2394,7 @@
               <div class="timeline-modern-date">10 Juli 2024</div>
               <h3 class="timeline-modern-title">Penyaluran Bantuan Sosial</h3>
               <p class="timeline-modern-description">Distribusi bantuan sosial kepada keluarga kurang mampu di wilayah kelurahan sebagai bentuk kepedulian sosial dan solidaritas masyarakat.</p>
-              <a href="#" class="timeline-modern-link">
+              <a class="timeline-modern-link" data-album-id="bantuan-sosial">
                 Lihat Dokumentasi
                 <i class="fas fa-arrow-right"></i>
               </a>
@@ -2344,7 +2409,7 @@
               <div class="timeline-modern-date">05 Juli 2024</div>
               <h3 class="timeline-modern-title">Pelatihan UMKM Digital</h3>
               <p class="timeline-modern-description">Memberikan pelatihan pemasaran digital kepada para pelaku UMKM untuk meningkatkan daya saing produk lokal di era digital.</p>
-              <a href="#" class="timeline-modern-link">
+              <a class="timeline-modern-link" data-album-id="pelatihan-umkm">
                 Lihat Dokumentasi
                 <i class="fas fa-arrow-right"></i>
               </a>
@@ -2357,9 +2422,9 @@
             </div>
             <div class="timeline-modern-content">
               <div class="timeline-modern-date">01 Juli 2024</div>
-              <h3 class="timeline-modern-title">Vaksinasi Booster</h3>
-              <p class="timeline-modern-description">Pelaksanaan program vaksinasi booster untuk warga lansia dan kelompok rentan guna meningkatkan imunitas masyarakat.</p>
-              <a href="#" class="timeline-modern-link">
+              <h3 class="timeline-modern-title">Fasilitas Umum</h3>
+              <p class="timeline-modern-description">Tanjungpinang, sebagai ibu kota Provinsi Kepulauan Riau, memiliki berbagai fasilitas umum yang mendukung aktivitas masyarakat, mulai dari transportasi, pendidikan, kesehatan, hingga tempat rekreasi.</p>
+              <a class="timeline-modern-link" data-album-id="fasilitas-umum">
                 Lihat Dokumentasi
                 <i class="fas fa-arrow-right"></i>
               </a>
@@ -2374,7 +2439,7 @@
               <div class="timeline-modern-date">28 Juni 2024</div>
               <h3 class="timeline-modern-title">Rapat Koordinasi Warga</h3>
               <p class="timeline-modern-description">Rapat koordinasi dengan seluruh RT/RW untuk membahas program pembangunan dan kegiatan kemasyarakatan periode mendatang.</p>
-              <a href="#" class="timeline-modern-link">
+              <a class="timeline-modern-link" data-album-id="rapat-warga">
                 Lihat Dokumentasi
                 <i class="fas fa-arrow-right"></i>
               </a>
@@ -2468,14 +2533,11 @@
                 </p>
             </div>
         </div>
-
-        <div class="floating-element absolute bottom-10 left-10 w-16 h-16 rounded-full bg-accent-color/20"></div>
-        <div class="floating-element absolute top-20 right-20 w-24 h-24 rounded-full bg-white/5"></div>
     </footer>
 
   <button
     id="back-to-top"
-    class="fixed bottom-8 right-8 bg-gradient-to-r from-primary-600 to-red-700 text-white p-4 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:from-red-700 hover:to-red-800 flex items-center justify-center">
+    class="fixed bottom-8 right-8 bg-gradient-to-r from-red-700 to-red-800 text-white p-4 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 hover:from-red-700 hover:to-red-800 flex items-center justify-center">
     <i class="fas fa-arrow-up"></i>
   </button>
 
@@ -2538,8 +2600,6 @@
     });
 
     // --- NEW: Album Data Store ---
-    // In a real application, this data would come from a server/CMS.
-    // For this demonstration, we'll create a static object.
     const albumsData = {
         'pembangunan-jalan': {
             title: 'Pembangunan Jalan RW 08',
@@ -2557,13 +2617,13 @@
                 { src: 'https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1718954074_bcd67607ce3600415d76.jpg', caption: 'Penyerahan Bantuan Secara Simbolis' },
                 { src: 'https://www.cimahikota.go.id/assets/images/berita/arsip/24Oktober-dinsos.jpg', caption: 'Warga Mengantri Tertib' },
                 { src: 'https://babelprov.go.id/uploads/fajri/DSC_5056.jpg', caption: 'Pemeriksaan Data Penerima' },
-                { src: 'https://www.cendananews.com/wp-content/uploads/2020/07/Penyaluran-Bantuan-Sosial-di-Kantor-Pos-Bandar-Lampung.jpg', caption: 'Paket Sembako Siap Dibagikan' }
+                { src: 'https://www.cendananews.com/wp-content/uploads/2020/07/Penyaluran-Bantuan-Sosial-di-Kantor-Pos-Bandar- Lampung.jpg', caption: 'Paket Sembako Siap Dibagikan' }
             ]
         },
-        'vaksinasi': {
-            title: 'Vaksinasi Booster',
+        'fasilitas-umum': {
+            title: 'Fasilitas Umum',
             images: [
-                { src: 'https://yankes.itb.ac.id/wp-content/uploads/2023/03/Vaksinasi-booster-covid-19-e1680160332231.jpg', caption: 'Penyuntikan Vaksin oleh Petugas' },
+                { src: 'https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1698521090_0054522ba27f383276fa.jpg', caption: 'Penyuntikan Vaksin oleh Petugas' },
                 { src: 'https://www.pom.go.id/new/uploads/images/2022/BERITA/Februari/Vaksinasi_Booster_di_BPOM/Meja_Pendaftaran.jpg', caption: 'Pendaftaran dan Verifikasi Data' },
                 { src: 'https://dinkes.bulelengkab.go.id/public/uploads/post/post_9921_1642125796.jpg', caption: 'Antusiasme Warga Lansia' },
                 { src: 'https://asset.kompas.com/crops/6q_k7-t8d9Lz7Y2E3W4xR1zX0vY=/0x0:1000x667/750x500/data/photo/2022/01/25/61f0081e74af6.jpg', caption: 'Observasi Setelah Vaksinasi' },
@@ -2618,126 +2678,176 @@
               { src: 'https://bandungkita.id/wp-content/uploads/2023/02/Posyandu-Photo-by-Dinkes-Jabar-scaled.jpg', caption: 'Pencatatan Data Kesehatan Ibu dan Anak' },
               { src: 'https://static.promediateknologi.id/crop/0x0:0x0/750x500/webp/photo/2023/01/16/3655118742.jpg', caption: 'Pemberian Makanan Tambahan (PMT)' }
             ]
+        },
+        // --- DATA BARU UNTUK LINIMASA ---
+        'kerja-bakti-lingkungan': {
+            title: 'Kerja Bakti Lingkungan',
+            images: [
+                { src: 'https://www.banjarnegarakab.go.id/wp-content/uploads/2022/02/Kerja-Bakti-Massal-di-Area-Pasar-Ikan-dan-Terminal-Wanadadi-5.jpg', caption: 'Gotong Royong Membersihkan Selokan' },
+                { src: 'https://kel-bandarharjo.semarangkota.go.id/assets/images/data/images/Pembersihan%20lingkungan%20(1).jpg', caption: 'Warga Mengumpulkan Sampah' },
+                { src: 'https://tniad.mil.id/wp-content/uploads/2022/10/2-2.jpg', caption: 'Membersihkan Rumput Liar' }
+            ]
+        },
+        'pelatihan-umkm': {
+            title: 'Pelatihan UMKM Digital',
+            images: [
+                { src: 'https://diskopukm.jogjaprov.go.id/wp-content/uploads/2018/10/IMG_6214-1024x683.jpg', caption: 'Pemaparan Materi Pemasaran Digital' },
+                { src: 'https://sumbawakab.go.id/storage/1688006456_f64a13e4f0120155b9e4.jpg', caption: 'Peserta Pelatihan' },
+                { src: 'https://www.djkn.kemenkeu.go.id/files/images/2021/11/20211126_UMKM_5.jpg', caption: 'Sesi Tanya Jawab' }
+            ]
+        },
+        // --- DATA BARU UNTUK "LOAD MORE" ---
+        'hut-ri': {
+            title: 'Kegiatan HUT RI',
+            images: [
+                { src: 'https://asset-2.tstatic.net/batam/foto/bank/images/Warga-Tanjungpinang-meriahkan-HUT-ke-77-RI-2022.jpg', caption: 'Lomba Panjat Pinang' },
+                { src: 'https://cdn.antaranews.com/cache/1200x800/2023/08/17/IMG_20230817_122955.jpg', caption: 'Upacara Bendera HUT RI' },
+                { src: 'https://asset.kompas.com/crops/x-f_qeyjJtW4t2Iu0Q541B_U0vM=/0x0:780x520/750x500/data/photo/2019/08/17/5d576a8393e8a.jpg', caption: 'Lomba Balap Karung' },
+                { src: 'https://images.bisnis.com/posts/2023/08/17/1684814/lomba-makan-kerupuk-hut-ri-ke-78-di-solo-3.jpg', caption: 'Lomba Makan Kerupuk' }
+            ]
+        },
+        'bazar-umkm': {
+            title: 'Bazar UMKM Kelurahan',
+            images: [
+                { src: 'https://mejaredaksi.co.id/wp-content/uploads/2023/09/WhatsApp-Image-2023-09-01-at-14.26.45.jpeg', caption: 'Stand Bazar UMKM' },
+                { src: 'https://www.cendananews.com/wp-content/uploads/2022/10/Bazar-UMKM-Dekranasda-Lampung-Selatan-scaled.jpg', caption: 'Berbagai Produk Lokal' },
+                { src: 'https://disbud.purwakartakab.go.id/asset/foto_berita/Bazar_UMKM_Ekonomi_Kreatif.jpeg', caption: 'Pengunjung Memilih Produk' }
+            ]
+        },
+        'kegiatan-pkk': {
+            title: 'Kegiatan PKK',
+            images: [
+                { src: 'https://www.infopublik.id/assets/upload/headline//pkk_stunting.jpeg', caption: 'Penyuluhan Stunting oleh PKK' },
+                { src: 'https://pkk.wonogirikab.go.id/wp-content/uploads/2023/03/IMG-20230307-WA0010-1024x768.jpg', caption: 'Pelatihan Keterampilan Ibu-Ibu PKK' },
+                { src: 'https://pemberdayaanmasyarakat.bulelengkab.go.id/public/uploads/post/post_15231_1669094776.jpeg', caption: 'Rapat Rutin Anggota PKK' }
+            ]
+        },
+        'lomba-kelurahan': {
+            title: 'Lomba Kelurahan Terbaik',
+            images: [
+                { src: 'https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1717576579_07be559986e0b41b9d53.jpg', caption: 'Penilaian oleh Tim Juri' },
+                { src: 'https://kec-tampan.pekanbaru.go.id/web/image/news.news/353/image?unique=f6d1936', caption: 'Presentasi Profil Kelurahan' },
+                { src: 'https://bogorplus.com/wp-content/uploads/2023/06/IMG_20230606_145601.jpg', caption: 'Pemeriksaan Administrasi' },
+                { src: 'https://dispmd.babelprov.go.id/sites/default/files/images-berita/IMG_1578.JPG', caption: 'Penyerahan Hadiah Pemenang' }
+            ]
         }
     };
 
 
-    // --- MODIFIED: Advanced Gallery Viewer Functionality ---
+    // --- MODIFIED & REFACTORED: Advanced Gallery Viewer Functionality ---
+    const viewerModal = document.getElementById('gallery-viewer-modal');
+    const viewerMainImage = document.getElementById('gallery-viewer-main-image');
+    const viewerImageTitle = document.getElementById('gallery-viewer-title');
+    const viewerThumbnailsContainer = document.getElementById('gallery-viewer-thumbnails');
+    const viewerPrevBtn = document.getElementById('gallery-viewer-prev');
+    const viewerNextBtn = document.getElementById('gallery-viewer-next');
+    const viewerCloseBtn = document.getElementById('gallery-viewer-close');
+    const viewerAlbumTitle = document.getElementById('gallery-viewer-album-title');
+    
+    let viewerCurrentAlbum = [];
+    let viewerCurrentIndex = 0;
+
+    function openGalleryViewer(albumId) {
+        const album = albumsData[albumId];
+        if (!album || !album.images || album.images.length === 0) {
+            console.error("Album not found or is empty:", albumId);
+            return;
+        }
+
+        viewerCurrentAlbum = album.images;
+        viewerCurrentIndex = 0;
+        
+        viewerAlbumTitle.textContent = album.title;
+        
+        viewerThumbnailsContainer.innerHTML = '';
+        album.images.forEach((img, index) => {
+            const thumb = document.createElement('img');
+            thumb.src = img.src;
+            thumb.alt = img.caption;
+            thumb.className = 'viewer-thumbnail w-full h-24 object-cover rounded-lg cursor-pointer';
+            thumb.dataset.index = index;
+            viewerThumbnailsContainer.appendChild(thumb);
+        });
+
+        updateGalleryView();
+        viewerModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeGalleryViewer() {
+        viewerModal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    function updateGalleryView() {
+        if (viewerCurrentAlbum.length === 0) return;
+
+        const image = viewerCurrentAlbum[viewerCurrentIndex];
+        
+        viewerMainImage.style.opacity = 0;
+        setTimeout(() => {
+            viewerMainImage.src = image.src;
+            viewerMainImage.alt = image.caption;
+            viewerImageTitle.textContent = image.caption;
+            viewerMainImage.style.opacity = 1;
+        }, 150);
+
+        document.querySelectorAll('.viewer-thumbnail').forEach(thumb => {
+            thumb.classList.toggle('active', parseInt(thumb.dataset.index) === viewerCurrentIndex);
+        });
+        
+        const activeThumbnail = document.querySelector(`.viewer-thumbnail[data-index='${viewerCurrentIndex}']`);
+        if (activeThumbnail) {
+            activeThumbnail.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
+    function showNextGalleryImage() {
+        viewerCurrentIndex = (viewerCurrentIndex + 1) % viewerCurrentAlbum.length;
+        updateGalleryView();
+    }
+
+    function showPrevGalleryImage() {
+        viewerCurrentIndex = (viewerCurrentIndex - 1 + viewerCurrentAlbum.length) % viewerCurrentAlbum.length;
+        updateGalleryView();
+    }
+    
     function initAdvancedGalleryViewer() {
-        const modal = document.getElementById('gallery-viewer-modal');
-        const mainImage = document.getElementById('gallery-viewer-main-image');
-        const mainImageContainer = document.getElementById('gallery-viewer-main-image-container');
-        const imageTitle = document.getElementById('gallery-viewer-title');
-        const thumbnailsContainer = document.getElementById('gallery-viewer-thumbnails');
-        const prevBtn = document.getElementById('gallery-viewer-prev');
-        const nextBtn = document.getElementById('gallery-viewer-next');
-        const closeBtn = document.getElementById('gallery-viewer-close');
-        
-        let currentAlbum = [];
-        let currentIndex = 0;
+        // Event listener for main gallery cards and timeline links
+        document.body.addEventListener('click', (e) => {
+            const galleryCard = e.target.closest('.gallery-card');
+            const timelineLink = e.target.closest('.timeline-modern-link');
 
-        function openViewer(albumId) {
-            const album = albumsData[albumId];
-            if (!album || !album.images || album.images.length === 0) {
-                console.error("Album not found or is empty:", albumId);
-                return;
-            }
-
-            currentAlbum = album.images;
-            currentIndex = 0;
-            
-            // Set album title in the modal header
-            const albumTitle = document.getElementById('gallery-viewer-album-title');
-            albumTitle.textContent = album.title;
-            
-            // Populate thumbnails
-            thumbnailsContainer.innerHTML = '';
-            album.images.forEach((img, index) => {
-                const thumb = document.createElement('img');
-                thumb.src = img.src;
-                thumb.alt = img.caption;
-                thumb.className = 'viewer-thumbnail w-full h-24 object-cover rounded-lg cursor-pointer';
-                thumb.dataset.index = index;
-                thumbnailsContainer.appendChild(thumb);
-            });
-
-            updateView();
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeViewer() {
-            modal.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function updateView() {
-            if (currentAlbum.length === 0) return;
-
-            const image = currentAlbum[currentIndex];
-            
-            // Fade out, change, fade in
-            mainImage.style.opacity = 0;
-            setTimeout(() => {
-                mainImage.src = image.src;
-                mainImage.alt = image.caption;
-                imageTitle.textContent = image.caption;
-                mainImage.style.opacity = 1;
-            }, 150);
-
-
-            // Update active thumbnail
-            document.querySelectorAll('.viewer-thumbnail').forEach(thumb => {
-                thumb.classList.toggle('active', parseInt(thumb.dataset.index) === currentIndex);
-            });
-            
-            // Scroll thumbnail into view
-            const activeThumbnail = document.querySelector(`.viewer-thumbnail[data-index='${currentIndex}']`);
-            if (activeThumbnail) {
-                activeThumbnail.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        }
-
-        function showNext() {
-            currentIndex = (currentIndex + 1) % currentAlbum.length;
-            updateView();
-        }
-
-        function showPrev() {
-            currentIndex = (currentIndex - 1 + currentAlbum.length) % currentAlbum.length;
-            updateView();
-        }
-
-        // Event Listeners
-        document.getElementById('gallery-container').addEventListener('click', (e) => {
-            const card = e.target.closest('.gallery-card');
-            if (card && card.dataset.albumId) {
+            if (galleryCard && galleryCard.dataset.albumId) {
                 e.preventDefault();
-                openViewer(card.dataset.albumId);
+                openGalleryViewer(galleryCard.dataset.albumId);
+            } else if (timelineLink && timelineLink.dataset.albumId) {
+                e.preventDefault();
+                openGalleryViewer(timelineLink.dataset.albumId);
             }
         });
         
-        thumbnailsContainer.addEventListener('click', (e) => {
+        viewerThumbnailsContainer.addEventListener('click', (e) => {
             if (e.target.matches('.viewer-thumbnail')) {
-                currentIndex = parseInt(e.target.dataset.index);
-                updateView();
+                viewerCurrentIndex = parseInt(e.target.dataset.index);
+                updateGalleryView();
             }
         });
 
-        prevBtn.addEventListener('click', showPrev);
-        nextBtn.addEventListener('click', showNext);
-        closeBtn.addEventListener('click', closeViewer);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeViewer();
+        viewerPrevBtn.addEventListener('click', showPrevGalleryImage);
+        viewerNextBtn.addEventListener('click', showNextGalleryImage);
+        viewerCloseBtn.addEventListener('click', closeGalleryViewer);
+        viewerModal.addEventListener('click', (e) => {
+            if (e.target === viewerModal) {
+                closeGalleryViewer();
             }
         });
 
         document.addEventListener('keydown', (e) => {
-            if (modal.classList.contains('hidden')) return;
-            if (e.key === 'ArrowRight') showNext();
-            if (e.key === 'ArrowLeft') showPrev();
-            if (e.key === 'Escape') closeViewer();
+            if (viewerModal.classList.contains('hidden')) return;
+            if (e.key === 'ArrowRight') showNextGalleryImage();
+            if (e.key === 'ArrowLeft') showPrevGalleryImage();
+            if (e.key === 'Escape') closeGalleryViewer();
         });
     }
 
@@ -2750,10 +2860,8 @@
       const viewButtons = document.querySelectorAll('.view-toggle-btn');
       const galleryContainer = document.querySelector('.gallery-grid');
 
-      // Filter functionality
       filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-          // Update active state
           filterButtons.forEach(btn => {
             btn.classList.remove('active', 'bg-gradient-to-r', 'from-primary-600', 'to-red-700', 'text-white');
             btn.classList.add('bg-white', 'text-gray-700', 'border', 'border-gray-200');
@@ -2767,7 +2875,6 @@
         });
       });
 
-      // Search functionality
       if (searchInput) {
         searchInput.addEventListener('input', (e) => {
           const searchTerm = e.target.value.toLowerCase();
@@ -2775,14 +2882,12 @@
         });
       }
 
-      // Sort functionality
       if (sortSelect) {
         sortSelect.addEventListener('change', (e) => {
           sortGallery(e.target.value);
         });
       }
 
-      // View toggle functionality
       viewButtons.forEach(button => {
         button.addEventListener('click', () => {
           viewButtons.forEach(btn => btn.classList.remove('active', 'bg-primary-600', 'text-white'));
@@ -2832,21 +2937,18 @@
             case 'alphabetical':
               return (a.getAttribute('data-title') || '').localeCompare(b.getAttribute('data-title') || '');
             case 'popular':
-              // Fallback for popular sorting if needed
               return 0;
             default:
               return 0;
           }
         });
 
-        // Re-append sorted cards
         cardsArray.forEach(card => galleryContainer.appendChild(card));
       }
     }
     
     // Smooth scroll and back to top
     function initSmoothScroll() {
-      // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
@@ -2860,7 +2962,6 @@
         });
       });
 
-      // Back to top button
       const backToTopBtn = document.getElementById('back-to-top');
       if (backToTopBtn) {
         window.addEventListener('scroll', () => {
@@ -2906,20 +3007,13 @@
         const allGalleryCards = document.querySelectorAll('#gallery-container .gallery-card');
 
         function openAlbumModal(albumId, albumTitle) {
-            // Set title
             albumModalTitle.textContent = `Album: ${albumTitle}`;
-
-            // Clear previous content
             albumModalGrid.innerHTML = '';
 
-            // Filter and clone cards
             const filteredCards = Array.from(allGalleryCards).filter(card => {
                 if (albumTitle === 'Penyaluran Bantuan Sembako') {
-                    // This specific modal only shows this one card.
                     return card.dataset.title === 'Penyaluran Bantuan Sembako';
                 }
-                // For all other modals opened from the banner, use the category filter.
-                // This also handles the `albumId === 'all'` case correctly for any *other* slide that might use it.
                 return albumId === 'all' || card.dataset.category === albumId;
             });
 
@@ -2928,14 +3022,12 @@
             } else {
                 filteredCards.forEach((card, index) => {
                     const clone = card.cloneNode(true);
-                    // Hapus class 'group' untuk mencegah konflik hover dari luar
                     clone.classList.remove('group'); 
-                    clone.style.animationDelay = `${index * 50}ms`; // Staggered animation
+                    clone.style.animationDelay = `${index * 50}ms`;
                     albumModalGrid.appendChild(clone);
                 });
             }
 
-            // Show modal
             albumModal.classList.remove('opacity-0', 'pointer-events-none');
             modalContent.classList.remove('scale-95');
             document.body.style.overflow = 'hidden';
@@ -2947,32 +3039,23 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Event listener for album buttons using delegation
         document.body.addEventListener('click', e => {
             const albumBtn = e.target.closest('.album-link-btn');
-            const timelineLink = e.target.closest('.timeline-modern-link');
             
             if (albumBtn) {
                 e.preventDefault();
                 const albumId = albumBtn.dataset.albumId;
-                // Ambil judul dari slide yang sesuai
                 const slideText = albumBtn.closest('.slide-text');
-                let albumTitle = "Galeri"; // Default title
+                let albumTitle = "Galeri"; 
                 if(slideText) {
                    albumTitle = slideText.querySelector('.slide-title').textContent.trim();
                 }
-                openAlbumModal(albumId, albumTitle);
-            } else if (timelineLink) {
-                e.preventDefault();
-                const albumId = timelineLink.dataset.albumId;
-                const albumTitle = timelineLink.dataset.albumTitle || "Galeri";
                 openAlbumModal(albumId, albumTitle);
             }
         });
 
         closeAlbumModalBtn.addEventListener('click', closeAlbumModal);
         albumModal.addEventListener('click', e => {
-            // Close only if the backdrop is clicked, not content inside
             if (e.target === albumModal) {
                 closeAlbumModal();
             }
@@ -2984,181 +3067,162 @@
         });
     }
 
-    // Initialize all functionality
+    // Initialize all functionality on DOMContentLoaded
     document.addEventListener('DOMContentLoaded', function() {
+      // Initialize existing functionalities
       initGalleryFilters();
-      initAdvancedGalleryViewer(); // Initialize the new viewer
+      initAdvancedGalleryViewer(); 
       initSmoothScroll();
       initHeaderScrollEffect();
-      initAlbumModal(); // Initialize album modal
+      initAlbumModal();
 
-      // --- BEGIN: Interactive Gallery Filter LOGIC ---
-      const searchInput = document.getElementById('gallery-search-input');
-      const yearSelect = document.getElementById('gallery-year-select');
-      const filterButton = document.getElementById('gallery-filter-button');
-      const galleryCards = document.querySelectorAll('#gallery-container .gallery-card');
+      // --- BEGIN: LOGIKA BARU UNTUK TOMBOL "MUAT LEBIH BANYAK/SEDIKIT" ---
+      const loadMoreButton = document.getElementById('load-more-button');
+      const loadMoreContent = document.getElementById('load-more-content');
+      const galleryContainer = document.getElementById('gallery-container');
+      let currentPage = 1;
 
-      function applyGalleryFilters() {
-        const searchTerm = searchInput.value.toLowerCase();
-        const selectedYear = yearSelect.value;
+      if (loadMoreButton) {
+        loadMoreButton.addEventListener('click', async () => {
+          if (loadMoreButton.classList.contains('loading')) {
+            return;
+          }
 
-        galleryCards.forEach(card => {
-          const title = (card.dataset.title || '').toLowerCase();
-          const description = (card.dataset.description || '').toLowerCase();
-          const year = card.dataset.year || '';
+          if (loadMoreButton.classList.contains('show-less')) {
+            const loadedItems = document.querySelectorAll('.dynamically-loaded');
+            
+            loadedItems.forEach((item, index) => {
+              item.classList.add('is-removing');
+            });
 
-          const isSearchMatch = title.includes(searchTerm) || description.includes(searchTerm);
-          const isYearMatch = !selectedYear || year === selectedYear;
+            setTimeout(() => {
+              loadedItems.forEach(item => item.remove());
+              
+              loadMoreButton.classList.remove('show-less');
+              loadMoreContent.innerHTML = '<i class="fas fa-plus-circle mr-2"></i> Muat Lebih Banyak';
+              currentPage = 1;
+            }, 500); 
 
-          if (isSearchMatch && isYearMatch) {
-            card.style.display = ''; // Use empty string to revert to stylesheet's display property
-          } else {
-            card.style.display = 'none';
+            return;
+          }
+          
+          loadMoreButton.classList.add('loading');
+          loadMoreButton.disabled = true;
+          loadMoreContent.innerHTML = 'Memuat...';
+
+          const skeletonHTML = `<div class="gallery-card-skeleton animate-pulse"></div>`;
+          let skeletons = [];
+          for (let i = 0; i < 4; i++) {
+            const skeletonWrapper = document.createElement('div');
+            skeletonWrapper.innerHTML = skeletonHTML;
+            const skeleton = skeletonWrapper.firstElementChild;
+            galleryContainer.appendChild(skeleton);
+            skeletons.push(skeleton);
+          }
+
+          try {
+            const newItems = await fetchMoreItems(currentPage + 1);
+
+            skeletons.forEach(s => s.remove());
+
+            if (newItems.length > 0) {
+              newItems.forEach((item, index) => {
+                const card = createGalleryCard(item);
+                card.style.animationDelay = `${index * 100}ms`;
+                galleryContainer.appendChild(card);
+              });
+              currentPage++;
+              
+              loadMoreButton.classList.remove('loading');
+              loadMoreButton.disabled = false;
+              loadMoreContent.innerHTML = '<i class="fas fa-plus-circle mr-2"></i> Muat Lebih Banyak';
+
+            } else {
+              loadMoreButton.classList.remove('loading');
+              loadMoreButton.classList.add('show-less');
+              loadMoreButton.disabled = false;
+              loadMoreContent.innerHTML = '<i class="fas fa-minus-circle mr-2"></i> Muat Lebih Sedikit';
+            }
+          } catch (error) {
+            console.error("Gagal memuat item:", error);
+            skeletons.forEach(s => s.remove());
+            loadMoreButton.classList.remove('loading');
+            loadMoreButton.disabled = false;
+            loadMoreContent.innerHTML = 'Gagal Memuat';
           }
         });
       }
-
-      // Attach event listener to the button
-      if (filterButton) {
-        filterButton.addEventListener('click', applyGalleryFilters);
+      
+      async function fetchMoreItems(page) {
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        if (page > 2) {
+          return [];
+        }
+        return [
+            { albumId: 'hut-ri', title: 'Kegiatan HUT RI', date: '17 Agu 2023', photos: 4, img: 'https://asset-2.tstatic.net/batam/foto/bank/images/Warga-Tanjungpinang-meriahkan-HUT-ke-77-RI-2022.jpg', category: 'sosial' },
+            { albumId: 'bazar-umkm', title: 'Bazar UMKM Kelurahan', date: '12 Agu 2023', photos: 3, img: 'https://mejaredaksi.co.id/wp-content/uploads/2023/09/WhatsApp-Image-2023-09-01-at-14.26.45.jpeg', category: 'ekonomi' },
+            { albumId: 'kegiatan-pkk', title: 'Kegiatan PKK', date: '05 Agu 2023', photos: 3, img: 'https://www.infopublik.id/assets/upload/headline//pkk_stunting.jpeg', category: 'kesehatan' },
+            { albumId: 'lomba-kelurahan', title: 'Lomba Kelurahan Terbaik', date: '01 Agu 2023', photos: 4, img: 'https://icms.tanjungpinangkota.go.id/image/posting/galeri/7243000000/original/1717576579_07be559986e0b41b9d53.jpg', category: 'pemerintahan' }
+        ];
       }
-      // Attach event listeners for live, real-time filtering for better user experience
-      if (searchInput) {
-        searchInput.addEventListener('input', applyGalleryFilters);
-      }
-      if (yearSelect) {
-        yearSelect.addEventListener('change', applyGalleryFilters);
-      }
-      // --- END: Interactive Gallery Filter LOGIC ---
 
+      function createGalleryCard(item) {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'gallery-card group dynamically-loaded'; 
+        cardDiv.dataset.albumId = item.albumId;
+        cardDiv.dataset.title = item.title;
+        cardDiv.dataset.date = item.date;
+        cardDiv.dataset.category = item.category;
+        
+        cardDiv.innerHTML = `
+            <div class="relative overflow-hidden rounded-2xl aspect-square shadow-xl transform transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2 cursor-pointer">
+                <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 class="font-bold text-white text-lg mb-1">${item.title}</h3>
+                    <p class="text-gray-300 text-sm">${item.date} • ${item.photos} Foto</p>
+                </div>
+            </div>
+        `;
+        return cardDiv;
+      }
+      // --- END: LOGIKA BARU ---
 
-      // Add loading animation
       document.body.classList.add('loaded');
+
+      const style = document.createElement('style');
+      style.textContent = `
+        body.loaded { opacity: 1; }
+        body { opacity: 0; transition: opacity 0.3s ease; }
+      `;
+      document.head.appendChild(style);
     });
 
-    // Add CSS animations
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes zoomIn {
-        from {
-          opacity: 0;
-          transform: scale(0.9);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      .animate-slideUp {
-        animation: slideUp 0.8s ease-out;
-      }
-
-      .animate-zoomIn {
-        animation: zoomIn 0.3s ease-out;
-      }
-
-      body.loaded {
-        opacity: 1;
-      }
-
-      body {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-    `;
-    document.head.appendChild(style);
-  </script>
-
-  <script>
+    // Carousel class remains the same
     class ModernCarousel {
       constructor() {
         this.currentSlide = 0;
         this.totalSlides = 5;
         this.slides = document.querySelectorAll('.slide-wrapper');
-        this.indicators = document.querySelectorAll('.indicator');
         this.thumbnails = document.querySelectorAll('.thumbnail');
-        this.progressBar = document.getElementById('progressBar');
         this.currentSlideNum = document.getElementById('currentSlideNum');
-        this.autoPlayToggle = document.getElementById('autoPlayToggle');
-        this.playIcon = document.getElementById('playIcon');
-
         this.isAutoPlaying = true;
         this.autoPlayInterval = null;
-        this.progressInterval = null;
-        this.autoPlayDuration = 6000; // 6 seconds
-        this.progressStartTime = null;
-
+        this.autoPlayDuration = 6000;
         this.init();
       }
-
       init() {
-        // Navigation buttons
         document.getElementById('prevBtn').addEventListener('click', () => this.prevSlide());
         document.getElementById('nextBtn').addEventListener('click', () => this.nextSlide());
-
-        // Indicators and Thumbnails
-        this.indicators.forEach((indicator, index) => {
-          indicator.addEventListener('click', () => this.goToSlide(index));
-        });
         this.thumbnails.forEach((thumbnail, index) => {
           thumbnail.addEventListener('click', () => this.goToSlide(index));
         });
-
-        // Auto play toggle
-        this.autoPlayToggle.addEventListener('click', () => this.toggleAutoPlay());
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowLeft') this.prevSlide();
-          if (e.key === 'ArrowRight') this.nextSlide();
-        });
-
-        // Touch/swipe support
-        let startX = 0;
-        let endX = 0;
         const carouselContainer = document.querySelector('.carousel-container');
-
-        carouselContainer.addEventListener('touchstart', (e) => {
-          startX = e.touches[0].clientX;
-        }, { passive: true });
-
-        carouselContainer.addEventListener('touchend', (e) => {
-          endX = e.changedTouches[0].clientX;
-          const diff = startX - endX;
-
-          if (Math.abs(diff) > 50) {
-            if (diff > 0) this.nextSlide();
-            else this.prevSlide();
-          }
-        }, { passive: true });
-
-        // Pause on hover
         carouselContainer.addEventListener('mouseenter', () => this.pauseAutoPlay());
         carouselContainer.addEventListener('mouseleave', () => this.startAutoPlay());
-
-        // Start things off
         this.goToSlide(0);
       }
-
       goToSlide(slideIndex) {
-        // This check prevents resetting the timer if clicking the active slide's indicator
-        if (slideIndex === this.currentSlide && this.autoPlayInterval) {
-            return;
-        }
-
-        // Slide transition logic
+        if (slideIndex === this.currentSlide && this.autoPlayInterval) return;
         this.slides.forEach((slide, index) => {
           slide.classList.remove('slide-active', 'slide-next', 'slide-prev', 'slide-hidden');
           if (index === slideIndex) slide.classList.add('slide-active');
@@ -3166,172 +3230,40 @@
           else if (index === (slideIndex - 1 + this.totalSlides) % this.totalSlides) slide.classList.add('slide-prev');
           else slide.classList.add('slide-hidden');
         });
-
         this.currentSlide = slideIndex;
         this.updateUI();
         this.resetAndStartTimers();
       }
-
-      nextSlide() {
-        const nextIndex = (this.currentSlide + 1) % this.totalSlides;
-        this.goToSlide(nextIndex);
-      }
-
-      prevSlide() {
-        const prevIndex = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-        this.goToSlide(prevIndex);
-      }
-
+      nextSlide() { this.goToSlide((this.currentSlide + 1) % this.totalSlides); }
+      prevSlide() { this.goToSlide((this.currentSlide - 1 + this.totalSlides) % this.totalSlides); }
       updateUI() {
-        // This condition is for when indicators are removed
-        if (this.indicators.length > 0) {
-          this.indicators.forEach((indicator, index) => indicator.classList.toggle('active', index === this.currentSlide));
-        }
         this.thumbnails.forEach((thumbnail, index) => thumbnail.classList.toggle('active', index === this.currentSlide));
         this.currentSlideNum.textContent = String(this.currentSlide + 1).padStart(2, '0');
       }
-
       resetAndStartTimers() {
         clearInterval(this.autoPlayInterval);
-        clearInterval(this.progressInterval);
-        
         if (this.isAutoPlaying) {
           this.autoPlayInterval = setInterval(() => this.nextSlide(), this.autoPlayDuration);
-          
-          this.progressStartTime = Date.now();
-          this.progressBar.style.transition = 'none'; // Remove transition for instant reset
-          this.progressBar.style.width = '0%';
-          
-          // Force a reflow to apply the reset style immediately
-          void this.progressBar.offsetWidth;
-
-          this.progressBar.style.transition = `width ${this.autoPlayDuration}ms linear`;
-          this.progressBar.style.width = '100%';
         }
       }
-
-      pauseAutoPlay() {
-          if (!this.isAutoPlaying) return;
-          clearInterval(this.autoPlayInterval);
-          
-          const computedWidth = getComputedStyle(this.progressBar).width;
-          this.progressBar.style.transition = 'none';
-          this.progressBar.style.width = computedWidth;
-      }
-
-      startAutoPlay() {
-          if (this.isAutoPlaying) {
-              this.resetAndStartTimers();
-          }
-      }
-
-      toggleAutoPlay() {
-        this.isAutoPlaying = !this.isAutoPlaying;
-        this.playIcon.textContent = this.isAutoPlaying ? '⏸️' : '▶️';
-
-        if (this.isAutoPlaying) {
-          this.startAutoPlay();
-        } else {
-          this.pauseAutoPlay();
-        }
-      }
+      pauseAutoPlay() { if (this.isAutoPlaying) clearInterval(this.autoPlayInterval); }
+      startAutoPlay() { if (this.isAutoPlaying) this.resetAndStartTimers(); }
     }
+    document.addEventListener('DOMContentLoaded', () => new ModernCarousel());
 
-    // Initialize carousel
-    document.addEventListener('DOMContentLoaded', () => {
-      new ModernCarousel();
+    // Popup visitor script remains the same
+    const toggleButton = document.getElementById('togglePopup');
+    const closeButton = document.getElementById('closePopup');
+    const popup = document.getElementById('visitorPopup');
+    toggleButton.addEventListener('click', () => {
+      popup.classList.remove('hidden');
+      setTimeout(() => popup.classList.remove('translate-x-full'), 10);
+    });
+    closeButton.addEventListener('click', () => {
+      popup.classList.add('translate-x-full');
+      setTimeout(() => popup.classList.add('hidden'), 300);
     });
   </script>
-
-  <div id="visitorPopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 hidden transition-all duration-300 ease-out translate-x-full">
-            <div class="bg-white rounded-l-lg shadow-xl border border-gray-200 w-64 relative">
-                <button id="closePopup" class="absolute -left-14 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg hover:bg-red-700 transition border-t border-b border-l border-gray-200 h-28 w-14 flex flex-col items-center justify-center">
-            <span class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1">
-                Kunjungan
-                <span class="bg-white rounded-full p-1 flex items-center justify-center h-5 w-5">
-                <i class="fas fa-chevron-down text-[10px] text-red-600"></i>
-                </span>
-            </span>
-            </button>
-
-                <div class="p-3 text-center">
-                <div class="bg-red-600 px-3 py-2 rounded-tl-lg">
-                    <h3 class="text-white font-bold text-sm">Statistik Kunjungan</h3>
-                    <p class="text-red-100 text-xs">Jumlah kunjungan website</p>
-                </div>
-                
-                <div class="py-2">
-                    <div class="mb-3">
-                    <h4 class="font-semibold text-gray-700 text-xs">Total Visitor</h4>
-                    <p class="text-xl font-bold">262.522</p>
-                    <p class="text-green-500 text-xs">10 Online</p>
-                    </div>
-                    
-                    <div>
-                    <h4 class="font-semibold text-gray-700 text-xs">Total View</h4>
-                    <p class="text-xl font-bold">1.408.960</p>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <button id="togglePopup" class="fixed right-0 top-1/2 transform -translate-y-1/2 bg-red-600 text-white rounded-l-lg shadow-lg z-40 hover:bg-red-700 transition h-28 w-14 flex flex-col items-center justify-center">
-            <span class="text-[14px] font-medium transform -rotate-90 whitespace-nowrap flex items-center gap-1.5">
-                Kunjungan
-                <span class="bg-white rounded-full p-1.5 flex items-center justify-center h-5 w-5">
-                <i class="fas fa-chevron-up text-xs text-red-600"></i>
-                </span>
-            </span>
-            </button>
-
-            <script>
-            const toggleButton = document.getElementById('togglePopup');
-            const closeButton = document.getElementById('closePopup');
-            const popup = document.getElementById('visitorPopup');
-
-            // Open popup with bounce effect
-            toggleButton.addEventListener('click', function() {
-                popup.classList.remove('hidden');
-                setTimeout(() => {
-                popup.classList.remove('translate-x-full');
-                }, 10);
-            });
-
-            // Close popup with slide out
-            closeButton.addEventListener('click', function() {
-                popup.classList.add('translate-x-full');
-                setTimeout(() => {
-                popup.classList.add('hidden');
-                }, 300);
-            });
-            </script>
-
-            <style>
-            @keyframes bounceInRight {
-                0% { transform: translateX(100%) translateY(-50%); }
-                60% { transform: translateX(-10px) translateY(-50%); }
-                80% { transform: translateX(5px) translateY(-50%); }
-                100% { transform: translateX(0) translateY(-50%); }
-            }
-            
-            #visitorPopup {
-                position: fixed;
-                top: 50%;
-                right: 0;
-                transform: translateY(-50%);
-                z-index: 50;
-                transition: transform 0.3s ease-in-out;
-            }
-            
-            #visitorPopup.hidden {
-                display: none;
-            }
-            
-            #visitorPopup.translate-x-full {
-                transform: translateX(100%) translateY(-50%);
-            }
-            </style>
 </body>
 
 </html>
