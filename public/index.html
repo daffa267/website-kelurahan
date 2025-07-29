@@ -2214,8 +2214,7 @@
                 <div id="modal-content-unduh" class="service-modal-tab-content"></div>
             </div>
             <div class="service-modal-footer">
-                <button class="btn-secondary" onclick="closeServiceModal()">Tutup</button>
-                <a id="modal-detail-link" href="#" class="btn-primary" style="padding: 10px 20px;">Lihat Selengkapnya</a>
+                <button class="btn-primary" onclick="closeServiceModal()" style="padding: 10px 20px;">Tutup</button>
             </div>
         </div>
     </div>
@@ -2737,7 +2736,6 @@
         modalOverlay.querySelector('#modal-content-alur').innerHTML = data.alur;
         modalOverlay.querySelector('#modal-content-waktu').innerHTML = data.waktu;
         modalOverlay.querySelector('#modal-content-unduh').innerHTML = data.unduh;
-        modalOverlay.querySelector('#modal-detail-link').href = data.detailLink;
         
         // Reset ke tab pertama setiap kali modal dibuka
         switchTab(modalOverlay.querySelector('.service-modal-tab-btn[data-tab="syarat"]'));
@@ -2773,8 +2771,7 @@
 
     // Event listener untuk tombol tutup
     modalCloseBtn.addEventListener('click', closeServiceModal);
-    modalOverlay.querySelector('.btn-secondary').addEventListener('click', closeServiceModal);
-
+    
     // Event listener untuk ganti tab
     modalTabBtns.forEach(btn => {
         btn.addEventListener('click', () => switchTab(btn));
@@ -2838,7 +2835,6 @@
   }
 </style>
 
-<!-- Back to top button -->
 <button id="back-to-top" aria-label="Kembali ke atas">
   <i class="fas fa-arrow-up"></i>
 </button>

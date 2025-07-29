@@ -1907,7 +1907,7 @@
                 Program Vaksinasi Booster
               </h4>
               <p class="text-gray-400 text-sm mt-1">
-                1.8K views - 21 Juni 2024
+                1.8K views - 21 Juni 2021
               </p>
             </a>
             <a
@@ -2233,7 +2233,7 @@
                 <div class="p-6 flex-grow flex flex-col">
                   <div class="flex items-center justify-between text-sm mb-4">
                     <span class="text-gray-500 flex items-center">
-                      <i class="far fa-clock mr-2"></i> 10 Juli 2024
+                      <i class="far fa-clock mr-2"></i> 10 Juli 2021
                     </span>
                     <span class="text-gray-500 flex items-center">
                       <i class="far fa-eye mr-2"></i> 890
@@ -2439,7 +2439,7 @@
                   class="relative overflow-hidden rounded-t-2xl aspect-[4/3]"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1280&h=720&auto=format&fit=crop"
+                    src="https://sketsanews.id/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-26-at-15.11.21.jpeg"
                     alt="Festival Budaya"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
@@ -2665,7 +2665,7 @@
                         class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
                       >
                         <img
-                          src="https://images.unsplash.com/photo-1573167507387-6b4b98cb7c13?q=80&w=1280&h=720&auto=format&fit=crop"
+                          src="https://sketsanews.id/wp-content/uploads/2024/04/WhatsApp-Image-2024-04-26-at-15.11.21.jpeg"
                           alt="berita"
                           class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
@@ -2738,7 +2738,7 @@
                       <div class="flex items-center text-sm text-gray-500 mt-2">
                         <span
                           ><i class="far fa-calendar-alt mr-1"></i> 5 Juli
-                          2025</span
+                          2021</span
                         >
                         <span class="ml-3"
                           ><i class="far fa-eye mr-1"></i> 2k</span
@@ -2755,7 +2755,7 @@
                         class="aspect-w-16 aspect-h-9 mb-3 overflow-hidden rounded-lg shadow-sm"
                       >
                         <img
-                          src="https://icms.tanjungpinangkota.go.id/image/posting/berita/7243000000/original/1718954728_47d9af74ec712bd51c9a.jpg"
+                          src="https://www.kemenkopmk.go.id/sites/default/files/articles/2022-07/IMG-20220703-WA0052.jpg"
                           alt="berita"
                           class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
@@ -3377,13 +3377,9 @@
 
           const direction = newPage > currentPage ? "next" : "prev";
           const outClass =
-            direction === "next"
-              ? "slide-out-to-left"
-              : "slide-out-to-right";
+            direction === "next" ? "slide-out-to-left" : "slide-out-to-right";
           const inClass =
-            direction === "next"
-              ? "slide-in-from-right"
-              : "slide-in-from-left";
+            direction === "next" ? "slide-in-from-right" : "slide-in-from-left";
 
           newsGrid.classList.add(outClass);
 
@@ -3618,6 +3614,45 @@
         closeOverlayBtn.addEventListener("click", () => {
           document.body.style.overflow = "";
           trendingOverlay.classList.remove("visible");
+        });
+      }
+
+      // Tab switching functionality for spotlight section
+      const tabButtons = document.querySelectorAll('.spotlight-tab-btn');
+      const tabContents = document.querySelectorAll('.spotlight-tab-content');
+      const spotlightBtnText = document.getElementById('spotlight-btn-text');
+
+      if (tabButtons.length > 0) {
+        tabButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            // Remove active class from all buttons and contents
+            tabButtons.forEach(btn => {
+              btn.classList.remove('active');
+              btn.querySelector('div').classList.remove('opacity-100');
+              btn.querySelector('div').classList.add('opacity-0');
+            });
+            
+            tabContents.forEach(content => {
+              content.classList.remove('active');
+              content.classList.add('hidden');
+            });
+
+            // Add active class to clicked button and corresponding content
+            button.classList.add('active');
+            button.querySelector('div').classList.remove('opacity-0');
+            button.querySelector('div').classList.add('opacity-100');
+            
+            const tabId = button.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById(tabId).classList.remove('hidden');
+
+            // Update button text based on active tab
+            if (tabId === 'terkini') {
+              spotlightBtnText.textContent = 'Lihat Semua Berita Terkini';
+            } else {
+              spotlightBtnText.textContent = 'Lihat Semua Berita Populer';
+            }
+          });
         });
       }
 
