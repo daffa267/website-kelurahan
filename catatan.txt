@@ -9,8 +9,8 @@
     Halaman Berita utama sorotan berita kontennya jadikan 3 dengan atasnya (Done).
     
 3. Pengumuman 
-    Banner samakan dengan berita
-    Desain ubah jadi mirip berita
+    Banner samakan dengan berita (done)
+    Desain ubah jadi mirip berita (done)
     
 4. Galeri
     Kategori hapus (Done)
